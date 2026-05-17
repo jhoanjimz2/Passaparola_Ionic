@@ -1,0 +1,93 @@
+.payment-methods-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+
+  app-payment-method-wallet,
+  app-payment-method-card {
+    width: 100%;
+  }
+}
+
+// Estilos para modo horizontal (si necesitas ajustes adicionales)
+swiper-container {
+  width: 100%;
+
+  swiper-slide {
+    width: auto;
+    min-width: 280px; // Ajusta según tu diseño
+  }
+}
+
+// Card para agregar nuevo método de pago
+.add-payment-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 280px;
+  min-height: 6.35rem;
+  border: 2px dashed #E1E1E1;
+  border-radius: 1rem;
+  background-color: #FAFAFA;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #22A9E8;
+    background-color: #F0F8FC;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: white;
+    color: #22A9E8;
+    box-shadow: 0 2px 8px rgba(34, 169, 232, 0.1);
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #22A9E8;
+  }
+}
+
+// Estilos específicos para modo vertical
+.payment-methods-vertical .add-payment-card {
+  width: 100%;
+  min-height: 6.35rem;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 1rem;
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+  }
+}

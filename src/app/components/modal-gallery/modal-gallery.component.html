@@ -1,0 +1,21 @@
+<ion-content>
+  <!-- Encabezado -->
+  <div class="grid grid-cols-4 p-8 pb-2">
+    <div class="col-span-1"></div>
+    <div class="col-span-2 flex justify-center items-center">
+      <label class="text-2xl font-bold">Search picture</label>
+    </div>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <ion-searchbar mode="ios" [debounce]="1000" [(ngModel)]="query" (ionInput)="onSearchChange()" placeholder="Buscar imágenes..."></ion-searchbar>
+  <!-- Galería estilo Instagram -->
+  <div class="columns-2 md:columns-3 lg:columns-4 gap-2 p-4 space-y-2">
+    <div
+      *ngFor="let img of images"
+      class="overflow-hidden rounded-lg break-inside-avoid"
+      (click)="selectImage(img.largeImageURL)">
+      <img [src]="img.largeImageURL" class="w-full h-auto object-cover rounded-lg" />
+    </div>
+  </div>
+</ion-content>

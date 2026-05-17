@@ -1,0 +1,23 @@
+<div *ngIf="!yourLocationMarker" class="card-no-location">
+  <ion-label>{{ "GENERAL.LOCATION_NOT_AVAIBLE" | translate }}</ion-label>
+</div>
+
+<google-map
+  #myGoogleMap
+  height="100%"
+  width="100%"
+  class="map"
+  [options]="options"
+  [zoom]="zoom"
+  [center]="center"
+  (touchstart)="$event.stopPropagation()"
+  (touchmove)="$event.stopPropagation()"
+  (touchend)="$event.stopPropagation()"
+>
+  <map-marker
+    *ngFor="let marker of mapMarkers"
+    [position]="marker.position"
+    [icon]="marker.icon"
+  >
+  </map-marker>
+</google-map>

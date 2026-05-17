@@ -1,0 +1,18 @@
+<section class="profile-menu">
+  <section (click)="setTab('tags')">
+    <ion-icon class="tags" name="passaparola-profile-tags"></ion-icon>
+    <div *ngIf="tab === 'tags'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setTab('business')">
+    <ion-icon class="business" name="passaparola-profile-business"></ion-icon>
+    <div *ngIf="tab === 'business'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <!-- <section (click)="setTab('shopping')"> -->
+  <section>
+    <ion-icon class="shopping" name="passaparola-profile-shopping"></ion-icon>
+    <div *ngIf="tab === 'shopping'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setTab('contact')">
+    <ion-icon class="contact" name="passaparola-profile-contact"></ion-icon>
+  </section>
+</section>

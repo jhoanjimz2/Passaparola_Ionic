@@ -1,0 +1,98 @@
+<section class="h-full flex flex-col px-[23px] pt-[32px] overflow-y-auto">
+  <section class="text-[22px] leading-[30px] font-semibold text-center">
+    {{ "SEAT.COMPONENT.CONTACT.TITLE" | translate }}
+  </section>
+  <section *ngIf="sessionService.isCompanyLegal" class="text-[14px] leading-[17px] text-center mt-[12px] px-[50px]">
+    {{ "SEAT.COMPONENT.CONTACT.DESCRIPTION" | translate }}
+  </section>
+  <section *ngIf="sessionService.isProfessionalAdministrative" class="text-[14px] leading-[17px] text-center mt-[12px] px-[50px]">
+    {{ "SEAT.COMPONENT.CONTACT.DESCRIPTION_PUBLIC" | translate }}
+  </section>
+
+  <form
+    focusInvalidInput
+    (ngSubmit)="onSave()"
+    [formGroup]="form"
+    novalidate
+    autocomplete="false"
+    class="flex flex-col justify-between mb-[20px] h-full"
+  >
+    <section>
+      <section class="mt-[50px] h-[80px]">
+        <section class="text-[11px] leading-[17px]">
+          {{ "SEAT.COMPONENT.CONTACT.PHONE_NUMBER" | translate }}
+        </section>
+        <section class="flex flex-row relative mt-[3px]">
+          <select
+            class="h-14 w-[80px] bg-white text-[0.688rem] border-l border-t border-b border-gray-300 text-gray-900 text-sm rounded-l-xl block p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300 appearance-none"
+            formControlName="countryCode"
+            name="countryCode"
+          >
+            <ng-container *ngFor="let country of countries">
+              <option [value]="country.code">
+                {{ country.phonePrefix }} {{ country.code }}
+              </option>
+            </ng-container>
+          </select>
+          <input
+            class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border-r border-t border-b border-gray-300 text-gray-900 text-sm rounded-r-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="number"
+            [placeholder]="
+              'SEAT.COMPONENT.CONTACT.PHONE_NUMBER_PLACEHOLDER' | translate
+            "
+            formControlName="phone"
+            name="phone"
+            autocomplete="off"
+          />
+          <section
+            class="absolute top-3 h-7 border-gray-300 border-r-[0.063rem] left-[4.5rem]"
+          ></section>
+        </section>
+        <section
+          *ngIf="displayMessage.countryCode || displayMessage.phone"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{
+            displayMessage.countryCode
+              ? displayMessage.countryCode
+              : displayMessage.phone
+          }}
+        </section>
+      </section>
+
+      <section class="h-[110px] mt-[20px]">
+        <section class="text-[11px] leading-[17px] mb-[10px]">
+          {{ "SEAT.COMPONENT.CONTACT.PIN" | translate }}
+        </section>
+        <app-pin-input formControlName="pin"></app-pin-input>
+        <section
+          *ngIf="displayMessage.pin"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.pin }}
+        </section>
+      </section>
+
+      <section class="h-[110px] mt-[0px]">
+        <section class="text-[11px] leading-[17px] mb-[10px]">
+          {{ "SEAT.COMPONENT.CONTACT.PIN" | translate }}
+        </section>
+        <app-pin-input formControlName="repeatPin"></app-pin-input>
+        <section
+          *ngIf="displayMessage.repeatPin"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.repeatPin }}
+        </section>
+      </section>
+    </section>
+
+    <button
+      class="text-[14px] leading-[17px] bg-black text-white py-[27px] rounded-full disabled:opacity-50"
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      {{ "SEAT.SAVE" | translate }}
+    </button>
+  </form>
+</section>

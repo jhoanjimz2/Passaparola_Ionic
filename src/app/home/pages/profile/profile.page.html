@@ -1,0 +1,47 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <div class="img"></div>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="goTo('pages/profile/identity')" fill="outline">
+              <div>
+                <ion-icon color="dark" name="passaparola-wallet"></ion-icon>
+                <br />
+                <br />
+                <ion-label color="dark">{{ "La tua identità" }}</ion-label>
+              </div>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="goTo('pages/profile/contact')" fill="outline">
+              <div>
+                <ion-icon color="dark" name="mail"></ion-icon>
+                <br />
+                <br />
+                <ion-label color="dark">{{ "Dati di contatto" }}</ion-label>
+              </div>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="goTo('pages/profile/security-account')"
+              fill="outline"
+            >
+              <div>
+                <ion-icon color="dark" name="passaparola-security"></ion-icon>
+                <br />
+                <br />
+                <ion-label color="dark">{{ "Sicurezza" }}</ion-label>
+              </div>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

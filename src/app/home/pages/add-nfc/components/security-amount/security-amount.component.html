@@ -1,0 +1,79 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container--text-center">
+      <ion-text>
+        <span class="main-container__card__title">{{
+          "SECURITY_NFC.SECUTIRY" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__sub-title">{{
+          "SECURITY_NFC.IMPORTANT" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__text">
+          {{ "SECURITY_NFC.TEXT_INFO" | translate }}
+        </span>
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content class="main-container__card__content">
+      <ion-label>{{ "SECURITY_NFC.AMOUNT" | translate }}</ion-label>
+      <div class="main-container__card__content__amounts">
+        <ion-button
+          *ngFor="let amount of amounts"
+          (click)="setAmount(amount)"
+          class="main-container__card__content__btn-amount"
+        >
+          {{ amount + " €" }}
+        </ion-button>
+      </div>
+      <br />
+      <br />
+      <form [formGroup]="formWithdraw" (ngSubmit)="continue()">
+        <ion-label>{{ "SECURITY_NFC.CUSTOM_AMOUNT" | translate }}</ion-label>
+        <br />
+        <ion-label class="main-container__card__content__symbol-eur"
+          >€</ion-label
+        >
+        <input
+          (focus)="focus()"
+          (focusout)="losesFocus()"
+          class="main-container__card__content__input"
+          formControlName="amount"
+          name="amount"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          inputmode="numeric"
+          separatorLimit="99999999"
+        />
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="main-container__btn">
+          <ion-button
+            type="submit"
+            [disabled]="
+              !formWithdraw.valid ||
+              formWithdraw.controls['amount'].value === 0 ||
+              !formWithdraw.controls['amount'].value
+            "
+          >
+            {{ "SECURITY_NFC.CONTINUE" | translate }}
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

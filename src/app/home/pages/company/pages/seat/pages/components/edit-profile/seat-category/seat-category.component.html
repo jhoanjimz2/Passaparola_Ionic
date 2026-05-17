@@ -1,0 +1,66 @@
+<section class="pb-[24px] bg-white h-full flex flex-col justify-between">
+  <section>
+    <section class="text-[20px] font-bold pt-[24px] px-[16px]">
+      {{ "SEAT.COMPONENT.CATEGORY.TITLE" | translate }}
+    </section>
+
+    <section class="text-[15px] mt-2 text-gray-700 px-[16px]">
+      {{ "SEAT.COMPONENT.CATEGORY.SUBTITLE" | translate }}
+    </section>
+
+    <section
+      class="flex flex-row gap-2 mt-4 overflow-x-auto px-[16px] no-scrollbar"
+    >
+      <button
+        #tabButton
+        *ngFor="let tab of categoriesWithChildren; let i = index"
+        class="px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap"
+        [ngClass]="
+          selectedTabIndex === i
+            ? 'bg-[#FF8000] text-white'
+            : 'bg-[#F6F6F6] text-gray-700'
+        "
+        (click)="onSelectTab(i)"
+      >
+        {{ tab.companyCategoryTranslation.description }}
+      </button>
+    </section>
+
+    <section class="flex flex-col gap-4 mt-4 px-[16px]">
+      <label
+        class="flex flex-row justify-between items-center"
+        *ngFor="let category of categoriesWithChildrenAux"
+      >
+        <span class="text-[16px] text-gray-900 break-words max-w-[85%]">
+          {{ category.companyCategoryTranslation.description }}
+        </span>
+        <input
+          type="checkbox"
+          class="custom-checkbox flex-shrink-0"
+          [checked]="isCategorySelected(category)"
+          (change)="updateChecked($event, category)"
+        />
+      </label>
+    </section>
+  </section>
+
+  <section
+    *ngIf="!keyboardIsOpen"
+    class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] z-10"
+  >
+    <section class="bg-white absolute h-full w-full"></section>
+    <section
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10 bg-[#FFFFFF]"
+      (click)="onCancel()"
+    >
+      {{ "SEAT.CANCEL" | translate }}
+    </section>
+    <button
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+      (click)="onSave()"
+      [disabled]="!selectedCategoriesAux.length"
+    >
+      {{ "SEAT.SAVE" | translate }}
+    </button>
+  </section>
+</section>

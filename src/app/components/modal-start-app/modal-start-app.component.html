@@ -1,0 +1,74 @@
+<ion-card
+  style="
+    text-align: center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-shadow: none;
+    overflow: auto;
+  "
+>
+  <div>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <img src="assets/images/logo-text.png" alt="" width="150px" />
+    </div>
+    <ion-text>
+      <span style="font-size: 22px; color: #000000">Ci siamo quasi!</span>
+      <br />
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >Come promesso il 18 maggio abbiamo</span
+      >
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >lanciato la nuova versione di</span
+      >
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >Passaparola che sarà disponibile in
+      </span>
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >Italia entro i primi giorni di
+      </span>
+      <span style="font-size: 15px; color: #000000; font-weight: bold">
+        Giugno</span
+      >
+      <br />
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >Inizia a utilizzare l'app invitando amici e</span
+      >
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >suggerendo negozi per creare la tua</span
+      >
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >community e assicurarti una rendita</span
+      >
+      <br />
+      <span style="font-size: 15px; color: #000000"
+        >mensile in costante crescita</span
+      >
+    </ion-text>
+    <br />
+    <br />
+    <br />
+    <app-info-card
+      [image]="'assets/images/suggestion-card.png'"
+      [action]="'suggestion'"
+    ></app-info-card>
+    <div style="height: 10px"></div>
+    <app-invite-card></app-invite-card>
+  </div>
+</ion-card>

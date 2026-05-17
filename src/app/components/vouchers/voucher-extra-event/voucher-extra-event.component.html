@@ -1,0 +1,20 @@
+
+<section class="mb-[.5rem]" (click)="viewQrVoucher()">
+  <div class="bg-[#F9F9F9] grid grid-cols-[minmax(6rem,6rem)_minmax(0,calc(100%-11rem))_minmax(5rem,5rem)] gap-1 p-2 rounded-2xl shadow-md items-center w-full box-border">
+    <img (click)="seatOpenViewImage()" [src]="ticketExtra.pictureUlrFile | imageEvent" class="w-full h-32 rounded-[0.938rem] object-cover">
+    <div (click)="openSeatServiceComponent()" class="mb-auto">
+      <h2 class="text-lg font-bold truncate">{{ticketExtra.name || 'Nessuna name'}}</h2>
+      <p class="text-gray-500 line-clamp-2 overflow-hidden text-ellipsis">{{ticketExtra.description || 'Nessuna descrizione'}}</p>
+    </div>
+    <div class="grid items-center grid-rows-2 h-32 w-full" (click)="openSeatServiceComponent()">
+      <div *ngIf="!ticketExtra.isFree && ticketExtra.offerValue != 0" class="mb-auto ml-auto">
+        <p *ngIf="ticketExtra.discount" class="text-xl m-0 relative before:bg-pink-600 before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-full before:h-[2px] before:rotate-[-15deg] before:-translate-y-1/2">€ {{ (cantidad * ticketExtra.offerValue).toString().split('.')[0] || 0 }}.<span class="text-base">{{(cantidad * ticketExtra.offerValue).toString().split('.')[1] || 0}}</span></p>
+        <p class="text-xl m-0 font-bold">€ {{ (cantidad * ticketExtra.offerPrice).toString().split('.')[0] || 0 }}.<span class="text-base">{{ (cantidad * ticketExtra.offerPrice).toString().split('.')[1] || 0 }}</span></p>
+      </div>
+      <p *ngIf="ticketExtra.isFree || ticketExtra.offerValue == 0" class="mb-auto ml-auto font-bold text-[22px] text-pink-600">FREE</p>
+      <button (click)="comprar()" *ngIf="buy" class="bg-pink-500 text-white font-bold rounded-full w-[4rem] h-[2rem] mt-auto ml-auto flex items-center justify-center text-[1.5rem]">
+        <ion-icon src="assets/images/events/custom-icons/cart.svg"/>
+      </button>
+    </div>
+  </div>
+</section>

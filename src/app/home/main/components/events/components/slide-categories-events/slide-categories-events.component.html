@@ -1,0 +1,18 @@
+<swiper-container slides-per-view="auto" space-between="10px">
+  <swiper-slide
+    *ngFor="let category of allCategories; let i = index"
+    [ngClass]="{ 'm-r-10': allCategories.length === i + 1 }">
+    <ion-card (click)="openAllEventsFilter(category)">
+      <ion-card-header class="p-5 relative">
+        <img [src]="category.pictureUlrFile || 'assets/images/events/categories/ufficiali.png'" class="image"/>
+        <p class="overlay-text" *ngIf="i == 0">P</p>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="truncate">
+          {{ category.description || 'senza nome' }}
+        </p>
+      </ion-card-content>
+
+    </ion-card>
+  </swiper-slide>
+</swiper-container>

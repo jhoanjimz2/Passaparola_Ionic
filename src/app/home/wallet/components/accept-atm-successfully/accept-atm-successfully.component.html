@@ -1,0 +1,71 @@
+<div class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container--text-center">
+      <ion-text>
+        <ion-icon
+          *ngIf="action === 'accept'"
+          class="main-container__card__icon"
+          name="checkmark-done-circle"
+        ></ion-icon>
+
+        <ion-icon
+          *ngIf="action === 'decline'"
+          class="main-container__card__icon-decline"
+          name="alert-circle-outline"
+        ></ion-icon>
+        <br />
+        <br />
+        <span
+          class="main-container__card__text-amount"
+          [ngClass]="{ 'main-container--text-decline': action === 'decline' }"
+          >{{ amount | formattNumber }}</span
+        >
+        <br />
+        <span
+          class="main-container--text-success"
+          [ngClass]="{ 'main-container--text-decline': action === 'decline' }"
+          >{{
+            "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.ATM_ACCEPTED" | translate
+          }}</span
+        >
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content class="main-container--text-center">
+      <ion-text>
+        <br />
+        <span *ngIf="action === 'accept' && transactionType === 'receive'">{{
+          "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.TEXT_1" | translate
+        }}</span>
+
+        <span *ngIf="action === 'accept' && transactionType === 'send'">{{
+          "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.TEXT_REQUETS_1" | translate
+        }}</span>
+        <div *ngIf="action === 'decline'">
+          <span
+            >{{ "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.TEXT_2" | translate
+            }}{{ " " }}</span
+          >
+          <span class="main-container--f-w-b"
+            >{{ "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.REFUSED" | translate
+            }}{{ " " }}</span
+          >
+          <span *ngIf="transactionType === 'receive'">{{
+            "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.TEXT_3" | translate
+          }}</span>
+
+          <span *ngIf="transactionType === 'send'">{{
+            "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.TEXT_REQUETS_3" | translate
+          }}</span>
+        </div>
+        <br *ngIf="action === 'accept'" />
+        <span class="main-container--f-w-b">{{ nameFrom }}</span>
+      </ion-text>
+      <br />
+      <br />
+      <br />
+      <ion-button (click)="closeModal()">
+        {{ "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.BACK" | translate }}
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</div>

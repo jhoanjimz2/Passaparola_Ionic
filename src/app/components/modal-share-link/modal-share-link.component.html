@@ -1,0 +1,148 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+
+<ion-content [fullscreen]="true" class="modal-share-link">
+  <div class="modal-share-link__search-panel">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon
+            name="search-outline"
+            class="modal-share-link__search-panel__icon-search"
+          ></ion-icon>
+          <input
+            [(ngModel)]="search"
+            placeholder="Cerca contatto"
+          />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          (click)="showUnregisteredContacts = false"
+          size="6"
+          class="modal-share-link__search-panel__col-left"
+        >
+          <ion-icon
+            name="passaparola-icon"
+            class="modal-share-link__search-panel__icon-passaparola"
+          ></ion-icon>
+          <ion-label
+            class="modal-share-link--f-z-15"
+            [ngClass]="{ 'modal-share-link--f-w-b': !showUnregisteredContacts }"
+          >
+            Amici Passaparola
+          </ion-label>
+        </ion-col>
+        <ion-col
+          (click)="showUnregisteredContacts = true"
+          size="6"
+          class="modal-share-link__search-panel__col-left"
+        >
+          <ion-icon
+            name="call"
+            class="modal-share-link--f-z-20 modal-share-link--m-r-5"
+          ></ion-icon>
+          <ion-label
+            class="modal-share-link--f-z-15"
+            [ngClass]="{ 'modal-share-link--f-w-b': showUnregisteredContacts }"
+          >
+            Contatti
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Contactos registrados en Passaparola -->
+  <ion-grid
+    class="modal-share-link__contacts"
+    *ngIf="contacts.length > 0 && !showUnregisteredContacts"
+  >
+    <ion-row
+      *ngFor="let contact of contacts | contactSharePipe : search; index as i"
+      (click)="shareWithContact()"
+      class="modal-share-link__contacts__card"
+      [ngClass]="{ 'modal-share-link--p-t-5': i > 0 }"
+    >
+      <ion-col class="modal-share-link__contacts__picture">
+        <ion-icon name="passaparola-icon"></ion-icon>
+        <div
+          class="modal-share-link__contacts__picture__inner"
+          [style.background-image]="
+            contact.user?.profile?.profilePictureUrlFile!
+              ? 'url(' + contact.user?.profile?.profilePictureUrlFile! + ')'
+              : 'url(assets/images/no-image.jpg)'
+          "
+        ></div>
+      </ion-col>
+      <ion-col class="modal-share-link__contacts__text">
+        <ion-text>
+          <span>{{ contact.name }}</span>
+          <br />
+          <span class="modal-share-link--text-gray modal-share-link--f-z-11">{{
+            contact.phone
+          }}</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="1" class="modal-share-link__contacts__col-right">
+        <ion-icon
+          class="modal-share-link__contacts__icon-arrow"
+          name="share-outline"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Contactos no registrados -->
+  <ion-grid
+    class="modal-share-link__contacts"
+    *ngIf="contacts.length > 0 && showUnregisteredContacts"
+  >
+    <ion-row
+      *ngFor="
+        let contact of unregisteredContacts | contactSharePipe : search;
+        index as i
+      "
+      (click)="shareWithContact()"
+      class="modal-share-link__contacts__card"
+      [ngClass]="{ 'modal-share-link--p-t-5': i > 0 }"
+    >
+      <ion-col class="modal-share-link__contacts__picture">
+        <div
+          class="modal-share-link__contacts__picture__inner"
+          [style.background-image]="'url(assets/images/no-image.jpg)'"
+        ></div>
+      </ion-col>
+      <ion-col class="modal-share-link__contacts__text">
+        <ion-text>
+          <span>{{ contact.name }}</span>
+          <br />
+          <span class="modal-share-link--text-gray modal-share-link--f-z-11">{{
+            contact.phone
+          }}</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="1" class="modal-share-link__contacts__col-right">
+        <ion-icon
+          class="modal-share-link__contacts__icon-arrow"
+          name="share-outline"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Mensaje si no hay contactos -->
+  <div
+    *ngIf="contacts.length === 0 && unregisteredContacts.length === 0"
+    class="modal-share-link__empty"
+  >
+    <ion-icon name="people-outline"></ion-icon>
+    <p>Nessun contatto disponibile</p>
+  </div>
+</ion-content>

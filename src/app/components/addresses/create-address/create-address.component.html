@@ -1,0 +1,151 @@
+<app-header [backIcon]="true" [border]="true" [modalDismiss]="true"></app-header>
+<ion-content>
+  <div class="bg-white text-black p-4 pb-[120px]">
+
+
+    <div *ngIf="!edit" class="grid grid-cols-2">
+      <label class="text-left col-span-2 text-[#000000] font-bold text-[1.1rem]">Aggiungi profilo di spedizione</label>
+    </div>
+    <div *ngIf="edit" class="grid grid-cols-3">
+      <label class="text-left col-span-2 text-[#000000] font-bold text-[1.1rem]">Modifica profilo di spedizione</label>
+      <label class="text-right col-span-1 text-[#FB0000] font-bold text-[1.1rem]" (click)="modalCancelEditAddress()">x cancella</label>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="updateAddress()">
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-12">
+          <ion-input
+            mode="md" label-placement="floating" label="Nickname profilo di spedizione (opzionale)"
+            placeholder="crea un nickname per il profilo di spedizione" fill="outline"
+            name="nickname" formControlName="nickname">
+          </ion-input>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-12">
+          <ion-input
+            mode="md" label-placement="floating" label="Nome e cognome"
+            placeholder="scrivi qui il nome e cognome completo" fill="outline"
+            name="name" formControlName="name">
+          </ion-input>
+        </div>
+      </div>
+
+      <label class="block mt-[0.8rem] text-[14px] text-black">Numero telefonico di contatto</label>
+      <div class="flex items-center border border-gray-300 rounded-[.75rem] overflow-hidden !h-[56px] bg-white mt-0">
+        <img [src]="'assets/images/flags/' + selectedCountryCode + '.png'" class="h-4 w-4 ml-4 mr-2"/>
+        <ion-select
+          interface="popover"
+          name="phonePrefix"
+          formControlName="phonePrefix"
+          (ionChange)="onCountryChange($event)"
+          class="h-full w-[6rem] min-w-[6rem] max-w-[6rem] border-r border-gray-300 text-black">
+          <ion-select-option *ngFor="let country of countries" [value]="country.phonePrefix">
+            {{ country.phonePrefix }} {{ country.code }}
+          </ion-select-option>
+        </ion-select>
+        <ion-input
+          type="tel"
+          placeholder="numero di contatto"
+          name="phoneNumber"
+          formControlName="phoneNumber"
+          class="h-full flex-1 !px-3 text-black"
+        ></ion-input>
+      </div>
+
+
+
+
+
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-12 relative">
+          <ion-input
+            mode="md" label-placement="floating" label="Indirizzo di spedizione" #inputAddress
+            placeholder="Nome della via" fill="outline"
+            autocomplete="off" class="pr-[2.813rem]"
+            name="address" formControlName="address">
+          </ion-input>
+          <ion-icon class="z-50 text-[#FE8C0F] h-[2.2rem] w-[2.2rem] absolute top-3 right-2" name="locate"></ion-icon>
+          <div class="z-50 h-[0.625rem] w-[0.625rem] absolute top-[1.5rem] right-[1.255rem] bg-[#FE8C0F] rounded-full"></div>
+        </div>
+      </div>
+
+
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-5">
+          <ion-input
+            mode="md" label-placement="floating" label="numero civico"
+            fill="outline" name="numberHouse" formControlName="numberHouse">
+          </ion-input>
+        </div>
+        <div class="col-span-7">
+          <ion-input
+            mode="md" label-placement="floating" label="località"
+            fill="outline" name="localidad" formControlName="localidad">
+          </ion-input>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-7">
+          <ion-input
+            mode="md" label-placement="floating" label="Provincia"
+            fill="outline" name="provincia" formControlName="provincia">
+          </ion-input>
+        </div>
+        <div class="col-span-5">
+          <ion-input
+            mode="md" label-placement="floating" label="CAP"
+            fill="outline" name="cap" formControlName="cap">
+          </ion-input>
+        </div>
+      </div>
+
+      <div class="flex items-center my-4">
+        <div class="flex-grow h-px bg-gray-300"></div>
+        <span class="px-3 text-sm text-gray-500">opzionale</span>
+        <div class="flex-grow h-px bg-gray-300"></div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-12">
+          <ion-textarea
+            mode="md" label-placement="floating" label="Istruzioni per la consegna" rows="6"
+            placeholder="note, preferenze, codici di accesso e altro"
+            fill="outline" name="description" formControlName="description"/>
+        </div>
+      </div>
+
+      <div class="mt-[0.8rem]">
+        <ion-checkbox
+          mode="md"
+          formControlName="predefine"
+          labelPlacement="end"
+          name="predefine">
+          Usa come indirizzo predefinito
+        </ion-checkbox>
+      </div>
+
+
+    </form>
+
+
+    <section [ngClass]="{ 'fixed': !isKeyboardOpen }"
+      class="flex flex-row justify-center items-center py-[22px] bottom-[0px] w-full gap-[20px] left-0 z-50">
+      <section class="bg-white absolute h-full w-full"></section>
+      <section class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10">
+        {{ 'Annulla' }}
+      </section>
+      <button [disabled]="!form.valid" type="submit"
+        class=" disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10">
+        {{ 'Salva modifiche' }}
+      </button>
+    </section>
+
+
+  </div>
+</ion-content>

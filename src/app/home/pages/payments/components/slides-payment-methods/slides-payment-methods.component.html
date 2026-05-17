@@ -1,0 +1,61 @@
+<!-- Modo Horizontal (Swiper) -->
+<swiper-container
+  *ngIf="layout === 'horizontal'"
+  #swiperPaymentMethods>
+  <swiper-slide>
+    <app-payment-method-wallet
+      [wallet]="wallet"
+      [selected]="isWalletSelected()"
+      (paymentSelected)="onPaymentSelected($event)">
+    </app-payment-method-wallet>
+  </swiper-slide>
+
+  <swiper-slide *ngFor="let card of bankCards">
+    <app-payment-method-card
+      [card]="card"
+      [selected]="isCardSelected(card)"
+      (paymentSelected)="onPaymentSelected($event)">
+    </app-payment-method-card>
+  </swiper-slide>
+
+  <swiper-slide>
+    <div class="add-payment-card" (click)="navigateToAddCard()">
+      <div class="add-payment-card__icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <line x1="12" y1="5" x2="12" y2="19" stroke-width="2" stroke-linecap="round"/>
+          <line x1="5" y1="12" x2="19" y2="12" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="add-payment-card__text">Aggiungi carta</span>
+    </div>
+  </swiper-slide>
+</swiper-container>
+
+<!-- Modo Vertical (Stack) -->
+<div
+  *ngIf="layout === 'vertical'"
+  class="payment-methods-vertical">
+
+  <app-payment-method-wallet
+    [wallet]="wallet"
+    [selected]="isWalletSelected()"
+    (paymentSelected)="onPaymentSelected($event)">
+  </app-payment-method-wallet>
+
+  <app-payment-method-card
+    *ngFor="let card of bankCards"
+    [card]="card"
+    [selected]="isCardSelected(card)"
+    (paymentSelected)="onPaymentSelected($event)">
+  </app-payment-method-card>
+
+  <div class="add-payment-card" (click)="navigateToAddCard()">
+    <div class="add-payment-card__icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <line x1="12" y1="5" x2="12" y2="19" stroke-width="2" stroke-linecap="round"/>
+        <line x1="5" y1="12" x2="19" y2="12" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="add-payment-card__text">Aggiungi carta</span>
+  </div>
+</div>

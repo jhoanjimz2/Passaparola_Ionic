@@ -1,0 +1,126 @@
+<section class="px-[16px] py-[48px] bg-white h-full">
+  <section class="text-[16px] leading-[17px] font-bold">
+    {{ "Categoria di evento" }}
+  </section>
+
+  <section class="text-[15px] leading-[17px] mt-[5px]">
+    {{"Iniziate digitando la categoria a cui appartiene il vostro evento e scegliete uno dei nostri suggerimenti"}}
+  </section>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="seatCategories()"
+    autocomplete="off"
+    class="h-full relative"
+  >
+    <section class="mt-[10px]">
+      <section class="flex flex-col relative">
+        <label
+          for="name"
+          class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+        >
+          {{ "Categoria di evento" }}
+        </label>
+        <input
+          #search
+          class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          placeholder="inizia a scrivere qui"
+          formControlName="search"
+          name="search"
+          autocomplete="off"
+          (keyup)="onKeyUp($event)"
+        />
+
+        <section class="flex flex-wrap mt-[10px] gap-[5px]">
+          <article
+            class="flex border-[1px] border-[#EEEEEE] px-[15px] py-[4px] rounded-full bg-white relative font-bold text-[15px] leading-[17px]"
+            *ngFor="let category of eventProfile.categories"
+          >
+            <article
+              class="flex justify-center items-center h-[15px] w-[15px] border-[1px] border-[#EEEEEE] rounded-full bg-white absolute right-[-3px] top-[-4px] font-bold"
+            >
+              <ion-icon
+                class="h-[13px] w-[13px]"
+                name="close-outline"
+                (click)="deleteSelectedCategory(category)"
+              ></ion-icon>
+            </article>
+            {{ category.eventCategoryTranslation.description }}
+          </article>
+        </section>
+
+        <section
+          *ngIf="search.value.length || categoriesTree.length || showSearch"
+          class="border-[1px] border-[#E2E2E2] rounded-[18px] py-[18px] px-[10px] relative bg-white w-full mt-[3px] h-[250px] overflow-x-hidden overflow-y-auto"
+        >
+          <article
+            class="flex justify-center items-center h-[20px] w-[20px] border-[1px] border-[#EEEEEE] rounded-full bg-white absolute right-[15px] top-[10px] font-bold"
+            (click)="
+              showSearch = false;
+              onSelectedCategories(-1, allCategories)
+            "
+          >
+            <ion-icon class="h-[18px] w-[18px]" name="close-outline"></ion-icon>
+          </article>
+          <section class="text-[15px] leading-[20px] font-bold">
+            <span (click)="onSelectedCategories(-1, allCategories)">
+              {{ "Categoria" }}
+            </span>
+            <span
+              *ngFor="let category of categoriesTree; let i = index"
+              (click)="onSelectedCategories(i, category.children)"
+            >
+              > {{ category.eventCategoryTranslation.description }}
+            </span>
+          </section>
+          <section
+            *ngIf="filteredCategories.length"
+            class="pt-[10px] pl-[10px]"
+          >
+            <section
+              class="flex flex-row items-center mt-[10px]"
+              *ngFor="let category of filteredCategories"
+            >
+              <ion-checkbox
+                *ngIf="!category?.children?.length"
+                class="mr-[13px] border-[#DDE5E9]"
+                mode="md"
+                color="secondary"
+                [checked]="eventProfile.categories?.length && eventProfile.categories?.[0]?.id === category.id"
+                (ionChange)="updateChecked($event, category)"
+              />
+
+              <ion-label
+                class="text-[15px] leading-[17px]"
+                (click)="onSelectedCategory(category)"
+              >
+                {{ category.eventCategoryTranslation.description }}
+              </ion-label>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+
+    <section
+      [ngClass]="{ 'fixed': !isKeyboardOpen }"
+      class="flex flex-row justify-center items-center py-[22px] bottom-[0px] w-full gap-[20px] left-0"
+    >
+      <section
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+        (click)="onCancel()"
+      >
+        {{ "Annulla" }}
+      </section>
+
+      <button
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+        type="submit"
+        [disabled]="!eventProfile.categories?.length"
+      >
+        {{ "Salva" }}
+      </button>
+    </section>
+  </form>
+</section>

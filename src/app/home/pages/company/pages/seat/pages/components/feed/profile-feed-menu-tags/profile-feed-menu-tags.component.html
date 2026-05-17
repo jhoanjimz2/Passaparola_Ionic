@@ -1,0 +1,18 @@
+<section class="profile-menu">
+  <section (click)="setMenuTag('products')">
+    <label [ngClass]="{ '!font-bold animate__animated': tabMenuTag === 'products'}">Prodotti</label>
+    <div *ngIf="tabMenuTag === 'products'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setMenuTag('stores')">
+    <label [ngClass]="{ '!font-bold animate__animated': tabMenuTag === 'stores'}">Store</label>
+    <div *ngIf="tabMenuTag === 'stores'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setMenuTag('events')">
+    <label [ngClass]="{ '!font-bold animate__animated': tabMenuTag === 'events'}">Eventi</label>
+    <div *ngIf="tabMenuTag === 'events'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setMenuTag('projects')">
+    <label [ngClass]="{ '!font-bold animate__animated': tabMenuTag === 'projects'}">Investimenti</label>
+    <div *ngIf="tabMenuTag === 'projects'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+</section>

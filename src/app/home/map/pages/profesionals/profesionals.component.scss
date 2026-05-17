@@ -1,0 +1,75 @@
+// .searchbar-input-container .searchbar-input {
+//     background: #FBFCFE;
+//     border-radius: 99px;
+//     border: 1px solid gainsboro;
+//     height: 45px;
+// }
+
+// .swiper-container {
+//     width: 100%;
+//     height: auto;
+//     padding: 10px 0;
+// }
+
+// .swiper-slide {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     .swiper-chip {
+//         width: 100%;
+//         display: flex;
+//         justify-content: center;
+//     }
+// }
+
+// .text-overflow-elipsis {
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+
+// ion-avatar {
+//     --border-radius: 9px;
+//     width: 80%;
+//     height: 80%;
+// }
+
+.profesional-title {
+  font-size: 1.68rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.profesional-subtitle {
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.profesional-content {
+  font-size: 1rem;
+  text-align: center;
+  padding: 0px 15px;
+}
+
+swiper-container {
+  --swiper-pagination-color: #f9b139;
+  --swiper-pagination-bullet-width: 21px;
+  --swiper-pagination-bullet-height: 21px;
+  --swiper-pagination-bullet-inactive-color: #c4c4c4;
+}
+
+swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+ion-button {
+  --border-radius: 33px;
+}

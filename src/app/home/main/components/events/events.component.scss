@@ -1,0 +1,51 @@
+.main {
+
+  &__position-slide {
+    position: absolute;
+    bottom: -5rem;
+  }
+
+  &__grid-container {
+    &__col-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &__label-title{
+        font-size: 1rem;
+        font-weight: bold;
+        color: black;
+      }
+      &__label-subtitle{
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: black;
+      }
+    }
+    &__col-button {
+      display: flex;
+      justify-content: flex-end;
+      &__button-all {
+        box-shadow: 0 .188rem .375rem #0000001c;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.5rem;
+        background-color: #fff;
+        color: #000;
+        font-size: 1.8rem;
+
+      }
+    }
+  }
+  &__nearest-event {
+    margin-bottom: 20px;
+  }
+}
+ion-row {
+  padding: 0 16px;
+}
+ion-col {
+  padding: 0px;
+}

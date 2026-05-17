@@ -1,0 +1,70 @@
+<div class="post-feed-slide">
+
+  <div class="post-feed-slide__media">
+    <app-post-feed
+      [post]="post"
+      [slide]="true"
+    ></app-post-feed>
+    <div class="post-feed-slide__overlay">
+      <div class="post-feed-slide__header">
+        <div class="post-feed-slide__avatar-wrapper">
+          <div class="post-feed-slide__avatar"
+            [ngStyle]="{
+              'background-image':
+              post.seat
+                ? 'url('+ post.seat.pictureUlrFile +')'
+                : 'url('+ post.user?.profile?.profilePictureUrlFile +')'
+            }"
+          ></div>
+        </div>
+
+        <div class="post-feed-slide__info">
+          <span class="post-feed-slide__username">
+            {{
+              post.seat
+                ? post.seat.name
+                : post.user?.profile?.name
+            }}
+          </span>
+        </div>
+      </div>
+      <span class="post-feed-slide__description">
+        {{ post.description }}
+      </span>
+      <div class="post-feed-slide__chevron">
+        <ion-icon color="light" name="chevron-down-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="post-feed-slide__products" *ngIf="post.products">
+    <span class="post-feed-slide__products-title">Prodotti utilizzati in questo video</span>
+    <div class="post-feed-slide__product-item">
+      <div class="post-feed-slide__product-image-wrapper">
+        <div
+          class="post-feed-slide__product-image"
+          [ngStyle]="{
+            'background-image': 'url(https://placehold.co/40x40?text=profile)'
+          }"
+        ></div>
+      </div>
+      <div class="post-feed-slide__product-info">
+        <div class="post-feed-slide__product-name-wrapper">
+          <span class="post-feed-slide__product-name">{{ "Mixer Rowenta" }}</span>
+        </div>
+        <div class="post-feed-slide__product-price-wrapper">
+          <span class="post-feed-slide__product-price">€ {{ 24.49 | formattNumber }}</span>
+        </div>
+      </div>
+    </div>
+    <span class="post-feed-slide__more-products">
+      + {{ "altri" }} {{ "2" }}
+    </span>
+  </div> -->
+
+  <div class="post-feed-slide__no-products" *ngIf="!post.products">
+    <span class="post-feed-slide__no-products-text">Nessun prodotto taggato</span>
+  </div>
+
+</div>

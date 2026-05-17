@@ -1,0 +1,44 @@
+<app-header></app-header>
+<ion-content>
+
+  <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tira per aggiornare"
+      refreshingSpinner="circles"
+      refreshingText="Aggiornamento...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Barra de búsqueda con categoría -->
+  <app-search-bar
+    [categoryId]="categoryId"
+    [searchFunction]="searchWillbuys"
+    [placeholder]="'Cerca willbuy...'"
+    [minSearchLength]="2"
+    [debounceTime]="400"
+    [detailRoute]="'/pages/jointlybuy/view-willbuy'"
+    (searchStarted)="onSearchStarted($event)"
+    (searchCompleted)="onSearchCompleted($event)"
+    (resultSelected)="onResultSelected($event)">
+  </app-search-bar>
+
+  <!-- Feed de willbuys por categoría -->
+  <app-feed-willbuy
+    [title]="'Willbuy per categoria'"
+    [willbuys]="willbuys">
+  </app-feed-willbuy>
+
+  <!-- Infinite scroll -->
+  <ion-infinite-scroll
+    threshold="100px"
+    (ionInfinite)="loadMoreData($event)"
+    [disabled]="!hasMoreData || isSearchMode">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Caricamento altri willbuy...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

@@ -1,0 +1,18 @@
+<section class="category-list">
+  <h1 class="category-list__title-header">Professionisti per area di interesse</h1>
+
+  <swiper-container #swiperCategoryProfessionals class="category-list__slider">
+    <swiper-slide *ngFor="let category of categories" class="category-list__slide">
+      <div class="category-card" (click)="onFilterClick(category)">
+        <div class="category-card__image-wrapper">
+          <img
+            class="category-card__image"
+            [src]="getCategoryImage(category)"
+            [alt]="getCategoryDisplayName(category)"
+            loading="lazy">
+        </div>
+        <span class="category-card__name">{{ getCategoryDisplayName(category) }}</span>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</section>

@@ -1,0 +1,79 @@
+<div *ngIf="step == 1" class="bg-[#FFFFFF60] text-black p-4 flex flex-col h-full justify-center gap-[2rem]">
+  <div
+    class="mx-auto
+    w-[4rem] h-[4rem] rounded-[2rem]
+    bg-transparent border border-solid
+    border-[#FB0000] font-semibold
+    text-[#FB0000] text-[2rem]
+    flex items-center justify-center">
+    <ion-icon name="passaparola-x-icon"></ion-icon>
+  </div>
+  <div class="grid grid-cols-2">
+    <label class="text-center col-span-2 text-[#000000] font-bold text-[1.2rem]">
+      Stai per cancellare questo profilo di spedizione
+    </label>
+  </div>
+  <div class="bg-white grid grid-cols-3 gap-1 p-4 border border-solid border-[#E1E1E1] rounded-[.9rem]">
+    <div class="col-span-2 flex flex-col justify-between">
+      <div class="flex flex-col mb-3">
+        <label class="text-black font-bold">Nome e cognome persona</label>
+        <label class="text-black font-bold">+39 322 5451 444</label>
+      </div>
+      <div>
+        <label>Via della Rivoluzione, 14, Bologna, 478854, Italia</label>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2">
+    <label class="text-center col-span-2 text-[#000000] text-[1rem]">
+      Confermi L'operazione?
+    </label>
+  </div>
+  <div class="flex flex-col gap-2">
+    <button
+      (click)="step = 2"
+      class="flex justify-center items-center py-4
+        w-[250px] rounded-full bg-[#FF8000] mx-auto text-[16px]
+        border-[2px] border-[#FF8000] border-solid text-white font-bold">
+      {{ 'Conferma e cancella' }}
+    </button>
+    <button
+        (click)="closeModal()"
+        class="flex justify-center items-center py-4
+        w-[250px] rounded-full bg-white mx-auto text-[16px]
+        border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold">
+      {{ 'Annulla' }}
+    </button>
+  </div>
+</div>
+
+
+
+<div *ngIf="step == 2" class="bg-[#FFFFFF60] text-black p-4 flex flex-col h-full justify-center gap-[2rem]">
+  <div
+    class="mx-auto
+    w-[4rem] h-[4rem] rounded-[2rem]
+    bg-transparent border border-solid
+    border-[#FB0000] font-semibold
+    text-[#FB0000] text-[2rem]
+    flex items-center justify-center">
+    <ion-icon name="passaparola-x-icon"></ion-icon>
+  </div>
+  <div class="grid grid-cols-2">
+    <label class="text-center col-span-2 text-[#000000] font-bold text-[1.2rem]">
+      Profilo di spedizione cancellato
+    </label>
+  </div>
+  <div class="grid grid-cols-2">
+    <label class="text-center col-span-2 text-[#000000] text-[1rem]">
+      Hai cancellato con successo il profilo di spedizione. Per aggiungere o modificare un altro, ti preghiamo di tornare alla pagina dei tuoi profili di spedizione
+    </label>
+  </div>
+  <button
+    (click)="closeModal(true)"
+    class="flex justify-center items-center py-4
+      w-[250px] rounded-full bg-[#FF8000] mx-auto text-[16px]
+      border-[2px] border-[#FF8000] border-solid text-white font-bold">
+    {{ 'I miei profili di spedizione' }}
+  </button>
+</div>

@@ -1,0 +1,111 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="container__top-buttons">
+    <ion-row>
+      <ion-col size="6">
+        <ion-icon
+          (click)="action.isTorch = !action.isTorch; handle(action, 'torcher')"
+          name="sunny"
+          color="light"
+        ></ion-icon>
+        <br />
+        <ion-label color="light">
+          {{
+            (action.isTorch ? "QR_SCAN.FLASH_OFF" : "QR_SCAN.FLASH_ON")
+              | translate
+          }}
+        </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-icon
+          (click)="handle(action, action.isStart ? 'stop' : 'start')"
+          name="scan"
+          color="light"
+        ></ion-icon>
+        <br />
+        <ion-label color="light">
+          {{
+            (action.isStart ? "QR_SCAN.STOP_SCAN" : "QR_SCAN.START_SCAN")
+              | translate
+          }}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="container">
+    <div
+      class="container__inner"
+      [ngClass]="{
+        'container--bg--dark': !action.isLoading && isActive
+      }"
+    >
+      <ngx-scanner-qrcode
+        [ngClass]="{
+          'container--display-none':
+            !isActive || (action.isLoading && !dataScan),
+          'container--bg--dark': !action.isLoading && isActive
+        }"
+        [vibrate]="300"
+        [isBeep]="true"
+        #action
+        (event)="scanner($event)"
+      ></ngx-scanner-qrcode>
+      <ion-spinner
+        *ngIf="action.isLoading"
+        name="lines"
+        color="success"
+      ></ion-spinner>
+    </div>
+    <div
+      class="container__scan-box"
+      [ngClass]="{
+        'container--shadow-active': !action.isLoading && isActive,
+        'container--shadow-inactive': action.isLoading || !isActive
+      }"
+    >
+      <div *ngIf="!action.isLoading && isActive">
+        <div class="container__border container__border--b1"></div>
+        <div class="container__border container__border--b2"></div>
+        <div class="container__border container__border--b3"></div>
+        <div class="container__border container__border--b4"></div>
+      </div>
+
+      <div *ngIf="isActive && !action.isLoading" class="container__zoom">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="container__zoom__less"
+              ><ion-icon
+                (click)="zoomScan('less')"
+                color="light"
+                name="remove-circle"
+              ></ion-icon
+            ></ion-col>
+            <ion-col size="9" class="container__zoom_range">
+              <ion-range
+                (ionChange)="zoomScan('zoom')"
+                [(ngModel)]="zoom"
+                color="light"
+                [ticks]="false"
+                [snaps]="true"
+                [min]="0"
+                [max]="3"
+              ></ion-range>
+            </ion-col>
+            <ion-col class="container__zoom__in"
+              ><ion-icon
+                (click)="zoomScan('in')"
+                color="light"
+                name="add-circle"
+              ></ion-icon
+            ></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>

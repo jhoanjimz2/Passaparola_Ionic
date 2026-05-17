@@ -1,0 +1,137 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container__card__header">
+      <div
+        class="main-container__card__header__img"
+        [style.background-image]="'url(' + (img | image) + ')'"
+      ></div>
+    </ion-card-header>
+    <ion-card-content class="main-container--text-center">
+      <ion-text>
+        <span class="main-container__card__title">
+          {{ "COMPONENTS.MODAL_FORM_DOCTORS.TITLE" | translate }}
+        </span>
+        <br />
+        <span class="main-container__card__simple-text">{{
+          "COMPONENTS.MODAL_FORM_DOCTORS.TEXT" | translate
+        }}</span>
+      </ion-text>
+
+      <br />
+      <br />
+      <form [formGroup]="formInfo" autocomplete="off" (ngSubmit)="save()">
+        <ion-grid
+          class="main-container__card__phone main-container--m-l-15 main-container--m-r-10"
+        >
+          <ion-label>
+            {{ "COMPONENTS.MODAL_FORM_DOCTORS.NAME" | translate }}
+          </ion-label>
+          <ion-row class="main-container--m-b-10">
+            <ion-col size="12">
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                type="text"
+                placeholder="{{
+                  'COMPONENTS.MODAL_FORM_DOCTORS.ENTER_NAME' | translate
+                }}"
+                formControlName="name"
+              />
+            </ion-col>
+          </ion-row>
+          <ion-label>
+            {{ "COMPONENTS.MODAL_FORM_DOCTORS.PHONE" | translate }}
+          </ion-label>
+          <ion-row class="main-container--m-b-10">
+            <ion-col size="3" class="main-container--b-r-1">
+              <ion-select
+                color="primary"
+                placeholder="{{
+                  'COMPONENTS.MODAL_FORM_DOCTORS.ENTER_PHONE' | translate
+                }}"
+                interface="popover"
+                formControlName="phonePrefix"
+              >
+                <ion-select-option
+                  *ngFor="let country of countries"
+                  [value]="country.phonePrefix"
+                >
+                  {{ country.phonePrefix }} {{ country.code }}
+                </ion-select-option>
+              </ion-select></ion-col
+            >
+            <ion-col size="9">
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                type="tel"
+                placeholder="{{ '0000000000' }}"
+                formControlName="phone"
+              />
+            </ion-col>
+          </ion-row>
+          <ion-label>
+            {{ "COMPONENTS.MODAL_FORM_DOCTORS.EMAIL" | translate }}
+          </ion-label>
+          <ion-row>
+            <ion-col size="12">
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                type="text"
+                placeholder="{{
+                  'COMPONENTS.MODAL_FORM_DOCTORS.ENTER_MAIL' | translate
+                }}"
+                formControlName="email"
+              />
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="main-container--border-none">
+            <ion-col size="1" class="main-container--items-center"
+              ><ion-checkbox
+                mode="md"
+                color="orange"
+                formControlName="terms"
+                required
+              ></ion-checkbox
+            ></ion-col>
+            <ion-col
+              class="main-container--f-z-12 main-container--items-center"
+            >
+              <div class="main-container__card__text-terms">
+                {{ "COMPONENTS.MODAL_FORM_DOCTORS.TERMS_1" | translate }}
+                <span class="main-container--text-info">{{
+                  "COMPONENTS.MODAL_FORM_DOCTORS.TERMS_2" | translate
+                }}</span>
+                <span>{{ " " }}</span>
+                <span>{{
+                  "COMPONENTS.MODAL_FORM_DOCTORS.TERMS_3" | translate
+                }}</span>
+                <span>{{ " " }}</span>
+                <span class="main-container--text-info">{{
+                  "COMPONENTS.MODAL_FORM_DOCTORS.TERMS_4" | translate
+                }}</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <br />
+        <br />
+
+        <div class="main-container__card__btn">
+          <ion-button
+            type="submit"
+            [disabled]="formInfo.invalid || !formInfo.controls['terms'].value"
+          >
+            {{ "COMPONENTS.MODAL_FORM_DOCTORS.SEND" | translate }}
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

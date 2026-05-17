@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border" mode="md">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1">
+          <ion-button (click)="back()">
+            <ion-icon color="dark" name="arrow-back"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="8" class="col-logo">
+          <h1 class="text-[1.2rem] font-normal">
+            @{{ seat.userInfo?.profile?.username ? seat.userInfo?.profile?.username : 'username' }}
+          </h1>
+        </ion-col>
+
+        <ion-col size="3" class="end-buttons">
+          <ion-button>
+            <ion-icon color="dark" name="qr-code-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

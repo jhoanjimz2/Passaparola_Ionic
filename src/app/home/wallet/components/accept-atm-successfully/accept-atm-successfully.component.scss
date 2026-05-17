@@ -1,0 +1,56 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+
+  &__card {
+    width: 18.375rem;
+    height: 28.938rem;
+    border: 0.063rem solid #e2e2e2;
+    border-radius: 1.063rem;
+    background: #ffffff;
+
+    &__icon {
+      color: #00a10b;
+      font-size: 7.5rem;
+    }
+
+    &__icon-decline {
+      color: #b2b2b2;
+      font-size: 7.5rem;
+    }
+
+    &__text-amount {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00a10b;
+    }
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+
+  &--text-success {
+    color: #00a10b;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--text-decline {
+    color: #b2b2b2;
+  }
+
+  ion-button {
+    width: 14.25rem;
+    height: 4.25rem;
+    --background: #41c837;
+    --border-radius: 2.125rem;
+    text-transform: capitalize;
+  }
+}

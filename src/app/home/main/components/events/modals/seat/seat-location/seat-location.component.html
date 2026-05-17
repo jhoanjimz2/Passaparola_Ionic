@@ -1,0 +1,94 @@
+<section class="px-[16px] my-[48px] h-full">
+  <section class="text-[11px] mb-[5px] leading-[17px] mt-[5px]">
+    {{ "Indirizzo dell'evento"}}
+
+  </section>
+
+  <form (ngSubmit)="seatLocation()" autocomplete="off" class="h-full">
+    <section class="h-full">
+      <section class="h-full">
+        <section class="relative mb-[5px]" *ngIf="type == 'online'">
+          <input
+            #inputWebAddress
+            class="h-14 pr-[2.813rem] bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl rounded-b-0 block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="url"
+            [placeholder]="'inserire il sito web'"
+            [(ngModel)]="webAddress"
+            autocomplete="off"
+          />
+          <ion-icon class="text-[#DDE5E9] h-[2.2rem] w-[2.2rem] absolute top-3 right-2" name="globe-outline"></ion-icon>
+        </section>
+        <section class="relative"  *ngIf="type == 'fisica'">
+          <input
+            #inputAddress
+            class="h-14 pr-[2.813rem] bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl rounded-b-0 block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="text"
+            [placeholder]="'inserire l`indirizzo'"
+            [(ngModel)]="address"
+            autocomplete="off"
+          />
+          <div>
+            <ion-icon class="text-[#DDE5E9] h-[2.2rem] w-[2.2rem] absolute top-3 right-2" name="locate"></ion-icon>
+            <div class="h-[0.625rem] w-[0.625rem] absolute top-[1.5rem] right-[1.25rem] bg-[#DDE5E9] rounded-full"></div>
+          </div>
+        </section>
+
+        <section class="h-[250px] py-3" *ngIf="type == 'fisica'">
+          <google-map
+            #myGoogleMap
+            height="100%"
+            width="100%"
+            class="map"
+            [options]="options"
+            [zoom]="zoom"
+            [center]="center"
+          >
+            <map-marker
+              *ngFor="let marker of mapMarkers"
+              [position]="marker.position"
+              [icon]="marker.icon!"
+            >
+            </map-marker>
+          </google-map>
+        </section>
+
+        <section class="flex justify-around space-x-4 mt-2">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="radio" name="eventType" value="fisica" class="hidden peer" [(ngModel)]="type" (change)="onOptionChange()"/>
+            <span class="w-5 h-5 flex items-center justify-center bg-gray-200 text-white rounded peer-checked:bg-orange-500 peer-checked:text-white">✔</span>
+            <span class="text-black">Evento físico</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="radio" name="eventType" value="online" class="hidden peer" [(ngModel)]="type" (change)="onOptionChange()"/>
+            <span class="w-5 h-5 flex items-center justify-center bg-gray-200 text-white rounded peer-checked:bg-orange-500 peer-checked:text-white">✔</span>
+            <span class="text-black">Evento online</span>
+          </label>
+        </section>
+
+
+      </section>
+
+
+
+
+      <section
+        [ngClass]="{ 'fixed': !isKeyboardOpen }"
+        class="flex flex-row justify-center items-center py-[22px] bottom-[0px] w-full gap-[20px] left-0">
+        <section
+          class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+          (click)="onCancel()"
+        >
+          {{ "Annulla"  }}
+        </section>
+
+        <button
+          class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+          type="submit"
+          [disabled]="!valid"
+        >
+          {{ "Salva"  }}
+        </button>
+      </section>
+    </section>
+  </form>
+</section>

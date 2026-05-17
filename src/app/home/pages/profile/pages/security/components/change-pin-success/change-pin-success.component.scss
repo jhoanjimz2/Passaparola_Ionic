@@ -1,0 +1,49 @@
+.main-container {
+  height: calc(100vh - 3.125rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-card {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+    padding-top: 2.5rem;
+
+    ion-card-header {
+      text-align: center;
+    }
+
+    ion-card-content {
+      height: 100%;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+
+      ion-button {
+        position: fixed;
+        bottom: 6.25rem;
+        height: 3.438rem;
+        width: 16.563rem;
+        max-width: 16.563rem;
+        text-transform: none;
+        --border-radius: 3.125rem;
+        --box-shadow: none;
+        width: 100%;
+      }
+    }
+  }
+
+  &--f-w {
+    font-weight: bold;
+  }
+
+  &--f-z-100 {
+    font-size: 6.25rem;
+  }
+
+  &--f-z-14 {
+    font-size: 0.875rem;
+  }
+}

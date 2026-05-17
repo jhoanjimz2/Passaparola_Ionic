@@ -1,0 +1,134 @@
+<ion-content>
+  <section class="profile-menu">
+    <section (click)="setTabTags('product')">
+      <ion-icon class="product" name="passaparola-tab-tags"></ion-icon>
+      <div *ngIf="tabTags === 'product'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+    </section>
+    <section (click)="setTabTags('verified')">
+      <ion-icon class="verified" name="passaparola-shopping-bag"></ion-icon>
+      <div *ngIf="tabTags === 'verified'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+    </section>
+    <section (click)="setTabTags('store')">
+      <ion-icon class="store" name="passaparola-location-on"></ion-icon>
+      <div *ngIf="tabTags === 'store'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+    </section>
+    <section (click)="setTabTags('user')">
+      <ion-icon class="user" name="passaparola-user-tag"></ion-icon>
+      <div *ngIf="tabTags === 'user'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+    </section>
+    <section (click)="setTabTags('event')">
+      <ion-icon class="event" name="passaparola-post-event"></ion-icon>
+      <div *ngIf="tabTags === 'event'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+    </section>
+    <section (click)="setTabTags('investment')">
+      <ion-icon class="investment" name="passaparola-post-investment"></ion-icon>
+      <div *ngIf="tabTags === 'investment'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+    </section>
+  </section>
+
+  <section class="w-full p-4">
+
+    <section *ngIf="tabTags === 'product'">
+      <ng-container *ngIf="post.products && post.products.length > 0; else noProducts">
+        <div *ngFor="let product of post.productsData">
+          <app-product-tag
+            [product]="product"
+            [viewTagPost]="true"
+          ></app-product-tag>
+        </div>
+      </ng-container>
+      <ng-template #noProducts>
+        <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+          <span class="text-sm text-blue-700">
+            Nessun prodotto taggato
+          </span>
+        </div>
+      </ng-template>
+    </section>
+
+    <section *ngIf="tabTags === 'verified'">
+      <ng-container *ngIf="post.verifiedProducts && post.verifiedProducts.length > 0; else noVerifiedProducts">
+        <div *ngFor="let product of post.verifiedProducts">
+          producto verificato
+        </div>
+      </ng-container>
+      <ng-template #noVerifiedProducts>
+        <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+          <span class="text-sm text-blue-700">
+            Nessun prodotto verificato taggato
+          </span>
+        </div>
+      </ng-template>
+    </section>
+
+    <section [hidden]="tabTags != 'store'">
+      <ng-container *ngIf="post?.store; else noStore">
+        <app-store-tag
+          [store]="post.store"
+          [storeTag]="true"
+          (goStore)="goStore()"
+        >
+        </app-store-tag>
+      </ng-container>
+      <ng-template #noStore>
+        <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+          <span class="text-sm text-blue-700">
+            Nessuna negozio taggato
+          </span>
+        </div>
+      </ng-template>
+    </section>
+
+    <section [hidden]="tabTags != 'user'">
+      <ng-container *ngIf="post.users && post.users.length > 0; else noUsers">
+        <app-user-tag
+          class="mb-1 block"
+          *ngFor="let user of post.users"
+          [user]="user.entity"
+          [friendTag]="true"
+          (goUser)="goUser(user.id)"
+        ></app-user-tag>
+      </ng-container>
+      <ng-template #noUsers>
+        <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+          <span class="text-sm text-blue-700">
+            Nessun utente taggato
+          </span>
+        </div>
+      </ng-template>
+    </section>
+
+    <section *ngIf="tabTags === 'event'">
+      <ng-container *ngIf="post.event; else noEvents">
+        <app-event-tag
+        [event]="post.event"
+        [viewTagPost]="true"
+        ></app-event-tag>
+      </ng-container>
+      <ng-template #noEvents>
+        <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+          <span class="text-sm text-blue-700">
+            Nessun evento taggato
+          </span>
+        </div>
+      </ng-template>
+    </section>
+
+    <section *ngIf="tabTags === 'investment'">
+      <ng-container *ngIf="post.project; else noInvestments">
+        <app-investment-tag
+          [project]="post.project"
+          [viewTagPost]="true"
+        ></app-investment-tag>
+      </ng-container>
+      <ng-template #noInvestments>
+        <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+          <span class="text-sm text-blue-700">
+            Nessun project taggato
+          </span>
+        </div>
+      </ng-template>
+    </section>
+
+  </section>
+</ion-content>

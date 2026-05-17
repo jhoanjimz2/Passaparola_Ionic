@@ -1,0 +1,13 @@
+<section class="willbuy-expiring">
+
+  <div class="willbuy-expiring__header">
+    <span class="willbuy-expiring__title">Willbuy in scadenza</span>
+    <span class="willbuy-expiring__link" routerLink="/pages/jointlybuy/view-willbuys-deadline" >vedi tutti</span>
+  </div>
+
+  <swiper-container #swiperWillbuyExpiring class="willbuy-expiring__slider">
+    <swiper-slide *ngFor="let willbuy of willbuys" class="willbuy-expiring__slide">
+      <app-willbuy-card [willbuy]="willbuy"></app-willbuy-card>
+    </swiper-slide>
+  </swiper-container>
+</section>

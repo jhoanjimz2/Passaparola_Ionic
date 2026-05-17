@@ -1,0 +1,39 @@
+<div class="w-full h-full flex flex-col items-center pb-[2.75rem] px-4">
+
+  <ion-text class="text-center mt-[6.25rem]">
+    <span class="text-[1.688rem]"
+      >{{"LOGIN.INTO" | translate }}</span
+    >
+    <br />
+    <span class="text-[2.25rem]">PassaParola</span>
+    <br />
+    <br />
+    <span class="text-[0.938rem]"
+      >{{"LOGIN.CHOOSE_ACCOUNT" | translate}}</span
+    >
+  </ion-text>
+
+
+  <div (click)="select(profesional.profile, 'main')" class="flex flex-row mt-[.938rem] w-[21.875rem] rounded-[.813rem] p-[.938rem] border border-solid border-[#E8E8E8]">
+    <div class="div-img">
+      <img src="assets/images/legal-seat-icon.png" alt="" />
+    </div>
+    <div class="flex flex-col justify-center items-start pl-[.938rem]">
+      <span class="text-[1.125rem] font-semibold text-black">Dati amministrativi</span>
+      <span class="text-[0.875rem] font-normal text-[#1D0F01]">{{profesional.profile?.name}}</span>
+      <span class="text-[0.875rem] font-normal text-[#21AE0D]">gestione dati</span>
+    </div>
+  </div>
+  <div (click)="select(seat, 'seat')" *ngFor="let seat of profesional?.profile?.seats" class="flex flex-row mt-[1.1875rem] w-[21.875rem] rounded-[.813rem] p-[.938rem] border border-solid border-[#E8E8E8]">
+    <div class="div-img">
+      <img src="assets/images/operative-seat-icon.png" alt="" />
+    </div>
+    <div class="flex flex-col justify-center items-start pl-[.938rem]">
+      <span class="text-[1.125rem] font-semibold text-black">Profilo pubblico</span>
+      <span class="text-[0.875rem] font-normal text-[#1D0F01]">{{seat.name}} - {{seat.address}}</span>
+      <span class="text-[0.875rem] font-normal text-[#FE8500]">{{seat.categories[0].description}}</span>
+    </div>
+  </div>
+
+
+</div>

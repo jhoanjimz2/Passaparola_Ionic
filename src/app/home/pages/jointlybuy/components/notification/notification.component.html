@@ -1,0 +1,37 @@
+<article
+  class="notification"
+  [ngClass]="getBorderModifier()"
+  (click)="viewNotification()">
+
+  <img
+    [src]="getProductImage()"
+    [alt]="notification.title || 'Notificación'"
+    class="notification__image"
+  >
+
+  <div class="notification__content">
+    <h3 class="notification__title">
+      {{ notification.payload?.product?.name }}
+    </h3>
+    <p class="notification__description">
+      {{ notification.description }}
+    </p>
+  </div>
+
+  <div class="notification__timestamp">
+    <time class="notification__date">
+      {{ notification.updatedAt | date:'dd/MM/yyyy' }}
+    </time>
+    <time class="notification__time">
+      {{ notification.updatedAt | date:'HH:mm' }}
+    </time>
+  </div>
+
+  <!-- Indicador de no leída (opcional) -->
+  <span
+    *ngIf="!notification.isRead"
+    class="notification__unread-indicator"
+    aria-label="No leída">
+  </span>
+
+</article>

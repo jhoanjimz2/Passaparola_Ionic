@@ -1,0 +1,74 @@
+<ion-content [fullscreen]="true" class="main-container">
+  <div class="main-container__content">
+    <ion-card class="main-container__card">
+      <ion-card-content class="main-container--text-center">
+        <div class="center-item">
+          <!-- <img
+            src="assets/images/transfer-successfully.png"
+            alt=""
+            class="main-container__card__icon-successfully"
+          /> -->
+          <ion-icon
+            class="main-container__card__icon-time"
+            name="time"
+          ></ion-icon>
+        </div>
+        <br />
+        <ion-text>
+          <span class="main-container--f-w-b main-container--f-z-25">{{
+            "WALLET.RECHARGE.SUCCESFULLY.TRANSACTION_PENDING" | translate
+          }}</span>
+          <br />
+          <br />
+          <span>{{
+            "WALLET.RECHARGE.SUCCESFULLY.RECHARGE_AMOUNT" | translate
+          }}</span>
+          <br />
+          <span class="main-container--f-w-b main-container--f-z-36">{{
+            amount | formattNumber
+          }}</span>
+          <span sclass="main-container--f-w-b main-container--f-z-18">{{
+            " ATM/€"
+          }}</span>
+        </ion-text>
+
+        <ion-card
+          class="main-container__payment-method-card main-container--border-success"
+        >
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <div class="main-container__payment-method-card__icon-card">
+                  <ion-icon name="passaparola-museum"></ion-icon>
+                </div>
+              </ion-col>
+              <ion-col
+                size="auto"
+                class="main-container__payment-method-card__col-text main-container--text-left"
+              >
+                <ion-text>
+                  <span
+                    >{{ "WALLET.RECHARGE.TRANSFER" | translate }} {{ " SEPA" }}
+                  </span>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <br />
+        <br />
+        <ion-text class="main-container--f-z-13">
+          <span>{{ "WALLET.RECHARGE.TRANSACTION_ID" | translate }} </span>
+          <br />
+          <span> {{ idTransaction }}</span>
+        </ion-text>
+        <br />
+        <ion-button
+          (click)="backToHome()"
+          class="main-container__card__contact__btn-back"
+          >{{ "WALLET.RECHARGE.BACK_TO_HOME" | translate }}</ion-button
+        >
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,210 @@
+<section class="h-full overflow-y-auto bg-[#f0f0f0]">
+  <ion-content class="h-full overflow-y-auto bg-[#F9F9F9]">
+    <app-payment-header
+      [buttonActive]="buttonActive"
+      [color]="'color2'"
+      [labelLeftButton]="!created ? 'ABILITA RICARICA' : 'RICARICA UN WALLET' | translate"
+      [iconLeftButton]="'passaparola-money'"
+      [labelRightButton]="'ABILITA RITIRO' | translate"
+      [iconRightButton]="'passaparola-transfer-mobile'"
+      [decimalAmount]="decimalAmount"
+      [mainAmount]="mainAmount"
+      (callActivateButton)="onActiveButton($event)"
+    >
+      <section
+        class="flex flex-col justify-center items-center text-white relative"
+      >
+        <section class="text-[16px] leading-[22px] font-semibold">
+          Cassa ricarica
+        </section>
+        <section class="flex flex-row justify-center items-end mt-[5px]">
+          <section class="">ATM</section>
+          <section class="text-[36px] leading-[38px] px-[5px] font-light">
+            {{ walletFrom.balance! | formattNumber:'EUR':'symbol':'it':2 }}
+          </section>
+          <section *ngIf="created" class="">/1,500.00</section>
+        </section>
+        <section class="flex flex-row gap-[10px]">
+          <section
+            *ngIf="created"
+            class="bg-white text-[#33B7E8] px-[15px] py-[3px] rounded-[12px] text-[16px] leading-[22px] font-semibold mt-[10px] mb-[10px]"
+          >
+            compensazione
+          </section>
+          <section
+            class="bg-white text-[#33B7E8] px-[15px] py-[3px] rounded-[12px] text-[16px] leading-[22px] font-semibold mt-[10px] mb-[10px]"
+          >
+            aumenta il limite
+          </section>
+        </section>
+      </section>
+    </app-payment-header>
+
+    <section
+      class="flex flex-col justify-center items-center px-[15px] mt-[80px]"
+    >
+      <ng-container *ngIf="!created && form">
+        <section class="text-[20px] leading-[27px] font-bold">
+          Lorem ipsum
+        </section>
+
+        <section class="mt-[15px] text-center text-[14px] leading-[19px]">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        </section>
+
+        <form
+          class="flex flex-col justify-center items-center"
+          [formGroup]="form"
+          (ngSubmit)="createWalletRecharges()"
+        >
+          <section class="h-[40px] mt-[30px]">
+            <section class="flex flex-row">
+              <ion-checkbox
+                class="mr-2"
+                mode="md"
+                color="secondary"
+                name="term1"
+                formControlName="term1"
+              ></ion-checkbox>
+              <label for="default-checkbox" class="ms-2 text-sm font-medium">
+                Lorem ipsum
+                <a class="text-[#33B7E8] font-bold" href="">dolor sit amet</a>
+              </label>
+            </section>
+            <section
+              *ngIf="displayMessage.term1"
+              class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+            >
+              {{ displayMessage.term1 }}
+            </section>
+          </section>
+          <section class="h-[40px] mt-[10px]">
+            <section class="flex flex-row">
+              <ion-checkbox
+                class="mr-2"
+                mode="md"
+                color="secondary"
+                name="term2"
+                formControlName="term2"
+              ></ion-checkbox>
+              <label for="default-checkbox" class="ms-2 text-sm font-medium">
+                Lorem ipsum
+                <a class="text-[#33B7E8] font-bold" href="">dolor sit amet</a>
+              </label>
+            </section>
+            <section
+              *ngIf="displayMessage.term2"
+              class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+            >
+              {{ displayMessage.term2 }}
+            </section>
+          </section>
+
+          <button
+            class="bg-[#35B726] text-white text-[16px] leading-[22px] py-[10px] px-[60px] rounded-[28px] text-center mt-[30px]"
+            type="submit"
+          >
+            Abilita
+          </button>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="created">
+        <section class="w-full flex flex-col gap-[20px] mb-[100px]">
+          <!-- <section class="flex flex-row justify-between mb-[20px]">
+            <div
+              class="border border-[#33B7E8] rounded-[15px] text-[16px] leading-[22px] py-[5px] px-[22px] text-center font-semibold"
+              [ngClass]="{ 
+                'bg-[#33B7E8] text-white': true, 
+                'bg-white text-black': false 
+              }"
+            >
+              {{ "Tutti" | translate }}
+            </div>
+            <div
+              class="border border-[#33B7E8] rounded-[15px] text-[16px] leading-[22px] py-[5px] px-[22px] text-center font-semibold"
+              [ngClass]="{ 
+                'bg-[#33B7E8] text-white': false, 
+                'bg-white text-black': true  }"
+            >
+              {{ "Annullati" | translate }}
+            </div>
+            <div
+              class="border border-[#33B7E8] rounded-[15px] text-[16px] leading-[22px] py-[5px] px-[22px] text-center font-semibold"
+              [ngClass]="{ 
+                'bg-[#33B7E8] text-white': false, 
+                'bg-white text-black': true  }"
+            >
+              {{ "Conclusi" | translate }}
+            </div>
+          </section> -->
+
+          <section class="flex flex-row" *ngFor="let recharge of recharges">
+            <section
+              class="flex justify-center items-center h-[60px] w-[70px] bg-white rounded-[15px] shadow-md border-gray-200 border-[1px] text-[#33B7E8]"
+            >
+              <ion-icon
+                class="w-[30px] h-[30px]"
+                name="passaparola-money"
+              ></ion-icon>
+            </section>
+            <section class="flex flex-row justify-between w-full ml-[5px]">
+              <section class="flex flex-col justify-between">
+                <section class="text-[16px] leading-[22px]">Ricarica</section>
+                <section class="text-[11px] leading-[15px] text-[#707070]">
+                  ID{{ recharge.walletFrom | lastSegment:'-' | uppercase }}
+                </section>
+                <section
+                  class="text-[11px] leading-[15px] text-[#33B7E8] font-semibold"
+                >
+                  {{ recharge.createdAt | date : "dd/MM/yy, HH:mm" }}
+                </section>
+              </section>
+              <section class="flex flex-col justify-end text-right">
+                <section class="text-[11px] leading-[15px] text-[#707070]">
+                  EUR/ATM
+                </section>
+                <section
+                  class="text-[24px] leading-[33px] text-[#33B7E8] font-semibold"
+                >
+                  {{ recharge.amount | formattNumber }}
+                </section>
+              </section>
+            </section>
+          </section>
+
+          <ion-infinite-scroll
+            threshold="100px"
+            [disabled]="!infiniteScrollEnabled"
+            (ionInfinite)="rechargesByWalletId($event)"
+          >
+            <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data..."
+            >
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </section>
+      </ng-container>
+    </section>
+  </ion-content>
+
+  <section
+    *ngIf="created"
+    class="flex flex-row justify-between absolute left-0 bottom-[15px] w-full px-[15px]"
+  >
+    <section
+      class="text-[#33B7E8] px-[20px] py-[12px] text-[26px] leading-[36px] font-bold border-[#33B7E8] border-[1px] rounded-[14px] bg-[#f0f0f0]"
+    >
+      Info
+    </section>
+    <section
+      class="flex flex-col justify-center items-center bg-[#33B7E8] text-white px-[40px] py-[12px] text-[16px] leading-[22px] font-bold border-[#33B7E8] border-[1px] rounded-[34px]"
+      (click)="onOpenModalTpv()"
+    >
+      NUOVA RICARICA
+    </section>
+  </section>
+</section>

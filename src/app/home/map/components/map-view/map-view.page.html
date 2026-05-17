@@ -1,0 +1,79 @@
+<app-header
+  *ngIf="showHeader"
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="overflow-hidden">
+  <section class="absolute left-0 right-0 z-[119999]">
+    <section class="flex flex-row justify-between px-3 pt-6 gap-3">
+      <input
+        #address
+        class="flex grow bg-white text-[15px] leading-[22px] text-gray-900 placeholder:text-black text-sm rounded-[28px] rounded-b-0 pl-[34px] shadow-md h-[43px]"
+        type="text"
+        [placeholder]="'GENERAL.NEAR_HERE' | translate"
+        name="address"
+        autocomplete="off"
+        (input)="onInputChange($event)"
+      />
+      <!-- <article
+        class="flex justify-center items-center w-[43px] h-[43px] bg-white rounded-[14px] text-[#7A7A7A] shadow-md cursor-pointer"
+      >
+        <ion-icon
+          class="text-[24px] rotate-90"
+          name="options-outline"
+        ></ion-icon>
+      </article> -->
+    </section>
+    <section
+      class="flex flex-row gap-2 px-3 pb-2 mt-4 overflow-x-auto hide-scroll"
+    >
+      <article
+        class="rounded-full text-[14px] leading-[14px] px-3 py-2 shrink-0 shadow-md text-black"
+        *ngFor="let category of categories"
+        [ngClass]="{'bg-white': !category.selected, 'bg-[#FE8500] text-white': category.selected}"
+        (click)="onCategorySelected(category)"
+      >
+        {{category.companyCategoryTranslation.description}}
+      </article>
+    </section>
+  </section>
+  <section
+    class="absolute flex flex-col gap-4 right-3 z-[119999] bottom-[156px]"
+  >
+    <article
+      class="flex justify-center items-center w-[56px] h-[56px] bg-white rounded-full text-[#7A7A7A] shadow-md cursor-pointer"
+      (click)="onOpenSeatListModal()"
+    >
+      <ion-icon class="text-[20px]" name="passaparola-list"></ion-icon>
+    </article>
+    <article
+      class="flex justify-center items-center w-[56px] h-[56px] bg-white rounded-full text-[#7A7A7A] shadow-md cursor-pointer"
+      (click)="getLocation()"
+    >
+      <ion-icon class="text-[26px]" name="passaparola-location2"></ion-icon>
+    </article>
+    <article
+      class="flex justify-center items-center w-[56px] h-[56px] bg-[#FE8500] rounded-full text-white shadow-md cursor-pointer"
+      (click)="onOpenModalBsSuggestCamera()"
+    >
+      <ion-icon class="text-[28px]" name="passaparola-camera2"></ion-icon>
+    </article>
+  </section>
+
+  <!-- <app-page-action-button
+    [icon]="'passaparola-camera'"
+    [typeActionButton]="eTypeActionButton.variousCircles"
+    (click)="onOpenModalBsSuggestCamera()"
+  ></app-page-action-button> -->
+
+  <div class="h-screen">
+    <app-google-map
+      [position]="position"
+      [suggestionMarkersLocation]="suggestionMarkersLocation"
+      [seatMarkersLocation]="seatMarkersLocation"
+      (clickOnMarker)="openSeatModal($event)"
+      (clickOnMarkerSuggestion)="openSuggestionModal($event)"
+    ></app-google-map>
+  </div>
+</ion-content>

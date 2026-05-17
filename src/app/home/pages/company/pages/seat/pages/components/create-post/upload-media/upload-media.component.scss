@@ -1,0 +1,325 @@
+.upload-media {
+  width: 100%;
+  margin-top: 1rem;
+
+  &__title {
+    font-size: 0.9375rem;
+    color: black;
+  }
+
+  &__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 12.0625rem;
+    border-radius: 1.25rem;
+    background-color: #E4EDF3;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
+  &__dropzone-icon {
+    font-size: 6.75rem;
+    color: #849098;
+    font-weight: bold;
+    line-height: 0.8;
+  }
+
+  &__dropzone-text {
+    font-size: 0.9375rem;
+    color: black;
+  }
+
+  &__preview {
+    position: relative;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 1.25rem;
+  }
+
+  &__video-container {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0.938rem;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    object-fit: cover;
+    background: transparent;
+
+    &--loaded {
+      opacity: 1;
+    }
+
+    // Ocultar controles nativos de WebKit (Chrome, Safari, Edge)
+    &::-webkit-media-controls {
+      display: none !important;
+    }
+
+    &::-webkit-media-controls-enclosure {
+      display: none !important;
+      overflow: hidden !important;
+    }
+
+    &::-webkit-media-controls-panel {
+      display: none !important;
+    }
+
+    &::-webkit-media-controls-start-playback-button {
+      display: none !important;
+    }
+
+    &::-webkit-media-controls-overflow-button {
+      display: none !important;
+    }
+
+    &::-webkit-media-controls-fullscreen-button {
+      display: none !important;
+    }
+
+    &::-webkit-media-controls-playback-rate-button {
+      display: none !important;
+    }
+
+    &::-webkit-media-controls-seek-back-button,
+    &::-webkit-media-controls-seek-forward-button {
+      display: none !important;
+    }
+
+    // Ocultar controles nativos de Firefox
+    &::-moz-media-controls {
+      display: none !important;
+    }
+
+    &::cue {
+      display: none;
+    }
+  }
+
+  &__skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    background-color: #e5e7eb;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  &__actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.9375rem;
+    height: 2.9375rem;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 1.8rem;
+    border: none;
+    cursor: pointer;
+
+    &--delete {
+      color: black;
+    }
+  }
+
+  // Controles de video personalizados
+  &__controls {
+    position: absolute;
+    left: 0;
+    bottom: 1rem;
+    width: 100%;
+    background: transparent;
+    color: white;
+    padding: 1rem;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+
+    &--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__controls-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  &__controls-left,
+  &__controls-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__control-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #FE8500;
+    width: 1.625rem;
+    height: 1.625rem;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__time {
+    font-size: 1.1875rem;
+    color: white;
+  }
+
+  &__volume-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__volume-slider {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  &__volume-control:hover &__volume-slider {
+    width: 80px;
+    opacity: 1;
+  }
+
+  &__volume-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+
+    &::-webkit-slider-runnable-track {
+      height: 4px;
+      border-radius: 9999px;
+      background: #ddd;
+    }
+
+    &::-moz-range-track {
+      height: 4px;
+      border-radius: 9999px;
+      background: #ddd;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      background: #FE8500;
+      cursor: pointer;
+      margin-top: -4px;
+    }
+
+    &::-moz-range-thumb {
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      background: #FE8500;
+      border: none;
+      cursor: pointer;
+    }
+
+    &::-moz-range-progress {
+      background: #FE8500;
+      height: 4px;
+      border-radius: 9999px;
+    }
+  }
+
+  &__progress-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: transparent;
+
+    &::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 9999px;
+      background: #ddd;
+    }
+
+    &::-moz-range-track {
+      height: 6px;
+      border-radius: 9999px;
+      background: #ddd;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #FE8500;
+      cursor: pointer;
+      margin-top: -5px;
+    }
+
+    &::-moz-range-thumb {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #FE8500;
+      border: none;
+      cursor: pointer;
+    }
+
+    &::-moz-range-progress {
+      background: #FE8500;
+      height: 6px;
+      border-radius: 9999px;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.upload-media__video--hidden {
+  opacity: 0 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}

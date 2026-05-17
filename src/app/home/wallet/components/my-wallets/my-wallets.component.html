@@ -1,0 +1,43 @@
+<div class="main-container">
+  <ion-card
+    class="main-container__card main-container--p-relative main-container--overflow-hidden"
+  >
+    <div
+      class="main-container--text-center main-container__card__content-title"
+    >
+      <ion-label class="main-container__card__tiltle">{{
+        "WALLET.MY_WALLETS" | translate
+      }}</ion-label>
+    </div>
+    <br />
+    <br />
+    <ion-list class="main-container__card main-container--p-b-150">
+      <ion-item *ngFor="let wll of wallets" (click)="walletSelected = wll">
+        <ion-label>{{ wll.name }}</ion-label>
+        <ion-icon
+          [ngClass]="{
+            'main-container--icon-active': wll.id === walletSelected.id
+          }"
+          name="checkmark-circle-outline"
+        ></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid class="main-container__card__btns">
+      <ion-row>
+        <ion-col size="6" class="center-item">
+          <ion-button
+            (click)="close(true)"
+            class="main-container__card__btn-success"
+            >{{ "WALLET.ACCEPT" | translate }}</ion-button
+          >
+        </ion-col>
+        <ion-col size="6" class="center-item">
+          <ion-button (click)="close(false)" color="light">{{
+            "WALLET.CANCEL" | translate
+          }}</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</div>

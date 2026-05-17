@@ -1,0 +1,72 @@
+<section class="flex flex-col p-2 py-4">
+  <section
+    (click)="goToDetail()"
+    class="h-[184px] rounded-[15px] bg-gray-500 bg-no-repeat bg-cover bg-center"
+    [style.background-image]="'url(' + (seat.coverUrlFile | image) + ')'"
+  ></section>
+  <section class="flex flex-row justify-between items-center mt-2">
+    <article>
+      <div class="text-[15px] leading-[23px]" (click)="goToDetail()">
+        {{ seat.name }}
+      </div>
+      <div class="text-[11px] leading-[19px]">
+        {{ seat.categories[0].companyCategoryTranslation.description }} | €€
+      </div>
+      <div class="text-[11px] leading-[19px]">
+        <span
+          [ngClass]="{
+            'text-[#17A541]': seat.isOpen,
+            'text-red-500': !seat.isOpen
+          }"
+        >
+          {{
+            (seat.isOpen ? "GENERAL.OPEN_NOW" : "GENERAL.CLOSED") | translate
+          }}
+        </span>
+        <span *ngIf="seat.isOpen">
+          | {{ "GENERAL.CLOSES_AT" | translate }}: {{ seat.closeAt }}</span
+        >
+      </div>
+    </article>
+    <article class="flex flex-row gap-4">
+      <div class="flex flex-col justify-center items-center">
+        <span class="text-[32px] leading-[32px] text-[#00B1FF] font-bold">
+          {{ seat.pointsPercentage }}%
+        </span>
+        <span class="text-[12px] leading-[17px] text-[#6C757D]">Cashback</span>
+      </div>
+      <!-- <div class="flex flex-col justify-center items-center">
+        <span class="text-[32px] leading-[32px] text-[#00B1FF] font-bold">
+          {{ seat.cashBackPercentage }}%
+        </span>
+        <span class="text-[12px] leading-[17px] text-[#6C757D]">Back</span>
+      </div> -->
+    </article>
+  </section>
+  <section class="flex flex-row justify-between gap-2 mt-3">
+    <article
+      class="flex items-center bg-[#00B1FF] rounded-[26px] py-1 px-1 pr-3"
+      (click)="suggestionSeat(seat)"
+    >
+      <ion-icon class="text-[45px] mr-2" name="passaparola-suggest2"></ion-icon>
+      <span class="text-[14px] leading-[19px] text-white">
+        Consiglia ad un amico
+      </span>
+    </article>
+    <article class="flex flex-row items-center gap-2">
+      <div
+        class="flex flex-row justify-center items-center h-[54px] w-[54px] bg-[#00B1FF] rounded-full"
+        (click)="howToGet(seat)"
+      >
+        <ion-icon
+          class="text-[24px] text-white"
+          name="passaparola-post-go-store"
+        ></ion-icon>
+      </div>
+      <span class="text-[20px] leading-[25px] font-bold"
+        >{{ distance < 1 ? distance * 1000 : distance }}
+        {{ distance < 1 ? "m" : "km" }}</span
+      >
+    </article>
+  </section>
+</section>

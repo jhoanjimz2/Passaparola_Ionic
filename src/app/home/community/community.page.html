@@ -1,0 +1,119 @@
+<app-page-action-button icon="qr-code-outline"></app-page-action-button>
+<ion-content [fullscreen]="true">
+  <ion-refresher (ionRefresh)="handleRefresh($event)" slot="fixed">
+    <ion-refresher-content color="danger"></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="loading" class="main-container">
+    <ion-skeleton-text
+      class="main-container__skeleton"
+      *ngFor="let country of countries"
+      [animated]="true"
+    ></ion-skeleton-text>
+  </div>
+
+  <div *ngIf="!loading" class="main-container">
+    <ion-card
+      class="main-container__card"
+      *ngFor="let community of communities; index as i"
+      (click)="modalDetail(community.countryCode)"
+    >
+      <ion-card-content class="main-container__card__content">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="3" class="center-item"
+                    ><img
+                      [src]="'assets/images/flags/' + community.countryCode + '.png'"
+                      class="main-container__card__flag"
+                    />
+                  </ion-col>
+                  <ion-col size="9" class="main-container--p-l-5">
+                    <ion-text>
+                      <span class="main-container--f-z-12"
+                        >{{"Community"}}</span
+                      >
+                      <br />
+                      <span class="main-container--f-z-15"
+                        >{{community.country}}</span
+                      >
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3" class="center-item"
+                    ><ion-icon
+                      class="main-container__card__icon-person"
+                      name="person"
+                    ></ion-icon>
+                  </ion-col>
+                  <ion-col size="9">
+                    <ion-text>
+                      <span class="main-container--f-z-12"
+                        >{{"COMMUNITY.TOTAL_MEMBERS" | translate}}</span
+                      >
+                      <br />
+                      <span class="main-container--f-z-15"
+                        >{{community.totalMenbers}}</span
+                      >
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col size="6">
+              <ion-grid>
+                <ion-row>
+                  <ion-col
+                    ><ion-text>
+                      <span
+                        class="main-container--f-z-12 main-container--text-grey"
+                      >
+                        {{"COMMUNITY.YOUR_EARNINGS" | translate}}
+                        <ion-icon
+                          (click)="community.showAtm = !community.showAtm"
+                          class="main-container__card_icon-eye"
+                          [name]="community.showAtm ? 'eye-off-outline' : 'eye-outline'"
+                        ></ion-icon>
+                      </span>
+                      <br />
+                      <span
+                        *ngIf="community.showAtm"
+                        class="main-container__card__text-pass"
+                      >
+                        {{community.atm | formattNumber : "EUR" : "symbol" :
+                        "it" : 2}} ATM/€
+                      </span>
+                      <span
+                        *ngIf="!community.showAtm"
+                        class="main-container__card__text-pass"
+                      >
+                        {{'******'}} ATM/€
+                      </span>
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col class="center-item">
+                    <div
+                      class="main-container__card__btn-active"
+                      [ngClass]="{'main-container--bg-disabled': community.totalMenbers === 1}"
+                    >
+                      {{(community.totalMenbers > 1 ?
+                      "COMMUNITY.COMMUNITY_ACTIVE" :
+                      "COMMUNITY.COMMUNITY_NOT_ACTIVE") | translate}}
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="space-bottom"></div>
+</ion-content>

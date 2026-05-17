@@ -1,0 +1,67 @@
+<section class="min-h-screen flex flex-col bg-[#F9F9F9]">
+  <section class="flex flex-col min-h-screen bg-[#F9F9F9]">
+    <section class="">
+      <app-header
+        [border]="true"
+        [backIcon]="true"
+        [modalDismiss]="true"
+      ></app-header>
+
+      <!-- TODO: habilitar cuando este listo la sección de votar -->
+      <!-- <section
+        class="grid grid-cols-2 text-center pt-[1.25rem] text-[1.125rem] leading-[1.5rem] px-3"
+      >
+        <div class="flex justify-start">
+          <div
+            class="pb-1"
+            [ngClass]="{
+              'border-b-[0.188rem] border-[#41C837] font-bold':
+                tabActive === 'list'
+            }"
+            (click)="tabActive = 'list'"
+          >
+            {{ "BUSINESS_SUGGESTION.MY_SUGGESTIONS" | translate }}
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <div
+            class="pb-1"
+            [ngClass]="{
+              'border-b-[0.188rem] border-[#41C837] text-[1.125rem] font-bold':
+                tabActive === 'vote'
+            }"
+            (click)="tabActive = 'vote'"
+          >
+            {{ "BUSINESS_SUGGESTION.VOTE_AND_WIN" | translate }}
+          </div>
+        </div>
+      </section> -->
+    </section>
+
+    <ion-content
+      class="h-full overflow-y-auto bg-[#F9F9F9]"
+      *ngIf="tabActive === 'list'"
+    >
+      <section class="pt-[1.25rem] pb-3 px-3 h-full bg-[#F9F9F9]">
+        <app-bs-list
+          [businessSuggestions]="businessSuggestions"
+          (findAll)="findAll($event)"
+        />
+
+        <ion-infinite-scroll
+          threshold="100px"
+          [disabled]="!infiniteScrollEnabled"
+          (ionInfinite)="findAll($event)"
+        >
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data..."
+          >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </section>
+    </ion-content>
+    <!-- TODO: habilitar cuando este listo la sección de votar -->
+    <!-- <app-bs-vote-and-win *ngIf="tabActive === 'vote'" /> -->
+  </section>
+</section>

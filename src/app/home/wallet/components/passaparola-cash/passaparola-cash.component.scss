@@ -1,0 +1,107 @@
+.main-container {
+  --background: #f9f9f9;
+
+  &__card {
+    height: 100%;
+    box-shadow: none;
+    background: transparent;
+
+    &__header {
+      text-align: center;
+    }
+
+    &__center-item-full {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__card {
+        width: 14.125rem;
+        height: 6.063rem;
+        border-radius: 1.063rem;
+        border: solid 0.063rem #3cc3a2;
+        box-shadow: none;
+        display: flex;
+        justify-content: center;
+        align-items: center∫;
+      }
+
+      &__amount {
+        font-weight: bold;
+        color: #3cc3a2;
+        font-size: 3.125rem;
+        line-height: 2.188rem;
+      }
+
+      &__eur {
+        color: #3cc3a2;
+        position: absolute;
+        margin-left: 0.625rem;
+        margin-top: 0.625rem;
+      }
+    }
+
+    &__icon-arrow {
+      rotate: (180deg);
+      font-size: 1.5rem;
+      margin-left: 0.313rem;
+      position: absolute;
+      margin-top: 0.438rem;
+      margin-left: 0.313rem;
+    }
+
+    &__col-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+
+    &__circle {
+      width: 1.688rem;
+      height: 1.688rem;
+      background: #3cc3a2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      border-radius: 5.625rem;
+    }
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--f-z-14 {
+    font-size: 0.875rem;
+  }
+
+  &--f-italic {
+    font-style: italic;
+  }
+
+  &--f-z-12 {
+    font-size: 0.75rem;
+  }
+
+  &--f-z-22 {
+    font-size: 1.375rem;
+  }
+
+  &--m-p-0 {
+    margin: 0;
+    padding: 0;
+  }
+
+  &--left-item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  &--m-b-20 {
+    margin-bottom: 1.25rem;
+  }
+}

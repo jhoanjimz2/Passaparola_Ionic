@@ -1,0 +1,71 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-card class="main-container">
+    <ion-card-header class="main-container--text-center">
+      <ion-text>
+        <span class="main-container__label-1">
+          {{"PASSAPAROLA_CARD.SELECT" | translate}}
+        </span>
+        <br />
+        <span class="main-container__label-2">
+          {{"PASSAPAROLA_CARD.OPERATION" | translate}}
+        </span>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content class="main-container__card__content">
+      <section class="main-container__card__section">
+        <ion-card
+          (click)="option = 'assing'"
+          class="main-container__card"
+          [ngClass]="{'main-container__card--selected': option === 'assing'}"
+        >
+          <ion-text>
+            <span>
+              <ion-icon
+                name="passaparola-card"
+                class="main-container--f-z-30"
+                [ngClass]="{'main-container__card--text-selected': option === 'assing'}"
+              ></ion-icon>
+            </span>
+            <br />
+            <span
+              class="main-container--text-dark"
+              [ngClass]="{'main-container__card--text-selected': option === 'assing'}"
+            >
+              {{"PASSAPAROLA_CARD.ASSING_CARD" | translate}}
+            </span>
+          </ion-text>
+        </ion-card>
+
+        <ion-card
+          (click)="option = 'recharge'"
+          class="main-container__card main-container--m-t-25"
+          [ngClass]="{'main-container__card--selected': option === 'recharge'}"
+        >
+          <ion-text>
+            <span>
+              <ion-icon
+                [name]="option === 'recharge' ? 'passaparola-refresh-selected' : 'passaparola-refresh'"
+                class="main-container--f-z-30"
+              ></ion-icon>
+            </span>
+            <br />
+            <span
+              class="main-container--text-dark"
+              [ngClass]="{'main-container__card--text-selected': option === 'recharge'}"
+            >
+              {{"PASSAPAROLA_CARD.RECHARGE_CARD" | translate}}
+            </span>
+          </ion-text>
+        </ion-card>
+      </section>
+    </ion-card-content>
+
+    <div class="main-container__button">
+      <ion-button (click)="continue()" [disabled]="option === ''"
+        >{{"PASSAPAROLA_CARD.CONTINUE" | translate}}</ion-button
+      >
+    </div>
+  </ion-card>
+</ion-content>

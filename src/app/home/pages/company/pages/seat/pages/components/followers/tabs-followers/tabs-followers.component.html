@@ -1,0 +1,11 @@
+<div class="flex justify-between text-sm py-4">
+  <span *ngIf="common" [ngClass]="{'font-semibold border-b-2 border-black': activeTab === 'common'}" (click)="setTab('common')">
+    {{ totalComune }} in comune
+  </span>
+  <span [ngClass]="{'font-semibold border-b-2 border-black': activeTab === 'followers'}" (click)="setTab('followers')">
+    Follower {{ totalFollowers }}
+  </span>
+  <span [ngClass]="{'font-semibold border-b-2 border-black': activeTab === 'following'}" (click)="setTab('following')">
+    Account seguiti {{ totalFollowing }}
+  </span>
+</div>

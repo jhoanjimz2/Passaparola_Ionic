@@ -1,0 +1,22 @@
+<app-header-auth [backIcon]="true"></app-header-auth>
+
+<ion-content [fullscreen]="true">
+  <app-check-phone
+    *ngIf="!user.id && !changePinSuccess"
+    [phone]="phone"
+    [phonePrefix]="phonePrefix"
+    (userEmit)="getUser($event)"
+    (companyEmit)="getCompany($event)"
+    (pinChangeEmit)="getPinchange($event)"
+  ></app-check-phone>
+
+  <app-create-pin
+    *ngIf="user.id && !changePinSuccess"
+    [user]="user"
+    [company]="company"
+    [pinChange]="pinChange"
+    (changePinSuccess)="getChangePinSuccess($event)"
+  ></app-create-pin>
+
+  <app-change-pin-success *ngIf="changePinSuccess"></app-change-pin-success>
+</ion-content>

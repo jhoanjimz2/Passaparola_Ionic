@@ -1,0 +1,202 @@
+<section class="px-[10px] pt-[30px]">
+  <ng-container *ngIf="!seat?.targetInfo?.seatInfo?.categories?.length">
+    <section
+      class="flex flex-col justify-center items-center px-[25px] mb-[30px]"
+    >
+      <article
+        class="flex justify-center items-center w-[30px] h-[30px] bg-[#DB0000] rounded-full text-white"
+      >
+        <ion-icon class="text-[20px]" name="alert-outline"></ion-icon>
+      </article>
+      <article class="text-[16px] leading-[17px] font-bold mt-[18px]">
+        {{
+          "SEAT.COMPONENT.REWARD_POINT_CASHBACK.REQUIRED_CATEGORY" | translate
+        }}
+      </article>
+      <article class="text-[15px] leading-[17px] text-center mt-[5px]">
+        {{ "SEAT.COMPONENT.REWARD_POINT_CASHBACK.DESCRIPTION_MSG" | translate }}
+      </article>
+
+      <button
+        class="flex justify-center text-[16px] leading-[17px] items-center w-full py-[16px] mt-[15px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+      >
+        {{ "SEAT.COMPONENT.REWARD_POINT_CASHBACK.CHOOSE_CATEGORY" | translate }}
+      </button>
+    </section>
+  </ng-container>
+  <section
+    class="px-[5px] relative"
+    [ngClass]="{
+      'border-[1px] border-[#E2E2E2] rounded-[30px] py-[25px]':
+        !seat.targetInfo?.seatInfo?.categories?.length
+    }"
+  >
+    <ng-container *ngIf="!seat.targetInfo?.seatInfo?.categories?.length">
+      <section
+        class="flex justify-center items-center w-full h-full absolute bg-white opacity-60"
+      ></section>
+      <section class="flex justify-center items-center w-full h-full absolute">
+        <ion-icon
+          class="text-[50px] text-[#9B9EA7]"
+          name="lock-closed"
+        ></ion-icon>
+      </section>
+    </ng-container>
+    <section>
+      <article class="text-[16px] leading-[17px] font-bold">
+        {{ "SEAT.COMPONENT.REWARD_POINT_CASHBACK.TITLE" | translate }}
+      </article>
+      <article
+        class="text-[13px] leading-[17px] mt-[10px]"
+        [innerHTML]="
+          'SEAT.COMPONENT.REWARD_POINT_CASHBACK.SUBTITLE' | translate
+        "
+      ></article>
+    </section>
+    <section class="flex flex-row justify-between mt-[15px] text-center">
+      <section
+        class="border-[1px] px-[10px] pt-[20px] pb-[5px] rounded-[14px] w-[160px] border-[#E2E2E2]"
+      >
+        <article
+          class="flex justify-center items-center text-[46px] leading-[52px]"
+        >
+          <!-- <input
+            class="flex w-[120px] bg-transparent text-black text-right"
+            type="text"
+            [value]="percentages.rewardPercentage"
+            appDecimalValidator
+            decimalSeparator=","
+            [min]="min"
+            [max]="max"
+            (blur)="setRewardPercentage($event)"
+          /> -->
+
+          <input
+            class="flex w-[120px] bg-transparent text-black text-right focus:border-transparent focus:ring-0 focus:outline-none"
+            type="text"
+            [value]="percentages.rewardPercentage"
+            decimalSeparator=","
+            [min]="min"
+            [max]="max"
+            (blur)="setRewardPercentage($event)"
+          />
+          <span class="text-[#9B9EA7] text-[22px] leading-[25px] font-bold">
+            %
+          </span>
+        </article>
+        <article class="text-[13px] leading-[17px]">
+          {{
+            "SEAT.COMPONENT.REWARD_POINT_CASHBACK.WRITE_YOUR_REWARD_HERE"
+              | translate
+          }}
+        </article>
+      </section>
+      <section
+        class="border-[1px] px-[10px] pt-[20px] pb-[5px] rounded-[14px] w-[160px] border-[#41C837]"
+      >
+        <article
+          class="flex justify-center items-center text-[46px] leading-[52px]"
+        >
+          12,00
+          <span class="text-[#9B9EA7] text-[22px] leading-[25px] font-bold">
+            %
+          </span>
+        </article>
+        <article class="text-[13px] leading-[17px]">
+          {{
+            "SEAT.COMPONENT.REWARD_POINT_CASHBACK.SUGGESTED_REWARDS_CATEGORY"
+              | translate
+          }}
+        </article>
+      </section>
+    </section>
+    <section class="flex justify-end mt-[25px]">
+      <section class="w-[250px]">
+        <section class="text-[15px] leading-[17px] font-bold">
+          {{
+            "SEAT.COMPONENT.REWARD_POINT_CASHBACK.REWARD_SUMMARY" | translate
+          }}
+        </section>
+        <section class="flex flex-row justify-between mt-[10px]">
+          <article class="text-[13px] leading-[17px]">
+            {{ "SEAT.COMPONENT.REWARD_POINT_CASHBACK.CASHBACK" | translate }}
+          </article>
+          <article class="flex flex-row text-[13px] leading-[17px] font-bold">
+            {{ percentages.cashBackPercentage }}%
+          </article>
+        </section>
+        <section class="flex flex-row justify-between mt-[10px]">
+          <article class="text-[13px] leading-[17px]">
+            {{ "SEAT.COMPONENT.REWARD_POINT_CASHBACK.APP_FEES" | translate }}
+          </article>
+          <article class="flex flex-row text-[13px] leading-[17px] font-bold">
+            {{ percentages.communityPercentage }}%
+          </article>
+        </section>
+        <section class="flex flex-row justify-between mt-[10px]">
+          <article class="text-[13px] leading-[17px]">
+            {{
+              "SEAT.COMPONENT.REWARD_POINT_CASHBACK.COMMUNITY_REWARD"
+                | translate
+            }}
+          </article>
+          <article class="flex flex-row text-[13px] leading-[17px] font-bold">
+            {{ percentages.pointsPercentage }}%
+          </article>
+        </section>
+        <section class="flex flex-row justify-between mt-[10px]">
+          <article class="text-[13px] leading-[17px]">
+            {{
+              "SEAT.COMPONENT.REWARD_POINT_CASHBACK.HUMANITARIAN_AID"
+                | translate
+            }}
+          </article>
+          <article class="flex flex-row text-[13px] leading-[17px] font-bold">
+            {{ percentages.helpPercentage }}%
+          </article>
+        </section>
+        <section class="flex flex-row justify-between mt-[10px]">
+          <article class="text-[13px] leading-[17px]">
+            {{
+              "SEAT.COMPONENT.REWARD_POINT_CASHBACK.MONTHLY_DRAWS" | translate
+            }}
+          </article>
+          <article class="flex flex-row text-[13px] leading-[17px] font-bold">
+            {{ percentages.drawingPercentage }}%
+          </article>
+        </section>
+        <section
+          class="flex flex-row justify-between mt-[20px] pt-[10px] border-t-[1px] border-[#E2E2E2]"
+        >
+          <article class="text-[16px] leading-[17px] font-bold">
+            {{ "SEAT.COMPONENT.REWARD_POINT_CASHBACK.TOTAL" | translate }}
+          </article>
+          <article class="text-[16px] leading-[17px] font-bold">
+            {{ percentages.rewardPercentage }}%
+            <!-- {{ total }}% -->
+          </article>
+        </section>
+      </section>
+    </section>
+    <!-- <section *ngIf="total!==percentages.rewardPercentage" class="mt-[10px] text-[12px] text-red-600">{{ "GENERAL.SUM_OF_THE_PERCENTAGES" | translate:{total: percentages.rewardPercentage} }}</section> -->
+  </section>
+
+  <section
+    *ngIf="!keyboardIsOpen"
+    class="flex flex-row justify-center items-center py-[22px] fixed bottom-[40px] gap-[20px] w-full left-0"
+  >
+    <section
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+      (click)="onCancel()"
+    >
+      {{ "SEAT.CANCEL" | translate }}
+    </section>
+
+    <button
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+      (click)="onSave()"
+    >
+      {{ "SEAT.SAVE" | translate }}
+    </button>
+  </section>
+</section>

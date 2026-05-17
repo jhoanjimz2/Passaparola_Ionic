@@ -1,0 +1,54 @@
+<app-page-action-button icon="qr-code-outline"></app-page-action-button>
+
+<ion-content [fullscreen]="true" class="main-container">
+  <!-- <app-temporal-img [img]="'assets/images/ecommerce.png'"></app-temporal-img> -->
+  <div class="main-container__search-panel">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon
+            name="search-outline"
+            class="main-container__search-panel__icon-search"
+          ></ion-icon>
+          <input
+            [(ngModel)]="keyword"
+            placeholder="{{ 'EXTERNAL_STORES.NEAR_HERE' | translate }}"
+            (input)="onInputChange($event)"
+          />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="main-container__buttons">
+      <ion-button
+        class="main-container__buttons__btn"
+        *ngFor="let category of categories"
+        (click)="onCategorySelected(category)"
+        [ngClass]="{'main-container__buttons--selected': category.selected}"
+      >
+        {{category.companyCategoryTranslation.description}}</ion-button
+      >
+    </div>
+    <ion-grid>
+      <ion-row class="main-container--f-w-600">
+        <ion-col size="6">{{"EXTERNAL_STORES.FILTERS" | translate}}</ion-col>
+        <ion-col size="6" class="main-container--text-right"
+          >{{"EXTERNAL_STORES.SORT_BY" | translate}}</ion-col
+        >
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="main-container--p-t-150">
+    <app-online-store-card
+      [showTitle]="false"
+      [stores]="seatsFiltered"
+      [keyword]="keyword"
+    ></app-online-store-card>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="space-bottom"></div>
+</ion-content>

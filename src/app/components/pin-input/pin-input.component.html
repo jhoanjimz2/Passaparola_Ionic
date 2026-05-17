@@ -1,0 +1,56 @@
+<div class="flex justify-center space-x-2">
+  <input
+    [type]="isPassword ? 'password' : 'text'"
+    maxlength="1"
+    (input)="onInput($event, 0)"
+    (keydown)="onKeyDown($event, 0)"
+    #pin0
+    class="w-[46px] h-[56px] rounded-[9px] border-[#DDE5E9] border-[1px] text-center text-xl"
+    inputmode="numeric"
+  />
+  <input
+    [type]="isPassword ? 'password' : 'text'"
+    maxlength="1"
+    (input)="onInput($event, 1)"
+    (keydown)="onKeyDown($event, 1)"
+    #pin1
+    class="w-[46px] h-[56px] rounded-[9px] border-[#DDE5E9] border-[1px] text-center text-xl"
+    inputmode="numeric"
+  />
+  <input
+    [type]="isPassword ? 'password' : 'text'"
+    maxlength="1"
+    (input)="onInput($event, 2)"
+    (keydown)="onKeyDown($event, 2)"
+    #pin2
+    class="w-[46px] h-[56px] rounded-[9px] border-[#DDE5E9] border-[1px] text-center text-xl"
+    inputmode="numeric"
+  />
+  <input
+    [type]="isPassword ? 'password' : 'text'"
+    maxlength="1"
+    (input)="onInput($event, 3)"
+    (keydown)="onKeyDown($event, 3)"
+    #pin3
+    class="w-[46px] h-[56px] rounded-[9px] border-[#DDE5E9] border-[1px] text-center text-xl"
+    inputmode="numeric"
+  />
+  <input
+    [type]="isPassword ? 'password' : 'text'"
+    maxlength="1"
+    (input)="onInput($event, 4)"
+    (keydown)="onKeyDown($event, 4)"
+    #pin4
+    class="w-[46px] h-[56px] rounded-[9px] border-[#DDE5E9] border-[1px] text-center text-xl"
+    inputmode="numeric"
+  />
+  <section
+    *ngIf="notViewIconEye"
+    class="flex flex-col justify-center items-center w-[46px] h-[56px] text-[24px]"
+    (click)="togglePasswordVisibility()"
+  >
+    <ion-icon
+      [name]="isPassword ? 'eye-off-outline' : 'eye-outline'"
+    ></ion-icon>
+  </section>
+</div>

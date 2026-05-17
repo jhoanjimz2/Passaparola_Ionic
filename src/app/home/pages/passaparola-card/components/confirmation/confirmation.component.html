@@ -1,0 +1,64 @@
+<app-header
+  [backIcon]="true"
+  [modalDismiss]="true"
+  [border]="true"
+></app-header>
+<ion-content [fullscreen]="true">
+  <ion-card class="main-container">
+    <ion-card-header class="main-container--text-center">
+      <ion-text>
+        <span class="main-container__label-1">
+          {{ "PASSAPAROLA_CARD.CONFIRMATION.LABEL_1" | translate }}
+        </span>
+        <br />
+        <span class="main-container__label-2">
+          {{ "PassaParola Card" | translate }}
+        </span>
+        <br />
+        <span class="main-container__text">{{
+          "PASSAPAROLA_CARD.CONFIRMATION.TEXT" | translate
+        }}</span>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card class="main-container__card">
+        <div class="main-container__card__img"></div>
+      </ion-card>
+
+      <br />
+
+      <section class="main-container--text-center">
+        <ion-text>
+          <span class="main-container--f-w-b">
+            {{ "PASSAPAROLA_CARD.CONFIRMATION.CARD_NUMBER" | translate }}
+            {{ ": " + formattcardNumber(passaparolaCard.cardNumber) }}
+          </span>
+          <br />
+          <span class="main-container--font-italic">{{
+            "PASSAPAROLA_CARD.CONFIRMATION.ASSIGNED_TO" | translate
+          }}</span>
+        </ion-text>
+      </section>
+
+      <br />
+
+      <ion-grid>
+        <ion-label>{{ "Numero telefonico" | translate }}</ion-label>
+        <ion-row class="main-container__prefix">
+          <ion-col class="main-container__prefix__text" size="2">{{
+            prefix
+          }}</ion-col>
+          <ion-col size="10" class="main-container__phone">{{
+            phoneNumber
+          }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<div class="main-container__button">
+  <ion-button (click)="confirm()">{{
+    "PASSAPAROLA_CARD.CONFIRMATION.CONFIRM" | translate
+  }}</ion-button>
+</div>

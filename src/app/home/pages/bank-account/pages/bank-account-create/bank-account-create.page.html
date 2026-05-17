@@ -1,0 +1,146 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<section class="h-full bg-[#F9F9F9] text-black p-[20px]">
+  <section class="flex flex-col mt-[30px]">
+    <article class="text-[16px] leading-[22px] font-semibold">
+      {{ "BANK_ACCOUNT.TITLE" | translate }}
+    </article>
+    <article class="text-[12px] leading-[22px] mt-[10px]">
+      {{ "BANK_ACCOUNT.SUB_TITLE" | translate }}
+    </article>
+  </section>
+  <section class="flex items-center mt-[30px] gap-[10px]">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSave()"
+      autocomplete="off"
+      class="h-full w-full"
+    >
+      <section class="flex flex-col h-[80px] w-full">
+        <label
+          for="bankName"
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_ACCOUNT.BANK_NAME" | translate }}
+        </label>
+        <input
+          #bankName
+          class="h-[42px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'BANK_ACCOUNT.BANK_NAME_PLACEHOLDER' | translate"
+          formControlName="bankName"
+          name="bankName"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="displayMessage.bankName"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.bankName }}
+        </div>
+      </section>
+      <section class="flex flex-col h-[80px] w-full">
+        <label
+          for="owner"
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_ACCOUNT.OWNER" | translate }}
+        </label>
+        <input
+          #owner
+          class="h-[42px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'BANK_ACCOUNT.OWNER_PLACEHOLDER' | translate"
+          formControlName="owner"
+          name="owner"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="displayMessage.owner"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.owner }}
+        </div>
+      </section>
+      <section class="flex flex-col h-[80px] w-full">
+        <label
+          for="accountNumber"
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_ACCOUNT.ACCOUNT_NUMBER" | translate }}
+        </label>
+        <input
+          class="h-[42px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'BANK_ACCOUNT.ACCOUNT_NUMBER_PLACEHOLDER' | translate"
+          formControlName="accountNumber"
+          name="accountNumber"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="displayMessage.accountNumber"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.accountNumber }}
+        </div>
+      </section>
+      <section class="flex flex-col h-[80px]">
+        <label
+          for="country"
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_ACCOUNT.COUNTRY" | translate }}
+        </label>
+        <select
+          class="h-[42px] bg-white border text-[15px] leading-[17px] border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          formControlName="country"
+          name="country"
+        >
+          <option value="" class="">
+            {{ "BANK_ACCOUNT.COUNTRY_PLACEHOLDER" | translate }}
+          </option>
+          <ng-container *ngFor="let country of countries">
+            <option [value]="country.id">{{ country.name }}</option>
+          </ng-container>
+        </select>
+        <div
+          *ngIf="displayMessage.country"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.country }}
+        </div>
+      </section>
+      <section class="flex flex-col h-[80px] w-full">
+        <label
+          for="code"
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_ACCOUNT.CODE" | translate }}
+        </label>
+        <input
+          class="h-[42px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'BANK_ACCOUNT.CODE_PLACEHOLDER' | translate"
+          formControlName="code"
+          name="code"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="displayMessage.code"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.code }}
+        </div>
+      </section>
+
+      <section class="flex justify-center pt-[50px]">
+        <button
+          class="py-[15px] px-[100px] m-auto text-[16px] leading-[26px] font-bold border-[#41C837] bg-[#41C837] rounded-[32px] text-white"
+          type="submit"
+        >
+          {{ "BANK_ACCOUNT.SALVA" | translate }}
+        </button>
+      </section>
+    </form>
+  </section>
+</section>

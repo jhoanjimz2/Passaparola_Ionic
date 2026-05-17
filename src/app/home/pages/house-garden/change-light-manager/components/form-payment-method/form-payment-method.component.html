@@ -1,0 +1,86 @@
+<section class="px-[0.688rem] pb-[1.438rem] pt-[.438rem]">
+  <h1 class="font-bold text-[0.75rem] text-black">Modalità di pagamento</h1>
+
+  <ion-radio-group
+    class="mt-[1.594rem] flex flex-col gap-[.5rem]"
+    (ionChange)="onRadioChange($event)"
+  >
+    <app-payment-method
+      [method]="bankWallet"
+      [type]="'wallet'"
+      [isSelected]="isMethodSelected('wallet')"
+    ></app-payment-method>
+
+    <app-payment-method
+      *ngFor="let card of bankCards"
+      [method]="card"
+      [type]="'card'"
+      [isSelected]="isMethodSelected('card', card.id)"
+    ></app-payment-method>
+
+    <app-payment-method
+      *ngFor="let bank of bankAccounts"
+      [method]="bank"
+      [type]="'bank'"
+      [isSelected]="isMethodSelected('bank', bank.id)"
+    ></app-payment-method>
+  </ion-radio-group>
+
+  <form class="flex flex-col gap-3 mt-4" (submit)="onSubmit($event)">
+    <!-- Checkboxes solo para Wallet -->
+    <ng-container *ngIf="isWalletSelected()">
+      <label class="cursor-pointer flex items-start gap-2">
+        <input
+          type="checkbox"
+          class="custom-checkbox peer shrink-0"
+          [(ngModel)]="acceptInvoices"
+          name="acceptInvoices"
+        >
+        <span class="text-black font-light text-sm">
+          Accetto che le mie fatture di fornitura luce/gas vengano inviate direttamente a
+          Passaparola lda per elaborare e concludere l'addebito diretto sul mio wallet.
+        </span>
+      </label>
+
+      <label class="cursor-pointer flex items-start gap-2">
+        <input
+          type="checkbox"
+          class="custom-checkbox peer shrink-0"
+          [(ngModel)]="acceptDirectDebit"
+          name="acceptDirectDebit"
+        >
+        <span class="text-black font-light text-sm">
+          Accetto l'addebito diretto sul mio wallet Passaparola
+        </span>
+      </label>
+    </ng-container>
+
+    <!-- Términos y Condiciones (siempre visible si hay método seleccionado) -->
+    <label
+      class="cursor-pointer flex items-start gap-2"
+      *ngIf="selectedValue"
+    >
+      <input
+        type="checkbox"
+        class="custom-checkbox peer shrink-0"
+        [(ngModel)]="acceptTerms"
+        name="acceptTerms"
+      >
+      <span class="text-black font-light text-sm">
+        Accetto
+        <span class="font-bold text-[#116DE5]">Termini e Condizioni</span>
+        dell'utilizzo del servizio
+      </span>
+    </label>
+
+    <button
+      class="button-field mx-auto"
+      type="submit"
+      [disabled]="!canContinue()"
+      [class.opacity-50]="!canContinue()"
+      [class.cursor-not-allowed]="!canContinue()"
+    >
+      Continua
+    </button>
+  </form>
+</section>

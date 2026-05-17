@@ -1,0 +1,42 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section class="px-[22px] py-[22px] h-full bg-[#33B7E8]">
+  <section
+    class="flex flex-col justify-center items-center bg-white w-full rounded-[22px] p-[30px] h-full"
+  >
+    <section class="flex flex-col justify-center items-center text-center">
+      <img
+        class="h-[90px] w-[90px]"
+        [src]="'./assets/images/transfer-successfully.png'"
+        alt=""
+      />
+      <section class="text-[25px] leading-[34px] font-bold mt-[15px]">
+        Transazione eseguita
+      </section>
+
+      <section class="text-[16px] leading-[22px] mt-[25px]">
+        Hai fatto una ricarica di
+      </section>
+      <section class="text-[60px] leading-[82px]">
+        {{ mainAmount }},{{ decimalAmount }}
+      </section>
+      <section class="text-[18px] leading-[24px] font-bold">€/ATM</section>
+      <section class="text-[16px] leading-[22px] mt-[15px]">sul wallet</section>
+      <section class="text-[18px] leading-[24px]">{{ wallet }}</section>
+      <section
+        class="text-[13px] leading-[18px] mt-[25px] border-[1px] border-[#35B726] py-[10px] px-[25px] rounded-[10px]"
+      >
+        {{ "ID transazione" | translate }}<br />{{ idOperation }}
+      </section>
+      <section
+        class="bg-[#33B7E8] text-white text-[15px] leading-[22px] py-[20px] px-[40px] mt-[20px] rounded-[34px] text-center"
+        (click)="onGoToHome()"
+      >
+        {{ "TORNA ALLA HOME" | translate }}<br />
+      </section>
+    </section>
+  </section>
+</section>

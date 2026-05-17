@@ -1,0 +1,195 @@
+<div class="main-container">
+  <ion-card>
+    <div>
+      <ion-card-header>
+        <ion-text>
+          <span class="main-container--f-z-18 main-container--f-w-b">{{
+            "CHANGE_PIN.NEW_PIN" | translate
+          }}</span>
+          <br />
+          <br />
+          <span class="main-container--f-z-14">{{
+            "CHANGE_PIN.PHONE_NUMVER_VERIFED" | translate
+          }}</span>
+          <span class="main-container--f-z-14 main-container--f-w-b">{{
+            "CHANGE_PIN.FIVE_NUMBERS" | translate
+          }}</span>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="main-container__form-pin">
+          <form [formGroup]="formPin" (ngSubmit)="createPin()">
+            <ion-label class="main-container--f-z-12">
+              {{ "SING_UP.CREATE_PIN" | translate }}
+              <span class="main-container--f-w-b">{{
+                "SING_UP.FIVE_NUMBERS" | translate
+              }}</span>
+            </ion-label>
+            <div class="main-container__form-pin__code">
+              <div class="main-container__form-pin__input">
+                <input
+                  #code1
+                  (keyup)="inputCode(1)"
+                  formControlName="code1"
+                  name="code1"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code1')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code2
+                  (keyup)="inputCode(2)"
+                  formControlName="code2"
+                  name="code2"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code2')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code3
+                  (keyup)="inputCode(3)"
+                  formControlName="code3"
+                  name="code3"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code3')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code4
+                  (keyup)="inputCode(4)"
+                  formControlName="code4"
+                  name="code4"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code4')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code5
+                  formControlName="code5"
+                  name="code5"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code5')"
+                />
+              </div>
+              <div
+                class="main-container__form-pin__input main-container__form-pin__icon"
+              >
+                <ion-icon
+                  (click)="showPassword = !showPassword"
+                  [name]="showPassword ? 'eye-off' : 'eye-outline'"
+                ></ion-icon>
+              </div>
+            </div>
+
+            <br />
+            <ion-label class="main-container--f-z-12">
+              {{ "CHANGE_PIN.REPEAT_PIN" | translate }}
+            </ion-label>
+            <div class="main-container__form-pin__code">
+              <div class="main-container__form-pin__input">
+                <input
+                  #rcode1
+                  (keyup)="inputRcode(1)"
+                  formControlName="rcode1"
+                  name="rcode1"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!rshowPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('rcode1')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #rcode2
+                  (keyup)="inputRcode(2)"
+                  formControlName="rcode2"
+                  name="rcode2"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!rshowPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('rcode2')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #rcode3
+                  (keyup)="inputRcode(3)"
+                  formControlName="rcode3"
+                  name="rcode3"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!rshowPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('rcode3')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #rcode4
+                  (keyup)="inputRcode(4)"
+                  formControlName="rcode4"
+                  name="rcode4"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!rshowPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('rcode4')"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #rcode5
+                  formControlName="rcode5"
+                  name="rcode5"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!rshowPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                  (focus)="cleanInput('rcode5')"
+                />
+              </div>
+              <div
+                class="main-container__form-pin__input main-container__form-pin__icon"
+              >
+                <ion-icon
+                  (click)="rshowPassword = !rshowPassword"
+                  [name]="rshowPassword ? 'eye-off' : 'eye-outline'"
+                ></ion-icon>
+              </div>
+            </div>
+
+            <ion-button
+              class="main-container--m-t-150"
+              type="submit"
+              [disabled]="formPin.invalid"
+              expand="block"
+            >
+              {{ "CHANGE_PIN.CHANGE_PIN" | translate }}
+            </ion-button>
+          </form>
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>

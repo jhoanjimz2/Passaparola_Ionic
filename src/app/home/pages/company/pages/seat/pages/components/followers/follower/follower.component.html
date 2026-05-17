@@ -1,0 +1,35 @@
+<div class="w-full flex flex-row items-center justify-between">
+  <div class="flex flex-row gap-[20.67px]">
+    <img
+      (click)="onProfile()"
+      class="w-[3.208rem] h-[3.208rem] rounded-[50%] object-cover"
+      [src]="
+        (follower?.entity?.profile?.profilePictureUrlFile
+        ? follower?.entity?.profile?.profilePictureUrlFile
+        : follower?.entity?.pictureUlrFile)
+        || 'https://placehold.co/50x50?text=profile'
+      "
+    >
+    <div
+      (click)="onProfile()"
+      class="flex flex-col items-start justify-center"
+    >
+      <span class="text-[0.875rem] font-bold">
+        {{
+          follower.entity.profile.username
+          ? ('@'+follower.entity.profile.username)
+          : follower.entity.name
+        }}
+      </span>
+      <span class="text-[0.75rem]">{{ follower?.socialCommunityPosts?.length ?? 0 }} paspot pubblicati</span>
+    </div>
+  </div>
+
+  <!-- <button
+    *ngIf="!my"
+    (click)="follow()"
+    class="w-[5.3125rem] h-[1.75rem] rounded-[0.9375rem] text-[0.625rem] text-white bg-[#EF8500]"
+  >
+    Segui
+  </button> -->
+</div>

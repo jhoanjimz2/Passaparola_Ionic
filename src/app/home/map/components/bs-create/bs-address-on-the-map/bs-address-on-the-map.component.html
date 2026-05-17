@@ -1,0 +1,65 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<form (ngSubmit)="onNextStep()" autocomplete="off" class="h-full">
+  <section class="p-3 pb-10 h-full flex flex-col justify-between">
+    <section class="flex flex-col h-full">
+      <section>
+        <label
+          for="address"
+          class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+        >
+          {{ "BUSINESS_SUGGESTION.ADDRESS_ON_THE_MAP.TITLE" | translate }}
+        </label>
+        <input
+          #inputField
+          class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl rounded-b-0 block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="
+            'BUSINESS_SUGGESTION.ADDRESS_ON_THE_MAP.ADDRESS_PLACE_HOLDER'
+              | translate
+          "
+          name="address"
+          autocomplete="off"
+        />
+      </section>
+
+      <section class="h-full py-3">
+        <google-map
+          #myGoogleMap
+          height="100%"
+          width="100%"
+          class="map"
+          [options]="options"
+          [zoom]="zoom"
+          [center]="center"
+        >
+          <map-marker
+            *ngFor="let marker of mapMarkers"
+            [position]="marker.position"
+            [icon]="marker.icon!"
+          >
+          </map-marker>
+        </google-map>
+      </section>
+    </section>
+    <section class="grid grid-cols-2 gap-3 text-[0.938rem] leading-[1.375rem]">
+      <div
+        class="bg-white border border-[#00B1FF] text-[#00B1FF] py-4 px-4 rounded-full flex items-center justify-center"
+        (click)="onPreviousStep()"
+      >
+        {{ "BUSINESS_SUGGESTION.PREVIOUS" | translate }}
+      </div>
+      <button
+        class="bg-[#00B1FF] hover:bg-[#00b3ffcb] text-white py-4 px-4 rounded-full"
+        [ngClass]="{ 'disabled: bg-[#d1d1d1] hover:bg-[#d1d1d1]': !place }"
+        type="submit"
+        [disabled]="!place"
+      >
+        {{ "BUSINESS_SUGGESTION.NEXT" | translate }}
+      </button>
+    </section>
+  </section>
+</form>

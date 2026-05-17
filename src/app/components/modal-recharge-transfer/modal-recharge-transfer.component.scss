@@ -1,0 +1,268 @@
+.main-container {
+  --background: #f9f9f9;
+
+  &__card {
+    padding-top: 1.875rem;
+    box-shadow: none;
+    background: #f9f9f9;
+
+    &__text-atm {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    &__content {
+      padding: 0;
+
+      &__symbol-eur {
+        font-size: 2.25rem;
+        font-weight: bold;
+        position: absolute;
+        z-index: 9999;
+      }
+
+      &__input {
+        font-size: 2.25rem;
+        font-weight: bold;
+        border: none;
+        border-bottom: solid 0.063rem #cccccc;
+        padding-left: 1.875rem;
+        background: transparent;
+        color: #1d0f01;
+      }
+
+      &__amounts {
+        display: flex;
+        margin-top: 1.25rem;
+      }
+
+      &__btn-amount {
+        width: 4.25rem;
+        height: 1.938rem;
+        --border-color: #3cc3a2;
+        --border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.625rem;
+        color: #3cc3a2;
+        font-weight: 600;
+        --box-shadow: none;
+        --background: #f9f9f9;
+        --border-width: 0.063rem;
+        --border-style: solid;
+        --padding-bottom: 0;
+        --padding-end: 0;
+        --padding-start: 0;
+        --padding-top: 0;
+        --background-activated: #ffffff;
+        --background-activated-opacity: #ffffff;
+        --background-focused: #ffffff;
+        --background-focused-opacity: #ffffff;
+        --background-hover: #ffffff;
+        --background-hover-opacity: #ffffff;
+      }
+
+      &__btn-action {
+        width: 6.688rem;
+        height: 6.563rem;
+        --border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3cc3a2;
+        font-weight: 600;
+        --box-shadow: none;
+        --background: #f9f9f9;
+        --border-width: 0.063rem;
+        --padding-bottom: 0;
+        --padding-end: 0;
+        --padding-start: 0;
+        --padding-top: 0;
+        text-transform: capitalize;
+        white-space: normal;
+
+        &--active {
+          --border-style: solid;
+          --border-color: #3cc3a2;
+        }
+      }
+
+      &__text-action {
+        color: #535353;
+        font-size: 0.875rem;
+
+        &--active {
+          color: #1d0f01;
+          font-weight: 600;
+        }
+      }
+
+      &__icon-action {
+        font-size: 1.875rem;
+        color: #3cc3a2;
+      }
+    }
+  }
+
+  &__title-payment-method {
+    margin-top: 1.25rem;
+    margin-left: 1.25rem;
+    font-weight: bold;
+  }
+
+  &__btn-recharge {
+    position: fixed;
+    bottom: 1.25rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-button {
+      width: 16.563rem;
+      height: 3.938rem;
+      text-transform: capitalize;
+      --border-radius: 2rem;
+      --border-color: #35c93f;
+      --border-width: 0.063rem;
+      --border-style: solid;
+      --box-shadow: none;
+      --background: #3cc3a2;
+      --background-activated: #3cc3a2;
+      --background-activated-opacity: #3cc3a2;
+      --background-focused: #3cc3a2;
+      --background-focused-opacity: #3cc3a2;
+      --background-hover: #3cc3a2;
+      --background-hover-opacity: #3cc3a2;
+    }
+  }
+
+  &__payment-method-card {
+    height: 6.375rem;
+    box-shadow: 0 0.188rem 0.375rem #00000014;
+    border-radius: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.625rem;
+    margin-bottom: 0.625rem;
+
+    &__icon-card {
+      width: 4.563rem;
+      height: 4.563rem;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      box-shadow: 0 0.188rem 0.375rem #0000001c;
+      border-radius: 0.938rem;
+      font-size: 2.75rem;
+      color: #000000;
+    }
+
+    &__col-text {
+      padding-left: 0.625rem !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #000000;
+      font-size: 1.125rem;
+    }
+
+    &__text-name {
+      font-size: 0.688rem;
+      color: #6c757d;
+    }
+
+    &__text-date-expired {
+      font-size: 0.688rem;
+      color: #3cc3a2;
+    }
+  }
+
+  &__add_card {
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.25rem;
+    background: transparent;
+
+    &__col-icon {
+      padding-left: 0.625rem !important;
+    }
+
+    &__icon {
+      width: 4.063rem;
+      height: 2.75rem;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      font-size: 1.875rem;
+      border: 0.063rem solid #707070;
+      border-radius: 0.75rem;
+    }
+
+    &__col-text {
+      padding-left: 0.625rem !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__text {
+      font-size: 0.688rem;
+      font-weight: 600;
+      color: #00000080;
+    }
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--f-z-36 {
+    font-size: 2.25rem;
+  }
+
+  &--center-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--left-item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  &--right-item {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+  &--border-success {
+    border: solid 0.063rem #3cc3a2;
+  }
+
+  ion-grid,
+  ion-row,
+  ion-col {
+    margin: 0;
+    padding: 0;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}

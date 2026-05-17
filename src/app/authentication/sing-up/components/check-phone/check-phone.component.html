@@ -1,0 +1,228 @@
+<div class="main-container">
+  <ion-card>
+    <div>
+      <ion-card-header>
+        <ion-text>
+          <span class="main-container--f-z-27">
+            {{ "SING_UP.JOIN" | translate }}
+          </span>
+          <br />
+          <span class="main-container--f-z-36">
+            {{ "PassaParola" }}
+          </span>
+          <br />
+          <br />
+          <span class="main-container--f-z-15">
+            {{ "SING_UP.ENTER_PHONE" | translate }}
+          </span>
+          <br />
+          <br />
+          <span
+            *ngIf="timer > 0 && !smsCodeId"
+            class="main-container__text-check"
+          >
+            {{ "SING_UP.WILL_SEND_CODE" | translate }}
+          </span>
+          <span
+            *ngIf="timer < 120 && smsCodeId"
+            class="main-container__text-check"
+          >
+            {{ "SING_UP.WE_SENT_CODE" | translate }}
+          </span>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="formRegister" (ngSubmit)="checkPhone()">
+          <div class="main-container__form-phone">
+            <ion-label>{{ "SING_UP.PHONE_NUMBER" | translate }}</ion-label>
+            <ion-grid>
+              <ion-row class="main-container__form-phone__input">
+                <ion-col
+                  size="4.5"
+                  class="main-container--b-r-1"
+                  style="display: flex"
+                >
+                  <img
+                    *ngIf="codeCountry"
+                    [src]="'assets/images/flags/' + codeCountry + '.png'"
+                    class="main-container__form-phone__flag"
+                  />
+                  <ion-select
+                    style="margin-left: 30px"
+                    formControlName="phonePrefix"
+                    name="phonePrefix"
+                    color="primary"
+                    placeholder="{{ 'SING_UP.COUNTRY' | translate }}"
+                    (ionChange)="
+                      getIdCountry(formRegister.controls['phonePrefix'].value)
+                    "
+                    interface="popover"
+                  >
+                    <ion-select-option
+                      *ngFor="let country of countries"
+                      [value]="country.phonePrefix"
+                    >
+                      {{ country.phonePrefix }} {{ country.code }}
+                    </ion-select-option>
+                  </ion-select></ion-col
+                >
+                <ion-col size="7.5">
+                  <input
+                    formControlName="phone"
+                    name="phone"
+                    placeholder=""
+                    autocomplete="off"
+                    type="tel"
+                  />
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button
+              type="submit"
+              *ngIf="!smsCodeId"
+              [disabled]="formRegister.invalid"
+              expand="block"
+            >
+              {{ "SING_UP.VERIFY" | translate }}
+            </ion-button>
+          </div>
+        </form>
+
+        <div *ngIf="smsCodeId" class="main-container__form-check-phone">
+          <form [formGroup]="formCode" (ngSubmit)="checkCode()">
+            <ion-label>{{ "SING_UP.VERIFICATION_CODE" | translate }}</ion-label>
+            <div class="main-container__form-check-phone__code">
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code1
+                  formControlName="code1"
+                  name="code1"
+                  mask="000000"
+                  autocomplete="off"
+                  (keyup)="inputCode(1)"
+                  (focus)="cleanInput('code1')"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <!-- <div class="main-container__form-check-phone__input">
+                <input
+                  #code2
+                  formControlName="code2"
+                  name="code2"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(2)"
+                  (focus)="cleanInput('code2')"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code3
+                  formControlName="code3"
+                  name="code3"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(3)"
+                  (focus)="cleanInput('code3')"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code4
+                  formControlName="code4"
+                  name="code4"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(4)"
+                  (focus)="cleanInput('code4')"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code5
+                  formControlName="code5"
+                  name="code5"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(5)"
+                  (focus)="cleanInput('code5')"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code6
+                  formControlName="code6"
+                  name="code6"
+                  mask="0"
+                  autocomplete="off"
+                  (focus)="cleanInput('code6')"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div> -->
+            </div>
+
+            <div class="main-container__form-check-phone__progress">
+              <circle-progress
+                [percent]="percent"
+                [radius]="30"
+                text
+                [outerStrokeWidth]="5"
+                [innerStrokeWidth]="0"
+                [outerStrokeColor]="'#FF3D00'"
+                [innerStrokeColor]="'#FF3D00'"
+                [animation]="true"
+                [animationDuration]="1"
+              ></circle-progress>
+              <div class="main-container__form-check-phone__time">
+                {{ minutes }}:{{ seconds }}
+              </div>
+            </div>
+            <div class="main-container__form-check-phone--text-center">
+              <ion-text>
+                <span>{{ "SING_UP.NOT_RECEIVED_CODE" | translate }}</span>
+                <br />
+                <span
+                  (click)="getCode()"
+                  class="main-container__form-check-phone__text-resend"
+                  >{{ "SING_UP.CLICK_HERE" | translate }}</span
+                >
+              </ion-text>
+            </div>
+            <div class="center-item">
+              <ion-button
+                type="submit"
+                *ngIf="smsCodeId && timer > 0"
+                [disabled]="formCode.invalid"
+                expand="block"
+              >
+                {{ "SING_UP.VERIFY" | translate }}
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>

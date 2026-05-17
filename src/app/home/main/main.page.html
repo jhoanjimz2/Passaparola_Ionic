@@ -1,0 +1,131 @@
+<app-page-action-button icon="qr-code-outline"></app-page-action-button>
+
+<ion-content [fullscreen]="true" class="main">
+  <ion-refresher (ionRefresh)="handleRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <div class="main__card-info">
+    <div class="main__next-btn">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    </div>
+
+    <div class="main__back-btn">
+      <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+    </div>
+
+    <swiper-container
+      class="pagination-swiper-line"
+      pagination='{"enabled": true, "clickable": true, "bulletActiveClass": "swiper-pagination-bullet-active"}'
+      navigation="true"
+    >
+      <swiper-slide *ngFor="let card of slideCards; index as i">
+        <ion-card class="main__slide">
+          <ion-text>
+            <span class="main--text-light main--f-w-b main--f-z-18">
+              {{card.title_1 | translate}}
+            </span>
+            <br />
+            <span class="main--text-light main--f-w-b main--f-z-18">
+              {{card.title_2 | translate}}
+            </span>
+            <br />
+            <div class="main__separator-text"></div>
+            <span class="main--f-z-14 main--text-light">
+              {{card.text_1 | translate}}
+            </span>
+            <br />
+            <span class="main--f-z-14 main--text-light">
+              {{card.text_2 | translate}}
+            </span>
+          </ion-text>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
+
+    <swiper-container
+      #swiperMain
+      class="main__card-slide"
+      loop="true"
+      autoplay='{"delay": 5000, "disableOnInteraction": false}'
+    >
+      <swiper-slide class="center-item">
+        <app-wallet [refresh]="refresh"></app-wallet>
+      </swiper-slide>
+      <swiper-slide class="center-item">
+        <app-community [refresh]="refresh"></app-community>
+      </swiper-slide>
+      <swiper-slide class="center-item">
+        <app-invite-card-main></app-invite-card-main>
+      </swiper-slide>
+    </swiper-container>
+  </div> -->
+
+  <!-- <app-social></app-social> -->
+
+  <!-- <br /> -->
+
+  <!-- <app-stores></app-stores> -->
+
+  <!-- <br /> -->
+
+  <!-- <app-publicity></app-publicity> -->
+
+  <!-- <br /> -->
+
+  <!-- <app-products></app-products> -->
+
+  <!-- <br /> -->
+
+  <!-- <app-online-stores></app-online-stores> -->
+
+  <!-- <br /> -->
+
+  <!-- <app-mall></app-mall> -->
+
+  <!-- <br /> -->
+
+  <!-- <app-local-economy></app-local-economy> -->
+
+  <!-- <div
+    class="flex flex-direction-row ion-justify-content-between ion-align-items-center main--bg-light"
+    style="border: solid 1px"
+  >
+    <ion-searchbar
+      class="main__searchbar"
+      placeholder="{{ 'MAP_PAGE.SEARCH' | translate }}"
+      (input)="onSearch($event.target)"
+    ></ion-searchbar>
+  </div> -->
+
+  <section
+    class="flex flex-row justify-between px-3 pt-4 pb-4 gap-3 main__search"
+  >
+    <ion-icon class="main__search__icon" name="search-outline"></ion-icon>
+    <input
+      class="flex grow bg-white text-[15px] leading-[22px] text-gray-900 placeholder:text-black text-sm rounded-[28px] rounded-b-0 pl-[34px] shadow-md"
+      type="text"
+      [placeholder]="'GENERAL.NEAR_HERE' | translate"
+      name="address"
+      autocomplete="off"
+      (input)="onSearch($event)"
+    />
+  </section>
+
+  <app-slider-categories></app-slider-categories>
+
+  <app-map [position]="position"></app-map>
+
+  <app-slider-nearest-store></app-slider-nearest-store>
+
+  <app-recommendation
+    [items]="items"
+    (onIonInfinite)="onIonInfinite($event)"
+  ></app-recommendation>
+
+  <br />
+
+  <app-online-stores-main></app-online-stores-main>
+
+  <div class="space-bottom"></div>
+</ion-content>

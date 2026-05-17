@@ -1,0 +1,60 @@
+<app-header
+  [backIcon]="true"
+  [modalDismiss]="true"
+  [border]="true"
+></app-header>
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <ion-card class="main-container">
+      <ion-card-header class="main-container--text-center">
+        <ion-text>
+          <ion-icon
+            name="checkmark-done-circle"
+            color="success"
+            class="main-container__icon"
+          ></ion-icon>
+          <br />
+          <span class="main-container__text">
+            {{ "PASSAPAROLA_CARD.SUCCESS.CARD_ASSIGN" | translate }}
+          </span>
+        </ion-text>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-card class="main-container__card">
+          <div class="main-container__card__img"></div>
+        </ion-card>
+
+        <br />
+
+        <section class="main-container--text-center">
+          <ion-text>
+            <span class="main-container--f-w-b">
+              {{ "PASSAPAROLA_CARD.CONFIRMATION.CARD_NUMBER" | translate }}:
+            </span>
+            <br />
+            <span class="main-container--f-w-b">
+              {{ formattcardNumber(cardNumber) }}
+            </span>
+            <br />
+            <br />
+            <span class="main-container--font-italic">{{
+              "PASSAPAROLA_CARD.CONFIRMATION.ASSIGNED_TO" | translate
+            }}</span>
+            <br />
+            <br />
+            <span class="main-container--f-w-b">
+              {{ prefix + phoneNumber }}
+            </span>
+          </ion-text>
+        </section>
+      </ion-card-content>
+
+      <div class="main-container__button">
+        <ion-button (click)="closeModal()">{{
+          "PASSAPAROLA_CARD.SUCCESS.BACK_HOME" | translate
+        }}</ion-button>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

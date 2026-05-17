@@ -1,0 +1,249 @@
+.container {
+  padding: 1rem;
+}
+
+ion-toolbar {
+  --background: white;
+  --padding-bottom: 0rem;
+  --padding-top: 0rem;
+  --padding-start: 0rem;
+  --padding-end: 0rem;
+}
+
+// Product Card
+.product-card {
+  position: relative;
+  padding: 0.5rem;
+  width: 100%;
+  min-height: 5.125rem;
+  border-radius: 0.938rem;
+  border: 1px solid #22A9E8;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+
+  &__image {
+    width: 3.563rem;
+    height: 3.563rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  &__description {
+    font-size: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__stats {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    min-width: 0;
+    text-align: right;
+    background-color: white;
+  }
+
+  &__units {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &__price {
+    display: block;
+    font-size: 0.875rem;
+    color: #22A9E8;
+    font-weight: 700;
+  }
+}
+
+// Purchase Section
+.purchase-section {
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  &__quantity {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+  }
+
+  &__total {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+
+  &__total-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  &__total-price {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #22A9E8;
+  }
+
+  &__cashback {
+    font-size: 0.75rem;
+  }
+
+  &__cashback-amount {
+    font-weight: 700;
+    color: #FE8C0F;
+  }
+}
+
+// Quantity Control
+.quantity-control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #E3F1F8;
+  border-radius: 0.688rem;
+  width: fit-content;
+
+  &__button {
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: 3.188rem;
+    height: 2.75rem;
+    border-radius: 0.688rem;
+    border: 1px solid #E3F1F8;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:active {
+      background-color: #E3F1F8;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__value {
+    display: block;
+    font-weight: 700;
+    padding: 0 0.5rem;
+    font-size: 1.5rem;
+    min-width: 2rem;
+    text-align: center;
+  }
+}
+
+// Info Text
+.info-text {
+  font-size: 0.75rem;
+  text-align: justify;
+  color: #063549;
+  margin-top: 0.75rem;
+}
+
+// Actions
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__button {
+    width: 100%;
+    height: 3.313rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 1.688rem;
+    border: 2px solid #22A9E8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--cancel {
+      background-color: white;
+      color: #22A9E8;
+
+      &:active {
+        background-color: #E3F1F8;
+      }
+    }
+
+    &--confirm {
+      background-color: #22A9E8;
+      color: white;
+
+      &:active {
+        background-color: #1b8aba;
+      }
+
+      &:disabled {
+        background-color: #B0D9ED;
+        border-color: #B0D9ED;
+        cursor: not-allowed;
+        opacity: 0.6;
+
+        &:active {
+          background-color: #B0D9ED;
+        }
+      }
+    }
+  }
+}
+
+.shipping-section {
+
+  &__title {
+    display: block;
+    font-size: 1.5rem; // 24px
+    font-weight: 700;
+    color: #063549;
+    margin-top: 0.5rem;
+  }
+
+  &__card {
+    display: block;
+    margin-top: 0.5rem;
+  }
+}
+
+
+.container-success {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}

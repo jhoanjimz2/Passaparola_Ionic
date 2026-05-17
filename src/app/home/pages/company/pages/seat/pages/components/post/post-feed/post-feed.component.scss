@@ -1,0 +1,396 @@
+// Block: post-media
+.post-media {
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    pointer-events: none;
+    border-bottom-left-radius: 0.938rem;
+    border-bottom-right-radius: 0.938rem;
+    z-index: 1;
+  }
+
+  // Elements
+  &__image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.938rem;
+    display: block;
+
+    &--slide {
+      height: 17.75rem !important;
+      object-fit: cover;
+    }
+  }
+
+  &__video {
+    width: 100%;
+    height: auto;
+    border-radius: 0.938rem;
+    pointer-events: none;
+    user-select: none;
+    display: block;
+
+    &--slide {
+      height: 17.75rem !important;
+      object-fit: cover;
+    }
+  }
+
+  // Contenedor del skeleton
+  &__skeleton-container {
+    width: 100%;
+    height: 12rem;
+    border-radius: 0.938rem;
+    overflow: hidden;
+    background: #f0f0f0;
+
+    &--slide {
+      height: 17.75rem !important;
+    }
+
+    ion-skeleton-text {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border-radius: 0.938rem;
+      --background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+      --background-rgb: 224, 224, 224;
+    }
+  }
+
+  &__video-icon {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    font-size: 1.5rem;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.9);
+    z-index: 5;
+  }
+
+  // Overlay del like que se mueve del centro a la esquina
+  &__like-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+
+    &--moving {
+      animation: moveToCorner 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+  }
+
+  &__like-overlay-icon {
+    font-size: 6rem;
+    color: #ffffff;
+    opacity: 0;
+    transform: scale(0);
+    filter: drop-shadow(0 0 20px rgba(233, 30, 99, 0.8));
+    transition: none;
+
+    &--active {
+      animation: likePulseAndShrink 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+  }
+
+  &__like-container {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    z-index: 10;
+  }
+
+  &__like-icon {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    font-size: 2rem;
+    color: #e91e63;
+    filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.3));
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &--disabled {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    &--liked {
+      color: #e91e63;
+      filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.3));
+    }
+
+    &--appearing {
+      animation: appearFromCenter 0.3s ease-out forwards;
+      animation-delay: 0.9s;
+    }
+
+    &--disappearing {
+      animation: disappearLike 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    &--processing {
+      animation: pulse 1s infinite;
+    }
+  }
+}
+
+// Block: post-tags
+.post-tags {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+
+  &__icon {
+    font-size: 1.5rem;
+  }
+
+  &__text {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+// Ocultar video hasta que esté listo
+.video-hidden {
+  opacity: 0 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+// Animations
+
+// Animación del corazón: crece en el centro y luego se encoge mientras se mueve a la esquina
+@keyframes likePulseAndShrink {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    font-size: 6rem;
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1.2) rotate(-15deg);
+    font-size: 6rem;
+  }
+  30% {
+    opacity: 1;
+    transform: scale(0.9) rotate(10deg);
+    font-size: 6rem;
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.1) rotate(-5deg);
+    font-size: 6rem;
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    font-size: 6rem;
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+    font-size: 4rem;
+  }
+  85% {
+    opacity: 0.8;
+    transform: scale(1);
+    font-size: 2.5rem;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+    font-size: 2rem;
+  }
+}
+
+// Animación del contenedor: se mueve del centro a la esquina superior derecha
+@keyframes moveToCorner {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  60% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 0.5rem;
+    left: calc(100% - 0.5rem);
+    transform: translate(-100%, 0);
+  }
+}
+
+// Animación del icono final en la esquina: aparece con un pequeño pop
+@keyframes appearFromCenter {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Animación de desaparición del like (dislike)
+@keyframes disappearLike {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  30% {
+    opacity: 0.8;
+    transform: scale(1.2) rotate(15deg);
+  }
+  60% {
+    opacity: 0.5;
+    transform: scale(0.8) rotate(-10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(30deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Mobile animation variant
+@media (max-width: 768px) {
+  .post-media__like-overlay-icon--active {
+    animation: likePulseAndShrinkMobile 1s ease-out forwards;
+  }
+
+  @keyframes likePulseAndShrinkMobile {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+      font-size: 5rem;
+    }
+    20% {
+      opacity: 1;
+      transform: scale(1.1);
+      font-size: 5rem;
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+      font-size: 5rem;
+    }
+    70% {
+      opacity: 0.8;
+      transform: scale(1);
+      font-size: 3rem;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+      font-size: 2rem;
+    }
+  }
+
+  .post-media__like-overlay--moving {
+    animation: moveToCornerMobile 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  @keyframes moveToCornerMobile {
+    0% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    50% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      top: 0.5rem;
+      left: calc(100% - 0.5rem);
+      transform: translate(-100%, 0);
+    }
+  }
+
+  .post-media__like-icon--disappearing {
+    animation: disappearLikeMobile 0.5s ease-out forwards;
+  }
+
+  @keyframes disappearLikeMobile {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+}
+
+.post-media__video {
+  &::-webkit-media-controls {
+    display: none !important;
+  }
+
+  &::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+
+  &::-webkit-media-controls-panel {
+    display: none !important;
+  }
+
+  &::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+
+  // Firefox
+  &::-moz-media-controls {
+    display: none !important;
+  }
+
+  // Ocultar el poster y botón de play nativos
+  &::cue {
+    display: none;
+  }
+}
+
+// Forzar carga del primer frame
+video {
+  object-fit: cover;
+  background: transparent;
+}

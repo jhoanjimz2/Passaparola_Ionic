@@ -1,0 +1,428 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/Open_Sans/static/OpenSans-Light.ttf");
+  format: "truetype";
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/Open_Sans/static/OpenSans-Regular.ttf");
+  format: "truetype";
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/Open_Sans/static/OpenSans-SemiBold.ttf");
+  format: "truetype";
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/Open_Sans/static/OpenSans-Bold.ttf");
+  format: "truetype";
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/Open_Sans/static/OpenSans-ExtraBold.ttf");
+  format: "truetype";
+  font-weight: 800;
+  font-style: normal;
+}
+
+html,
+body {
+  background-color: #fbfcfe;
+  font-family: "Open Sans" /* !important */;
+
+  ion-label,
+  ion-text,
+  label,
+  span,
+  p {
+    color: #1d0f01;
+    font-family: "Open Sans" /* !important */;
+  }
+
+  input {
+    background: #ffffff;
+    font-family: "Open Sans" /* !important */;
+  }
+
+  ion-tab-button,
+  ion-button,
+  section,
+  ion-title,
+  ion-col {
+    font-family: "Open Sans" !important;
+  }
+}
+
+ion-button {
+  --text-transform: capitalize;
+  --box-shadow: none;
+}
+
+ngx-scanner-qrcode {
+  audio,
+  canvas,
+  progress,
+  video {
+    object-fit: cover;
+    height: calc(var(--height-scan) * 1vh) !important;
+    width: calc(var(--width-scan) * 1vw) !important;
+  }
+}
+
+.display-none-scanner {
+  ngx-scanner-qrcode {
+    audio,
+    canvas,
+    progress,
+    video {
+      display: none;
+      height: 0 !important;
+      width: 0 !important;
+    }
+  }
+}
+
+google-map {
+  .map-container {
+    border-radius: 0.625rem !important;
+
+    .gm-style iframe + div {
+      border: none !important;
+    }
+  }
+}
+
+.map-event {
+  .map-container {
+    border-radius: 1.2rem !important;
+  }
+}
+
+ion-menu {
+  --min-width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.center-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-45vh {
+  --height: 45vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+.modal-50vh {
+  --height: 50vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+
+.modal-60vh {
+  --height: 60vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+.modal-65vh {
+  --height: 65vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+
+.modal-75vh {
+  --height: 75vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+
+.modal-80vh {
+  --height: 80vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3 !important;
+  --border-radius: 1.875rem;
+  margin-bottom: -1.25rem;
+}
+.modal-80vh-2 {
+  --height: 80vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3 !important;
+  --border-radius: 1.875rem;
+}
+
+
+.modal-85vh {
+  --height: 85vh !important;
+  align-items: flex-end !important;
+  --background: #ffffff;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+
+.modal-90vh {
+  --height: 90vh !important;
+  align-items: flex-end !important;
+  --background: #ffffff;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+.modal-99vh {
+  --height: 99vh !important;
+  align-items: flex-end !important;
+  --background: #ffffff;
+  --backdrop-opacity: 0.3;
+  --border-radius: 1.875rem 1.875rem 0px 0px;
+}
+
+.modal-transparent-90vh {
+  --height: 90vh !important;
+  --width: 90vw !important;
+  --background: transparent;
+  --backdrop-opacity: 0.3;
+  --box-shadow: none;
+  --border-radius: 1.875rem;
+}
+
+.modal-95vh {
+  --height: 95vh !important;
+  align-items: flex-end !important;
+  --background: #f9f9f9;
+  --backdrop-opacity: 0.3 !important;
+  --border-radius: 1.875rem 1.875rem 0px 0px !important;
+}
+
+.modal-100vh {
+  --height: 100% !important;
+  --width: 100% !important;
+  align-items: flex-end !important;
+  --background: rgba(0, 0, 11, 0.5);
+  --backdrop-opacity: 0.3;
+}
+
+.modal-full-screen {
+  --height: 100% !important;
+  --width: 100% !important;
+}
+
+.modal-accept-atm-success {
+  --background: transparent;
+  --backdrop-opacity: 0.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ion-refresher ion-refresher-content {
+  ion-spinner {
+    color: var(--ion-color-success) !important;
+  }
+}
+
+ngx-scanner-qrcode {
+  audio,
+  canvas,
+  progress,
+  video {
+    object-fit: cover;
+    height: calc(var(--height-scan) * 1vh) !important;
+    width: calc(var(--width-scan) * 1vw) !important;
+  }
+}
+
+.space-bottom {
+  margin-bottom: 100px;
+}
+
+.modal-calendar {
+  --height: 100% !important;
+  --width: 100% !important;
+  --background: rgba(255, 255, 255, 0.8);
+  --backdrop-opacity: 0.5;
+}
+
+.modal-onboarding {
+  --height: 100% !important;
+  --width: 100% !important;
+  --background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+ion-datetime::part(calendar-day highlighted) {
+  background-color: black !important; /* Fuerza el fondo negro */
+  color: white !important; /* Fuerza el texto blanco */
+  border-radius: 50%; /* Mantiene la forma redonda */
+}
+
+.bg-transp {
+  --background: transparent;
+  --backdrop-opacity: 0.3 !important;
+
+  &::part(backdrop) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+.modal-act-inact {
+  --height: 95vh !important;
+  align-items: flex-end !important;
+  --background: transparent;
+  --backdrop-opacity: 0.3 !important;
+}
+
+.textarea-fill-outline.sc-ion-textarea-md-h {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  --border-color: #d1d5db;
+  --color: black;
+  --background: white;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-radius: 0.75rem;
+}
+.textarea-disabled.sc-ion-textarea-md-h {
+  opacity: 1;
+  --border-color: #d1d5db !important;
+  --color: black !important;
+  --background: #d1d5db !important;
+}
+.input-fill-outline.sc-ion-input-md-h {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  --border-color: #d1d5db;
+  --color: black;
+  --background: white;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-radius: 0.75rem;
+}
+.input-disabled.sc-ion-input-md-h {
+  opacity: 1;
+  --border-color: #d1d5db !important;
+  --color: black !important;
+  --background: #d1d5db !important;
+}
+
+ion-modal.radius-modals::part(content) {
+  border-radius: 20px 20px 0 0 !important;
+  overflow: hidden !important;
+  --backdrop-opacity: 0.5;
+}
+
+.animate__animated {
+  --animate-duration: 0.5s;
+}
+
+.delete-post-modal-wrapper {
+  --background: rgba(0, 0, 0, 0.5);
+  --backdrop-opacity: 0.6;
+
+  &::part(backdrop) {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  &::part(content) {
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

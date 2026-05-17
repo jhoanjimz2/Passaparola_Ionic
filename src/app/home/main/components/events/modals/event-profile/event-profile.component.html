@@ -1,0 +1,485 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section class="h-full bg-white text-black overflow-y-auto pb-[100px] relative">
+  <app-portada-profile-event
+    [preview]="preview"
+    [eventProfile]="eventProfile"
+    [edit]="edit"
+    [create]="create"
+    (abreElModal)="openTypeModal($event)"
+  >
+  </app-portada-profile-event>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <label
+          *ngIf="updating"
+          (click)="openSeatNameComponent()"
+          class="text-lg font-bold text-black"
+        >
+          {{ eventProfile.name || "Scegliere un nome" }}
+        </label>
+        <label *ngIf="view" class="text-lg font-bold text-black">
+          {{ eventProfile.name || "Senza nome" }}
+        </label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="flex items-center">
+        <label
+          *ngIf="updating"
+          (click)="openSeatScheduleComponent()"
+          class="text-pink-600 text-base font-bold items-center w-full"
+        >
+          <ion-icon src="assets/images/events/custom-icons/calendar.svg" />
+          {{
+            eventProfile.schedule
+              ? (eventProfile.schedule | formatDateRange)
+              : "Scegli una data"
+          }}
+        </label>
+        <label
+          *ngIf="view"
+          class="text-pink-600 text-base font-bold items-center w-full"
+        >
+          <ion-icon src="assets/images/events/custom-icons/calendar.svg" />
+          {{
+            eventProfile.schedule
+              ? (eventProfile.schedule | formatDateRange)
+              : "Nessuna data"
+          }}
+        </label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col
+        class="mt-2 max-w-full overflow-hidden text-ellipsis whitespace-nowrap flex items-center"
+        size="9.5"
+      >
+        <label
+          class="items-center gap-2 text-gray-600 text-base font-semibold truncate contents"
+          *ngIf="updating"
+          (click)="openSeatLocationComponent()"
+        >
+          <ng-container *ngIf="eventProfile?.webAddress; else noWebAddress">
+            <ion-icon
+              src="assets/images/events/custom-icons/webaddress.svg"
+              class="text-blue-600"
+            />&nbsp;
+            <a
+              [href]="eventProfile.webAddress"
+              target="_blank"
+              class="text-blue-600 underline"
+            >
+              {{ eventProfile.webAddress }}
+            </a>
+          </ng-container>
+          <ng-template #noWebAddress>
+            <ion-icon
+              src="assets/images/events/custom-icons/location.svg"
+              *ngIf="eventProfile?.address"
+            />
+            {{ eventProfile.address || "Indirizzo (link per eventi virtuali)" }}
+          </ng-template>
+        </label>
+        <label
+          class="items-center gap-2 text-gray-600 text-base font-semibold truncate contents"
+          *ngIf="view"
+          (click)="openSeatLocationComponent()"
+        >
+          <ng-container
+            *ngIf="eventProfile?.webAddress; else noWebAddress"
+            class="flex items-center"
+          >
+            <ion-icon
+              src="assets/images/events/custom-icons/webaddress.svg"
+              class="text-blue-600"
+            />&nbsp;
+            <a
+              [href]="eventProfile.webAddress"
+              target="_blank"
+              class="text-blue-600 underline"
+            >
+              {{ eventProfile.webAddress }}
+            </a>
+          </ng-container>
+          <ng-template #noWebAddress>
+            <ion-icon
+              src="assets/images/events/custom-icons/location.svg"
+              *ngIf="eventProfile?.address"
+            />
+            {{ eventProfile.address || "Nessun indirizzo" }}
+          </ng-template>
+        </label>
+      </ion-col>
+      <ion-col
+        class="mt-2 max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        size="2.5"
+        *ngIf="view && eventProfile.address"
+      >
+        <label
+          class="items-center gap-2 text-gray-600 text-base font-semibold text-left truncate contents"
+        >
+          <ion-icon
+            src="assets/images/events/custom-icons/arrow-location-go.svg"
+          />
+          {{ distacia }} <span *ngIf="!distacia">km</span>
+        </label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p
+          class="mt-2 text-base font-semibold text-gray-900"
+          *ngIf="updating"
+          (click)="openSeatDescriptionComponent()"
+        >
+          {{ eventProfile.description || "Descrizione del tuo evento" }}
+        </p>
+        <p
+          #textContainer
+          *ngIf="view"
+          class="mt-2 text-base font-semibold text-gray-900 relative"
+          [ngClass]="{ 'overflow-hidden line-clamp-2': !verMas }"
+        >
+          {{ eventProfile.description || "Nessuna descrizione" }}
+
+          <span
+            *ngIf="
+              isTextOverflowing ||
+              (eventProfile?.description &&
+                eventProfile.description!.length > 100)
+            "
+            (click)="toggleVerMas()"
+            class="text-blue-500 cursor-pointer bg-white absolute bottom-0 right-0 px-1"
+          >
+            {{ verMas ? "Vedi di meno" : "... Vedi tutto" }}
+          </span>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <section class="flex mt-[10px]">
+          <section class="flex flex-wrap mt-[10px] gap-[5px]">
+            <article
+              class="text-[11px] leading-[12px] py-[7px] px-[12px] bg-[#F3F4F6] rounded-full"
+              *ngIf="updating"
+              (click)="openSeatTagsComponent()"
+            >
+              tag+
+            </article>
+            <article
+              class="text-[11px] leading-[12px] py-[7px] px-[12px] bg-[#F3F4F6] rounded-full"
+              *ngFor="let tag of eventProfile.tags"
+            >
+              {{ tag }}
+            </article>
+            <article
+              class="text-[11px] leading-[12px] py-[7px] px-[12px] bg-[#F3F4F6] rounded-full"
+              *ngIf="view && !eventProfile.tags"
+            >
+              Nessun tag disponibile
+            </article>
+          </section>
+        </section>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <section class="mt-[18px]">
+          <section class="flex flex-row justify-between items-center">
+            <section class="text-[16px] leading-[17px] font-bold">
+              Galleria
+            </section>
+            <section
+              (click)="openSeatGalleryComponent(true)"
+              class="flex flex-row items-center text-[11px] leading-[12px] text-[#9B9EA7]"
+            >
+              Vedi tutto
+              <ion-icon name="chevron-forward-outline" />
+            </section>
+          </section>
+          <section
+            class="flex gap-[10px] mt-[10px] w-full overflow-x-hidden gallery"
+          >
+            <article
+              (click)="openSeatGalleryComponent(false)"
+              *ngIf="updating"
+              class="flex justify-center items-center min-w-[94px] h-[140px] bg-[#E2E2E2] rounded-[10px]"
+            >
+              <ion-icon name="add-outline" />
+            </article>
+            <article
+              (click)="seatOpenViewImage(image)"
+              *ngFor="let image of eventProfile.pictureGallery"
+              class="flex-none w-[94px] h-[140px] bg-[#ecdada] rounded-[10px] bg-no-repeat bg-cover bg-center"
+              [style.background-image]="'url(' + (image | imageEvent) + ')'"
+            ></article>
+            <article
+              *ngIf="view && !eventProfile.pictureGallery"
+              class="flex text-center justify-center items-center w-[94px] h-[140px] bg-[#E2E2E2] rounded-[10px]"
+            >
+              Nessuna immagine disponibile
+            </article>
+          </section>
+        </section>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="mt-5" *ngIf="eventProfile?.address || updating">
+      <ion-col>
+        <ion-card
+          class="border border-gray-300 rounded-[0.938rem] m-0 mt-4 shadow-none"
+        >
+          <ion-card-header
+            class="p-2 px-4 bg-white flex items-center justify-between"
+          >
+            <ion-row class="flex items-center justify-between w-full">
+              <label class="font-bold text-xl">Location</label>
+              <button
+                (click)="howToGet(eventProfile)"
+                class="font-bold text-white bg-pink-600 rounded-full w-36 h-10 disabled:opacity-50"
+                [disabled]="updating || !eventProfile.address"
+              >
+                Indicazioni
+              </button>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-card-content
+            class="relative h-[12.25rem] m-4 mt-0 p-0"
+            (click)="openSeatLocationComponent()"
+          >
+            <app-map
+              [latitude]="+eventProfile.latitude!"
+              [longitude]="+eventProfile.longitude!"
+            ></app-map>
+
+            <div
+              class="absolute inset-0 flex items-center justify-center text-center font-bold text-xl bg-gray-300 rounded-lg z-10"
+              *ngIf="view && !eventProfile.address"
+            >
+              Non c'è ancora una sede disponibile per questo evento
+            </div>
+
+            <div
+              class="absolute inset-0 flex items-center justify-center text-center font-bold text-xl bg-gray-300 rounded-lg z-10"
+              *ngIf="updating && !eventProfile.address"
+            >
+              La location verrà visualizzata qui una volta impostato un
+              indirizzo
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="eventProfile.rules?.length || updating">
+      <ion-col>
+        <ion-card class="m-0 mt-4 bg-gray-100 shadow-none">
+          <ion-card-content class="p-2">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="flex">
+                  <label
+                    class="text-lg font-bold text-gray-700 flex items-center"
+                    >Info e regolamento</label
+                  >
+                  <button
+                    *ngIf="updating"
+                    (click)="openSeatInfoComponent()"
+                    class="text-white bg-pink-600 rounded-full py-2 px-4 block ml-auto"
+                  >
+                    {{ "+ add" }}
+                  </button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="flex flex-col justify-center">
+                  <section *ngIf="updating">
+                    <section
+                      *ngFor="let rule of eventProfile?.rules; let i = index"
+                      class="block text-base text-gray-700 whitespace-pre-line pt-2"
+                      (click)="openSeatInfoComponent(i)"
+                    >
+                      <span class="block font-bold">- {{ rule.title }}</span>
+                      <span class="block" *ngFor="let item of rule.items"
+                        >&nbsp;&nbsp;<b>-</b> {{ item }}</span
+                      >
+                    </section>
+                  </section>
+                  <section *ngIf="view">
+                    <section
+                      *ngFor="let rule of eventProfile?.rules; let i = index"
+                      class="block text-base text-gray-700 whitespace-pre-line pt-2"
+                    >
+                      <span class="block font-bold">- {{ rule.title }}</span>
+                      <span class="block" *ngFor="let item of rule.items"
+                        >&nbsp;&nbsp;<b>-</b> {{ item }}</span
+                      >
+                    </section>
+                    <span *ngIf="!eventProfile.rules">{{
+                      "Nessuna informazione"
+                    }}</span>
+                  </section>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="eventProfile.isGreen || updating">
+      <ion-col>
+        <ion-card class="m-0 mt-4 bg-gray-100 shadow-none">
+          <ion-card-content class="p-2">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="flex">
+                  <label
+                    class="text-lg font-bold text-gray-700 flex items-center"
+                  >
+                    Green & sustainable<span *ngIf="updating"
+                      >&nbsp;(opzionale)</span
+                    >
+                  </label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p
+                    *ngIf="!eventProfile.isGreen"
+                    (click)="openSeatGreenComponent()"
+                    class="block text-base text-gray-700 whitespace-pre-line pt-2"
+                  >
+                    Indica cosa fai per rendere green e sostenibile il tuo
+                    evento
+                  </p>
+                  <p
+                    *ngIf="eventProfile.isGreen"
+                    (click)="openSeatGreenComponent()"
+                    class="block text-base text-gray-700 whitespace-pre-line pt-2"
+                  >
+                    {{ eventProfile.greenDescription }}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="eventProfile.products?.length || updating">
+      <ion-col>
+        <section class="my-[18px]">
+          <section class="flex flex-row justify-between items-center">
+            <section class="text-[16px] leading-[17px] font-bold">
+              Servizi extra
+            </section>
+          </section>
+        </section>
+
+        <section
+          class="mb-[.5rem]"
+          (click)="openSeatServiceComponent()"
+          *ngIf="updating"
+        >
+          <button
+            class="flex flex-col items-center justify-center w-full h-24 bg-[#F9F9F9] rounded-2xl hover:bg-gray-100 shadow-[0px_4px_10px_rgba(0,0,0,0.1),0px_-2px_6px_rgba(0,0,0,0.05)]"
+          >
+            <span class="text-2xl font-bold">+</span>
+            <span class="text-lg font-bold">aggiungi</span>
+          </button>
+        </section>
+
+        <app-voucher-extra-event
+          *ngFor="let ticketExtra of eventProfile.products; let i = index"
+          (seatService)="openSeatServiceComponent(i)"
+          (viewImage)="seatOpenViewImage(ticketExtra.pictureUlrFile)"
+          (buying)="openPayTicketExtra(ticketExtra)"
+          [ticketExtra]="ticketExtra"
+          [buy]="eventProfile.processStatus === 'active' ? true : false"
+        >
+        </app-voucher-extra-event>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</section>
+
+<footer
+  *ngIf="!edit && !create && !stats"
+  class="fixed bottom-0 left-0 w-full h-24 bg-white/30 backdrop-blur-md shadow-md flex items-center justify-around"
+>
+  <button
+    (click)="callPhoneNumber(eventProfile)"
+    class="bg-indigo-500 text-white w-14 h-14 rounded-full text-2xl flex justify-center items-center"
+  >
+    <ion-icon src="assets/images/events/custom-icons/call-outline.svg" />
+  </button>
+  <button
+    (click)="suggestionSeat(eventProfile)"
+    class="bg-white border-2 border-solid border-pink-600 text-pink-600 text-lg font-bold w-36 h-14 rounded-full"
+  >
+    Invita
+  </button>
+  <button
+    (click)="openPayTicket()"
+    class="bg-pink-600 text-white text-lg font-bold w-44 h-14 rounded-full"
+  >
+    Partecipa
+  </button>
+</footer>
+
+<footer
+  *ngIf="stats"
+  class="fixed bottom-0 left-0 w-full h-24 bg-white/30 backdrop-blur-md shadow-md flex items-center justify-around"
+>
+  <button
+    (click)="suggestionSeat(eventProfile)"
+    class="bg-indigo-500 text-white w-14 h-14 rounded-full text-2xl flex justify-center items-center"
+  >
+    <ion-icon src="assets/images/events/custom-icons/person-add.svg" />
+  </button>
+  <button
+    (click)="openStats()"
+    class="bg-pink-600 text-white text-lg font-bold w-[calc(100%-7rem)] h-14 rounded-full"
+  >
+    Statistiche di vendita
+  </button>
+</footer>
+
+<footer
+  *ngIf="edit || (create && !stats)"
+  class="fixed bottom-0 left-0 w-full h-24 bg-white/30 backdrop-blur-md shadow-md flex items-center justify-around"
+>
+  <button
+    (click)="preview = !preview"
+    class="bg-indigo-500 text-white text-[1.8rem] font-bold h-14 aspect-square rounded-full flex justify-center items-center"
+  >
+    <ion-icon [name]="!preview ? 'eye-outline' : 'create-outline'"></ion-icon>
+  </button>
+  <button
+    (click)="close()"
+    class="bg-white text-pink-600 border-2 border-solid border-pink-600 text-lg font-bold w-[35%] h-14 rounded-full"
+  >
+    Esci e salva
+  </button>
+  <button
+    (click)="openPublishEvent()"
+    class="bg-pink-600 text-white text-lg font-bold w-[35%] h-14 rounded-full"
+  >
+    Pubblica
+  </button>
+</footer>

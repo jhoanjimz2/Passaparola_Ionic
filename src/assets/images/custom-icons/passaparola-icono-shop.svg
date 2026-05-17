@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_5701" data-name="Path 5701" d="M5.074,5.84H29.215V27.479H5.074Zm0,0" transform="translate(-7.148 -7.923)" stroke="#707070" stroke-width="0.3"/>
+    </clipPath>
+    <clipPath id="clip-icono_shop">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="icono_shop" data-name="icono shop" clip-path="url(#clip-icono_shop)">
+    <g id="Progetto_senza_titolo" data-name="Progetto senza titolo" transform="translate(-0.141 0.917)">
+      <path id="Path_5699" data-name="Path 5699" d="M31.079,109.938h-.9a.226.226,0,0,0,0,.451H30.4v1.579a1.8,1.8,0,0,1-3.609,0v-1.579h.226a.226.226,0,0,0,0-.451h-.9a.226.226,0,0,0,0,.451h.226v1.579a2.256,2.256,0,1,0,4.512,0v-1.579h.226a.226.226,0,0,0,0-.451Zm0,0" transform="translate(-20.418 -96.896)" stroke="#000" stroke-width="0.5"/>
+      <g id="Group_3108" data-name="Group 3108" transform="translate(2.074 2.083)" clip-path="url(#clip-path)">
+        <path id="Path_5700" data-name="Path 5700" d="M24.963,11.21a.325.325,0,0,0-.331-.3H21.98V9.332a3.651,3.651,0,0,0-7.293,0v1.577H12.035a.324.324,0,0,0-.331.3L11.6,13.747H5.406a.324.324,0,0,0-.331.315V24.311a1.134,1.134,0,0,0,1.16,1.1h19.06a.339.339,0,0,0,.239-.1.307.307,0,0,0,.092-.232ZM15.35,9.332a2.987,2.987,0,0,1,5.966,0v1.577H15.35Zm.994,14.979a.486.486,0,0,1-.5.473H6.235a.486.486,0,0,1-.5-.473V14.378H16.344Zm.551.473a1.051,1.051,0,0,0,.112-.473V14.062a.324.324,0,0,0-.331-.315H12.26l.094-2.207h2.333v.631h-.331a.316.316,0,1,0,0,.631h1.326a.316.316,0,1,0,0-.631H15.35v-.631h5.966v.631h-.331a.316.316,0,1,0,0,.631h1.326a.316.316,0,1,0,0-.631H21.98v-.631h2.335l.633,13.245Zm0,0" transform="translate(-5.074 -6.861)" stroke="#000" stroke-width="0.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

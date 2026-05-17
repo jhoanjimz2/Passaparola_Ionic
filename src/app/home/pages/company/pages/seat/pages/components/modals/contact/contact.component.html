@@ -1,0 +1,54 @@
+<section class="w-full h-full flex flex-col gap-4 p-[1.1875rem] bg-white">
+
+  <div class="grid grid-cols-2">
+    <div class="col-span-1">
+      <span class="block text-[1.375rem] font-bold">Contatti</span>
+    </div>
+  </div>
+
+  <!-- EMAIL -->
+  <div *ngIf="seat.userInfo?.email" class="w-full p-4 border border-solid border-[#D8E2E8] rounded-[0.875rem] bg-white flex flex-row items-center justify-between">
+    <div class="flex flex-col">
+      <span class="font-normal text-[0.75rem] text-black">Email</span>
+      <span class="font-bold text-[0.875rem] text-black">{{ seat.userInfo?.email }}</span>
+    </div>
+    <button
+      (click)="copyToClipboard('contact@example.com')"
+      class="w-[4.6875rem] h-[1.9375rem] rounded-[1rem] bg-[#E1EAF1] border border-solid border-[#E1E1E1] text-black text-[0.875rem]">
+      Copia
+    </button>
+  </div>
+
+  <!-- TELEFONO -->
+  <div *ngIf="seat.targetInfo?.seatInfo?.phone" class="w-full p-4 border border-solid border-[#D8E2E8] rounded-[0.875rem] bg-white flex flex-row items-center justify-between">
+    <div class="flex flex-col">
+      <span class="font-normal text-[0.75rem] text-black">Telefono</span>
+      <span class="font-bold text-[0.875rem] text-black">
+        {{ (seat.targetInfo?.seatInfo!.country?.phonePrefix || '')+ ' ' + seat.targetInfo?.seatInfo!.phone }}
+      </span>
+    </div>
+    <button
+      (click)="copyToClipboard(seat.targetInfo?.seatInfo!.country?.phonePrefix + ' ' + seat.targetInfo?.seatInfo!.phone)"
+      class="w-[4.6875rem] h-[1.9375rem] rounded-[1rem] bg-[#E1EAF1] border border-solid border-[#E1E1E1] text-black text-[0.875rem]">
+      Copia
+    </button>
+  </div>
+
+  <!-- WEBSITE -->
+  <div *ngIf="seat.targetInfo?.seatInfo?.webAddress" class="w-full p-4 border border-solid border-[#D8E2E8] rounded-[0.875rem] bg-white flex flex-row items-center justify-between">
+    <div class="flex flex-col">
+      <span class="font-normal text-[0.75rem] text-black">Website</span>
+      <span class="font-bold text-[0.875rem] text-black">{{ seat.targetInfo?.seatInfo!.webAddress }}</span>
+    </div>
+    <button
+      (click)="goToWebsite(seat.targetInfo?.seatInfo!.webAddress!)"
+      class="flex justify-center items-center gap-[0.2rem] w-[4.6875rem] h-[1.9375rem] rounded-[1rem] bg-[#E1EAF1] border border-solid border-[#E1E1E1] text-black text-[0.875rem]">
+      Vai
+      <ion-icon
+        name="arrow-forward-outline"
+        class="transform -rotate-45">
+      </ion-icon>
+    </button>
+  </div>
+
+</section>

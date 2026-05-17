@@ -1,0 +1,164 @@
+[
+  {
+    "title": "MENU.EARNINGS",
+    "children": [
+      {
+        "icon": "passaparola-community",
+        "name": "MENU.COMMUNITY",
+        "redirectTo": "community",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "passaparola-suggest",
+        "name": "MENU.SUGGESTIONS",
+        "redirectTo": "map",
+        "navType": "root",
+        "queryParams": {
+          "businessSuggestion": "yes"
+        },
+        "visible": true
+      },
+      {
+        "icon": "trophy",
+        "name": "MENU.WIN",
+        "redirectTo": "wallet",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "passaparola-paspot",
+        "name": "MENU.PASPOT",
+        "redirectTo": "social",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "passaparola-help-earn",
+        "name": "MENU.HELP_AND_EARN",
+        "redirectTo": "pages/help-earn",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      }
+    ],
+    "visible": true
+  },
+  {
+    "title": "Contratti",
+    "children": [
+      {
+        "icon": "document-text",
+        "name": "Contratti",
+        "redirectTo": "pages/contracts/list",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      }
+    ],
+    "visible": true
+  },
+
+
+
+
+
+  {
+    "title": "MENU.FINANCE",
+    "children": [
+      {
+        "icon": "passaparola-wallet",
+        "name": "MENU.WALLET",
+        "redirectTo": "wallet",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "passaparola-card",
+        "name": "MENU.YOUR_CARDS",
+        "redirectTo": "pages/bank-card",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "passaparola-museum",
+        "name": "MENU.BANK_ACCOUNTS",
+        "redirectTo": "pages/bank-account",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      }
+    ],
+    "visible": true
+  },
+
+
+  {
+    "title": "MENU.SHOPPING",
+    "children": [
+      {
+        "icon": "navigate",
+        "name": "MENU.SPEDIZIONE",
+        "redirectTo": "pages/address/addresses",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true
+      }
+    ],
+    "visible": true
+  },
+
+
+  {
+    "title": "MENU.BUSSINES",
+    "children": [
+      {
+        "icon": "passaparola-suggest",
+        "name": "Materiale promozionale",
+        "redirectTo": "pages/company/promotional materials",
+        "navType": "forward",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "qr-code-outline",
+        "name": "Pagamento QR statico",
+        "redirectTo": "",
+        "navType": "forward",
+        "queryParams": {},
+        "visible": true,
+        "action": "modalQrCode"
+      }
+    ],
+    "visible": true
+  },
+  {
+    "title": "MENU.ALTRO",
+    "children": [
+      {
+        "icon": "alert-circle",
+        "name": "MENU.TERMS_AND_CONDITIONS",
+        "redirectTo": "",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true,
+        "action": "goToPageTermsCond"
+      },
+      {
+        "icon": "backspace",
+        "name": "MENU.CANCEL_YOUR_ACCOUNT",
+        "redirectTo": "",
+        "navType": "root",
+        "queryParams": {},
+        "visible": true,
+        "action": "goToPageCancelAccount"
+      }
+    ],
+    "visible": true
+  }
+]

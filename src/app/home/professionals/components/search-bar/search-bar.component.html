@@ -1,0 +1,43 @@
+<div class="search-bar">
+  <button
+    class="search-bar__filter-btn"
+    (click)="onFilterClick()"
+    type="button"
+    aria-label="Filtros">
+    <ion-icon
+      class="search-bar__filter-icon"
+      name="options-outline">
+    </ion-icon>
+  </button>
+
+  <div class="search-bar__input-wrapper">
+    <input
+      class="search-bar__input"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput($event)"
+      (keydown)="onKeyDown($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      [placeholder]="placeholder"
+      type="text"
+      aria-label="Buscar">
+
+    <ion-icon
+      class="search-bar__search-icon"
+      name="search">
+    </ion-icon>
+
+    <!-- Dropdown de sugerencias -->
+    <div
+      class="search-bar__suggestions"
+      *ngIf="showSuggestions"
+      [@slideDown]>
+      <div
+        class="search-bar__suggestion-item"
+        *ngFor="let suggestion of filteredSuggestions"
+        (click)="onSuggestionClick(suggestion)">
+        {{ suggestion }}
+      </div>
+    </div>
+  </div>
+</div>

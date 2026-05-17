@@ -1,0 +1,142 @@
+<section class="h-full overflow-y-auto">
+  <ng-container *ngIf="step === 'tpv'">
+    <app-payment-header
+      [buttonActive]="buttonActive"
+      [color]="'color1'"
+      [labelLeftButton]="'PAYMENT.PAYMENT_TRADITIONAL' | translate"
+      [iconLeftButton]="'passaparola-money'"
+      [labelRightButton]="'PAYMENT.PAYMENT_IN_APP' | translate"
+      [iconRightButton]="'passaparola-transfer-mobile'"
+      [decimalAmount]="decimalAmount"
+      [mainAmount]="mainAmount"
+      (callActivateButton)="onActiveButton($event)"
+    >
+      <section class="flex flex-col pl-[12px] pr-[25px]">
+        <section
+          *ngIf="!seat"
+          class="flex flex-row justify-between items-center text-white gap-[40px]"
+        >
+          <article
+            class="flex flex-row justify-between items-center bg-white w-full max-w-[calc(100%-100px)] rounded-[10px] px-[12px] py-[6px]"
+            (click)="onSelectListSeatComponentModal()"
+          >
+            <span
+              class="text-[12px] leading-[22px] text-[#35B726] uppercase font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]"
+            >
+              {{ seatSelected.name }}
+            </span>
+            <ion-icon
+              class="text-[#35B726] rotate-90"
+              name="passaparola-compare-arrows"
+            ></ion-icon>
+          </article>
+          <article class="text-[16px] leading-[22px] pr-[15px]">
+            {{'PAYMENT.TOTALE' | translate}}
+          </article>
+        </section>
+        <section
+          class="flex flex-row justify-between items-center pt-[10px] pl-[20px] w-full"
+        >
+          <article class="text-[51px] leading-[51px] text-white pl-[25px]">
+            €
+          </article>
+          <section class="flex justify-end pr-[10px]">
+            <span
+              class="text-white"
+              [ngClass]="{
+                'text-[51px] leading-[51px]': !(mainAmount.length >= 7),
+                'text-[30px] leading-[30px]': mainAmount.length >= 7
+              }"
+            >
+              {{ mainAmount }},
+            </span>
+            <span
+              class="text-white font-extrabold"
+              [ngClass]="{
+                'text-[20px] leading-[27px] pt-[6px]': !(mainAmount.length >= 7),
+                'text-[15px] leading-[20px] pt-[3px]': mainAmount.length >= 7
+              }"
+            >
+              {{ decimalAmount }}
+            </span>
+          </section>
+          <!-- <section class="flex justify-end pr-[10px]">
+            <article
+              *ngIf="buttonActive === 'leftButton'"
+              class="text-white text-[11px] leading-[15px] rounded-[21px] border-[1px] px-[10px] py-[4px] mt-[15px]"
+              (click)="onAmountWithoutRewardsModal()"
+            >
+              {{'PAYMENT.AMOUNT_WITHOUT_REWARDS' | translate}}
+            </article>
+            <article
+              *ngIf="buttonActive === 'rightButton'"
+              class="text-[11px] leading-[15px] px-[10px] py-[4px] mt-[15px]"
+            >
+              &nbsp;
+            </article>
+          </section> -->
+        </section>
+      </section>
+    </app-payment-header>
+
+    <app-keyboard-tpv
+      class="grid grid-cols-3 px-[40px] pt-[80px] gap-x-[50px] gap-y-[15px]"
+      (onChangeAmount)="onChangeAmount($event)"
+    />
+
+    <section
+      class="bg-black text-white text-[15px] leading-[22px] py-[15px] my-[25px] mx-[40px] rounded-[28px] text-center font-semibold"
+      (click)="getPayment()"
+    >
+      {{'PAYMENT.RICEVI_PAGAMENTO' | translate}}
+    </section>
+  </ng-container>
+
+  <app-payment-resume
+    *ngIf="step === 'payment-resume'"
+    [amountWithoutRewards]="amountWithoutRewards"
+    [decimalAmount]="decimalAmount"
+    [mainAmount]="mainAmount"
+    (callCancelOperation)="onCancelOperation()"
+    (callConfirmOperationModal)="onConfirmOperationModal()"
+  />
+
+  <app-payment-notification
+    *ngIf="step === 'traditional-payment-success'"
+    [nameImg]="'transfer-successfully.png'"
+    [type]="'success'"
+    [title]="'PAYMENT.TRANSACTION_EXECUTED' | translate"
+    (callClose)="onGoToHome()"
+  >
+    <section class="text-[16px] leading-[22px] mt-[25px]">
+      {{'PAYMENT.YOU_HAVE_RECEIVED_A_PAYMENT_OF' | translate}}
+    </section>
+    <section class="text-[60px] leading-[72px]">
+      {{ mainAmount }},{{ decimalAmount }}
+    </section>
+    <section class="text-[15px] leading-[24px] font-bold">€/ATM</section>
+    <section
+      class="text-[16px] leading-[22px] mt-[5px]"
+      [innerHTML]="'PAYMENT.WE_HAVE_ASSIGNED_THE' | translate: { cashBackPercentage: cashBackPercentage }"
+    ></section>
+    <section
+      class="text-[13px] leading-[18px] mt-[15px] border-[1px] border-[#35B726] py-[10px] px-[25px] rounded-[10px]"
+    >
+      {{'PAYMENT.TRANSACTION_ID' | translate}}<br />{{ idOperation }}
+    </section>
+    <section
+      class="bg-[#41C837] text-white text-[15px] leading-[22px] py-[20px] px-[40px] mt-[20px] rounded-[34px] text-center"
+      (click)="onGoToHome()"
+    >
+      {{'PAYMENT.BACK_TO_HOME' | translate}}<br />{{ idOperation }}
+    </section>
+  </app-payment-notification>
+
+  <app-payment-qr
+    *ngIf="step === 'app-payment-qr'"
+    [data]="data"
+    [decimalAmount]="decimalAmount"
+    [mainAmount]="mainAmount"
+    (callClose)="onGoToHomeFromApp()"
+  />
+</section>

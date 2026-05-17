@@ -1,0 +1,150 @@
+.padding-0 {
+  padding: 0;
+}
+
+.text-rigth {
+  text-align: right;
+}
+
+.title {
+  color: #ff4b4b;
+}
+
+.f-w-b {
+  font-weight: bold;
+}
+
+.main-container {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  margin-bottom: 0.625rem;
+
+  &__card {
+    width: 8.5rem;
+    height: 14.438rem;
+    border-radius: 0.938rem;
+    padding: 0.313rem;
+
+    &__item {
+      height: 100%;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    &__header {
+      height: 8.063rem;
+      width: 8.063rem;
+      border-radius: 0.938rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      &__inner {
+        position: absolute;
+        width: 3.5rem;
+        height: 1.188rem;
+        border: 0.063rem solid #f9b139;
+        border-radius: 0.313rem;
+        background: #fef4bf;
+        margin-left: -0.625rem;
+        margin-top: 5.313rem;
+        white-space: nowrap;
+      }
+
+      &__icon {
+        font-size: 0.75rem;
+        color: #f9b139;
+        float: left;
+        margin-top: 0.125rem;
+      }
+
+      &__text {
+        font-size: 0.625rem;
+        font-weight: 800;
+        color: #000000;
+      }
+    }
+
+    &__content {
+      padding: 0.313rem;
+
+      &__amounts {
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+      }
+    }
+
+    &__star-icon {
+      font-size: 0.875rem;
+      color: #6c757d;
+      float: left;
+      margin-top: 0.25rem;
+      margin-right: 0.188rem;
+    }
+
+    &__text-star {
+      font-size: 0.625rem;
+      color: #000000;
+    }
+
+    &__pr-back {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0.625rem;
+    }
+
+    &__amount-pr {
+      font-size: 0.75rem;
+      color: #35c93f;
+      font-weight: 800;
+    }
+
+    &__text-pr {
+      font-size: 0.75rem;
+      color: #000000;
+      font-weight: 800;
+    }
+
+    &__amount-back {
+      font-size: 0.75rem;
+      color: #3b9ff6;
+      font-weight: 800;
+    }
+
+    &__text-back {
+      font-size: 0.75rem;
+      color: #000000;
+      font-weight: 800;
+    }
+  }
+
+  &--d-f {
+    display: flex;
+  }
+
+  &--f-z-10 {
+    font-size: 10px;
+  }
+
+  &--f-z-11 {
+    font-size: 11px;
+  }
+
+  &--f-z-14 {
+    font-size: 14px;
+  }
+
+  &--f-z-18 {
+    font-size: 18;
+  }
+
+  &--text-primary {
+    color: #ff4b4b;
+  }
+
+  &--text-secondary {
+    color: #6c757d;
+  }
+}

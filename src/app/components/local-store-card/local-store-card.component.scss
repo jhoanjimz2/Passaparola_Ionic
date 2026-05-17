@@ -1,0 +1,51 @@
+.padding-0 {
+  padding: 0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.title {
+  color: #3b9ff6;
+}
+
+.f-w-b {
+  font-weight: bold;
+}
+
+.container-business {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+
+  &__item {
+    width: 6.25rem;
+    height: 8.188rem;
+    border-radius: 0.938rem;
+    padding: 0.313rem;
+
+    &__card {
+      height: 100%;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    &__img {
+      height: 5.25rem;
+      border-radius: 0.938rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__title {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+      white-space: nowrap;
+      font-size: 0.625rem;
+      padding-top: 0.313rem;
+    }
+  }
+}

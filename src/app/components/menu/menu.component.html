@@ -1,0 +1,213 @@
+<ion-content>
+  <div class="header">
+    <ion-grid class="header__profile">
+
+  <ion-row>
+    <ion-col class="header--flex-center header--m-w">
+      <ion-button
+        *ngIf="sessionService.isCompanyLegal || sessionService.isProfessionalAdministrative"
+        (click)="showAddAccount()"
+        class="header__profile__btn-left"
+      >
+        <ion-icon
+          color="light"
+          [name]="showAddAccountBtn ? 'chevron-up-outline' : 'chevron-down-outline'"
+        ></ion-icon>
+      </ion-button>
+    </ion-col>
+
+    <ion-col class="header--flex-center">
+      <!-- Operative -->
+      <ng-container *ngIf="sessionService.isCompanyOperative || sessionService.isProfessionalOperative">
+        <div
+          class="header__profile__image"
+          [style.background-image]="'url(' + (profileOperative.pictureUlrFile! | image) + ')'">
+        </div>
+        <ion-text>
+          <span class="header__profile__name">{{ profileOperative.name }}</span>
+          <br />
+          <span class="header__profile__name header--f-z-14">
+            {{ profileOperative.country!.name }}
+          </span>
+        </ion-text>
+      </ng-container>
+
+      <!-- Company -->
+      <ng-container *ngIf="sessionService.isCompanyLegal || sessionService.isProfessionalAdministrative">
+        <div
+          (click)="showAddAccount()"
+          class="header__profile__image"
+          [style.background-image]="'url(' + (profile.profilePictureUrlFile! | image) + ')'">
+        </div>
+        <ion-text (click)="showAddAccount()">
+          <span class="header__profile__name">
+            {{ user.profile?.name }} {{ user.profile?.lastName }}
+          </span>
+          <br />
+          <span class="header__profile__name header--f-z-14">
+            {{ user.country?.name }}
+          </span>
+        </ion-text>
+      </ng-container>
+
+      <!-- User -->
+      <ng-container *ngIf="sessionService.isUser">
+        <div
+          class="header__profile__image"
+          [style.background-image]="'url(' + (profile.profilePictureUrlFile! | image) + ')'">
+        </div>
+        <ion-text>
+          <span class="header__profile__name">
+            {{ user.profile?.name }} {{ user.profile?.lastName }}
+          </span>
+          <br />
+          <span class="header__profile__name header--f-z-14">
+            {{ user.country?.name }}
+          </span>
+        </ion-text>
+      </ng-container>
+    </ion-col>
+
+    <ion-col class="header--flex-center header--m-w">
+      <ion-menu-toggle autoHide="false">
+        <ion-button
+          (click)="closeMenu()"
+          fill="outline"
+          class="header__profile__btn-right"
+        >
+          <ion-icon color="light" name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-col>
+  </ion-row>
+
+      <div *ngIf="showAddAccountBtn">
+        <ion-row *ngFor="let seatItem of companies; index as i" (click)="onModify(seatItem)">
+          <ion-col class="header--flex-center header--m-w">
+          </ion-col>
+          <ion-col class="header--flex-center header__profile__accounts">
+            <div
+              class="header__profile__image"
+              [style.background-image]="
+                'url(' + (seatItem.pictureUlrFile! | image) + ')'
+              "
+            ></div>
+            <ion-menu-toggle autoHide="false">
+              <ion-text>
+                <span class="header__profile__name">
+                  {{
+                    seatItem.name
+                      ? seatItem.name
+                      : ("SEAT.COMPONENT.LIST.SEAT_NAME" | translate)
+                  }}
+                </span>
+                <br />
+                <span class="header__profile__name header--f-z-14">
+                {{ (sessionService.isProfessionalAdministrative
+                    ? 'MENU.PROFILO_PUBBLICO'
+                    : 'MENU.BUSSINES_ACCOUNT') | translate }}
+                </span>
+              </ion-text>
+            </ion-menu-toggle>
+          </ion-col>
+          <ion-col class="header--flex-center header--m-w"> </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+
+    <ion-grid
+      *ngIf="!sessionService.isCompanyOperative"
+      class="header__main-buttons header--p-t-0 header--p-0"
+    >
+      <ion-row>
+        <ion-col size="6" class="header--center-items">
+          <ion-menu-toggle autoHide="false">
+            <ion-button
+              fill="outline"
+              (click)="goTo('wallet', 'root', {})"
+            >
+              <div>
+                <ion-icon [color]="'orange'" name="passaparola-wallet"></ion-icon>
+                <br />
+                <ion-label [color]="'orange'">
+                  {{"MENU.WALLET" | translate}}
+                </ion-label>
+              </div>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-col>
+        <ion-col size="6" class="header--center-items">
+          <ion-menu-toggle autoHide="false">
+            <ion-button
+              fill="outline"
+              (click)="goTo('community', 'root', {})"
+            >
+              <div>
+                <ion-icon
+                  [color]="'orange'"
+                  class="header--f-z-33"
+                  name="passaparola-community"
+                ></ion-icon>
+                <br />
+                <ion-label [color]="'orange'">
+                  {{"MENU.COMMUNITY" | translate}}
+                </ion-label>
+              </div>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div
+      class="header__separator"
+      [ngClass]="sessionService.isCompanyOperative ? '!bg-[#fe8c0f]' : '!bg-white'"
+    >
+    </div>
+  </div>
+
+  <div class="main-container" [style.margin-top]="mainContainerMT + 'px'">
+    <div *ngFor="let me of menu" class="main-container__section">
+      <div *ngIf="me.visible">
+        <ion-label class="main-container--f-w">{{
+          me.title | translate
+        }}</ion-label>
+        <div class="main-container__section__buttons">
+          <ion-menu-toggle autoHide="false" *ngFor="let m of me.children">
+            <ion-button
+              color="light"
+              fill="outline"
+              (click)="goTo(m.redirectTo, m.navType, m.queryParams, m.action)"
+              *ngIf="m.visible"
+            >
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="1">
+                    <ion-icon [name]="m.icon"></ion-icon>
+                  </ion-col>
+                  <ion-col>
+                    <ion-label>
+                      {{ m.name | translate }}
+                    </ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-button>
+          </ion-menu-toggle>
+        </div>
+      </div>
+    </div>
+
+    <ion-menu-toggle autoHide="false">
+      <ion-button
+        (click)="logout()"
+        class="main-container__logout-btn"
+        fill="outline"
+        color="light"
+      >
+        <ion-icon color="dark" name="passaparola-logout"></ion-icon>
+        <ion-label> {{ "MENU.LOGOUT" | translate }} </ion-label>
+      </ion-button>
+    </ion-menu-toggle>
+  </div>
+</ion-content>

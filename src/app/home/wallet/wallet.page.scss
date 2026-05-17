@@ -1,0 +1,301 @@
+ion-content {
+  --offset-bottom: auto !important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  background: #f9f9f9;
+}
+
+.main {
+  &__id-wallet-card {
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+
+    &__text {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #000000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__icon {
+      margin-left: 0.313rem;
+      font-size: 1.75rem;
+    }
+
+    &--rorante {
+      transform: rotate(180deg);
+      transition-duration: 0.3s;
+    }
+
+    &--expand {
+      transform: rotate(0deg);
+      transition-duration: 0.3s;
+    }
+
+    ion-row,
+    ion-col {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__pass-wallet-card {
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &__label-pass {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    &__label-amount {
+      font-size: 2.25rem;
+      font-weight: 300;
+    }
+
+    &__label-add {
+      color: #3cc3a2;
+    }
+  }
+
+  &__wallet-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__id {
+      height: 2.563rem;
+      --border-radius: 0.563rem;
+      text-transform: none;
+      --box-shadow: none;
+      margin-right: 0.625rem;
+      --background: #ffffff;
+      --background-activated: #ffffff;
+      --background-activated-opacity: #ffffff;
+      --background-focused-opacity: #ffffff;
+      --background-hover: #ffffff;
+      --background-hover-opacity: #ffffff;
+      --border-style: solid;
+      --border-color: #3cc3a2;
+      --color: #3cc3a2;
+      font-weight: 600;
+    }
+
+    &__add {
+      height: 2.563rem;
+      --border-radius: 0.563rem;
+      --box-shadow: none;
+      text-transform: none;
+      --background: #3cc3a2;
+      --background-activated: #3cc3a2;
+      --background-activated-opacity: #3cc3a2;
+      --background-focused-opacity: #3cc3a2;
+      --background-hover: #3cc3a2;
+      --background-hover-opacity: #3cc3a2;
+      --color: #ffffff;
+      font-weight: 600;
+    }
+  }
+
+  &__card-win {
+    width: 10.375rem;
+    height: 4.375rem;
+    border-radius: 1.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__icon-help {
+      position: absolute;
+      width: 0.813rem;
+      height: 0.813rem;
+      background: #fed942;
+      border-radius: 3.125rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.063rem;
+      margin-top: -3.125rem;
+      margin-right: -7.5rem;
+      color: #ffffff;
+    }
+
+    &_icon {
+      width: 2.063rem;
+      height: 2.063rem;
+      border-radius: 0.625rem;
+      padding: 0.125rem;
+      border: solid 0.063rem #fed942;
+
+      &__inner {
+        width: 100%;
+        height: 100%;
+        background: #fed942;
+        border-radius: 0.625rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        color: #ffffff;
+      }
+    }
+  }
+
+  &__buttons {
+    box-shadow: none;
+
+    &__content {
+      background: #3cc3a2;
+      height: 9.375rem;
+      border-radius: 1.25rem;
+      margin-top: 0.625rem;
+      transition: height 0.3s ease;
+
+      ion-icon {
+        font-size: 3.25rem;
+      }
+
+      &__text {
+        color: #ffffff;
+      }
+    }
+
+    &__btn-show {
+      width: 6.25rem;
+      height: 0.313rem;
+      border-radius: 0.938rem;
+      background: #ffffff;
+      opacity: 0.7;
+    }
+  }
+
+  &__container-card {
+    box-shadow: none;
+    background: transparent;
+
+    &__text-left {
+      font-size: 1.063rem;
+      font-weight: 600;
+    }
+
+    &__text-right {
+      color: #3cc3a2;
+      text-align: right;
+    }
+
+    &__content {
+      width: 21.875rem;
+      height: 12.313rem;
+      border: solid 0.063rem #9e9c9c;
+      border-radius: 0.938rem;
+      border-style: dashed !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-icon {
+        font-size: 3.125rem;
+        color: #9e9c9c;
+      }
+
+      ion-label {
+        font-size: 1.25rem;
+        color: #9e9c9c;
+      }
+    }
+
+    &__nfc-card {
+      width: 10.188rem;
+      height: 7.563rem;
+      border: solid 0.063rem #9e9c9c;
+      border-style: dotted;
+      border-radius: 1.188rem;
+      background: #ffffff;
+      text-align: center;
+      padding: 0.313rem;
+
+      &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 5.625rem;
+        position: relative;
+      }
+
+      &__img-keychain {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      &__img-sticker {
+        margin-top: 0.625rem;
+        width: 9.375rem;
+      }
+
+      &__img-passaparola-card {
+        border-radius: 0.625rem;
+        width: 8.438rem;
+      }
+
+      &__icon-other-divice {
+        font-size: 1.875rem !important;
+        color: #3cc3a2 !important;
+      }
+
+      &__text-nfc-type {
+        font-size: 0.875rem !important;
+      }
+    }
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+
+  &--f-w-600 {
+    font-weight: 600;
+  }
+
+  &--m-t-20 {
+    margin-top: 1.25rem;
+  }
+
+  &--height-225 {
+    height: 14.063rem;
+  }
+
+  &--m-t-5 {
+    margin-top: 0.313rem;
+  }
+
+  &--w-250 {
+    width: 15.625rem;
+  }
+}
+
+ion-modal {
+  --height: auto;
+  align-items: end;
+}
+
+ion-picker {
+  margin-bottom: var(--ion-safe-area-bottom);
+}

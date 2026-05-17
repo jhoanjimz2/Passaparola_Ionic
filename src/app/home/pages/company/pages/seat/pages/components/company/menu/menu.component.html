@@ -1,0 +1,66 @@
+<section>
+  <swiper-container
+    [slidesPerView]="'auto'"
+    [spaceBetween]="10"
+    [slidesOffsetBefore]="16"
+  >
+    <!-- <swiper-slide
+      [style.width.rem]="6.24"
+      class="pb-4 pt-2"
+      *ngIf="!showDetail"
+    >
+      <div (click)="onSeatCategoryMenu()" class="w-full p-[0.2925rem] shadow-md rounded-[0.6875rem]">
+        <div class="h-[5.25rem] w-full rounded-[0.6875rem] flex flex-col items-center justify-center bg-[#DDE6EE]">
+          <span class="text-[.875rem] text-[#646464]">+</span>
+          <span class="text-[.875rem] text-[#646464]">foto</span>
+        </div>
+        <span class="h-[2.5rem] flex justify-center items-center p-1 text-center leading-4 text-[0.75rem] font-semibold">{{ 'Titolo' }}</span>
+      </div>
+    </swiper-slide> -->
+    <swiper-slide
+      *ngFor="let menu of menus"
+      [style.width.rem]="6.24"
+      class="pb-4 pt-2"
+      (click)="selectMenu(menu)"
+    >
+      <div
+        class="w-full p-[0.2925rem] shadow-md rounded-[0.6875rem]"
+        [ngClass]="{ 'bg-[#EF8500]': menu.id === menuSelect.id }"
+      >
+        <img class="h-[5.25rem] w-full object-cover rounded-[0.6875rem]" src="https://placehold.co/80x80?text=Category Menu" />
+        <span
+          class="block p-1 text-center leading-4 text-[0.75rem] font-semibold"
+          [ngClass]="{ 'text-white': menu.id === menuSelect.id }"
+        >
+          {{ menu.title }}
+        </span>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+
+  <div class="px-4 flex flex-col gap-4">
+
+    <!-- <div  (click)="onSeatProductMenu()" *ngIf="!showDetail" class="flex flex-row gap-[0.9531rem] w-full border border-[#EBEBEB] border-solid rounded-[0.75rem] bg-white py-[0.61625rem] px-[0.5925rem]">
+      <div class="h-[4.59375rem] w-[4.8294rem] rounded-[0.6875rem] flex flex-col items-center justify-center bg-[#DDE6EE]">
+        <span class="text-[.875rem] text-[#646464]">+</span>
+        <span class="text-[.875rem] text-[#646464]">foto</span>
+      </div>
+      <div class="w-auto h-full flex flex-col items-start justify-around">
+        <span class="block text-[1rem] font-medium">{{ 'Nome prodotto' }}</span>
+        <span class="text-[0.75rem] font-light line-clamp-1 italic">{{ 'Scrivi una descrizione del tuo prodotto' }}</span>
+        <span class="block text-[1.3125rem] font-bold text-[#FF4B4B]">{{ 0 | formattNumber }}</span>
+      </div>
+    </div> -->
+
+    <div *ngFor="let item of menuSelect.items" class="flex flex-row gap-[0.9531rem] w-full border border-[#EBEBEB] border-solid rounded-[0.75rem] bg-white py-[0.61625rem] px-[0.5925rem]">
+      <img class="h-full w-[4.8294rem] object-cover rounded-[0.375rem]" src="https://placehold.co/80x80?text=Product Menu" />
+      <div class="w-full h-full flex flex-col items-start justify-around">
+        <span class="block text-[1rem] font-medium">{{ item.productName }}</span>
+        <span class="text-[0.75rem] font-light line-clamp-1 italic">{{ item.description }}</span>
+        <span class="block text-[1.3125rem] font-bold text-[#FF4B4B]">{{ +item.amount! | formattNumber }}</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>

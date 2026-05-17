@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "app-passaparola",
+    "passaparola": "app-passaparola",
+    "business": "app-business-passaparola"
+  }
+}

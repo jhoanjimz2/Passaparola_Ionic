@@ -1,0 +1,70 @@
+<ion-header [ngClass]="{ 'ion-no-border': !border }" mode="md">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1">
+          <!-- Caso: backIcon = true -->
+          <ion-button (click)="back()" *ngIf="backIcon">
+            <ion-icon color="dark" name="arrow-back"></ion-icon>
+          </ion-button>
+
+          <!-- Caso: backIcon = false + isCompanyLegal o isProfessionalAdministrative -->
+          <ion-menu-toggle
+            *ngIf="!backIcon && (sessionService.isCompanyLegal || sessionService.isProfessionalAdministrative)"
+            menu="menu-layout"
+          >
+            <div
+              class="img"
+              [style.background-image]="'url(' + profile?.profilePictureUrlFile + ')'"
+            ></div>
+          </ion-menu-toggle>
+
+          <!-- Caso: backIcon = false + ninguno de los anteriores (isUser u otro) -->
+          <ion-button
+            (click)="goProfile()"
+            *ngIf="!backIcon && !sessionService.isCompanyLegal && !sessionService.isProfessionalAdministrative"
+          >
+            <div
+              class="img"
+              [style.background-image]="'url(' + profile?.profilePictureUrlFile + ')'"
+            ></div>
+          </ion-button>
+        </ion-col>
+        <ion-col size="8" class="col-logo">
+          <img
+            class="pl-1"
+            [src]="
+              sessionService.isUser
+                ? 'assets/images/logo-text.png'
+                : 'assets/images/passaparola-logo-company.png'
+            "
+            alt=""
+          />
+        </ion-col>
+        <ion-col size="3" class="end-buttons">
+          <ion-button
+            *ngIf="!sessionService.isUser"
+            (click)="onOpenModalNotificationsConfig()"
+            class="m-r-15"
+          >
+            <ion-icon color="dark" name="notifications-outline"></ion-icon>
+          </ion-button>
+
+          <button class="button-preference" *ngIf="!buttonMenu && sessionService.isUser" (click)="modalSetPreferenceFeed()">
+            <ion-icon color="dark" name="passaparola-preference"></ion-icon>
+          </button>
+
+          <ion-menu-toggle *ngIf="buttonMenu && sessionService.isUser" menu="main-menu">
+            <button class="button-preference">
+              <ion-icon color="dark" name="menu-outline"></ion-icon>
+            </button>
+          </ion-menu-toggle>
+
+          <ion-button (click)="logout()" class="button-logout" *ngIf="buttonMenu && (sessionService.isCompanyOperative || sessionService.isProfessionalOperative)">
+            <ion-icon color="dark" name="passaparola-logout"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

@@ -1,0 +1,31 @@
+<div class="account-switcher">
+  <div class="account-switcher__header">
+    <h2 class="account-switcher__title">I tuoi account</h2>
+  </div>
+
+  <div class="account-switcher__content">
+    <div class="account-list">
+      <div
+        class="account-list__item"
+        *ngFor="let account of accounts"
+        (click)="onSelectAccount(account)">
+        <div class="account-card">
+          <img
+            [src]="account.avatar"
+            [alt]="account.name"
+            class="account-card__avatar">
+          <div class="account-card__info">
+            <h3 class="account-card__name">{{ account.name }}</h3>
+            <p class="account-card__username">{{ account.username }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="add-account-btn"
+      (click)="onAddAccount()">
+      +aggiungi un account
+    </button>
+  </div>
+</div>

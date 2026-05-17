@@ -1,0 +1,43 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        <img src="assets/images/logo.png" alt="logo" />
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text color="dark">
+          <span class="container--f-z-l">
+            {{'START.WELCOME' | translate}},
+          </span>
+          <br />
+          <div>
+            <img
+              src="assets/images/logo-text.svg"
+              alt=""
+              class="container__logo-text"
+            />
+          </div>
+          <br />
+          <span class="container--f-z-s">{{'START.INFO' | translate}}</span>
+        </ion-text>
+
+        <div class="container__buttons">
+          <ion-button
+            class="container__buttons__btn-register"
+            (click)="goTo('sing-up')"
+          >
+            {{'START.REGISTER' | translate}}
+          </ion-button>
+          <br />
+          <ion-button
+            (click)="goTo('login')"
+            fill="outline"
+            class="container__buttons__btn-login"
+          >
+            {{'START.LOGIN' | translate}}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,160 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+
+  <ion-refresher (ionRefresh)="handleRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+      <p class="title">I tuoi eventi</p>
+    </ion-row>
+  </ion-grid>
+
+  <div class="click-section">
+    <div class="click-section__option" (click)="createEvent()">
+      <ion-icon src="assets/images/events/custom-icons/add.svg"></ion-icon>
+      <p>CREA NUOVO EVENTO</p>
+      <p>clicca qui per iniziare</p>
+    </div>
+    <div class="click-section__option" (click)="modalQrScan()">
+      <ion-icon src="assets/images/events/custom-icons/qr-icon.svg"/>
+      <p>SCANSIONA INGRESSO</p>
+      <p>clicca qui per iniziare</p>
+    </div>
+  </div>
+
+
+  <section class="my-[15px] flex justify-between px-[1.5rem]">
+    <span
+      class="px-4 py-1 rounded-full text-sm font-medium text-white cursor-pointer transition-all duration-300 ease-in-out transform"
+      [ngClass]="{
+        'bg-green-500 scale-110'  : state.description == 'active'   && filterSelect.id === state.id,
+        'bg-gray-500 scale-110'   : state.description == 'inactive' && filterSelect.id === state.id,
+        'bg-orange-500 scale-110' : state.description == 'pending'  && filterSelect.id === state.id,
+        'bg-red-500 scale-110'    : state.description == 'rejected' && filterSelect.id === state.id,
+        'bg-green-400'            : state.description == 'active'   && filterSelect.id !== state.id,
+        'bg-gray-400'             : state.description == 'inactive' && filterSelect.id !== state.id,
+        'bg-orange-400'           : state.description == 'pending'  && filterSelect.id !== state.id,
+        'bg-red-400'              : state.description == 'rejected' && filterSelect.id !== state.id
+      }"
+      (click)="selectFilter(state)"
+      *ngFor="let state of allState"
+    >
+      {{ state.eventStatusTranslation[0].description }}
+    </span>
+  </section>
+
+
+  <ion-card class="card-event position-relative border-solid border-[.1rem]"
+    *ngFor="let event of myEvents"
+    [ngClass]="(event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'border-[#DB0000]' : {
+      'border-[#EF8500]': event.processStatus === 'pending',
+      'border-[#41C837]': event.processStatus === 'active',
+      'border-[#9B9EA7]': event.processStatus === 'inactive',
+      'border-[#DB0000]': event.processStatus === 'rejected'
+    }"
+  >
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="7">
+            <ion-row class="center heigth-row-1">
+              <label (click)="loadEventToId(event)" class="card-event__label-title">{{event.name || 'Senza Nome'}}</label>
+            </ion-row>
+            <ion-row (click)="loadEventToId(event)" class="position-relative m-b-1 heigth-row-2">
+              <div class="card-event__image">
+                <img
+                  [src]="event.coverUrlFile | imageEvent"
+                  (load)="onImageLoadCover()"
+                  (error)="onImageErrorCover($event)"
+                  class="card-event__image"
+                  [class.hidden]="isLoadingCover"
+                >
+                <ion-skeleton-text *ngIf="isLoadingCover" [animated]="true" class="card-event__image"></ion-skeleton-text>
+              </div>
+              <div class="card-event__avatar">
+                <img
+                  [src]="event.pictureUlrFile | imageEvent"
+                  (load)="onImageLoadPicture()"
+                  (error)="onImageErrorPicture($event)"
+                  [class.hidden]="isLoadingPicture"
+                >
+                <ion-skeleton-text *ngIf="isLoadingPicture" [animated]="true"></ion-skeleton-text>
+              </div>
+            </ion-row>
+            <ion-row (click)="loadEventToId(event)">
+              <ng-container *ngIf="event?.webAddress; else noWebAddress">
+                <a [href]="event.webAddress" target="_blank" class="text-blue-600 block items-center max-w-full truncate underline">
+                  <ion-icon src="assets/images/events/custom-icons/webaddress.svg"/>
+                  {{ event.webAddress }}
+                </a>
+              </ng-container>
+              <ng-template #noWebAddress>
+                <ion-icon src="assets/images/events/custom-icons/location.svg" *ngIf="event?.address"/>
+                {{ event.address || 'Non Indirizzato' }}
+              </ng-template>
+
+            </ion-row>
+          </ion-col>
+          <ion-col size="5">
+            <ion-row class="center heigth-row-1 card-event__label-state">
+              <ion-icon [src]="'assets/images/events/custom-icons/' + ((event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'expired' : event.processStatus) + '.svg'"/>
+              <label
+                [ngClass]="(event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'text-[#DB0000]' : {
+                  'text-[#EF8500]': event.processStatus == 'pending',
+                  'text-[#41C837]': event.processStatus == 'active',
+                  'text-[#9B9EA7]': event.processStatus == 'inactive',
+                  'text-[#DB0000]': event.processStatus == 'rejected'
+                }"
+              >
+                {{
+                  (event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'scaduto' :
+                  event.eventStatus?.eventStatusTranslation?.[0]?.description
+                }}
+              </label>
+            </ion-row>
+            <ion-row class="card-event__row-buttons m-b-1 heigth-row-2">
+              <button class="card-event__row-buttons--button-price font-bold border-solid border-[.1rem]"
+                [ngClass]="(event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'text-white bg-[#9B9EA7]' : {
+                  'border-[#EF8500] text-[#EF8500]': event.processStatus == 'pending',
+                  'border-[#41C837] text-[#41C837]': event.processStatus == 'active',
+                  'border-[#9B9EA7] text-[#9B9EA7]': ['rejected', 'inactive'].includes(event.processStatus!)
+                }">
+                € {{  (event.amountCollected | number:'1.2-2')!.replace('.', ',') }}
+              </button>
+              <button class="card-event__row-buttons--button-option"
+                (click)="loadEventToId(event)"
+                [ngClass]="(event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'border-[#9B9EA7] bg-[#9B9EA7]' : {
+                  'border-[#9B9EA7] bg-[#9B9EA7]': event.processStatus == 'pending',
+                  'border-[#41C837] bg-[#41C837]': event.processStatus != 'pending',
+                }">
+                <ion-icon
+                  *ngIf="['rejected', 'inactive'].includes(event.processStatus!)"
+                  src="assets/images/events/custom-icons/pencil.svg">
+                </ion-icon>
+                {{ ['rejected', 'inactive'].includes(event.processStatus!) ? 'Modifica' : 'Visualizza' }}
+              </button>
+            </ion-row>
+            <ion-row class="center">
+              <label
+                (click)="suggestionSeat(event, event.processStatus!, event.currencyStatus!)"
+                class="card-event__row-buttons--label-invit"
+                [ngClass]="(event.currencyStatus === 'expired' && event.processStatus === 'active') ? 'text-[#9B9EA7] after:bg-[#9B9EA7]' : {
+                  'text-[#41C837] after:bg-[#41C837]': event.processStatus === 'active',
+                  'text-[#9B9EA7] after:bg-[#9B9EA7]': event.processStatus !== 'active'
+                }"
+              >Condividi</label>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

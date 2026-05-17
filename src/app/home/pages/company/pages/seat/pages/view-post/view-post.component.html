@@ -1,0 +1,262 @@
+<!-- view-post.component.html -->
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content>
+  <section class="view-post">
+
+    <ng-container *ngIf="post.typeFile === 'image'; else videoTemplate">
+      <div
+        #mediaContainer
+        class="view-post__media-container"
+        (dblclick)="handleDoubleClick()"
+      >
+        <app-image-loader
+          [src]="post.urlFile!"
+          [aspectRatio]="width + '/' + height"
+          [rounded]="'0.938rem'"
+          [viewPostAction]="true"
+          (viewPost)="viewPost()"
+        ></app-image-loader>
+
+        <!-- Botón de eliminar (solo si es mi post) -->
+        <button
+          *ngIf="isMyPost"
+          class="view-post__delete-button"
+          (click)="deletePost()"
+        >
+          <ion-icon name="trash-outline"></ion-icon>
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-template #videoTemplate>
+      <ng-container *ngIf="post.typeFile === 'video'; else loadTemplate">
+        <div
+          #mediaContainer
+          class="view-post__media-container"
+          (dblclick)="handleDoubleClick()"
+        >
+          <app-video-player
+            [urlFile]="post.urlFile!"
+            [width]="width"
+            [height]="height"
+            [viewPostAction]="true"
+            [autoplay]="true"
+            (viewPost)="viewPost()"
+          ></app-video-player>
+
+          <button
+            *ngIf="isMyPost"
+            class="view-post__delete-button"
+            (click)="deletePost()"
+          >
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #loadTemplate>
+      <ng-container>
+        <div class="view-post__loader"></div>
+      </ng-container>
+    </ng-template>
+
+
+    <!-- Contenedor para el botón de like animado -->
+    <div class="view-post__like-animation-container" *ngIf="showLikeOverlay">
+      <ion-icon
+        name="passaparola-post-like"
+        class="view-post__like-animation-icon"
+        [style.--start-top.px]="mediaCenter.top"
+        [style.--start-left.px]="mediaCenter.left"
+        [style.--end-top.px]="likeButtonPosition.top"
+        [style.--end-left.px]="likeButtonPosition.left"
+      ></ion-icon>
+    </div>
+
+    <!-- Bar Actions -->
+    <div class="view-post__bar-actions">
+      <div class="view-post__bar-actions-buttons">
+
+        <!-- Botón de Like — visible pero deshabilitado para usuarios restringidos -->
+        <button
+          class="view-post__bar-actions-button"
+          [disabled]="isRestrictedUser"
+          [class.view-post__bar-actions-button--disabled]="isRestrictedUser"
+        >
+          <ion-icon
+            #likeButton
+            (click)="like()"
+            class="view-post__bar-actions-icon"
+            [ngClass]="{
+              'view-post__bar-actions-icon--liked': statusLike,
+              'view-post__bar-actions-icon--appearing': isAnimating && statusLike,
+              'view-post__bar-actions-icon--disappearing': isDisappearing,
+              'view-post__bar-actions-icon--appearing-outline': isAppearingOutline && !statusLike,
+              'view-post__bar-actions-icon--hidden': showLikeOverlay
+            }"
+            [name]="statusLike ? 'heart' : 'heart-outline'"
+          ></ion-icon>
+          <span class="view-post__bar-actions-count">{{ amountLikes | numberFormat }}</span>
+        </button>
+
+        <!-- Views -->
+        <button class="view-post__bar-actions-button">
+          <ion-icon class="view-post__bar-actions-icon" name="eye-outline"></ion-icon>
+          <span class="view-post__bar-actions-count">{{ amountViews | numberFormat }}</span>
+        </button>
+
+        <!-- Save — visible pero deshabilitado para usuarios restringidos -->
+        <button
+          class="view-post__bar-actions-button"
+          [disabled]="isRestrictedUser"
+          [class.view-post__bar-actions-button--disabled]="isRestrictedUser"
+        >
+          <ion-icon
+            (click)="save()"
+            class="view-post__bar-actions-icon"
+            [ngClass]="{
+              'view-post__bar-actions-icon--saved': statusSave
+            }"
+            [name]="statusSave ? 'save' : 'save-outline'"
+          ></ion-icon>
+          <span class="view-post__bar-actions-count">{{ amountSaves | numberFormat }}</span>
+        </button>
+
+      </div>
+
+      <button
+        (click)="openViewPostTags()"
+        class="view-post__bar-actions-tag-button"
+      >
+        Tag
+      </button>
+    </div>
+
+
+
+    <div class="view-post__profile-section">
+      <div class="view-post__profile-info">
+        <ng-container *ngIf="post.seat; else userTemplate">
+          <app-image-loader
+            [src]="post.seat.pictureUlrFile!"
+            [width]="'1.974rem'"
+            [height]="'1.974rem'"
+            [isAvatar]="true"
+            (click)="onProfileBusiness(post.seat.id!)"
+          ></app-image-loader>
+          <ion-text>
+            <span
+              (click)="onProfileBusiness(post.seat.id!)"
+              class="view-post__profile-name"
+            >
+              {{ post.seat.name }}
+            </span>
+          </ion-text>
+        </ng-container>
+
+        <ng-template #userTemplate>
+          <ng-container *ngIf="post.user?.profile?.profilePictureUrlFile; else loadImageProfile">
+            <app-image-loader
+              [src]="post.user?.profile?.profilePictureUrlFile!"
+              [width]="'1.974rem'"
+              [height]="'1.974rem'"
+              [isAvatar]="true"
+              (click)="onProfileUser(post.user!.id!)"
+            ></app-image-loader>
+          </ng-container>
+
+          <ion-text>
+            <span
+              (click)="onProfileUser(post.user!.id!)"
+              class="view-post__profile-name"
+            >
+              {{ post.user?.profile?.name }}
+            </span>
+          </ion-text>
+
+          <ng-template #loadImageProfile>
+            <ng-container>
+              <div class="view-post__profile-avatar-loader"></div>
+            </ng-container>
+          </ng-template>
+        </ng-template>
+      </div>
+
+      <ng-container *ngIf="post.seat; else followUsers">
+        <button
+          (click)="followBusiness()"
+          *ngIf="viewButtonFollow"
+          class="view-post__follow-button"
+        >
+          <ion-icon name="person-add"></ion-icon>
+          {{ 'Segui' }}
+        </button>
+        <span
+          *ngIf="!viewButtonFollow && statusFollow"
+          class="view-post__follow-status"
+        >
+          Segui già
+        </span>
+      </ng-container>
+
+      <ng-template #followUsers>
+        <ng-container>
+          <button
+            (click)="followUser()"
+            *ngIf="viewButtonFollow"
+            class="view-post__follow-button"
+          >
+            <ion-icon name="person-add"></ion-icon>
+            {{ 'Segui' }}
+          </button>
+          <span
+            *ngIf="!viewButtonFollow && statusFollow"
+            class="view-post__follow-status"
+          >
+            Segui già
+          </span>
+        </ng-container>
+      </ng-template>
+    </div>
+
+    <h1 class="view-post__title">
+      {{ post.title }}
+    </h1>
+
+    <p
+      (click)="expanded = !expanded"
+      [ngClass]="{ 'view-post__description--collapsed': !expanded }"
+      class="view-post__description"
+    >
+      {{ post.description }}
+    </p>
+
+    <ng-container *ngIf="post.topics?.length">
+      <div class="view-post__topics">
+        <ion-chip
+          *ngFor="let topic of post.topics"
+          outline="true"
+          class="view-post__topic-chip"
+        >
+          <span>{{ topic | titlecase}}</span>
+        </ion-chip>
+      </div>
+    </ng-container>
+
+  </section>
+
+  <app-feed-similar-post
+    [postsFeedSimilar]="postsFeedSimilar"
+  ></app-feed-similar-post>
+
+  <ion-infinite-scroll
+    (ionInfinite)="loadMore($event)"
+    threshold="100px"
+    [disabled]="!hasMore">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

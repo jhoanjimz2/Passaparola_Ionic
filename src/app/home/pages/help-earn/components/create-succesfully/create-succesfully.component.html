@@ -1,0 +1,43 @@
+<app-header
+  [backIcon]="true"
+  [border]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <div class="main-container__icon">
+      <ion-icon color="success" name="checkmark-done-circle"></ion-icon>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="main-container--text-center">
+      <ion-label class="main-container__title">{{
+        "BUG_REPORT.SUCCESFULLY.TANK_YOU" | translate
+      }}</ion-label>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="main-container--text-center">
+      <ion-text class="main-container__text">{{
+        "BUG_REPORT.SUCCESFULLY.TEXT" | translate
+      }}</ion-text>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="main-container__btn">
+      <ion-button (click)="close()" color="success">
+        {{ "BUG_REPORT.SUCCESFULLY.GO_TO_HOME" | translate }}
+      </ion-button>
+    </div>
+  </ion-card>
+</ion-content>

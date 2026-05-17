@@ -1,0 +1,82 @@
+ion-content {
+  --background: #f9f9f9;
+}
+
+.searchbar-input-container .searchbar-input {
+  background: #f9f9f9;
+  border-radius: 6.188rem;
+  border: 0.063rem solid gainsboro;
+  height: 2.813rem;
+}
+
+.swiper-container {
+  width: 100%;
+  height: auto;
+  padding: 0.625rem 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .swiper-chip {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.main-container__buttons {
+  display: flex;
+  overflow: auto;
+  background: #f9f9f9;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &__btn {
+    height: 2rem;
+    --border-radius: 1rem;
+    margin: 0.625rem;
+    text-transform: capitalize;
+    font-size: 0.75rem;
+    color: #000000;
+    --background: #e1e1e1;
+    --background-activated: #e1e1e1;
+    --background-focused: #e1e1e1;
+    --background-hover: #e1e1e1;
+    --box-shadow: none;
+  }
+
+  &--selected {
+    color: #ffffff !important;
+    --background: #fe8500 !important;
+    --background-activated: #fe8500 !important;
+    --background-focused: #fe8500 !important;
+    --background-hover: #fe8500 !important;
+  }
+}
+
+.bg-light {
+  background: #f9f9f9;
+}
+
+ion-searchbar {
+  --box-shadow: none !important;
+}
+
+.bnt-filter {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-icon {
+    font-size: 1.5rem;
+  }
+}

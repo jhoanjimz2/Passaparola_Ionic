@@ -1,0 +1,29 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section class="flex flex-col items-center justify-center h-full">
+  <section class="text-[20px] leading-[27px] font-bold">
+    Riepilogo ricarica
+  </section>
+  <section class="text-[64px] leading-[87px] mt-[20px]">
+    {{ mainAmount }},{{ decimalAmount }}
+  </section>
+  <section class="text-[18px] leading-[24px] font-bold">€/ATM</section>
+  <section class="text-[18px] leading-[24px] mt-[20px]">
+    {{ wallet }}
+  </section>
+  <section
+    class="text-[16px] leading-[22px] font-bold text-white bg-[#33B7E8] rounded-[34px] py-[20px] px-[60px] mt-[100px]"
+    (click)="onConfirmOperationModal()"
+  >
+    Conferma Operazione
+  </section>
+  <section
+    class="text-[16px] leading-[22px] font-bold text-[#9E9C9C] mt-[50px]"
+    (click)="onCancelOperation()"
+  >
+    Annulla
+  </section>
+</section>

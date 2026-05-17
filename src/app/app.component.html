@@ -1,0 +1,15 @@
+<ion-app>
+  <ngx-spinner
+    *ngIf="showSpinner"
+    bdColor="rgba(0, 0, 0, 0.1)"
+    size="medium"
+    color="#ff8000"
+    type="ball-clip-rotate-pulse"
+    [fullScreen]="true"
+  >
+  </ngx-spinner>
+  <div class="display-none-scanner">
+    <ngx-scanner-qrcode #actionCameraInit></ngx-scanner-qrcode>
+  </div>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>

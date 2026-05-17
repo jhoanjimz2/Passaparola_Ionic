@@ -1,0 +1,105 @@
+<ion-content [fullscreen]="true" class="main-container">
+  <div class="main-container__content">
+    <ion-card class="main-container__card">
+      <ion-card-content class="main-container--text-center">
+        <div class="center-item">
+          <img
+            src="assets/images/transfer-successfully.png"
+            alt=""
+            class="main-container__card__icon-successfully"
+          />
+        </div>
+        <br />
+        <ion-text>
+          <span class="main-container--f-w-b main-container--f-z-25">{{
+            "WALLET.MODAL_SUCCESSFULLY_WITHDRAW.TRANSACTION_EXECUTED"
+              | translate
+          }}</span>
+          <br />
+          <br />
+          <span>{{
+            "WALLET.MODAL_SUCCESSFULLY_WITHDRAW.YOU_WITHDREW" | translate
+          }}</span>
+          <br />
+          <span class="main-container--f-w-b main-container--f-z-36">{{
+            amount | formattNumber
+          }}</span>
+          <span sclass="main-container--f-w-b main-container--f-z-18">{{
+            " ATM/€"
+          }}</span>
+        </ion-text>
+
+        <ion-card
+          class="main-container__payment-method-card main-container--border-success main-container--m-l-r"
+        >
+          <ion-grid class="main-container--m-p-0">
+            <ion-row>
+              <ion-col size="2.5" class="main-container--p-0">
+                <div class="main-container__payment-method-card__icon-card">
+                  <ion-icon name="card-outline"></ion-icon>
+                </div>
+              </ion-col>
+              <ion-col
+                class="main-container--w-100"
+                size="9.5"
+                class="main-container__payment-method-card__col-text"
+              >
+                <ion-text>
+                  <span> {{ bankAccount.bankName }}</span>
+
+                  <br />
+
+                  <span class="main-container__payment-method-card__text-name"
+                    >{{ "WALLET.RECHARGE.ENDS_WITH" | translate }} ****{{
+                      getLastFourDigits(bankAccount.accountNumber)
+                    }}</span
+                  >
+                  <br />
+                  <span
+                    class="main-container__payment-method-card__text-favorite"
+                  >
+                    {{
+                      "WALLET.MODAL_CONFIRM_WITHDRAW.FAVORITE_ACCOUNT"
+                        | translate
+                    }}
+                  </span>
+                </ion-text>
+
+                <article
+                  class="flex items-center justify-center rounded-[6px] w-[26px] h-[26px] border-[1px] border-[#41C837] text-white main-container__payment-method-card__check"
+                  [ngClass]="{
+                    'bg-[#41C837]': bankAccount.isFavorite,
+                    'border-[#bbbbbb]': !bankAccount.isFavorite
+                  }"
+                >
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </article>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+
+        <ion-text class="main-container--f-z-13">
+          <span
+            >{{
+              "WALLET.MODAL_SUCCESSFULLY_WITHDRAW.TRANSACTION_ID" | translate
+            }}
+          </span>
+          <br />
+          <span>{{ idTransaction }}</span>
+        </ion-text>
+
+        <br />
+        <br />
+
+        <ion-button
+          (click)="backToHome()"
+          class="main-container__card__contact__btn-back"
+          >{{
+            "WALLET.MODAL_SUCCESSFULLY_WITHDRAW.BACK_TO_HOME" | translate
+          }}</ion-button
+        >
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

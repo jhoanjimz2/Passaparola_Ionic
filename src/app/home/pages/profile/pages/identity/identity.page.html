@@ -1,0 +1,255 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <form [formGroup]="formIdentity" (ngSubmit)="updateInfo()">
+      <ion-grid>
+        <ion-row>
+          <ion-col> </ion-col>
+          <ion-col *ngIf="!disabledForm" size="5" class="col-cancel">
+            <ion-button (click)="editProfile()" type="button" color="danger">
+              {{"IDENTITY.CANCEL" | translate }}
+            </ion-button>
+          </ion-col>
+          <ion-col *ngIf="!disabledForm" size="5" class="col-update">
+            <ion-button
+              type="submit"
+              color="success"
+              [disabled]="formIdentity.invalid"
+            >
+              {{"IDENTITY.SAVE" | translate }}
+            </ion-button>
+          </ion-col>
+          <ion-col *ngIf="disabledForm" size="2" class="col-btn-edit">
+            <ion-button
+              (click)="editProfile()"
+              type="button"
+              fill="outline"
+              [disabled]="formIdentity.invalid"
+            >
+              <ion-icon color="dark" name="passaparola-edit"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-label color="dark">{{"IDENTITY.NAME" | translate}}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"IDENTITY.NAME" | translate}}'
+        fill="outline"
+        formControlName="name"
+        name="name"
+      >
+      </ion-input>
+      <div class="space"></div>
+      <ion-label color="dark">{{"IDENTITY.LAST_NAME" | translate}}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"IDENTITY.LAST_NAME" | translate}}'
+        fill="outline"
+        formControlName="lastName"
+        name="lastName"
+      >
+      </ion-input>
+      <div class="space"></div>
+      <ion-label color="dark">{{"IDENTITY.USERNAME" | translate}}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"IDENTITY.USERNAME" | translate}}'
+        fill="outline"
+        formControlName="username"
+        name="username"
+      >
+      </ion-input>
+      <div class="space"></div>
+      <ion-label color="dark">{{"IDENTITY.DATE_BIRTH" | translate}}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        type="date"
+        fill="outline"
+        formControlName="dateBirth"
+        name="dateBirth"
+      >
+      </ion-input>
+      <div class="space"></div>
+      <ion-label color="dark">{{"IDENTITY.TAX_NUMBER" | translate}}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"IDENTITY.TAX_NUMBER" | translate}}'
+        fill="outline"
+        formControlName="taxNumber"
+        name="taxNumber"
+      >
+      </ion-input>
+      <div class="space"></div>
+      <ion-label color="dark"
+        >{{"IDENTITY.COUNTRY_RESICENDE" | translate}}</ion-label
+      >
+      <ion-select
+        mode="md"
+        aria-label="country"
+        placeholder='{{"IDENTITY.COUNTRY_RESICENDE" | translate}}'
+        fill="outline"
+        formControlName="countryResidenceId"
+        name="countryResidenceId"
+      >
+        <ion-select-option
+          *ngFor="let country of countries"
+          [value]="country.id"
+          >{{country.name}}</ion-select-option
+        >
+      </ion-select>
+      <div class="space"></div>
+      <ion-label color="dark"
+        >{{"IDENTITY.RESIDENSE_ADDRESS" | translate}}</ion-label
+      >
+      <ion-textarea
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        placeholder='{{"IDENTITY.RESIDENSE_ADDRESS" | translate}}'
+        fill="outline"
+        formControlName="residenceAddress"
+        name="residenceAddress"
+      >
+      </ion-textarea>
+      <div class="space"></div>
+      <ion-label color="dark">{{"IDENTITY.DOMICILE" | translate}}</ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="1"
+            ><ion-checkbox
+              (ionChange)="domicileIsResicence()"
+              mode="md"
+              color="success"
+              formControlName="domicile"
+              name="domicile"
+            ></ion-checkbox
+          ></ion-col>
+          <ion-col>{{"IDENTITY.SAME_RESIDENCE" | translate}}</ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="space"></div>
+      <ion-label color="dark"
+        >{{"IDENTITY.COUNTRY_DOMICILE" | translate}}</ion-label
+      >
+      <ion-select
+        mode="md"
+        aria-label="country"
+        placeholder='{{"IDENTITY.COUNTRY_DOMICILE" | translate}}'
+        fill="outline"
+        formControlName="homeCountryId"
+        name="homeCountryId"
+      >
+        <ion-select-option
+          [disabled]="formIdentity.controls['domicile'].value"
+          *ngFor="let country of countries"
+          [value]="country.id"
+          >{{country.name}}</ion-select-option
+        >
+      </ion-select>
+      <div class="space"></div>
+      <ion-label color="dark"
+        >{{"IDENTITY.HOME_ADDRESS" | translate}}</ion-label
+      >
+      <ion-textarea
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        placeholder="Indirizzo di domicilio"
+        fill="outline"
+        formControlName="homeAddress"
+        name="homeAddress"
+        [readonly]="formIdentity.controls['domicile'].value"
+      >
+      </ion-textarea>
+
+      <div class="space"></div>
+
+      <ion-label color="dark">{{"Documento d'identità" | translate}}</ion-label>
+      <div class="container-card-doc">
+        <div
+          class="container-card-doc__inner"
+          [style.background-image]="idCardUrl ? 'url(' + (idCardUrl | image) + ')' : 'url(' + (profile.idCardUrlFile! | image) + ')'"
+        >
+          <ion-icon
+            (click)="takePicture('front')"
+            name="cloud-upload-outline"
+            [color]="idCardUrl || profile.idCardUrlFile ? 'primary' : 'light'"
+          ></ion-icon>
+          <br />
+          <ion-text (click)="takePicture('front')">
+            <span
+              class="container-card-doc--f-z-14 container-card-doc--text-dark"
+              >{{"clicca qui per aggiornare il documento"}}</span
+            >
+            <br />
+            <span
+              class="container-card-doc--f-z-11 container-card-doc--text-grey"
+              >{{"(PNG, JPG, MAX 10 MB)"}}</span
+            >
+            <br />
+            <br />
+            <br />
+            <br />
+            <!-- <span
+              class="container-card-doc--f-z-14 container-card-doc--text-success"
+              >{{"verificato"}}</span
+            > -->
+          </ion-text>
+        </div>
+      </div>
+
+      <div class="space"></div>
+
+      <ion-label color="dark">{{"Prova di residenza" | translate}}</ion-label>
+      <div class="container-card-doc">
+        <div
+          class="container-card-doc__inner"
+          [style.background-image]="proofResidencyUrl ? 'url(' + (proofResidencyUrl | image) + ')' : 'url(' + (profile.proofResidencyUrlFile! | image) + ')'"
+        >
+          <ion-icon
+            (click)="takePicture('back')"
+            name="cloud-upload-outline"
+            [color]="idCardUrl || profile.idCardUrlFile ? 'primary' : 'light'"
+          ></ion-icon>
+          <br />
+          <ion-text (click)="takePicture('back')">
+            <span
+              class="container-card-doc--f-z-14 container-card-doc--text-dark"
+              >{{"clicca qui per caricare"}}</span
+            >
+            <br />
+            <span
+              class="container-card-doc--f-z-11 container-card-doc--text-grey"
+              >{{"(PNG, JPG, MAX 10 MB)"}}</span
+            >
+            <br />
+            <br />
+            <br />
+            <br />
+            <!-- <span
+              class="container-card-doc--f-z-14 container-card-doc--text-orange container-card-doc--text-cursive"
+              >{{"in revisione..."}}</span
+            > -->
+          </ion-text>
+        </div>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,70 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+
+
+
+  <div class="flex flex-col justify-evenly h-full">
+
+    <button class="w-[5.125rem] h-[5.125rem] rounded-[4rem] bg-[#3cc3a2] mx-auto flex justify-center items-center text-[2.4rem]">
+      <ion-icon src="assets/images/events/custom-icons/check.svg"/>
+    </button>
+
+    <label class="font-bold text-[2rem] text-center">Dettagli biglietto</label>
+
+    <div class="flex flex-col justify-center items-center gap-1">
+
+      <label class="font-bold text-[3rem] text-center" *ngIf="ticket.eventTicket">
+        {{ ticket.price === 0 ? 'FREE' : ('€ ' + (ticket.price | number:'1.2-2')!.replace('.', ',')) }}
+        <span class="text-[1.5rem]">ATM/€</span>
+      </label>
+      <div *ngIf="ticket.eventProduct">
+        <div *ngIf="!ticket.eventProduct.isFree && ticket.eventProduct.offerValue != 0" class="mb-auto ml-auto">
+          <p *ngIf="ticket.eventProduct.discount" class="text-[3rem] m-0 relative before:bg-pink-600 before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-full before:h-[2px] before:rotate-[-15deg] before:-translate-y-1/2">
+            € {{ (ticket.eventProduct.offerValue).toString().split('.')[0] || 0 }}.<span class="text-[1.5rem]">{{(ticket.eventProduct.offerValue).toString().split('.')[1] || 0}}</span>
+          </p>
+          <p class="text-[3rem] m-0 font-bold">€ {{ (ticket.eventProduct.offerPrice).toString().split('.')[0] || 0 }}.<span class="text-[1.5rem]">{{ (ticket.eventProduct.offerPrice).toString().split('.')[1] || 0 }}</span></p>
+        </div>
+        <p *ngIf="ticket.eventProduct.isFree || ticket.eventProduct.offerValue == 0" class="text-center font-bold text-[3rem] text-pink-600">FREE</p>
+      </div>
+      <label class="font-[500] text-[1rem] text-center">Operazione effettuata il {{ ticket.purchaseDate | date:'dd/MM/yyyy' }}</label>
+
+    </div>
+
+
+
+
+    <app-voucher-entrada-event
+      *ngIf="ticket.eventTicket"
+      [cantidad]="1"
+      [ticket]="ticket"
+      [border]="true">
+    </app-voucher-entrada-event>
+
+    <app-voucher-extra-event
+      *ngIf="ticket.eventProduct"
+      [ticketExtra]="ticket.eventProduct"
+      [buy]="false">
+    </app-voucher-extra-event>
+
+
+    <div class="flex flex-col justify-center items-center">
+      <label class="font-[500] text-[1rem] text-center">dettagli cliente</label>
+      <div class="flex justify-center items-center">
+        <img class="w-[4rem] h-[4rem] object-cover rounded-md border-2 border-white shadow-md mr-2" src="{{ticket.user.profile.profilePictureUrlFile}}">
+        <div class="flex flex-col justify-center items-center">
+          <label class="text-[1.3rem] font-bold">{{ticket.user.profile.name + ' ' + ticket.user.profile.lastName}}</label>
+          <label>{{ticket.user.phoneNumber}}</label>
+        </div>
+      </div>
+    </div>
+
+
+    <button class="mx-auto w-[14.25rem] h-[4.25rem] rounded-[3rem] bg-[#3cc3a2] text-[1rem] text-white font-[400]" (click)="modalQrScan()">SCANSIONA NUOVO</button>
+
+  </div>
+
+</ion-content>

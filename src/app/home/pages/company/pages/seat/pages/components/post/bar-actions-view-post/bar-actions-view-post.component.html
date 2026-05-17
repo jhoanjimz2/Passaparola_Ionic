@@ -1,0 +1,51 @@
+<!-- bar-actions-view-post.component.html -->
+<div class="bar-actions">
+
+  <div class="bar-actions__buttons">
+    <!-- Botón de Like con animaciones -->
+    <button
+      class="bar-actions__button"
+      *ngIf="statusLike || isDisappearing"
+    >
+      <ion-icon
+        (click)="likeDislike()"
+        class="bar-actions__icon"
+        [ngClass]="{
+          'bar-actions__icon--liked': statusLike,
+          'bar-actions__icon--appearing': isAnimating,
+          'bar-actions__icon--disappearing': isDisappearing
+        }"
+        name="heart"
+      ></ion-icon>
+      <span class="bar-actions__count">{{ amountLikes | numberFormat }}</span>
+    </button>
+
+    <!-- Views -->
+    <button class="bar-actions__button">
+      <ion-icon class="bar-actions__icon" name="eye-outline"></ion-icon>
+      <span class="bar-actions__count">{{ amountViews | numberFormat }}</span>
+    </button>
+
+    <!-- Save -->
+    <button class="bar-actions__button">
+      <ion-icon
+        (click)="saveUnSave()"
+        class="bar-actions__icon"
+        [ngClass]="{
+          'bar-actions__icon--saved': statusSave
+        }"
+        [name]="statusSave ? 'save' : 'save-outline'"
+      ></ion-icon>
+      <span class="bar-actions__count">{{ amountSaves | numberFormat }}</span>
+    </button>
+  </div>
+
+
+  <button
+    (click)="openViewPostTags()"
+    class="bar-actions__tag-button"
+  >
+    Tag
+  </button>
+
+</div>

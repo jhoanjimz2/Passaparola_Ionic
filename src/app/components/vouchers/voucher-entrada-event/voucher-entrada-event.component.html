@@ -1,0 +1,28 @@
+
+<section class="my-[20px] mx-[.5rem]" (click)="viewQrVoucher()">
+  <section class="border rounded-[1rem]" [ngClass]="border ? 'border-[#EC0973]' : (selectTicket?.id === ticket.id ? 'border-[#EC0973]' : 'border-[#D5D4D4]')">
+
+    <section class="grid p-[calc(.2rem+5px)] grid-cols-12">
+
+      <section class="col-span-9 p-[5px]">
+        <section class="py-[0.2rem] px-0">
+          <label class="text-[16px]">{{ticket.name || 'senza nome'}}</label>
+        </section>
+        <section class="py-[0.2rem] px-0">
+          <span class="text-[0.875rem]">{{ticket.description || 'nessuna descrizione'}}</span>
+        </section>
+      </section>
+
+      <section class="col-span-3 p-[5px] flex flex-col items-center justify-around">
+        <label class="text-base font-bold text-[#EC0973] flex items-center justify-center">
+          <ion-icon [src]="'assets/images/events/custom-icons/ticket.svg'" class="mr-[0.2rem]"/>
+          {{ ( cantidad ?? ticket.quantityAvailable ) || 0}}
+        </label>
+        <button class="bg-[#EC0973] text-white w-full h-[2.8rem] font-bold rounded-lg text-[.9rem]">
+          {{ price ?? (ticket.price === 0 ? 'FREE' : ('€ ' + (ticket.price | formattNumber))) }}
+        </button>
+      </section>
+
+    </section>
+  </section>
+</section>

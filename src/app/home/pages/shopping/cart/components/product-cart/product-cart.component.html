@@ -1,0 +1,34 @@
+<div class="grid grid-cols-12 gap-2 p-2 mb-2 w-full border border-solid border-[#E1E1E1] rounded-[1rem]">
+
+  <img [src]="''| imageEvent" class="col-span-4 aspect-square object-cover rounded-[.938rem] p-1 border border-solid border-[#E1E1E1]"/>
+  <div class="col-span-8 flex flex-col py-2 justify-between">
+    <label class="line-clamp-2">
+      Nome completo prodotto che può andare addirittura in due righe
+      Nome completo prodotto che può andare addirittura in due righe
+      Nome completo prodotto che può andare addirittura in due righe
+    </label>
+
+    <div class="flex flex-row gap-2">
+      <label class="text-[#000000] font-semibold text-[1.125rem]"><span class="font-[900] text-[1.5rem]">182,99</span>&nbsp;€/ATM</label>
+      <label class="italic flex items-end">iva inclusa</label>
+    </div>
+
+    <div class="flex flex-row gap-2">
+      <label class="font-semibold">cashback <span class="text-[1.1rem] font-[900] text-[#0088FF]">0,1414</span></label>
+      <label class="font-semibold">PR <span class="text-[1.1rem] font-[900] text-[#FE8C0F]">0,8299</span></label>
+    </div>
+  </div>
+
+  <div class="col-span-12 grid grid-cols-12 gap-2">
+    <div class="col-span-4 w-full border border-solid border-[#FE8C0F] rounded-[.938rem] p-2 flex flex-row justify-around">
+      <label class="text-[1.5rem] text-[#FE8C0F] font-bold">-</label>
+      <label class="text-[1.4rem] text-[#000000] font-bold">1</label>
+      <label class="text-[1.5rem] text-[#FE8C0F] font-bold">+</label>
+    </div>
+    <div class="col-span-8 flex flex-row justify-center gap-2">
+      <button class="py-2 px-4 bg-white border border-solid border-[#E1E1E1] rounded-[3rem]">Rimuovi</button>
+      <button class="py-2 px-4 bg-white border border-solid border-[#E1E1E1] rounded-[3rem]">Salva per dopo</button>
+    </div>
+  </div>
+
+</div>

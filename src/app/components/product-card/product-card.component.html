@@ -1,0 +1,33 @@
+<div class="main-container">
+  <div *ngFor="let card of cards">
+    <ion-card class="main-container__card">
+      <ion-card-header class="main-container__card__header">
+        <div class="main-container__card__header__icon">
+          <ion-icon color="light" name="heart-outline"></ion-icon>
+        </div>
+      </ion-card-header>
+      <ion-card-content class="main-container__card__content">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="8">
+              <ion-text>
+                <span class="main-container__card__content__product"
+                  >Pomodori da riso</span
+                >
+                <br />
+                <span class="main-container__card__content__amount"
+                  >5,00 € / kg</span
+                >
+              </ion-text>
+            </ion-col>
+            <ion-col class="main-container__right-item" size="4">
+              <div class="main-container__card__content__icon">
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>

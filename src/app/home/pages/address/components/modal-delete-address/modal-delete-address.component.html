@@ -1,0 +1,84 @@
+<ion-content>
+
+  <!-- Estado Inicial: Confirmación de eliminación -->
+  <section *ngIf="!confirmDelete && !deleteError" class="modal-delete">
+
+    <ion-icon class="modal-delete__icon modal-delete__icon--error" name="alert-circle-outline"></ion-icon>
+
+    <span class="modal-delete__title">
+      Stai per cancellare questo profilo <br> di spedizione
+    </span>
+
+    <app-address-card
+      class="modal-delete__card"
+      [address]="address"
+      [default]="false"
+      [delete]="false"
+      [name]="false"
+      [edit]="false"
+    ></app-address-card>
+
+    <span class="modal-delete__message">Confermi L'operazione?</span>
+
+    <button
+      (click)="eliminar()"
+      [disabled]="isDeleting"
+      class="modal-delete__button modal-delete__button--primary">
+      <ion-spinner *ngIf="isDeleting" name="crescent" class="modal-delete__spinner"></ion-spinner>
+      <span *ngIf="!isDeleting">Conferma e cancella</span>
+      <span *ngIf="isDeleting">Eliminando...</span>
+    </button>
+
+    <button
+      (click)="close()"
+      [disabled]="isDeleting"
+      class="modal-delete__button modal-delete__button--secondary">
+      Annulla
+    </button>
+
+  </section>
+
+  <!-- Estado de Éxito: Dirección eliminada -->
+  <section *ngIf="confirmDelete && !deleteError" class="modal-delete">
+
+    <ion-icon class="modal-delete__icon modal-delete__icon--success" name="checkmark-circle-outline"></ion-icon>
+
+    <span class="modal-delete__title">Profilo di spedizione cancellato</span>
+
+    <span class="modal-delete__message">
+      Hai cancellato con successo il profilo di <br>
+      spedizione. Per aggiungere o modificare <br>
+      un altro, ti preghiamo di tornare alla <br>
+      pagina dei tuoi profili di spedizione
+    </span>
+
+    <button (click)="close()" class="modal-delete__button modal-delete__button--primary">
+      I miei profili di spedizione
+    </button>
+
+  </section>
+
+  <!-- Estado de Error: Fallo al eliminar -->
+  <section *ngIf="deleteError" class="modal-delete">
+
+    <ion-icon class="modal-delete__icon modal-delete__icon--error" name="close-circle-outline"></ion-icon>
+
+    <span class="modal-delete__title">Errore durante l'eliminazione</span>
+
+    <span class="modal-delete__message">
+      Non è stato possibile eliminare il profilo di <br>
+      spedizione. Riprova o contatta l'assistenza <br>
+      se il problema persiste.
+    </span>
+
+    <button (click)="retry()" class="modal-delete__button modal-delete__button--primary">
+      Riprova
+    </button>
+
+    <button (click)="close()" class="modal-delete__button modal-delete__button--secondary">
+      Chiudi
+    </button>
+
+  </section>
+
+</ion-content>

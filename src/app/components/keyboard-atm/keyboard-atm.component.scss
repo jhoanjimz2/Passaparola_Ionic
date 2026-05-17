@@ -1,0 +1,130 @@
+.main-container {
+  --overflow: hidden;
+  overflow: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  --background: #f9f9f9;
+
+  &__card {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    width: 100%;
+    margin: 0;
+
+    &__content {
+      text-align: center;
+      background: transparent;
+      width: 100%;
+    }
+
+    &__atm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+
+      &__text {
+        font-size: 1.25rem;
+        padding-right: 0.313rem;
+        padding-left: 0.313rem;
+        border-bottom: solid 0.063rem #cccccc;
+        padding-left: 0.313rem;
+        padding-right: 0.313rem;
+      }
+    }
+
+    &__text-amount {
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 5.25rem;
+      font-weight: bold;
+      min-height: 6.25rem;
+      max-height: 6.25rem;
+      height: 6.25rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      line-height: 6.25rem;
+    }
+
+    &__btn-key {
+      width: 4.375rem;
+      height: 4.438rem;
+      max-width: 4.375rem;
+      max-height: 4.438rem;
+      --box-shadow: 0 0.188rem 0.375rem #0000001c;
+      --border-radius: 0.938rem;
+      font-size: 2.625rem;
+      --padding-bottom: 0;
+      --padding-end: 0;
+      --padding-start: 0;
+      --padding-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      --background: #ffffff;
+      color: #000000;
+
+      ion-icon {
+        color: #3cc3a2;
+        font-size: 1.563rem;
+      }
+    }
+
+    &__btn-next {
+      height: 3.438rem !important;
+      --border-radius: 3.125rem !important;
+      --background: #3cc3a2 !important;
+      width: 100% !important;
+    }
+  }
+
+  ion-grid {
+    max-width: 28.125rem;
+    ion-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &--f-z-20 {
+    font-size: 1.25rem;
+  }
+
+  &--f-z-24 {
+    font-size: 1.5rem;
+  }
+
+  &--f-z-30 {
+    font-size: 1.875rem;
+  }
+
+  &--f-z-44 {
+    font-size: 2.75rem;
+  }
+
+  &--f-z-64 {
+    font-size: 4rem;
+  }
+
+  &--f-z-84 {
+    font-size: 5.25rem;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--m-l-5 {
+    margin-left: 0.313rem;
+  }
+
+  &--m-t-10 {
+    margin-top: 0.625rem;
+  }
+}

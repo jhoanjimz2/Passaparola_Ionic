@@ -1,0 +1,89 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<section class="h-full bg-[#F9F9F9] text-black p-[20px]">
+  <section class="flex flex-col mt-[30px]">
+    <article class="text-[16px] leading-[22px] font-semibold">
+      {{ "BANK_ACCOUNT.TITLE" | translate }}
+    </article>
+    <article class="text-[12px] leading-[22px] mt-[10px]">
+      {{ "BANK_ACCOUNT.SUB_TITLE" | translate }}
+    </article>
+  </section>
+  <section class="flex items-center mt-[30px] gap-[10px]">
+    <article
+      class="flex items-center justify-center h-[44px] w-[65px] border-[1px] rounded-[12px] border-[#00000080] text-[#00000080] hover:cursor-pointer"
+      routerLink="/pages/bank-account/create"
+    >
+      <ion-icon class="h-[20px] w-[20px]" name="add-outline"></ion-icon>
+    </article>
+    <span
+      class="text-[11px] leading-[15px] font-semibold text-[#00000080] hover:cursor-pointer"
+      routerLink="/pages/bank-account/create"
+    >
+      {{ "BANK_ACCOUNT.BUTTON_ADD" | translate }}
+    </span>
+  </section>
+
+  <ion-content class="h-full overflow-y-auto bg-[#F9F9F9]">
+    <section class="pt-[40px] pb-3 h-full bg-[#F9F9F9]">
+      <section
+        class="flex flex-row justify-between bg-white shadow-lg rounded-[15px] p-[8px] mt-[10px]"
+        *ngFor="let bankAccount of bankAccounts"
+      >
+        <section class="flex">
+          <section
+            class="flex flex-row items-center justify-center border-[1px] rounded-[15px] bg-white border-gray w-[70px] h-[70px]"
+          >
+            <ion-icon
+              class="h-[40px] w-[40px] text-[#00000080]"
+              name="passaparola-museum"
+            ></ion-icon>
+          </section>
+          <section class="flex flex-col pl-[8px] pt-[8px]">
+            <span class="text-[13px] leading-[18px]">
+              {{ bankAccount.bankName }}
+            </span>
+            <span class="text-[11px] leading-[15px] text-[#6C757D]">
+              {{ bankAccount.accountNumber | maskNumberAccount : 5 : '*' }}
+            </span>
+            <span
+              *ngIf="bankAccount.isFavorite"
+              class="text-[11px] leading-[15px] text-[#3CC3A2]"
+            >
+              {{ "BANK_ACCOUNT.PREFERRED_ACCOUNT" | translate }}
+            </span>
+          </section>
+        </section>
+        <section
+          class="flex flex-col items-center justify-center gap-[10px] pr-[5px]"
+        >
+          <button
+            class="flex items-center justify-center bg-[#C33C3C] rounded-full text-white w-[26px] h-[26px]"
+            (click)="onDelete(bankAccount.id!)"
+          >
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+          <article
+            class="flex items-center justify-center rounded-[6px] w-[26px] h-[26px] border-[1px] border-[#41C837] text-white"
+            (click)="onFavorite(bankAccount.id!, bankAccount.isFavorite!)"
+            [ngClass]="{ 'bg-[#41C837] ': bankAccount.isFavorite, 'border-[#bbbbbb] ': !bankAccount.isFavorite }"
+          >
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </article>
+        </section>
+      </section>
+
+      <ion-infinite-scroll
+        threshold="100px"
+        [disabled]="!infiniteScrollEnabled"
+        (ionInfinite)="findAll($event)"
+      >
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data..."
+        >
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </section>
+  </ion-content>
+</section>

@@ -1,0 +1,65 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+  [modalQRActive]="true"
+></app-header>
+<section class="h-full bg-[#F9F9F9] overflow-y-auto py-[40px]">
+  <section class="text-center">
+    <section *ngIf="title" class="text-[29px] leading-[32px] font-bold">
+      {{ title }}
+    </section>
+    <section class="flex items-center justify-center pt-[18px] leading-[25px]">
+      <section
+        *ngIf="subTitle"
+        class="w-[290px] font-semibold"
+        [innerHTML]="subTitle"
+      ></section>
+    </section>
+  </section>
+  <section class="flex justify-center items-center pt-[18px]">
+    <section
+      class="flex items-center justify-center p-[15px] shadow-lg rounded-[20px] bg-white"
+    >
+      <ngx-qrcode-styling #qrcode id="qrcode" [config]="config" />
+    </section>
+  </section>
+
+  <section class="flex flex-row justify-center items-center pt-[20px]">
+    <section class="flex flex-row justify-center items-center gap-[13px]">
+      <div
+        class="flex flex-row justify-center items-center bg-[#8C54FF] h-[56px] px-[40px] rounded-[28px] text-[16px] leading-[23px] font-semibold text-white"
+        (click)="onDownload(qrcode)"
+      >
+        <ion-icon
+          class="h-[28px] w-[28px] pr-[10px]"
+          name="download-outline"
+        ></ion-icon>
+        {{ "QR_CODE.DOWNLOAD" | translate }}
+      </div>
+      <div
+        class="flex flex-row justify-center items-center border-[1px] border-[#8C54FF] text-[#8C54FF] rounded-full w-[56px] h-[56px]"
+        (click)="onShared()"
+      >
+        <ion-icon
+          class="h-[28px] w-[28px]"
+          name="share-social-outline"
+        ></ion-icon>
+      </div>
+    </section>
+  </section>
+  <section class="flex flex-col justify-center items-center mt-[22px]">
+    <section class="text-[15px] leading-[20px]">
+      {{ label }}
+    </section>
+    <section
+      class="flex flex-row justify-between items-center border-[1px] border-[#3B9FF6] rounded-[17px] w-[340px] h-[70px] pl-[20px] pr-[13px] mt-[10px]"
+      (click)="onCopyDataToClipboard()"
+    >
+      <span class="text-[22px] leading-[30px] w-full pr-[10px] truncate">
+        {{ textToShow }}
+      </span>
+      <ion-icon class="h-[28px] w-[28px]" name="copy-outline"></ion-icon>
+    </section>
+  </section>
+</section>

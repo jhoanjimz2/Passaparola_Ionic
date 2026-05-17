@@ -1,0 +1,61 @@
+<article class="professional-card" (click)="goSeatDetail(firstSeat?.id!)">
+  <!-- Header con imagen y info básica -->
+  <div class="professional-card__header">
+    <!-- Imagen del profesional -->
+    <div class="professional-card__image-container">
+      <img
+        [src]="seatImage"
+        [alt]="seatName"
+        class="professional-card__image"
+        (error)="$any($event.target).src">
+    </div>
+
+    <!-- Información principal -->
+    <div class="professional-card__info">
+      <!-- Categoría -->
+      <span class="professional-card__category">{{ categories }}</span>
+
+      <!-- Cashback -->
+      <div class="professional-card__cashback">
+        <span class="professional-card__cashback-label">cashback</span>
+        <span class="professional-card__cashback-value">{{ cashbackPercentage }}%</span>
+      </div>
+
+      <!-- Nombre -->
+      <h2 class="professional-card__name">{{ seatName }}</h2>
+
+      <!-- Dirección -->
+      <p class="professional-card__address">{{ seatAddress }}</p>
+
+      <!-- Botones de acción -->
+      <div class="professional-card__actions">
+        <button
+          class="professional-card__button professional-card__button--primary"
+          (click)="onRequestClick(); $event.stopPropagation()"
+          type="button">
+          Invia richiesta
+        </button>
+
+        <button
+          class="professional-card__button professional-card__button--secondary"
+          (click)="onContactClick(); $event.stopPropagation()"
+          [disabled]="!hasPhone"
+          type="button">
+          <ion-icon name="call-outline" class="professional-card__button-icon"></ion-icon>
+          Contatti
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer con servicios -->
+  <div class="professional-card__footer">
+    <span class="professional-card__services-label">Servizi:</span>
+    <p class="professional-card__services-text">
+      {{ services }}
+      <span *ngIf="hasMultipleServices" class="professional-card__services-more">
+        +{{ additionalServicesCount }} altro<ng-container *ngIf="additionalServicesCount > 1">i</ng-container>
+      </span>
+    </p>
+  </div>
+</article>

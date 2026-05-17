@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <app-header
+    [border]="true"
+    [backIcon]="true"
+    [modalDismiss]="true"
+  ></app-header>
+
+  <div
+    class="flex flex-direction-row ion-justify-content-between ion-align-items-center bg-light"
+  >
+    <ion-searchbar
+      placeholder="{{ 'MAP_PAGE.SEARCH' | translate }}"
+      (input)="onSearch($event.target)"
+    ></ion-searchbar>
+
+    <!-- <div>
+      <ion-button size="default" color="secondary" class="bnt-filter">
+        <ion-icon name="options-outline"></ion-icon>
+      </ion-button>
+    </div> -->
+  </div>
+
+  <div class="main-container__buttons">
+    <ion-button
+      class="main-container__buttons__btn"
+      *ngFor="let category of categories"
+      (click)="onCategorySelected(category)"
+      [ngClass]="{ 'main-container__buttons--selected': category.selected }"
+    >
+      {{ category.companyCategoryTranslation.description }}</ion-button
+    >
+  </div>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let item of items">
+    <app-physical-business-card
+      [item]="item"
+      [position]="position"
+    ></app-physical-business-card>
+  </ng-container>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,84 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content>
+
+  <section class="bills-header">
+    <span class="bills-header__title">
+      Con Passaparola paghi<br>
+      anche le bollette
+    </span>
+    <span class="bills-header__description">
+      Paga le bollette di luce e gas con Passaparola,<br>
+      ricevi cashback e Punti Ricompensa. Se vuoi,<br>
+      attiva l'opzione senza pensieri e ci occuperemo di<br>
+      garantirti il miglior gestore per le tue esigenze.
+    </span>
+  </section>
+
+  <section class="w-full flex flex-row gap-[0.5rem] px-[0.688rem]">
+
+    <div class="utility-card utility-card--electricity">
+      <ion-icon name="passaparola-lightbulb" class="utility-card__icon"></ion-icon>
+      <div class="utility-card__text">
+        <span class="utility-card__text-line">SCOPRI QUANTO</span>
+        <span class="utility-card__text-line utility-card__text-line--bold">PUOI RISPARMIARE</span>
+        <span class="utility-card__text-line">SULLA LUCE</span>
+      </div>
+      <button routerLink="/pages/house-garden/electric-savings-calculator" class="utility-card__button utility-card__button--electricity">
+        Invia bolletta
+      </button>
+    </div>
+
+    <div class="utility-card utility-card--gas">
+      <ion-icon name="passaparola-flame" class="utility-card__icon"></ion-icon>
+      <div class="utility-card__text">
+        <span class="utility-card__text-line">SCOPRI QUANTO</span>
+        <span class="utility-card__text-line utility-card__text-line--bold">PUOI RISPARMIARE</span>
+        <span class="utility-card__text-line">SUL GAS</span>
+      </div>
+      <button (click)="openPreview()" class="utility-card__button utility-card__button--gas">
+        Invia bolletta
+      </button>
+    </div>
+
+  </section>
+
+  <section class="px-[0.688rem] mt-[1.188rem]">
+    <div class="offer-card">
+      <div class="offer-card__ribbon">
+        MIGLIORE
+      </div>
+      <div class="offer-card__content">
+
+        <ion-icon
+          name="passaparola-lightbulb"
+          class="offer-card__icon">
+        </ion-icon>
+
+        <span class="offer-card__title">
+          Offerta luce Passaparola Power
+        </span>
+
+        <div class="offer-card__highlight">
+          <span class="offer-card__highlight-text">
+            Risparmia fino a
+            <span class="offer-card__highlight-amount">420€</span>
+            all'anno
+          </span>
+          <span class="offer-card__highlight-cashback">
+            Ricevi 3€ di cashback mensile
+          </span>
+        </div>
+
+        <button routerLink="/pages/house-garden/change-light-manager" class="offer-card__button">
+          Cambia il tuo gestore adesso
+        </button>
+
+        <span class="offer-card__disclaimer">
+          Offerta riservata esclusivamente con il pagamento<br>
+          attraverso <span class="offer-card__disclaimer--bold">Passaparola Wallet</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<div
+  class="relative cursor-pointer overflow-hidden"
+  [style.aspect-ratio]="aspectRatio"
+  [style.width]="width"
+  [style.height]="height"
+>
+  <div
+    *ngIf="!isLoaded"
+    class="w-full h-full animate-pulse bg-gray-300"
+    [ngClass]="isAvatar ? 'rounded-full' : 'rounded-[0.938rem]'"
+  ></div>
+  <img
+    class="w-full h-full object-cover transition-opacity duration-500"
+    [ngClass]="isAvatar ? 'rounded-full' : 'rounded-[0.938rem]'"
+    [src]="src || fallback"
+    [alt]="alt"
+    (load)="onImageLoad()"
+    [class.opacity-0]="!isLoaded"
+    [class.opacity-100]="isLoaded"
+  />
+</div>

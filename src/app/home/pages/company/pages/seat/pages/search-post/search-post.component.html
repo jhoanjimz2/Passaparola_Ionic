@@ -1,0 +1,95 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true">
+
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Search Header Info -->
+  <div class="search-header px-4 py-3">
+    <h2 class="text-lg font-bold text-black mb-1">Risultati di ricerca</h2>
+    <p class="text-sm text-gray-600" *ngIf="searchKeyword">
+      "{{ searchKeyword }}"
+      <span *ngIf="initialLoadComplete && searchResults.length > 0" class="ml-2">
+        ({{ searchResults.length }} {{ searchResults.length === 1 ? 'risultato' : 'risultati' }})
+      </span>
+    </p>
+  </div>
+
+  <!-- Results Section -->
+  <section class="pb-20">
+
+    <!-- Masonry Feed -->
+    <div *ngIf="searchResults.length > 0" class="animate__animated animate__fadeIn">
+      <ngx-masonry
+        #masonry
+        [options]="masonryOptions"
+        [useImagesLoaded]="true"
+        [ordered]="true"
+      >
+        <div ngxMasonryItem class="grid-sizer"></div>
+        <div
+          ngxMasonryItem
+          *ngFor="let post of searchResults; trackBy: trackByPost"
+          class="masonry-item relative overflow-hidden"
+        >
+          <app-post-feed
+            (onVideoLoaded)="onVideoLoaded()"
+            [post]="post"
+            [feed]="true"
+          ></app-post-feed>
+        </div>
+      </ngx-masonry>
+    </div>
+
+    <!-- Loading State (Initial) -->
+    <div
+      *ngIf="isLoading && searchResults.length === 0"
+      class="flex flex-col items-center justify-center py-16 px-4"
+    >
+      <ion-spinner name="crescent" class="text-black"></ion-spinner>
+      <p class="text-gray-500 mt-4">Ricerca di post...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div
+      *ngIf="showEmptyState && !isLoading"
+      class="flex flex-col items-center justify-center py-16 px-4"
+    >
+      <ion-icon name="search-outline" class="text-6xl text-gray-400 mb-4"></ion-icon>
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Nessun risultato trovato</h3>
+      <p class="text-gray-500 text-center">
+        Non ci sono post che corrispondono a "<strong>{{ searchKeyword }}</strong>"
+      </p>
+      <p class="text-gray-400 text-sm text-center mt-2">
+        Prova con altre parole chiave
+      </p>
+    </div>
+
+    <!-- No Keyword State -->
+    <div
+      *ngIf="!searchKeyword && initialLoadComplete"
+      class="flex flex-col items-center justify-center py-16 px-4"
+    >
+      <ion-icon name="search-circle-outline" class="text-6xl text-gray-400 mb-4"></ion-icon>
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Inserisci un termine di ricerca</h3>
+      <p class="text-gray-500 text-center">
+        Usa la barra di ricerca per trovare post
+      </p>
+    </div>
+
+  </section>
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll
+    (ionInfinite)="loadMore($event)"
+    [disabled]="!hasMore"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

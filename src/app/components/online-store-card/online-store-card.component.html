@@ -1,0 +1,62 @@
+<ion-grid *ngIf="showTitle" class="padding-0">
+  <ion-row>
+    <ion-col>
+      <ion-label>
+        {{ "COMPONENTS.ONLINE_STORE_CARD.ONLINE_STORES" | translate }}
+      </ion-label>
+    </ion-col>
+    <ion-col class="text-right">
+      <ion-label class="title f-w-b">
+        {{ "COMPONENTS.ONLINE_STORE_CARD.SEE_ALL" | translate }}
+      </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-card class="main-container">
+  <ion-grid>
+    <ion-row
+      *ngFor="let store of stores"
+      class="main-container__item"
+      (click)="openStore(store.webAddress)"
+    >
+      <ion-col size="3">
+        <div
+          class="main-container__item__img"
+          [style.background-image]="
+            'url(' + (store.pictureUlrFile! | image) + ')'
+          "
+        ></div>
+      </ion-col>
+      <ion-col size="5" class="main-container__item--left-item">
+        <ion-text>
+          <span class="main-container__item__title">{{
+            store.categories
+              ? store.categories[0].companyCategoryTranslation.description
+              : ""
+          }}</span>
+          <br />
+          <span class="main-container__item__text-value">{{ store.name }}</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="2" class="main-container__item--center-item">
+        <!-- <ion-text>
+          <span class="main-container__item__title">back</span>
+          <br />
+          <span class="main-container__item__text-value"
+            >{{ store.cashBackPercentage }}%</span
+          >
+        </ion-text> -->
+      </ion-col>
+      <ion-col size="2" class="main-container__item--center-item">
+        <ion-text>
+          <span class="main-container__item__title">cashback</span>
+          <br />
+          <span class="main-container__item__text-value font-black !text-2xl"
+            >{{ store.pointsPercentage }}%</span
+          >
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

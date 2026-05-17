@@ -1,0 +1,105 @@
+<ion-card class="main-container" (click)="goToCommunity()">
+  <ion-card-header class="main-container__header">
+    <!-- <ion-icon
+      (click)="goToCommunity()"
+      class="main-container__header__icon"
+      name="arrow-forward-outline"
+    ></ion-icon> -->
+
+    <ion-grid class="main-container--m-p-0">
+      <ion-row class="main-container--m-p-0">
+        <ion-col size="5" class="main-container--m-p-0">
+          <ion-label class="main-container__header__title">{{
+            "MAIN_PAGE.COMMUNITY.TITLE" | translate
+          }}</ion-label>
+        </ion-col>
+        <ion-col size="7"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+
+  <ion-card class="main-container__card">
+    <ion-grid class="main-container--m-p-0">
+      <ion-row class="main-container--m-p-0">
+        <ion-col
+          size="1.5"
+          class="main-container--right-item main-container--p-l-0"
+          ><img
+            [src]="'assets/images/flags/' + community.countryCode + '.png'"
+            class="main-container__card__flag"
+        /></ion-col>
+        <ion-col
+          size="5.5"
+          class="main-container--left-item main-container--l-h-15"
+        >
+          <ion-text>
+            <span class="main-container__card__title">{{
+              "MAIN_PAGE.COMMUNITY.COUNTRY" | translate
+            }}</span>
+            <br />
+            <span class="main-container__card__country">{{
+              community.country
+            }}</span>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3" class="main-container--right-item">
+          <span class="main-container__card__amount">{{
+            community.communityFriends
+          }}</span>
+        </ion-col>
+        <ion-col size="2" class="main-container--center-item">
+          <div class="main-container__card__btn-add">
+            <ion-icon name="person"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card-content class="main-container__content">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="7" class="main-container--l-h-18">
+          <ion-text>
+            <span class="main-container--f-z-12">{{
+              "MAIN_PAGE.COMMUNITY.YOUR_EARNINGS" | translate
+            }}</span>
+            <ion-icon
+              (click)="showAmount = !showAmount"
+              class="main-container__content__icon-eye"
+              [name]="showAmount ? 'eye-off-outline' : 'eye-outline'"
+            ></ion-icon>
+            <br />
+            <span *ngIf="showAmount" class="main-container__content__atm">{{
+              community.earnings! | formattNumber
+            }}</span>
+            <span *ngIf="!showAmount" class="main-container__content__atm">{{
+              "********"
+            }}</span>
+            <span class="main-container__content__atm-label">ATM/€</span>
+            <br />
+            <span class="main-container--f-z-12">{{
+              user.createdAt | date : "'dd/MM/yyyy"
+            }}</span>
+          </ion-text>
+        </ion-col>
+        <ion-col
+          size="5"
+          class="main-container--text-right main-container--f-z-12 main-container--l-h-18"
+        >
+          <ion-text>
+            <span>{{ "MAIN_PAGE.COMMUNITY.MISSING" | translate }}</span>
+            <br />
+            <span class="main-container__content__pr"
+              >{{ community.missingToNextLevel! | formattNumber }} PR</span
+            >
+            <br />
+            <span class="main-container--f-z-12">{{
+              "MAIN_PAGE.COMMUNITY.NEXT_LEVEL" | translate
+            }}</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

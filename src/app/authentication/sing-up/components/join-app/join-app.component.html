@@ -1,0 +1,81 @@
+<div class="main-container">
+  <div class="main-container__header">
+    <ion-text>
+      <ion-label class="main-container--f-z-22">
+        <span class="main-container--f-w-b"> {{ "passa" }}</span
+        >{{ "parola" }}
+      </ion-label>
+
+      <br />
+      <span class="main-container--f-z-10 main-container--f-w-semi">{{
+        "JOIN_APP.THE_APP" | translate
+      }}</span>
+      <br />
+      <br />
+      <span class="main-container--f-z-28 main-container--f-w-semi"
+        >{{ "JOIN_APP.CONGRATULATIONS" | translate }},</span
+      >
+      <br />
+      <br />
+      <span class="main-container--f-z-16 main-container--f-w-semi">{{
+        "JOIN_APP.SUCCESFULLY_REGISTERED" | translate
+      }}</span>
+    </ion-text>
+  </div>
+
+  <div class="main-container__img">
+    <img src="assets/images/divices.png" alt="divices" />
+  </div>
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="main-container--center-item">
+          <ion-button
+            (click)="goToApp()"
+            class="main-container__play-store-btn"
+          >
+            <ion-icon name="logo-google-playstore"></ion-icon>
+            <span>
+              {{ "JOIN_APP.DOWNLOAD_FROM_GOOGLE_PLAY" | translate }}
+            </span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4.5" class="main-container--right-item">
+          <div class="main-container__line"></div>
+        </ion-col>
+        <ion-col size="3" class="main-container--center-item">
+          <span class="main-container__text-mid">
+            {{ "JOIN_APP.OR" | translate }}
+          </span>
+        </ion-col>
+        <ion-col size="4.5" class="main-container--left-item">
+          <div class="main-container__line"></div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="main-container--center-item">
+          <ion-button (click)="goToLogin()" class="main-container__btn-pwa">
+            <span>
+              {{ "JOIN_APP.PWA_ADROID" | translate }}
+            </span>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" class="main-container--center-item">
+          <ion-button (click)="goToLogin()" class="main-container__btn-pwa">
+            <span>
+              {{ "JOIN_APP.PWA_IOS" | translate }}
+            </span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="main-container__text-bottom">
+    <ion-text>
+      {{ "JOIN_APP.TEXT_INFO" | translate }}
+    </ion-text>
+  </div>
+</div>

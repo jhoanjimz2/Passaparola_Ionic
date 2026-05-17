@@ -1,0 +1,30 @@
+<ion-grid class="padding-0">
+  <ion-row>
+    <ion-col>
+      <ion-label>
+        {{ "COMPONENTS.LOCAL_STORE_CARD.LOCAL_ECONOMY" | translate }}
+      </ion-label>
+    </ion-col>
+    <ion-col class="text-right">
+      <ion-label class="title f-w-b">
+        {{ "COMPONENTS.LOCAL_STORE_CARD.SEE_ALL" | translate }}
+      </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<div class="container-business">
+  <div *ngFor="let card of business">
+    <ion-card class="container-business__item">
+      <ion-card class="container-business__item__card">
+        <ion-card-header
+          [style.background-image]="'url(' + card.img + ')'"
+          class="container-business__item__img"
+        >
+        </ion-card-header>
+        <ion-card-content class="container-business__item__title">
+          <ion-label>{{ card.title }}</ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-card>
+  </div>
+</div>

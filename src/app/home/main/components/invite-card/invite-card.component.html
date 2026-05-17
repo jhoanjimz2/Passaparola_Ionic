@@ -1,0 +1,54 @@
+<ion-card class="main-container">
+  <ion-grid style="margin: 0; padding: 0">
+    <ion-row style="margin: 0; padding: 0">
+      <ion-col size="5.5">
+        <ion-text>
+          <span class="main-container--f-z-25">
+            {{ "COMPONENTS.INVITE_CARD_MAIN.INVITE" | translate }}
+          </span>
+          <br />
+          <span class="main-container--f-z-19 main-container--f-w-b">
+            {{ "COMPONENTS.INVITE_CARD_MAIN.NEW_FRIEND" | translate }}
+          </span>
+          <br />
+          <span>
+            {{ "COMPONENTS.INVITE_CARD_MAIN.AND_GROW" | translate }}
+          </span>
+          <br />
+          <span>
+            {{ "COMPONENTS.INVITE_CARD_MAIN.YOUR_COMMUNITY" | translate }}
+          </span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="6.5" class="main-container--right-item">
+        <div>
+          <div class="main-container--w-100 main-container--left-item">
+            <div class="main-container--w-100 main-container--center-item">
+              <div
+                class="main-container__btn-user main-container__btn-user--orange"
+              >
+                <ion-icon name="passaparola-user-plus"></ion-icon>
+              </div>
+              <div
+                class="main-container__btn-user main-container__btn-user--success"
+              >
+                <ion-icon name="passaparola-user-plus"></ion-icon>
+              </div>
+              <div
+                class="main-container__btn-user main-container__btn-user--info"
+              >
+                <ion-icon name="passaparola-user-plus"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-container__btn-user__btn-invite">
+            <ion-button (click)="shareApp()">
+              + {{ "COMPONENTS.INVITE_CARD_MAIN.INVITE_FRIENDS" | translate }}
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

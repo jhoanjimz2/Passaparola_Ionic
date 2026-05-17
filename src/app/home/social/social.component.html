@@ -1,0 +1,209 @@
+<ion-content [fullscreen]="true" [scrollEvents]="true">
+
+  <div
+    class="sticky-header"
+    [class.visible]="showStickyHeader"
+  >
+    <div class="w-full grid grid-cols-2 gap-2 px-4">
+      <div class="col-span-1 text-center">
+        <label
+          (click)="switchToAllFeed()"
+          class="text-[1.2rem] font-semibold text-white cursor-pointer transition-all duration-200 inline-block py-3 drop-shadow-2xl"
+        >
+          tutti i paspot
+        </label>
+        <div
+          class="underline-indicator"
+          [class.active]="activeFeedType === 'all'"
+        ></div>
+      </div>
+      <div class="col-span-1 text-center">
+        <label
+          (click)="switchToFriendsFeed()"
+          class="text-[1.2rem] font-semibold text-white cursor-pointer transition-all duration-200 inline-block py-3 drop-shadow-2xl"
+        >
+          dai seguiti
+        </label>
+        <div
+          class="underline-indicator"
+          [class.active]="activeFeedType === 'friends'"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Search Bar -->
+  <section>
+    <app-search-bar-social
+      (searchChange)="onSearchChange($event)"
+      (searchSubmit)="onSearchSubmit($event)">
+    </app-search-bar-social>
+  </section>
+
+  <!-- Community Posts Swiper -->
+  <ng-container *ngIf="myCommunityPost.length > 0">
+    <div class="w-full grid grid-cols-2 p-4">
+      <div class="col-span-1">
+        <label class="text-[1rem]">Dalla tua community</label>
+      </div>
+      <div class="col-span-1 text-end">
+        <label class="text-[1rem] text-black font-bold cursor-pointer">vedi tutti</label>
+      </div>
+    </div>
+    <swiper-container
+      #swiperContainer
+      slides-per-view="1.8"
+      loop="false"
+      pagination="false"
+      slides-offset-before="16"
+      space-between="10"
+      class="w-full"
+      (swiper-slide-change)="onSlideChange($event)"
+      (swiper-reach-end)="onReachEnd()"
+    >
+      <swiper-slide *ngFor="let post of myCommunityPost; trackBy: trackByPost">
+        <app-post-feed-slide [post]="post"></app-post-feed-slide>
+      </swiper-slide>
+    </swiper-container>
+  </ng-container>
+
+  <!-- Main Feed Section -->
+  <section class="animate__animated pb-[5rem] animate__fadeIn overflow-hidden mt-2">
+
+    <!-- Feed Type Switcher (Original) -->
+    <div #feedSwitcher class="w-full grid grid-cols-2 p-4 gap-2">
+      <div class="col-span-1">
+        <label
+          (click)="switchToAllFeed()"
+          class="text-[1rem] cursor-pointer transition-all duration-200"
+          [class.font-bold]="activeFeedType === 'all'"
+          [class.text-black]="activeFeedType === 'all'"
+          [class.text-gray-500]="activeFeedType !== 'all'"
+        >
+          tutti i paspot
+        </label>
+      </div>
+      <div class="col-span-1 text-end">
+        <label
+          (click)="switchToFriendsFeed()"
+          class="text-[1rem] cursor-pointer transition-all duration-200"
+          [class.font-bold]="activeFeedType === 'friends'"
+          [class.text-black]="activeFeedType === 'friends'"
+          [class.text-gray-500]="activeFeedType !== 'friends'"
+        >
+          dai seguiti
+        </label>
+      </div>
+    </div>
+
+    <!-- Feed Container ALL -->
+    <div
+      *ngIf="activeFeedType === 'all'"
+      class="feed-container feed-container--all"
+    >
+      <!-- Empty State for All Posts -->
+      <div
+        *ngIf="!isLoadingAll && allPost.length === 0"
+        class="flex flex-col items-center justify-center py-16 px-4"
+      >
+        <ion-icon name="images-outline" class="text-6xl text-gray-400 mb-4"></ion-icon>
+        <p class="text-gray-500 text-center text-base">
+          Non ci sono ancora paspot da mostrare
+        </p>
+      </div>
+
+      <!-- Masonry para All Posts -->
+      <ngx-masonry
+        *ngIf="allPost.length > 0"
+        #masonryAll
+        [options]="masonryOptions"
+        [useImagesLoaded]="true"
+        [ordered]="true"
+      >
+        <div ngxMasonryItem class="grid-sizer"></div>
+        <div
+          ngxMasonryItem
+          *ngFor="let post of allPost; trackBy: trackByPost"
+          class="masonry-item relative overflow-hidden"
+        >
+          <app-post-feed
+            (onVideoLoaded)="onAllVideoLoaded()"
+            [post]="post"
+            [feed]="true"
+          ></app-post-feed>
+        </div>
+      </ngx-masonry>
+    </div>
+
+    <!-- Feed Container FRIENDS -->
+    <div
+      *ngIf="activeFeedType === 'friends'"
+      class="feed-container feed-container--friends"
+    >
+      <!-- Empty State for Friends Feed -->
+      <div
+        *ngIf="!isLoadingFriends && friendsPost.length === 0"
+        class="flex flex-col items-center justify-center py-16 px-4"
+      >
+        <ion-icon name="people-outline" class="text-6xl text-gray-400 mb-4"></ion-icon>
+        <p class="text-gray-500 text-center text-base">
+          Non ci sono ancora post dai tuoi seguiti
+        </p>
+        <p class="text-gray-400 text-center text-sm mt-2">
+          Inizia a seguire persone per vedere i loro contenuti qui
+        </p>
+      </div>
+
+      <!-- Masonry para Friends Posts -->
+      <ngx-masonry
+        *ngIf="friendsPost.length > 0"
+        #masonryFriends
+        [options]="masonryOptions"
+        [useImagesLoaded]="true"
+        [ordered]="true"
+      >
+        <div ngxMasonryItem class="grid-sizer"></div>
+        <div
+          ngxMasonryItem
+          *ngFor="let post of friendsPost; trackBy: trackByPost"
+          class="masonry-item relative overflow-hidden"
+        >
+          <app-post-feed
+            (onVideoLoaded)="onFriendsVideoLoaded()"
+            [post]="post"
+            [feed]="true"
+          ></app-post-feed>
+        </div>
+      </ngx-masonry>
+    </div>
+
+  </section>
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll
+    (ionInfinite)="loadMore($event)"
+    [disabled]="!hasMoreCurrentFeed"
+  >
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!-- Floating Action Button -->
+  <ion-fab
+    (click)="createSocialTag()"
+    horizontal="end"
+    vertical="bottom"
+    slot="fixed"
+  >
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

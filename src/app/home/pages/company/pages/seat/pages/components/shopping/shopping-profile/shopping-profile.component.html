@@ -1,0 +1,54 @@
+<section>
+
+  <div class="grid grid-cols-2 p-4">
+    <div class="col-span-1">
+      <span class="block text-[1rem] font-bold">In evidenza</span>
+      <span class="block text-[0.75rem]">Prodotti scelti da noi</span>
+    </div>
+    <div class="col-span-1 flex flex-row justify-end items-center gap-1">
+      <span class="text-[0.75rem] text-[#9B9EA7]">Vedi tutto</span>
+      <ion-icon class="text-[0.75rem] text-[#9B9EA7]" name="chevron-forward-outline"></ion-icon>
+    </div>
+  </div>
+
+  <swiper-container
+    [loop]="true"
+    [slidesPerView]="'auto'"
+    [spaceBetween]="10"
+    [slidesOffsetBefore]="16"
+  >
+    <swiper-slide
+      *ngFor="let product of [1,1,1,1,1,1,1,1]"
+      [style.width.rem]="8.8125"
+    >
+      <app-product-slide></app-product-slide>
+    </swiper-slide>
+  </swiper-container>
+
+
+
+
+
+
+
+
+  <div class="grid grid-cols-2 p-4">
+    <div class="col-span-1">
+      <span class="block text-[1rem] font-bold">Tutti i prodotti</span>
+    </div>
+  </div>
+
+
+  <section>
+    <ngx-masonry #masonryProducts [options]="masonryOptionsShopping" [useImagesLoaded]="true" [ordered]="true">
+      <div ngxMasonryItem class="grid-sizer"></div>
+      <div ngxMasonryItem *ngFor="let product of [1,1,1,1,1,1,1,1]; let i = index" class="masonry-item" [ngClass]="i == 1 ? 'mt-[2rem]' : 'mt-0'">
+        <app-product-grid></app-product-grid>
+      </div>
+    </ngx-masonry>
+  </section>
+
+
+
+
+</section>

@@ -1,0 +1,212 @@
+<div class="main-container">
+  <ion-card>
+    <div>
+      <ion-card-header>
+        <ion-text>
+          <span class="main-container--f-z-27">{{
+            "SING_UP.JOIN" | translate
+          }}</span>
+          <br />
+          <span class="main-container--f-z-36">PassaParola</span>
+          <br />
+          <span>{{ "SING_UP.TEXT_PRIVACY" | translate }}</span>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-label class="main-container--f-z-12">{{
+            "SING_UP.COMMUNITY_CODE" | translate
+          }}</ion-label>
+          <ion-item>
+            <ion-input
+              [clearInput]="true"
+              type="text"
+              [formControl]="searchTermPromoCode"
+              [readonly]="promoCode"
+            ></ion-input>
+            <ion-icon
+              *ngIf="promoCode"
+              name="lock-closed"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-list>
+
+        <div class="main-container__form-pin">
+          <form [formGroup]="formPin" (ngSubmit)="createPin()">
+            <ion-label class="main-container--f-z-12">
+              {{ "SING_UP.CREATE_PIN" | translate }}
+              <span class="main-container--f-w-b">{{
+                "SING_UP.FIVE_NUMBERS" | translate
+              }}</span>
+            </ion-label>
+            <div class="main-container__form-pin__code">
+              <div class="main-container__form-pin__input">
+                <input
+                  #code1
+                  (keyup)="inputCode(1)"
+                  (focus)="cleanInput('code1')"
+                  formControlName="code1"
+                  name="code1"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code2
+                  (keyup)="inputCode(2)"
+                  (focus)="cleanInput('code2')"
+                  formControlName="code2"
+                  name="code2"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code3
+                  (keyup)="inputCode(3)"
+                  (focus)="cleanInput('code3')"
+                  formControlName="code3"
+                  name="code3"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code4
+                  (keyup)="inputCode(4)"
+                  (focus)="cleanInput('code4')"
+                  formControlName="code4"
+                  name="code4"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="main-container__form-pin__input">
+                <input
+                  #code5
+                  formControlName="code5"
+                  (focus)="cleanInput('code5')"
+                  name="code5"
+                  mask="0"
+                  autocomplete="off"
+                  [type]="!showPassword ? 'password' : 'text'"
+                  inputmode="numeric"
+                />
+              </div>
+              <div
+                class="main-container__form-pin__input main-container__form-pin__icon"
+              >
+                <ion-icon
+                  (click)="showPassword = !showPassword"
+                  [name]="showPassword ? 'eye-off' : 'eye-outline'"
+                ></ion-icon>
+              </div>
+            </div>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col size="1" class="main-container--items-center"
+                  ><ion-checkbox
+                    mode="md"
+                    color="orange"
+                    formControlName="termApp"
+                    name="termApp"
+                    required
+                  ></ion-checkbox
+                ></ion-col>
+                <ion-col
+                  class="main-container--f-z-12 main-container--items-center"
+                >
+                  <div>
+                    {{ "SING_UP.I_AGREE" | translate }}
+                    <span class="main-container--text-orange">{{
+                      "SING_UP.TERMS" | translate
+                    }}</span>
+                    {{ "SING_UP.AND_THE" | translate }}
+                    <span class="main-container--text-orange"
+                      >{{ "SING_UP.COOKIES" | translate }} PassaParola</span
+                    >
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="1" class="main-container--items-center"
+                  ><ion-checkbox
+                    mode="md"
+                    color="orange"
+                    formControlName="termCookies"
+                    name="termCookies"
+                    required
+                  ></ion-checkbox
+                ></ion-col>
+                <ion-col
+                  class="main-container--f-z-12 main-container--items-center"
+                >
+                  <div>
+                    <span class="main-container--text-orange">{{
+                      "SING_UP.TERMS" | translate
+                    }}</span>
+                    e
+                    <span class="main-container--text-orange">{{
+                      "SING_UP.COOKIES" | translate
+                    }}</span>
+                    {{ "SING_UP.I_AGREE" | translate }}
+                    {{ "SING_UP.REGISTRATION" | translate }}
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="1" class="main-container--items-center"
+                  ><ion-checkbox
+                    mode="md"
+                    color="orange"
+                    formControlName="privacy"
+                    name="privacy"
+                    required
+                  ></ion-checkbox
+                ></ion-col>
+                <ion-col
+                  class="main-container--f-z-12 main-container--items-center"
+                >
+                  <div>
+                    {{ "SING_UP.I_AGREE" | translate }}
+                    <span class="main-container--text-orange">{{
+                      "SING_UP.PRIVACY" | translate
+                    }}</span>
+                    {{ "SING_UP.AND_THE_2" | translate }}
+                    <span class="main-container--text-orange">{{
+                      "SING_UP.ETHICA_LLETTER" | translate
+                    }}</span>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <div class="center-item">
+              <ion-button
+                class="main-container--m-b-50"
+                type="submit"
+                [disabled]="formPin.invalid"
+                expand="block"
+              >
+                {{ "SING_UP.JOIN" | translate }} PassaParola
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>

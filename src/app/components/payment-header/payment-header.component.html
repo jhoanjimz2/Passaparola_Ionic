@@ -1,0 +1,48 @@
+<section
+  class="h-[182px] w-full rounded-b-[18px] pt-[10px] relative"
+  [ngClass]="{
+    color1__bg: color === 'color1',
+    color2__bg: color === 'color2'
+  }"
+>
+  <ng-content></ng-content>
+  <section
+    *ngIf="labelLeftButton.length"
+    class="flex flex-row gap-[10px] pt-[10px] px-[20px] absolute bottom-[-55px]"
+  >
+    <section
+      class="flex flex-col items-center justify-center text-center h-[110px] w-full border-[1px] rounded-[19px] bg-white shadow-md shadow-gray-300 font-bold"
+      [ngClass]="{
+        'color1__text color1__border':
+          color === 'color1' && buttonActive === 'leftButton',
+        'color2__text color2__border':
+          color === 'color2' && buttonActive === 'leftButton'
+      }"
+      (click)="onActiveButton('leftButton')"
+    >
+      <article>
+        <ion-icon class="w-[60px] h-[40px]" [name]="iconLeftButton"></ion-icon>
+      </article>
+      <article class="text-[16px] leading-[22px] px-[30px]">
+        {{ labelLeftButton }}
+      </article>
+    </section>
+    <section
+      class="flex flex-col items-center justify-center text-center h-[110px] w-full border-[1px] rounded-[19px] bg-white shadow-md shadow-gray-300 font-bold"
+      [ngClass]="{
+        'color1__text color1__border':
+          color === 'color1' && buttonActive === 'rightButton',
+        'color2__text color2__border':
+          color === 'color2' && buttonActive === 'rightButton'
+      }"
+      (click)="onActiveButton('rightButton')"
+    >
+      <article>
+        <ion-icon class="w-[60px] h-[40px]" [name]="iconRightButton"></ion-icon>
+      </article>
+      <article class="text-[16px] leading-[22px] px-[30px]">
+        {{ labelRightButton }}
+      </article>
+    </section>
+  </section>
+</section>

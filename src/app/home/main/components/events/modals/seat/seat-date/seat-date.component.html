@@ -1,0 +1,28 @@
+<section class="px-[16px] mt-[48px] mb-[90px] overflow-y-auto">
+
+  <section>
+      <ion-datetime
+        #datePicker
+        presentation="date"
+        [min]="minDate"
+        [max]="'2100-12-31'"
+        [highlightedDates]="highlightedDates"
+        [isDateEnabled]="disableDates">
+      </ion-datetime>
+  </section>
+
+
+  <section class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0">
+    <section class="bg-white opacity-45 absolute h-full w-full"></section>
+    <section class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10" (click)="onCancel()">
+      {{ 'Annulla' }}
+    </section>
+    <button
+      class="disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+      [disabled]="!selected"
+      (click)="onSave()"
+    >
+      {{ 'Salva' }}
+    </button>
+  </section>
+</section>

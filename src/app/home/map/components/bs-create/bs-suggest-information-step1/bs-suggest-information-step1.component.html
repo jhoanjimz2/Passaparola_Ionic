@@ -1,0 +1,134 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onNextStep()"
+  autocomplete="off"
+  class="h-full"
+>
+  <section
+    class="p-[1.438rem] pb-10 h-full flex flex-col justify-between bg-[#F9F9F9]"
+  >
+    <section class="flex flex-col justify-between">
+      <section class="flex flex-col items-center justify-center text-center">
+        <section class="text-[2.25rem] text-[#1D0F01] font-semibold">
+          {{ "BUSINESS_SUGGESTION.STEP1.TITLE1" | translate }}
+        </section>
+        <section class="text-[0.938rem] text-[#1D0F01]">
+          {{ "BUSINESS_SUGGESTION.STEP1.TITLE2" | translate }}
+        </section>
+      </section>
+      <section class="pt-[2.875rem]">
+        <section class="flex flex-col h-[6.25rem]">
+          <label
+            for="name"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "BUSINESS_SUGGESTION.STEP1.NAME" | translate }}
+          </label>
+          <input
+            #name
+            class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="text"
+            [placeholder]="
+              'BUSINESS_SUGGESTION.STEP1.NAME_PLACE_HOLDER' | translate
+            "
+            formControlName="name"
+            name="name"
+            autocomplete="off"
+          />
+          <div
+            *ngIf="displayMessage.name"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.name }}
+          </div>
+        </section>
+        <section class="flex flex-col h-[6.25rem]">
+          <label
+            for="category"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "BUSINESS_SUGGESTION.STEP1.CATEGORY" | translate }}
+          </label>
+          <select
+            class="h-14 bg-white border text-[0.688rem] border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            formControlName="category"
+            name="category"
+          >
+            <option value="" class="">
+              {{
+                "BUSINESS_SUGGESTION.STEP1.CATEGORY_PLACE_HOLDER" | translate
+              }}
+            </option>
+            <ng-container *ngFor="let category of categories">
+              <option [value]="category.id">
+                {{ category.companyCategoryTranslation[0].description }}
+              </option>
+            </ng-container>
+          </select>
+          <div
+            *ngIf="displayMessage.category"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.category }}
+          </div>
+        </section>
+        <section class="flex flex-col h-[6.25rem]">
+          <label
+            for="address"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "BUSINESS_SUGGESTION.STEP1.ADDRESS" | translate }}
+          </label>
+          <section class="relative">
+            <input
+              class="h-14 bg-white pr-[2.813rem] text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+              type="text"
+              [placeholder]="
+                'BUSINESS_SUGGESTION.STEP1.ADDRESS_PLACE_HOLDER' | translate
+              "
+              formControlName="address"
+              name="address"
+              autocomplete="off"
+              readonly
+              (click)="onOpenModalBsAddressOnTheMap()"
+            />
+            <div (click)="onOpenModalBsAddressOnTheMap()">
+              <ion-icon
+                class="text-[#DDE5E9] h-[2.2rem] w-[2.2rem] absolute top-3 right-2"
+                name="locate"
+              ></ion-icon>
+              <div
+                class="h-[0.625rem] w-[0.625rem] absolute top-[1.5rem] right-[1.25rem] bg-[#DDE5E9] rounded-full"
+              ></div>
+            </div>
+            <div
+              *ngIf="displayMessage.address"
+              class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+            >
+              {{ displayMessage.address }}
+            </div>
+          </section>
+        </section>
+      </section>
+    </section>
+    <section class="grid grid-cols-2 gap-3 text-[0.938rem] leading-[1.375rem]">
+      <div
+        class="bg-white border border-[#00B1FF] text-[#00B1FF] py-4 px-4 rounded-full flex items-center justify-center"
+        (click)="onPreviousStep()"
+      >
+        {{ "BUSINESS_SUGGESTION.PREVIOUS" | translate }}
+      </div>
+      <button
+        class="bg-[#00B1FF] hover:bg-[#00b3ffcb] text-white py-4 px-4 rounded-full"
+        type="submit"
+      >
+        {{ "BUSINESS_SUGGESTION.NEXT" | translate }}
+      </button>
+    </section>
+  </section>
+</form>

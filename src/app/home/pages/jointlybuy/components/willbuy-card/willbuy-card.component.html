@@ -1,0 +1,43 @@
+<div class="product-card" (click)="view()">
+  <div class="product-card__image-wrapper">
+    <img
+      class="product-card__image"
+      [src]="willbuy.product?.pictureUrlFile ?? 'https://placehold.co/100x100?text=Product'"
+      [alt]="willbuy.product?.name">
+    <div class="product-card__badge">
+      {{ getSoldUnits() }}/{{ getCurrentPhase?.minimumPurchaseUnits ?? 0 }}
+    </div>
+  </div>
+
+  <div class="product-card__content">
+    <div class="product-card__info">
+      <span class="product-card__title">{{ willbuy.product?.name }}</span>
+
+      <div class="product-card__prices">
+        <span class="product-card__price product-card__price--current">
+          {{ +(getCurrentPhase?.total || 0) | formattNumber }}
+          <span class="product-card__price-unit">€/ATM</span>
+        </span>
+        <span class="product-card__price product-card__price--original">
+          {{ willbuy.externalPrice ?? 0 | formattNumber }} €
+        </span>
+      </div>
+
+      <span class="product-card__cashback">
+        {{
+        ((willbuy.product?.transferPercentages?.pointsPercentage ?? 0) / 100) * +(getCurrentPhase?.total || 0)
+          | formattNumber:'EUR':'symbol':'it':2
+        }} € cashback
+      </span>
+    </div>
+
+    <div class="product-card__actions">
+      <button class="product-card__timer">
+        {{ daysRemaining }}D {{ hoursRemaining }}H {{ minutesRemaining }}M
+      </button>
+      <button class="product-card__cart-btn" (click)="openModalBuyWillbuy(); $event.stopPropagation()">
+        <ion-icon name="cart-jointlybuy"></ion-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<ion-card class="rounded-[1.063rem] border-[0.063rem] border-[#70707030] shadow-none pb-4 m-4" (dblclick)="loadEventToId()">
+  <ion-card-header class="p-[0.313rem]">
+    <swiper-container class="w-full h-auto" #swiperGallery [init]="false">
+
+      <swiper-slide *ngFor="let image of (event.pictureGallery?.length ? this.event.pictureGallery : ['', ''] );">
+        <img
+          [src]="image | imageEvent"
+          (load)="onImageLoad()"
+          (error)="onImageError($event)"
+          class="bg-no-repeat bg-cover bg-center object-cover rounded-[0.938rem] h-[8rem] w-full"
+          [class.hidden]="isLoading"
+          alt="Event Image"
+        >
+        <ion-skeleton-text *ngIf="isLoading" [animated]="true" class="bg-no-repeat bg-cover bg-center object-cover rounded-[0.938rem] h-[8rem] w-full"></ion-skeleton-text>
+      </swiper-slide>
+    </swiper-container>
+  </ion-card-header>
+
+  <ion-card-content class="relative p-[0.313rem]">
+    <ion-grid class="py-0">
+      <ion-row class="justify-between">
+        <label class="text-[0.938rem] text-black whitespace-nowrap overflow-hidden text-ellipsis max-w-full">{{ event.name ? event.name : 'Senza Nome' }}</label>
+        <button *ngIf="event.isGreen" class="w-20 h-7 bg-green-500 text-white font-bold border border-white rounded-full flex items-center justify-center shadow-md text-shadow-md">
+          green
+        </button>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="py-0">
+      <ion-row class="flex items-center">
+        <ng-container *ngIf="event?.webAddress; else noWebAddress">
+          <ion-icon src="assets/images/events/custom-icons/webaddress.svg" class="text-blue-600" />&nbsp;
+          <a [href]="event.webAddress" target="_blank" class="text-blue-600 underline">
+            {{ event.webAddress }}
+          </a>
+        </ng-container>
+        <ng-template #noWebAddress>
+          <ion-icon src="assets/images/events/custom-icons/location.svg" *ngIf="event?.address"/>
+          {{ event.address || 'Non Indirizzato' }}
+        </ng-template>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="py-0">
+      <ion-row>
+        <label class="text-[0.75rem] text-[#17A541] whitespace-nowrap overflow-hidden text-ellipsis max-w-[10rem]">{{'Ingresso a pagamento'}}</label>
+      </ion-row>
+      <ion-row>
+        <label class="text-[0.75rem] text-black whitespace-nowrap overflow-hidden text-ellipsis max-w-full">{{ event.schedule ? (event.schedule | formatDateRange ) : 'Senza Data' }}</label>
+      </ion-row>
+    </ion-grid>
+    <div class="grid grid-cols-2 gap-[0.5rem]">
+      <div class="pl-0 pr-0 pb-0 grid grid-cols-2 gap-[0.5rem] items-end">
+        <button class="bg-[#EC0973] text-white w-full h-[1.8rem] rounded-[2rem] text-[0.7rem] font-semibold m-auto" (click)="loadEventToId()">{{ 'Scopri di più'}}</button>
+        <button class="bg-[#EC0973] text-white w-full h-[1.8rem] rounded-[2rem] text-[0.7rem] font-semibold m-auto" (click)="loadTicketsToId()">{{ 'Partecipa'}}</button>
+      </div>
+      <div class="pl-0 pr-0 pb-0 flex flex-col justify-end items-end">
+        <label class="leading-[1]">Ticket Disponibili</label>
+        <label class="text-[2rem] font-bold leading-[1]">{{ event.tickets || [] | sumQuantity }}</label>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

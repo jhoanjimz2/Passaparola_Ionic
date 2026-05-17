@@ -1,0 +1,43 @@
+.btn-location {
+  position: fixed;
+  top: 0.625rem;
+  right: 0.625rem;
+  z-index: 999;
+  width: 2.188rem;
+  height: 2.188rem;
+  --box-shadow: none;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --border-radius: 1.875rem;
+  --background: #ffffff;
+  --background-activated-opacity: #ffffff;
+  --background-activated: #ffffff;
+  --background-activated-opacity: #ffffff;
+  --background-focused: #ffffff;
+  --background-focused-opacity: #ffffff;
+  --background-hover: #ffffff;
+  --background-hover-opacity: #ffffff;
+  --opacity: 1;
+
+  ion-icon {
+    color: #ff8600;
+  }
+}
+
+.card-no-location {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 99999;
+  background: #ffffff;
+}

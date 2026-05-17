@@ -1,0 +1,84 @@
+<section
+  class="flex rounded-[0.938rem] bg-white relative w-full mt-[0.938rem] shadow-md"
+>
+  <section class="flex-shrink-0 w-[6rem] h-[6rem] rounded-[0.938rem] relative">
+    <img
+      class="w-[6rem] h-[6rem] rounded-[0.938rem] object-cover"
+      [src]="businessSuggestion.urlImage | image"
+    />
+    <div
+      class="border bg-white rounded-[0.688rem] text-[0.625rem] leading-[0.875rem] text-center absolute py-[0.125rem] px-2 bottom-1 left-1"
+      [ngClass]="{
+        'border-[#41C837] text-[#41C837]': businessSuggestion.isActive,
+        'border-[#959595] text-[#959595]': !businessSuggestion.isActive,
+      }"
+    >
+      {{
+        (businessSuggestion.isActive
+          ? "BUSINESS_SUGGESTION.LIST.ACTIVE2"
+          : "BUSINESS_SUGGESTION.LIST.PENDING"
+        ) | translate
+      }}
+    </div>
+  </section>
+  <section
+    class="flex-grow p-[0.625rem] pl-[0.938rem] flex flex-col justify-between overflow-hidden"
+  >
+    <section class="flex items-center justify-between">
+      <div class="text-[1rem] leading-[1.375rem] font-bold">
+        {{ businessSuggestion.name }}
+      </div>
+      <div
+        class="h-[1.375rem] w-[1.375rem] rounded-full bg-[#C5C5C5] flex items-center justify-center relative text-white"
+        [ngClass]="{
+          'bg-[#41C837]': businessSuggestion.isActive,
+          'bg-[#C5C5C5]': !businessSuggestion.isActive,
+        }"
+      >
+        <div
+          *ngIf="!businessSuggestion.isActive"
+          class="top-[-0.313rem] absolute"
+        >
+          ...
+        </div>
+        <ion-icon
+          *ngIf="businessSuggestion.isActive"
+          name="checkmark-done-outline"
+        ></ion-icon>
+      </div>
+    </section>
+    <section
+      class="flex flex-row justify-between items-center text-[0.875rem] leading-[1.188rem] font-semibold"
+    >
+      <div
+        class="truncate w-full"
+        [ngClass]="{
+          'text-[#41C837]': businessSuggestion.isActive,
+          'text-[#C56402]': !businessSuggestion.isActive,
+        }"
+      >
+        {{ businessSuggestion.category?.name }}
+      </div>
+      <div
+        class="flex text-[0.688rem] leading-[0.938rem] w-full text-nowrap"
+        *ngIf="businessSuggestion.isActive"
+      >
+        {{ "BUSINESS_SUGGESTION.LIST.VALID_UNTIL" | translate }}
+        {{ businessSuggestion.validUntil | date : "dd/MM/yy" }}
+      </div>
+    </section>
+    <section class="flex flex-row items-center text-[#646464]">
+      <ion-icon
+        class="h-[0.875rem] w-[0.875rem] pr-1"
+        name="location"
+        [ngClass]="{
+          'text-[#41C837]': businessSuggestion.isActive,
+          'text-[#646464]': !businessSuggestion.isActive,
+        }"
+      ></ion-icon>
+      <div class="text-[0.75rem] leading-[1.063rem] truncate w-full">
+        {{ businessSuggestion.address }}
+      </div>
+    </section>
+  </section>
+</section>

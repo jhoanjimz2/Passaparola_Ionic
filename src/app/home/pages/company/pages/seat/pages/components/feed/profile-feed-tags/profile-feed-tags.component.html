@@ -1,0 +1,88 @@
+<section [hidden]="!active" class="animate__animated profile-menu w-full" [ngClass]="{ 'animate__fadeIn': active }">
+  <app-profile-feed-menu-tags
+    [isPublic]="isPublic"
+    (selectMenuTag)="setMenuTag($event)">
+  </app-profile-feed-menu-tags>
+
+  <section class="w-full p-4">
+    <section [hidden]="!(tabMenuTag === 'products')">
+      <div *ngFor="let product of products" class="flex flex-col gap-2">
+        <app-product-tag
+          [product]="products"
+          [showDetail]="showDetail"
+        ></app-product-tag>
+      </div>
+    </section>
+    <section [hidden]="!(tabMenuTag === 'stores')" class="flex flex-col gap-2">
+      <div *ngFor="let store of stores">
+        <app-store-tag
+          [store]="store"
+          [storeTagProfile]="true"
+          [showDetail]="showDetail"
+          (goStore)="goStore(store.id)"
+        ></app-store-tag>
+      </div>
+    </section>
+    <section [hidden]="!(tabMenuTag === 'events')" class="flex flex-col gap-2">
+      <div *ngFor="let event of events">
+        <app-event-tag
+          [event]="event"
+          [showDetail]="showDetail"
+        ></app-event-tag>
+      </div>
+    </section>
+    <section [hidden]="!(tabMenuTag === 'projects')" class="flex flex-col gap-2">
+      <div *ngFor="let project of projects">
+        <app-investment-tag
+          [project]="project"
+          [showDetail]="showDetail"
+        ></app-investment-tag>
+      </div>
+    </section>
+  </section>
+
+  <ion-infinite-scroll
+    *ngIf="tabMenuTag === 'products'"
+    (ionInfinite)="loadMoreProducts($event)"
+    threshold="100px"
+    [disabled]="!hasMoreProducts">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-infinite-scroll
+    *ngIf="tabMenuTag === 'stores'"
+    (ionInfinite)="loadMoreStores($event)"
+    threshold="100px"
+    [disabled]="!hasMoreStores">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-infinite-scroll
+    *ngIf="tabMenuTag === 'events'"
+    (ionInfinite)="loadMoreEvents($event)"
+    threshold="100px"
+    [disabled]="!hasMoreEvents">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+  <ion-infinite-scroll
+    *ngIf="tabMenuTag === 'projects'"
+    (ionInfinite)="loadMoreProjects($event)"
+    threshold="100px"
+    [disabled]="!hasMoreProjects">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+
+
+</section>

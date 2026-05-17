@@ -1,0 +1,81 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container--text-center">
+      <ion-text>
+        <span class="main-container--f-w-b">{{
+          "WALLET.MODAL_WITHDRAW.BALANCE_AVAIBLE" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__text-atm">{{ "ATM/€ " }}</span>
+        <span class="main-container--f-z-36">{{
+          wallet.balance! | formattNumber : "EUR" : "symbol" : "it" : 2
+        }}</span>
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content class="main-container__card__content">
+      <form [formGroup]="formWithdraw" (ngSubmit)="recharge()">
+        <ion-label>{{ "WALLET.MODAL_WITHDRAW.AMOUNT" | translate }}</ion-label>
+        <br />
+        <ion-label class="main-container__card__content__symbol-eur"
+          >€</ion-label
+        >
+        <input
+          (focus)="focus()"
+          (focusout)="losesFocus()"
+          class="main-container__card__content__input"
+          formControlName="amount"
+          name="amount"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          inputmode="numeric"
+          separatorLimit="99999999"
+        />
+      </form>
+
+      <div class="main-container__card__content__amounts">
+        <ion-button
+          *ngFor="let amount of amounts"
+          (click)="setAmount(amount)"
+          class="main-container__card__content__btn-amount"
+        >
+          {{ amount + " €" }}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="main-container__payment-method-card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto">
+          <div class="main-container__payment-method-card__icon-card">
+            <ion-icon name="passaparola-museum"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col
+          size="auto"
+          class="main-container__payment-method-card__col-text"
+        >
+          <ion-text>
+            <span
+              >{{ "WALLET.RECHARGE.TRANSFER" | translate }} {{ " SEPA" }}
+            </span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <div class="main-container__btn-recharge">
+    <ion-button (click)="recharge()" [disabled]="formWithdraw.invalid">{{
+      "WALLET.RECHARGE.GET_COORDINATES" | translate
+    }}</ion-button>
+  </div>
+</ion-content>

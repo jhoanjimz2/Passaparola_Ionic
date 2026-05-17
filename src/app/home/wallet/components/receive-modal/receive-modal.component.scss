@@ -1,0 +1,50 @@
+.main-container {
+  box-shadow: none;
+  background-color: transparent;
+  overflow: auto;
+
+  &__left-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.813rem;
+    color: #3cc3a2;
+  }
+
+  &__text {
+    font-size: 1.25rem;
+    color: #3cc3a2;
+    font-weight: bold;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  &__right-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.75rem;
+    color: #3cc3a2;
+  }
+
+  ion-grid,
+  ion-row {
+    margin: 0;
+    padding: 0;
+  }
+
+  ion-row {
+    background: #ffffff;
+    height: 4.563rem;
+    border-radius: 1.563rem;
+    padding-left: 0.938rem;
+    padding-right: 0.938rem;
+    cursor: pointer;
+    margin-bottom: 1.25rem;
+  }
+
+  ion-card-content {
+    overflow: auto;
+  }
+}

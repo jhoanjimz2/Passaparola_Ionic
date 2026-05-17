@@ -1,0 +1,27 @@
+.color1 {
+  &__text {
+    color: #35B726;
+  }
+
+  &__bg {
+    background-color: #35B726;
+  }
+
+  &__border {
+    border: 1px solid #35B726;
+  }
+}
+
+.color2 {
+  &__text {
+    color: #33B7E8;
+  }
+
+  &__bg {
+    background-color: #33B7E8;
+  }
+
+  &__border {
+    border: 1px solid #33B7E8;
+  }
+}

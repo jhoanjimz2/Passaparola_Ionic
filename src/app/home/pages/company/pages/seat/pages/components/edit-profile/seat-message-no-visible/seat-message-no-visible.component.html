@@ -1,0 +1,33 @@
+<section class="flex flex-col justify-center items-center pt-[33px] px-[40px]">
+  <article
+    class="flex flex-row justify-center items-center h-[66px] w-[66px] bg-[#DB0000] rounded-full text-[10px] leading-[11px] text-white"
+  >
+    <ion-icon class="text-[40px]" name="alert-outline"></ion-icon>
+  </article>
+
+  <section class="text-[22px] leading-[30px] mt-[40px]">
+    {{ (sessionService.isProfessionalAdministrative
+        ? 'SEAT.COMPONENT.MESSAGE_NOT_VISIBLE.TITLE_PUBLIC'
+        : 'SEAT.COMPONENT.MESSAGE_NOT_VISIBLE.TITLE') | translate }}
+  </section>
+
+  <section class="text-[14px] leading-[17px] mt-[20px]">
+    {{ (sessionService.isProfessionalAdministrative
+        ? 'SEAT.COMPONENT.MESSAGE_NOT_VISIBLE.DESCRIPTION_PUBLIC'
+        : 'SEAT.COMPONENT.MESSAGE_NOT_VISIBLE.DESCRIPTION') | translate }}
+  </section>
+
+  <section
+    class="text-center text-[14px] leading-[17px] mt-[40px] font-bold bg-black text-white rounded-full w-full py-[26px]"
+    (click)="onGoToModify()"
+  >
+    {{ "SEAT.COMPONENT.MESSAGE_NOT_VISIBLE.COMPLETE_SEAT" | translate }}
+  </section>
+
+  <section
+    class="text-[14px] leading-[17px] mt-[40px] font-bold"
+    (click)="onGoToAssistant()"
+  >
+    {{ "SEAT.COMPONENT.MESSAGE_NOT_VISIBLE.I_NEED_ASSISTANCE" | translate }}
+  </section>
+</section>

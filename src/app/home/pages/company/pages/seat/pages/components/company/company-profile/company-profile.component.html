@@ -1,0 +1,28 @@
+<section class="w-full pb-8 bg-white">
+  <p (click)="toggleExpand(); description()" [ngClass]="{ 'line-clamp-3': !expanded && showDetail }" class="text-[0.875rem] text-[#575A61] font-normal m-0 px-4 mt-4 text-justify">
+
+      {{ seat.targetInfo?.seatInfo?.description?.length ?  seat.targetInfo?.seatInfo?.description : ("SEAT.DESCRIPTION" | translate) }}
+  </p>
+
+  <app-gallery
+    [gallery]="seat.targetInfo?.seatInfo?.pictureGallery!"
+    (viewAll)="gallery()"
+  >
+  </app-gallery>
+
+  <!-- <app-reviews></app-reviews> -->
+
+  <app-location
+    *ngIf="seat.targetInfo?.seatInfo?.type?.description==='physical'"
+    [latitude]="+seat.targetInfo?.seatInfo?.latitude!"
+    [longitude]="+seat.targetInfo?.seatInfo?.longitude!"
+    (click)="location()"
+  >
+  </app-location>
+
+  <app-menu
+    [menus]="menus"
+  >
+  </app-menu>
+
+</section>

@@ -1,0 +1,129 @@
+<app-header [backIcon]="true" [border]="true" *ngIf="user && seat"></app-header>
+
+<ion-content [fullscreen]="true" *ngIf="user && seat">
+  <ion-card class="main-container">
+    <ion-label class="main-container--f-w-semi"
+      >{{"PROMOTIONAL_MAT.TITLE" | translate}}</ion-label
+    >
+
+    <br />
+    <br />
+    <select name="select">
+      <!-- <option value="">Clicca per scegliere il formato</option> -->
+      <option value="1">10 x 20 cm</option>
+    </select>
+
+    <br />
+    <br />
+
+    <div class="main-container__content">
+      <div class="main-container__content__img-card" id="material">
+        <div class="main-container__content__seat-card">
+          <section class="main-container--text-center">
+            <span class="main-container--f-z-12"
+              >{{"PROMOTIONAL_MAT.PAY_RECHARGE" | translate}}</span
+            >
+            <br />
+            <div class="main-container__content__seat-card__img">
+              <img
+                src="../../../../../../assets/images/logo-text.png"
+                alt="logo"
+              />
+            </div>
+          </section>
+
+          <div class="main-container--div-flex">
+            <div class="main-container--w-59">
+              <div
+                class="main-container__content__seat-card__cashback"
+                [ngClass]="{'main-container--align-center': !downloading, 'main-container--align-start': downloading}"
+              >
+                <div class="main-container--text-center">
+                  <span
+                    class="main-container__content__seat-card__percentaje-text"
+                    >{{seat.cashBackPercentage}}%</span
+                  >
+                  <br />
+                  <span class="main-container__content__seat-card__label"
+                    >{{"PROMOTIONAL_MAT.CASHBACK" | translate}}</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="main-container__content__seat-card__qr">
+              <ngx-qrcode-styling #qrcode [config]="configQrWallet" />
+            </div>
+            <div class="main-container--w-59">
+              <div
+                class="main-container__content__seat-card__percentage"
+                [ngClass]="{'main-container--align-center': !downloading, 'main-container--align-start': downloading}"
+              >
+                <section class="main-container--text-center">
+                  <span
+                    class="main-container__content__seat-card__percentaje-text"
+                    >{{seat.rewardPercentage}}%</span
+                  >
+                  <br />
+                  <span class="main-container__content__seat-card__label"
+                    >{{"PROMOTIONAL_MAT.REWARD" | translate}}</span
+                  >
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-container__content__community-qr">
+          <ngx-qrcode-styling #qrcode2 [config]="configQrCommunity" />
+        </div>
+
+        <div class="main-container__content__icon-download">
+          <img src="assets/images/download-outline.png" alt="logo" />
+        </div>
+
+        <div class="main-container__content__bottom-card">
+          <div class="main-container--div-flex">
+            <div class="main-container__content__text-bottom">
+              <section class="main-container--text-center">
+                <span class="main-container--f-z-10"
+                  >{{"PROMOTIONAL_MAT.DOWNLOAD_APP" | translate}}</span
+                >
+                <br />
+                <span class="main-container--f-w-b"
+                  >{{"PROMOTIONAL_MAT.YOUR_SUGGESTIONS" | translate}}</span
+                >
+                <br />
+                <span class="main-container--f-z-8"
+                  >{{"www.passaparola.com"}}</span
+                >
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div>
+      <ion-grid mode="md">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button
+              mode="md"
+              (click)="downloadPdf()"
+              class="main-container__content__btn-pdf"
+              >{{"PROMOTIONAL_MAT.SCARIA_PDF" | translate}}</ion-button
+            >
+          </ion-col>
+          <ion-col size="6">
+            <ion-button mode="md" class="main-container__content__btn-print"
+              >{{"PROMOTIONAL_MAT.PRINT" | translate}}</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card>
+</ion-content>

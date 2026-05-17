@@ -1,0 +1,50 @@
+
+<div class="relative w-full p-2 pb-4 mb-4" (click)="viewQrVoucher()">
+  <div class="absolute inset-0 bg-[#F01710] w-full min-h-full rounded-[20px] rotate-3"></div>
+  <div class="relative z-10 bg-[#F9EBCE] w-full rounded-[20px] shadow-lg p-4 grid grid-cols-2 h-fit">
+    <div class="col-span-2 grid grid-cols-2 overflow-hidden">
+      <label [ngClass]="toggle ? 'col-span-1' :'col-span-2'" class="text-[16px] text-black font-bold truncate">{{voucher.name}}</label>
+      <div *ngIf="toggle" class="col-span-1 text-end">
+        <ion-toggle (ionChange)="changeToggle($event)" [(ngModel)]="voucher.isActive" mode="md" [checked]="true">
+          <span [ngClass]="voucher.isActive ? 'text-[#35B726]' : 'text-[#C5C5C5]'">
+            {{ voucher.isActive ? "attivo" : "sospeso" }}
+          </span>
+        </ion-toggle>
+      </div>
+    </div>
+    <div class="col-span-2 flex flex-col overflow-hidden">
+      <label class="text-[14px] text-black line-clamp-1">{{voucher.description}}</label>
+    </div>
+    <div class="col-span-2 grid grid-cols-6 mt-2 z-10">
+      <div class="col-span-2">
+        <img
+          [src]="voucher.pictureUlrFile | imageEvent"
+          class="w-full aspect-square rounded-[1rem] object-cover"
+        >
+      </div>
+      <div class="col-span-4 flex flex-col h-full">
+        <div class="grid grid-cols-3 gap-2 pl-2">
+          <div class="text-center flex flex-col justify-center items-center h-[3rem] bg-white rounded-[.5rem]">
+            <label class="text-[12px] font-semibold">Valore</label>
+            <label class="text-[14px] font-bold">€1.744,17</label>
+          </div>
+          <div class="text-center flex flex-col justify-center items-center h-[3rem] bg-white rounded-[.5rem]">
+            <label class="text-[12px] font-semibold">Prezzo</label>
+            <label class="text-[14px] font-bold">€1.499,99</label>
+          </div>
+          <div class="text-center flex flex-col justify-center items-center h-[3rem] bg-white rounded-[.5rem]">
+            <label class="text-[12px] font-semibold">Disponibili</label>
+            <label class="text-[14px] font-bold">100</label>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 pl-2 pt-2 flex-1 ">
+          <div class="col-span-12 flex flex-col justify-center h-full bg-white text-center border-2 border-black border-dashed rounded-[10px]">
+            <label class="text-[0.875rem] italic text-black">da utilizzare entro il</label>
+            <label class="text-[1.75rem] font-bold text-red-600">{{voucher.dateTo | date:'dd/MM/yyyy'}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img src="assets/images/events/custom-icons/bg-card-voucher.svg" class="w-full absolute left-0 bottom-0">
+  </div>
+</div>

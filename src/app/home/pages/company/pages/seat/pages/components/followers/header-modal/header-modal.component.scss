@@ -1,0 +1,50 @@
+ion-header {
+  background-color: white;
+  background: white;
+  --background: white;
+  box-shadow: 0 0.05rem 0.05rem 0 rgba(154, 154, 154, 0.3);
+}
+
+ion-toolbar {
+  background-color: white;
+  background: white;
+  --background: white;
+}
+
+ion-content {
+  --background: #f9f9f9;
+}
+
+ion-button {
+  --background: #00000012;
+  width: 1.875rem;
+  height: 1.875rem;
+  min-height: 1.875rem;
+  border-radius: 3.125rem;
+  --border-radius: 3.125rem;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-bottom: 0;
+  --padding-top: 0;
+  box-shadow: none;
+  --box-shadow: none;
+}
+
+// ← Esto es lo que faltaba
+.col-logo {
+  display: flex;
+  align-items: center;
+  padding-left: 0.625rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+}
+
+.end-buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}

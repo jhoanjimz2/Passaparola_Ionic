@@ -1,0 +1,60 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onNextStep()"
+  autocomplete="off"
+  class="h-full"
+>
+  <section class="p-3 pb-10 h-full flex flex-col justify-between">
+    <section class="flex flex-col justify-between">
+      <section
+        class="flex flex-col items-center justify-center text-center px-12 pt-16"
+      >
+        <section class="text-[2.25rem] text-[#1D0F01] font-semibold">
+          {{ "BUSINESS_SUGGESTION.STEP3.TITLE1" | translate }}
+        </section>
+        <section class="text-[0.938rem] text-[#1D0F01]">
+          {{ "BUSINESS_SUGGESTION.STEP3.TITLE2" | translate }}
+        </section>
+      </section>
+      <section class="pt-7">
+        <section class="flex flex-col h-full">
+          <textarea
+            #description
+            class="h-[14rem] bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            [placeholder]="'BUSINESS_SUGGESTION.STEP3.DESCRIPTION' | translate"
+            formControlName="description"
+            name="description"
+            autocomplete="off"
+          >
+          </textarea>
+          <div
+            *ngIf="displayMessage.description"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.description }}
+          </div>
+        </section>
+      </section>
+    </section>
+    <section class="grid grid-cols-2 gap-3 text-[0.938rem] leading-[1.375rem]">
+      <div
+        class="bg-white border border-[#00B1FF] text-[#00B1FF] py-4 px-4 rounded-full flex items-center justify-center"
+        (click)="onPreviousStep()"
+      >
+        {{ "BUSINESS_SUGGESTION.PREVIOUS" | translate }}
+      </div>
+      <button
+        class="bg-[#00B1FF] hover:bg-[#00b3ffcb] text-white py-4 px-4 rounded-full"
+        type="submit"
+        [disabled]="saving"
+      >
+        {{ "BUSINESS_SUGGESTION.NEXT" | translate }}
+      </button>
+    </section>
+  </section>
+</form>

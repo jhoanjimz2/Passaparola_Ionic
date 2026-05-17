@@ -1,0 +1,13 @@
+<section class="category-list">
+  <swiper-container #swiperCategoryJointlybuy class="category-list__slider">
+    <swiper-slide *ngFor="let category of categories" class="category-list__slide">
+      <div class="category-card" routerLink="/pages/jointlybuy/view-willbuys-category/{{category.id}}">
+        <img
+          class="category-card__image"
+          [src]="category.urlImage ?? 'https://placehold.co/50x50?text=Category'"
+          [alt]="category.description">
+        <span class="category-card__name">{{ category.description }}</span>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</section>

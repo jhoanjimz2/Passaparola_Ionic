@@ -1,0 +1,24 @@
+ion-header {
+  box-shadow: 0 0.05rem 0.05rem 0 rgba(154, 154, 154, 0.3);
+}
+
+ion-toolbar {
+  --background: linear-gradient(to right, #00A8FF 0%, #00A8FF 60%, #005480 100%);
+  --min-height: 2.875rem;
+  position: relative;
+}
+.button-back {
+  height: 1.75rem !important;
+  width: 1.75rem !important;
+  font-size: 1.2rem !important;
+  border-radius: 0.875rem !important;
+  background: white !important;
+  border-color: black !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  color: black !important;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%)
+}

@@ -1,0 +1,49 @@
+<div class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-content class="main-container--text-center">
+      <ion-text>
+        <ion-icon
+          class="main-container__card__icon"
+          name="checkmark-done-circle"
+        ></ion-icon>
+
+        <br />
+        <br />
+
+        <span class="main-container__card__title">{{
+          "CREATE_NFC_SUCCESS.CONGRATULATIONS" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__text_1">{{
+          "CREATE_NFC_SUCCESS.YOU_ASSOCIATED" | translate
+        }}</span>
+        <br />
+        <br />
+        <span class="main-container__card__text_1">{{
+          "CREATE_NFC_SUCCESS.TEXT_INFO" | translate
+        }}</span>
+
+        <br />
+        <br />
+
+        <span class="main-container__card__text_2">{{
+          "CREATE_NFC_SUCCESS.ENJOY" | translate
+        }}</span>
+
+        <br />
+        <br />
+
+        <div class="main-container__card__img">
+          <img src="assets/images/divice-nfc-logo.png" alt="nfc" />
+        </div>
+      </ion-text>
+
+      <br />
+      <br />
+
+      <ion-button (click)="closeModal()">
+        {{ "WALLET.MODAL_TRANSFER_ACCEPT_REJECT.BACK" | translate }}
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</div>

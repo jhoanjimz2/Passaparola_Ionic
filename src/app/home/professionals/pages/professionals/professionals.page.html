@@ -1,0 +1,40 @@
+<!-- professionals.page.html -->
+<ion-content [scrollEvents]="true">
+  <section class="p-4">
+    <app-search-bar
+      [placeholder]="'Buscar profesionales...'"
+      (searchConfirm)="onSearchConfirm($event)"
+      (filterClick)="onFilterClick()"
+    ></app-search-bar>
+
+    <app-slide-category></app-slide-category>
+
+    <!-- Lista de profesionales -->
+    <div class="professionals-list">
+      <app-professional-card
+        *ngFor="let professional of filteredProfessionals; trackBy: trackByProfessional"
+        [professional]="professional"
+      ></app-professional-card>
+
+      <!-- Estado vacío -->
+      <div *ngIf="!isLoading && filteredProfessionals.length === 0" class="empty-state">
+        <p>No se encontraron profesionales</p>
+        <p class="text-muted">Intenta con otros filtros</p>
+      </div>
+    </div>
+
+    <!-- Infinite Scroll -->
+    <ion-infinite-scroll
+      threshold="100px"
+      (ionInfinite)="onIonInfinite($event)"
+      [disabled]="!hasMoreData"
+    >
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        loadingText="Cargando más profesionales..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </section>
+</ion-content>

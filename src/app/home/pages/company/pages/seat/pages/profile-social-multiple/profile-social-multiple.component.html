@@ -1,0 +1,174 @@
+
+<ion-menu
+  *ngIf="paramsLoaded && !isPublic && !showDetail"
+  type="push"
+  menuId="main-menu"
+  contentId="profile-content"
+  swipe-gesture="false"
+>
+  <app-menu></app-menu>
+</ion-menu>
+
+<div id="profile-content" class="w-full h-full">
+  <app-header
+    [backIcon]="!isPublic"
+    [buttonMenu]="!showDetail"
+    [border]="true">
+  </app-header>
+  <ion-content>
+    <ion-refresher
+      *ngIf="!isPublic"
+      slot="fixed"
+      (ionRefresh)="handleRefresh($event)"
+      pullFactor="0.5"
+      pullMin="100"
+      pullMax="200">
+      <ion-refresher-content
+        pullingIcon="chevron-down-circle-outline"
+        refreshingSpinner="circles">
+      </ion-refresher-content>
+    </ion-refresher>
+
+    <!-- SKELETON -->
+    <ng-container *ngIf="isLoading">
+      <div class="profile-skeleton">
+
+        <div class="profile-skeleton__header">
+          <ion-skeleton-text animated class="profile-skeleton__avatar"></ion-skeleton-text>
+          <div class="profile-skeleton__info">
+            <ion-skeleton-text animated class="profile-skeleton__name"></ion-skeleton-text>
+            <ion-skeleton-text animated class="profile-skeleton__username"></ion-skeleton-text>
+            <div class="profile-skeleton__stats">
+              <ion-skeleton-text animated class="profile-skeleton__stat"></ion-skeleton-text>
+              <ion-skeleton-text animated class="profile-skeleton__stat"></ion-skeleton-text>
+              <ion-skeleton-text animated class="profile-skeleton__stat"></ion-skeleton-text>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-skeleton__meta">
+          <ion-skeleton-text animated class="profile-skeleton__meta-line profile-skeleton__meta-line--50"></ion-skeleton-text>
+          <ion-skeleton-text animated class="profile-skeleton__meta-line profile-skeleton__meta-line--40"></ion-skeleton-text>
+          <ion-skeleton-text animated class="profile-skeleton__meta-line profile-skeleton__meta-line--60"></ion-skeleton-text>
+          <ion-skeleton-text animated class="profile-skeleton__meta-line profile-skeleton__meta-line--45"></ion-skeleton-text>
+        </div>
+
+        <div class="profile-skeleton__actions">
+          <ion-skeleton-text animated class="profile-skeleton__action profile-skeleton__action--wide"></ion-skeleton-text>
+          <ion-skeleton-text animated class="profile-skeleton__action"></ion-skeleton-text>
+          <ion-skeleton-text animated class="profile-skeleton__action"></ion-skeleton-text>
+        </div>
+
+        <div class="profile-skeleton__grid">
+          <ion-skeleton-text
+            animated
+            class="profile-skeleton__post"
+            *ngFor="let i of [1,2,3,4,5,6]">
+          </ion-skeleton-text>
+        </div>
+
+      </div>
+    </ng-container>
+
+    <!-- CONTENIDO REAL -->
+    <ng-container *ngIf="!isLoading">
+
+      <app-tabs-profile
+        [isPublic]="isPublic"
+        [tab]="profileTabSelect"
+        (selectTab)="viewProfile($event)">
+      </app-tabs-profile>
+
+      <app-header-profile
+        [tab]="profileTabSelect"
+        [isPublic]="isPublic"
+        [followers]="followers"
+        [mutual]="mutual"
+        (clickButton)="clickButton($event)"
+        (editButton)="editButton($event)">
+      </app-header-profile>
+
+      <app-profile-feed
+        [hidden]="profileTabSelect != 'tags'"
+        [isPublic]="isPublic"
+        (selectTabFeed)="viewFeedTabs($event)"
+        [myPosts]="myPosts"
+        [postsFeedLikes]="postsFeedLikes"
+        [postsFeedSaveds]="postsFeedSaveds">
+      </app-profile-feed>
+
+      <app-company-profile
+        [isPublic]="isPublic"
+        [menus]="menus"
+        (editButton)="editButton($event)"
+        [hidden]="profileTabSelect != 'business'">
+      </app-company-profile>
+
+      <app-shopping-profile
+        [isPublic]="isPublic"
+        [tab]="profileTabSelect"
+        [hidden]="profileTabSelect != 'shopping'">
+      </app-shopping-profile>
+
+      <ion-infinite-scroll
+        *ngIf="tabFeed === 'feed' && profileTabSelect === 'tags'"
+        (ionInfinite)="loadMore($event)"
+        threshold="100px"
+        [disabled]="!hasMore || isPublic">
+        <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+      <ion-infinite-scroll
+        *ngIf="tabFeed === 'like' && profileTabSelect === 'tags'"
+        (ionInfinite)="loadMoreLike($event)"
+        threshold="100px"
+        [disabled]="!hasMoreLike || isPublic">
+        <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+      <ion-infinite-scroll
+        *ngIf="tabFeed === 'saved' && profileTabSelect === 'tags'"
+        (ionInfinite)="loadMoreSaved($event)"
+        threshold="100px"
+        [disabled]="!hasMoreSaved || isPublic">
+        <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+      <ion-infinite-scroll
+        *ngIf="tabFeed === 'shared' && profileTabSelect === 'tags'"
+        (ionInfinite)="loadMoreShared($event)"
+        threshold="100px"
+        [disabled]="!hasMoreShared || isPublic">
+        <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+      <section
+        *ngIf="!showDetail && !operativeMode && !seat.targetInfo?.seatInfo?.isVisible && !isPublic"
+        class="profile-publish">
+        <section class="profile-publish__overlay"></section>
+        <section class="profile-publish__btn profile-publish__btn--outline" (click)="onSave()">
+          {{ "SEAT.SAVE" | translate }}
+        </section>
+        <section class="profile-publish__btn profile-publish__btn--filled" (click)="onPublish()">
+          {{ "SEAT.PUBLISH" | translate }}
+        </section>
+      </section>
+
+    </ng-container>
+
+  </ion-content>
+
+
+
+  <ion-fab
+    *ngIf="!showDetail && operativeMode && seat.targetInfo?.seatInfo?.isVisible && !isPublic"
+    (click)="createSocialTag()"
+    horizontal="end"
+    vertical="bottom"
+    slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</div>

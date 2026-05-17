@@ -1,0 +1,18 @@
+<div class="display-none-scanner">
+  <ngx-scanner-qrcode #actionCameraInit></ngx-scanner-qrcode>
+</div>
+<!-- <ion-split-pane contentId="main-content" when="sm"> -->
+<ion-menu
+  *ngIf="sessionService.isCompanyLegal || sessionService.isProfessionalAdministrative"
+  type="push"
+  menuId="menu-layout"
+  contentId="main-content"
+  swipe-gesture="false"
+>
+  <app-menu></app-menu>
+</ion-menu>
+<ion-content id="main-content" fullscreen="true">
+  <app-header></app-header>
+  <app-navbar></app-navbar>
+</ion-content>
+<!-- </ion-split-pane> -->

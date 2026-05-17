@@ -1,0 +1,341 @@
+<div class="main-container">
+  <ion-card class="main-container--w-100-p">
+    <div class="main-container--w-100-p">
+      <ion-card-header>
+        <ion-text>
+          <span class="main-container--f-z-30">{{
+            "CHANGE_PIN.RECOVER" | translate
+          }}</span>
+          <br />
+          <span class="main-container--f-z-39 main-container--f-w-semi">{{
+            "CHANGE_PIN.YOUR_PIN" | translate
+          }}</span>
+          <br />
+          <span *ngIf="!phoneIsChecked" class="main-container--f-z-15">{{
+            "CHANGE_PIN.ENTER_YOUR_PHONE" | translate
+          }}</span>
+
+          <!-- <span
+            *ngIf="phoneIsChecked && !smsCodeId"
+            class="main-container--f-z-15"
+          >
+            {{ "CHANGE_PIN.WE_FOUND" | translate }}
+          </span> -->
+          <!-- <span
+            *ngIf="phoneIsChecked && !smsCodeId && user.id && company.id"
+            class="main-container--f-z-15 main-container--f-w-b"
+          >
+            {{ 2 }}
+          </span> -->
+          <!-- <span
+            *ngIf="phoneIsChecked && !smsCodeId && !user.id && company.id"
+            class="main-container--f-z-15 main-container--f-w-b"
+          >
+            {{ 1 }}
+          </span> -->
+          <!-- <span
+            *ngIf="phoneIsChecked && !smsCodeId && user.id && !company.id"
+            class="main-container--f-z-15 main-container--f-w-b"
+          >
+            {{ 1 }}
+          </span> -->
+          <!-- <span
+            *ngIf="phoneIsChecked && !smsCodeId"
+            class="main-container--f-z-15 main-container--f-w-b"
+          >
+            {{ "CHANGE_PIN.PROFILES" | translate }}
+          </span> -->
+          <!-- <span
+            *ngIf="phoneIsChecked && !smsCodeId"
+            class="main-container--f-z-15"
+          >
+            {{
+              "Passaparola per questo numero di telefono. Scegline uno per recuperare il PIN"
+                | translate
+            }}
+          </span> -->
+
+          <span *ngIf="smsCodeId" class="main-container--f-z-15">
+            {{ "CHANGE_PIN.ENTER_YOUR_PHONE" | translate }}
+          </span>
+
+          <!-- <span class="main-container--f-w-b main-container--f-z-14">
+            {{ "CHANGE_PIN.CHANGE_PIN" | translate }}
+          </span>
+          <br />
+          <br />
+          <span class="main-container--f-z-14">
+            {{ "CHANGE_PIN.ENTER_PHONE_NUMBER" | translate }}
+          </span> -->
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content class="main-container--w-100-p">
+        <form
+          *ngIf="!phoneIsChecked || smsCodeId"
+          [formGroup]="formRegister"
+          (ngSubmit)="checkPhoneAccount()"
+        >
+          <div class="main-container__form-phone">
+            <ion-label>{{ "SING_UP.PHONE_NUMBER" | translate }}</ion-label>
+            <ion-grid>
+              <ion-row class="main-container__form-phone__input">
+                <ion-col size="3" class="main-container--b-r-1">
+                  <ion-select
+                    formControlName="phonePrefix"
+                    name="phonePrefix"
+                    color="primary"
+                    placeholder="{{ 'SING_UP.COUNTRY' | translate }}"
+                    (ionChange)="
+                      getIdCountry(formRegister.controls['phonePrefix'].value)
+                    "
+                    interface="popover"
+                  >
+                    <ion-select-option
+                      *ngFor="let country of countries"
+                      [value]="country.phonePrefix"
+                    >
+                      {{ country.phonePrefix }} {{ country.code }}
+                    </ion-select-option>
+                  </ion-select></ion-col
+                >
+                <ion-col size="9">
+                  <input
+                    formControlName="phone"
+                    name="phone"
+                    placeholder=""
+                    autocomplete="off"
+                    type="tel"
+                  />
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button
+              type="submit"
+              *ngIf="!phoneIsChecked"
+              [disabled]="formRegister.invalid"
+              expand="block"
+            >
+              {{ "CHANGE_PIN.VERIFICATION" | translate }}
+            </ion-button>
+          </div>
+        </form>
+
+        <!-- <div
+          *ngIf="!smsCodeId && phoneIsChecked"
+          class="main-container--w-100-p"
+        >
+          <div
+            *ngIf="user.id"
+            (click)="getCode(); pinChange = 'user'"
+            class="main-container__account-card"
+          >
+            <ion-grid class="main-container--w-100-p">
+              <ion-row>
+                <ion-col size="auto">
+                  <div
+                    class="main-container__account-card__img-profile"
+                    [style.background-image]="
+                      'url(' +
+                      (user.profile?.profilePictureUrlFile! | image) +
+                      ')'
+                    "
+                  ></div>
+                </ion-col>
+                <ion-col size="8">
+                  <ion-text>
+                    <span class="main-container__account-card__title">{{
+                      "CHANGE_PIN.PERSONAL_PROFILE" | translate
+                    }}</span>
+                    <br />
+                    <span class="main-container--f-z-14"
+                      >{{ user.profile?.name }}
+                      {{ user.profile?.lastName }}</span
+                    >
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+          <div
+            *ngIf="company.id"
+            class="main-container__account-card"
+            (click)="getCode(); pinChange = 'company'"
+          >
+            <ion-grid class="main-container--w-100-p">
+              <ion-row>
+                <ion-col size="auto">
+                  <div class="main-container__account-card__img">
+                    <img src="assets/images/legal-seat-icon.png" alt="" />
+                  </div>
+                </ion-col>
+                <ion-col size="8">
+                  <ion-text>
+                    <span class="main-container__account-card__title">{{
+                      "CHANGE_PIN.LEGAL_SEAT" | translate
+                    }}</span>
+                    <br />
+                    <span class="main-container--f-z-14"
+                      >{{ user.profile?.name }}
+                    </span>
+                    <br />
+                    <span
+                      class="main-container--f-z-14 main-container--text-success"
+                      >{{ "CHANGE_PIN.FULL_ACCESS" | translate }}</span
+                    >
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div> -->
+
+        <div *ngIf="smsCodeId" class="main-container__form-check-phone">
+          <form [formGroup]="formCode" (ngSubmit)="checkCode()">
+            <ion-label>{{ "SING_UP.VERIFICATION_CODE" | translate }}</ion-label>
+            <div class="main-container__form-check-phone__code">
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code1
+                  formControlName="code1"
+                  name="code1"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(1)"
+                  type="tel"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code1')"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code2
+                  formControlName="code2"
+                  name="code2"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(2)"
+                  type="tel"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code2')"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code3
+                  formControlName="code3"
+                  name="code3"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(3)"
+                  type="tel"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code3')"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code4
+                  formControlName="code4"
+                  name="code4"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(4)"
+                  type="tel"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code4')"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code5
+                  formControlName="code5"
+                  name="code5"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(5)"
+                  type="tel"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code5')"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code6
+                  formControlName="code6"
+                  name="code6"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="checkPinCount()"
+                  type="tel"
+                  inputmode="numeric"
+                  (focus)="cleanInput('code6')"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+            </div>
+            <br />
+            <div class="main-container__form-check-phone--text-center">
+              <ion-label>{{ "CHANGE_PIN.VALID_FOR" | translate }}</ion-label>
+            </div>
+            <div class="main-container__form-check-phone__progress">
+              <circle-progress
+                [percent]="percent"
+                [radius]="30"
+                text
+                [outerStrokeWidth]="5"
+                [innerStrokeWidth]="0"
+                [outerStrokeColor]="'#FF3D00'"
+                [innerStrokeColor]="'#FF3D00'"
+                [animation]="true"
+                [animationDuration]="1"
+              ></circle-progress>
+              <div class="main-container__form-check-phone__time">
+                {{ minutes }}:{{ seconds }}
+              </div>
+              <div
+                class="main-container__form-check-phone__border-bottom"
+              ></div>
+            </div>
+            <div
+              class="main-container__form-check-phone--text-center main-container--m-t-30"
+            >
+              <ion-text>
+                <span>{{ "SING_UP.NOT_RECEIVED_CODE" | translate }}</span>
+                <br />
+                <span
+                  (click)="getCode()"
+                  class="main-container__form-check-phone__text-resend"
+                  >{{ "SING_UP.CLICK_HERE" | translate }}</span
+                >
+                <br />
+                <span class="main-container__form-check-phone__pin-count"
+                  >{{ pinCount }}/6</span
+                >
+              </ion-text>
+            </div>
+            <ion-button
+              type="submit"
+              *ngIf="smsCodeId && timer > 0"
+              [disabled]="formCode.invalid"
+              expand="block"
+            >
+              {{ "CHANGE_PIN.VERIFY_CODE" | translate }}
+            </ion-button>
+          </form>
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>

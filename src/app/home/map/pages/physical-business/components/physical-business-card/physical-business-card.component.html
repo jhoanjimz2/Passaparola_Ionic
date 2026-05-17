@@ -1,0 +1,119 @@
+<ion-card class="main-card">
+  <ion-header class="ion-no-border">
+    <div class="horizontal-scroll-image">
+      <!-- <img
+        src="{{ picture }}"
+        *ngFor="let picture of item.pictureGallery"
+        style="
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        "
+      /> -->
+      <div
+        (click)="goSeatDetail()"
+        class="image"
+        *ngFor="let picture of item.pictureGallery"
+        [style.background-image]="'url(' + (picture | image) + ')'"
+      ></div>
+    </div>
+  </ion-header>
+
+  <ion-card-content class="p-top-0">
+    <ion-grid>
+      <ion-row class="ion-align-items-end">
+        <ion-col size="9" class="main-card--p-0">
+          <ion-grid>
+            <ion-row>
+              <h2 (click)="goSeatDetail()" class="main-card__name">
+                {{ item.name }}
+              </h2>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+            <ion-row class="ion-align-items-center">
+              <!-- <p class="main-card__description">Ristorante | €€</p> -->
+              <p class="nearest-product-black main-card__category">
+                {{ item.categories[0].companyCategoryTranslation.description }}
+              </p>
+              <span> €€</span>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+            <ion-row class="flex ion-align-items-center">
+              <div class="truncate">
+                <span class="main-card__tag">
+                  <ng-container *ngFor="let tag of item.tags">
+                    {{ tag }}
+                  </ng-container>
+                </span>
+                |
+                <span class="main-card__description">
+                  {{ item.address }}
+                </span>
+              </div>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+            <ion-row class="ion-wrap flex">
+              <div>
+                <ion-button
+                  (click)="callPhoneNumber(item)"
+                  target="_parent"
+                  size="small"
+                  color="secondary"
+                >
+                  <ion-icon name="passaparola-call" slot="start"></ion-icon>
+                  Chiama
+                </ion-button>
+
+                <ion-button
+                  (click)="suggestionSeat(item)"
+                  size="small"
+                  color="secondary"
+                >
+                  <ion-icon slot="start" name="passaparola-suggest2"></ion-icon>
+                  Suggeriscilo
+                </ion-button>
+              </div>
+              <div
+                size="4"
+                class="flex ion-align-items-center main-card--p-t-2 main-card--p-l-3"
+              >
+                <ion-icon
+                  (click)="howToGet(item)"
+                  name="arrow-redo-circle"
+                  class="main-card__icon-arrow"
+                ></ion-icon>
+
+                <span class="main-card--f-z-11">
+                  {{ distance < 1 ? distance * 1000 : distance }}
+                  {{ distance < 1 ? "m" : "km" }}</span
+                >
+              </div>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+
+        <ion-col size="3">
+          <div
+            class="flex flex-direction-column ion-align-items-end ion-justify-content-center"
+          >
+            <span class="main-card__pr-value"
+              >{{ item.pointsPercentage }}%</span
+            >
+            <span class="main-card__pr-cb-label∫"> Cashback </span>
+
+            <!-- <span class="main-card__cb-value">
+              {{ item.cashBackPercentage }}%
+            </span>
+            <span class="main-card__pr-cb-label">Cashback</span> -->
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

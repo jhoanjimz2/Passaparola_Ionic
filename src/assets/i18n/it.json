@@ -1,0 +1,1138 @@
+{
+  "GENERAL": {
+    "CLOSE_APP": "Chiudere l'applicazione",
+    "CLOSE_APP_2": "Volete chiudere l'applicazione?",
+    "YES": "Si",
+    "NO": "No",
+    "LOGOUT": "Disconnettersi",
+    "LOGOUT_2": "Si desidera effettuare il logout?",
+    "VERIFICATION_CODE": "Il codice di verifica è",
+    "SESSION_EXPIRED": "La sessione è scaduta",
+    "YOUR_LOCATION": "La tua posizione",
+    "ERROR_UP_IMG_PROFILE": "Errore durante il tentativo di salvare l'immagine del profilo",
+    "ERROR_UP_IMG_ID_RESIDENCE_DOC": "Errore durante il tentativo di salvare l'immagine del documento di identità o documento di residenza",
+    "ERROR_UP_IMG_ID_DOC": "Errore durante il tentativo di salvare l'immagine del documento di identità",
+    "ERROR_UP_IMG_RESIDENCE_DOC": "Errore durante il tentativo di salvare l'immagine del documento di residenza",
+    "REGISTER_PASSAPAROLA": "Registrati su passaparola",
+    "TEXT_INVITE": "Ciao, mi consigli un buon ristorante in zona? Vorrei andare questa sera con 20 amici. Che ricompensa riceverai dal ristorante che mi hai consigliato? Nessuna? Allora fai come me, scarica Passaparola e inizia a guadagnare per i tuoi buoni consigli.",
+    "LOCATION_NOT_AVAIBLE": "Posizione non disponibile",
+    "INFO_COPIED": "Informazioni copiate correttamente",
+    "INFO_COPY_ERROR": "Non è stato possibile copiare le informazioni",
+    "SERVER_ERROR": "Errore di servizio",
+    "SELECT": "Selezionare",
+    "VALUE_SHOULD_BE_BETWEEN": "Il valore deve essere compreso tra {{min}} e {{max}}",
+    "SUM_OF_THE_PERCENTAGES": "la somma delle percentuali deve essere uguale a {{total}}",
+    "ORDER_BY": "ordina per",
+    "NEAR_HERE": "Cerca qui...",
+    "RESULTS": "Risultati",
+    "REWARD": "Ricompensa",
+    "CLOSES_AT": "Chiude alle ore",
+    "OPEN_NOW": "Aperto adesso",
+    "CLOSED": "Closed",
+    "UNABLE_DOWNLOAD_FILE": "Impossibile scaricare il file",
+    "SUGGESTION": {
+      "TEXT_1": "Ciao, stare qui mi ha fatto pensare a te. Credo ti piaccia.",
+      "TEXT_2": "Clicca sul link sotto",
+      "TEXT_3": "Ci sentiamo presto"
+    },
+    "USER_NOT_REGISTERED": "Utente non registrato"
+  },
+  "LANDING": {
+    "WELCOME": "Benvenuto",
+    "INVITATION": "Hai ricevuto un invito per entrare in",
+    "PAYS_YOU": "I´app che ti paga per dare buoni consigli",
+    "HOW_IT_WORKS": "Scopro come funziona",
+    "REGISTER_NOW": "Registrati ora",
+    "INFO_1": "Ottieni cashback immediato utilizzando l'app per ogni spesa quotidiana, sull'affitto della casa o dell'auto, sui tuoi viaggi e per tutte le tue spese online.",
+    "INFO_2": "Suggerisci a chiunque i tuoi negozi affiliati preferiti e guadagna soldi veri sul fatturato generato dal tuo PassaParola. Tutti i mesi!.",
+    "INFO_3": "Hai capito bene, con PassaParola puoi costruire un reddito mensile facendo ciò che hai sempre fatto gratis, dare buoni consigli!",
+    "JOIN_APP": "Entra in PassaParola"
+  },
+  "SING_UP": {
+    "JOIN": "Entra in",
+    "APP_NAME": "PassaParola",
+    "ENTER_PHONE": "Inserisci il tuo numero di telefono per continuare",
+    "WILL_SEND_CODE": "Invieremo un codice di verifica",
+    "PHONE_NUMBER": "Numero di telefono",
+    "COUNTRY": "Paese",
+    "VERIFY": "Verifica",
+    "WE_SENT_CODE": "Abbiamo inviato un codice di verifica al numero da te indicato",
+    "VERIFICATION_CODE": "Codice di verifica",
+    "NOT_RECEIVED_CODE": "Non hai ricevuto il codice?",
+    "CLICK_HERE": "Clicca qui per riceverne un'altro",
+    "TEXT_PRIVACY": "Abbiamo a cuore la tua privacy e ci teniamo molto alla tua esperienza di utilizzo. Per questo ti mostriamo tutto con chiarezza e trasparenza.",
+    "COMMUNITY_CODE": "Community Code",
+    "CREATE_PIN": "Crea il tuo PIN di ",
+    "FIVE_NUMBERS": " 5 numeri",
+    "I_AGREE": "Accetto",
+    "TERMS": "Termini e Condizioni",
+    "AND_THE": "e l'",
+    "COOKIES": "Cookies",
+    "REGISTRATION": "registro Unico",
+    "PRIVACY": "Privacy Policy",
+    "ETHICA_LLETTER": "Carta Etica",
+    "AND_THE_2": "e la",
+    "WELL_DONE": "Ben fatto,",
+    "YOU_ARE_NOW_COMM": "Ora fai parte dela community di",
+    "DOWNLOAD_APP": "scarica l'app e inizia a guadagnare anche tu",
+    "DOWNLOAD_FROM_GOOGLE_PLAY": "Scarica da Google Play",
+    "DOWNLOAD_FROM_APP_STORE": "Scarica da Apple Store",
+    "UNREGISTERED_PHONE": "Telefono non registrato",
+    "ERROR_PIN": "Il PIN e la conferma del PIN non sono la stessa cosa"
+  },
+  "LOGIN": {
+    "INTO": "Entra in",
+    "ENTER_DATA": "Inserisci il tuo numero di telefono e il tuo PIN per continuare",
+    "PHONE_NUMBER": "Numero di telefono",
+    "ENTER_PHONE": "inserisci il tuo numero di telefono",
+    "STAY_CONNECTED": "Resta connesso",
+    "FOGOTTEN_PIN": "Hai dimenticato il PIN?",
+    "CLICK_TO_CHANGE": "Clicca qui per cambiarlo",
+    "LOGIN": "Login",
+    "JOIN": "Entra in Passaparola",
+    "PIN": "PIN",
+    "REMEMBER": "Ricordami",
+    "ENTER_PERSONAL_PROFILE": "Entra con il profilo personale",
+    "ENTER_BUSINESS_PROFILE": "Entra con il profilo business",
+    "WELCOME_BACK": "Bentornato",
+    "CHOOSE_ACCOUNT": "Scegli il profilo con il quale desideri accedere",
+    "ENTER_FULL_PROFILE": "Entra con il profilo completo",
+    "ENTER_PIN": "Inserisci il PIN per accedere",
+    "ENTER_BUSINESS": "Entra como impresa",
+    "CHECK": "Verifica",
+    "YOU_KNOW_BY_ACCESING": "Sai accedendo come",
+    "LEGAL_SEAT": "Sede legale",
+    "FULL_ACCESS": "accesso completo",
+    "OPER_SEAT": "Sede operativa",
+    "PARTIAL_ACCESS": "accesso parziale"
+  },
+  "START": {
+    "WELCOME": "Benvenuto in",
+    "INFO": "Inizia creando un nuovo account oppure fai il login se già ce l'hai",
+    "REGISTER": "Registrati",
+    "LOGIN": "Login"
+  },
+  "CHANGE_PIN": {
+    "CHANGE_PIN": "Cambia PIN",
+    "ENTER_PHONE_NUMBER": "Inserisci il numero di telefono con il quale ti sei registrato in PassaParola",
+    "SEND_CODE": "Invia Codice",
+    "VALID_FOR": "Valido per",
+    "VERIFY_CODE": "Verifica codice",
+    "NEW_PIN": "Crea un nuovo PIN",
+    "PHONE_NUMVER_VERIFED": "Abbiamo verificato il tuo numero. Ora puoi creare un nuovo PIN formato da",
+    "FIVE_NUMBERS": "5 NUMERI",
+    "REPEAT_PIN": "Ripeti il PIN",
+    "PIN_CHANGED": "PIN cambiato",
+    "YOU_PIN_CHANGED": "Hai cambiato il tu PIN",
+    "PIN_CHANGED_SUCCESS": "Con successo",
+    "BACK_TO_LOGIN": "Vai al login",
+    "RECOVER": "Recupera",
+    "YOUR_PIN": "il tuo PIN",
+    "ENTER_YOUR_PHONE": "Inserisci il tuo numero di telefono per continuare",
+    "WE_FOUND": "Abbiamo trovato",
+    "PROFILES": "profili",
+    "PROFILES_FOR_APP": "Passaparola per questo numero di telefono. Scegline uno per recuperare il PIN",
+    "VERIFICATION": "Verifica",
+    "PERSONAL_PROFILE": "Profilo Personale",
+    "LEGAL_SEAT": "Sede legale",
+    "FULL_ACCESS": "accesso completo"
+  },
+  "IDENTITY": {
+    "NAME": "Nome",
+    "LAST_NAME": "Cognome",
+    "USERNAME": "Nome utente",
+    "DATE_BIRTH": "Data di nascita",
+    "TAX_NUMBER": "Codice fiscale",
+    "COUNTRY_RESICENDE": "Paese di residenza",
+    "RESIDENSE_ADDRESS": "Indirizzo di residenza",
+    "DOMICILE": "Domicilio",
+    "SAME_RESIDENCE": "Lo stesso della residenza",
+    "COUNTRY_DOMICILE": "Paese di domicilio",
+    "HOME_ADDRESS": "Indirizzo di domicilio",
+    "PROFILE_UPDATED": "Profilo aggiornato correttamente",
+    "CANCEL": "Annullare",
+    "SAVE": "Salva modifiche"
+  },
+  "CONTACT": {
+    "COUNTRY": "Paese",
+    "PHONE_NUMBER": "Numero di telefono",
+    "ENTER_PHONE": "Inserisci il tuo numero di telefono",
+    "CHANCGE_NUMBER": "Cambia numero",
+    "EMAIL": "Indirizzo mail",
+    "ENTER_MAIL": "Inserisci il tuo mail",
+    "CHANGE_MAIL": "Cambia mail",
+    "EMAIL_UPDATE": "Indirizzo mail aggiornato correttamente",
+    "CHANGE_PHONE_NUMBER": "Cambia numero di telefono",
+    "ENTER_NEW_PHONE_NUMBER": "Inserisci il nuovo numero di telefono.",
+    "VERIFICATION_CODE": "Ti invieremo un codice di verifica",
+    "CHECK_CODE": "Verifica codice",
+    "VERIFICATION_CODE_2": "Codice di verifica",
+    "NOT_RECEIVED_CODE": "Non hai ricevuto il codice?",
+    "CLICK_HERE": "Clicca qui per riceverne un'altro",
+    "VERIFIEDD_NUMBER": "Numero verificato",
+    "WE_VERIFIED": "Abbiamo verificato il tuo nuovo",
+    "PHONE_NUMBER_2": "numero di telefono.",
+    "BACK_PROFILE": "Torna al Profilo"
+  },
+  "SECURITY": {
+    "PIN": "PIN",
+    "CHANGE_PIN": "Cambia PIN",
+    "CONFIRM_PHONE": "Conferma il tuo numero di telefono",
+    "AUTHORIZE_CHANGE": "per autorizzare il cambio PIN",
+    "PHONE_NUMBER": "Numero di telefono",
+    "SEND_CODE": "Invia Codice",
+    "VERIFICATION_CODE": "Codice di verifica",
+    "NOT_RECEIVED_CODE": "Non hai ricevuto il codice?",
+    "CLICK_HERE": "Clicca qui per riceverne un'altro",
+    "CHECK_CODE": "Verifica codice"
+  },
+  "CAMERA": {
+    "TAKE_PICTURE": "Scattare una foto",
+    "GALLERY": "Galleria",
+    "CAMERA": "Fotocamera",
+    "CANCEL": "Annullare"
+  },
+  "WALLET": {
+    "MY_WALLET": "My Wallet ID",
+    "PASS": "PASS",
+    "ADD_CREDIT": "aggiungi credito",
+    "WIN": "WIN",
+    "BIG_WIN": "BIG WIN",
+    "SEND": "Invia",
+    "RECEIVE": "Ricevi",
+    "MOVEMENTS": "Movimenti",
+    "WITHDRAW": "Ritira",
+    "PAYMENT_METHODS": "Metodi di pagamento",
+    "ADD": "Aggiungi",
+    "PASSAPAROLA_CARDS": "Le tue Passaparola card",
+    "WRITE_HERE": "scrivere qui",
+    "MODAL_ACTIONS": {
+      "PASSAPAROLA_CARD": "PassaParola Card",
+      "QR_SCAN": "Scansione codice Qr",
+      "CHOOSE_FRIENDS": "Scegli Amici",
+      "ENTER_WALLET_ID": "Digita Wallet ID"
+    },
+    "FRIENDS": {
+      "PASSAPAROLA_FRIENDS": "Amici PassaParola",
+      "CONTACTS": "Contatti",
+      "SEARCH": "Cerca qui..."
+    },
+    "MODAL_TRANSFER": {
+      "YOUR_REQUESTING": "Stai richiedendo",
+      "TO": "a",
+      "WRITE_HERE": "scrivi qui...",
+      "NEXT": "AVANTI",
+      "YOU_SENDIND": "Stai inviando",
+      "CAUSE": "Causale",
+      "CAUSE_TEXT": "Causale - indica la motivazione della richiesta",
+      "DATE": "DATA",
+      "CONFIRM": "CONFIRM",
+      "TYPE_TRANSACTION_NOT_DEFINED": "Tipo di transazione non definito"
+    },
+    "MODAL_TRANSFER_SUCCESSFULLY": {
+      "TRANSACTION_EXE": "Transazione eseguita",
+      "YOU_SENT": "Hai inviato",
+      "OPERATION_PERFORMED": "Operazione effettuata il",
+      "TRANSACTION_ID": "ID transazione numero",
+      "BACK_TO_HOME": "TORNA ALLA HOME"
+    },
+    "GENERATE_QR": {
+      "REFERENCE_NUMBER": "Il tuo numero di riferimento"
+    },
+    "QR_CODE": {
+      "TITLE": "WALLET QR",
+      "SUB_TITLE": "<span class='font-semibold'>Questo è il tuo QR code per ricevere ATM. In alternativa, puoi fornire al mittente il tuo</span> <span class='font-bold'>Wallet ID</span>.",
+      "LABEL": "Il tuo Wallet ID è",
+      "TEXT_1": "Questo è il tuo QR code per ricevere",
+      "TEXT_2": "ATM. In alternativa, puoi fornire al",
+      "TEXT_3": "mittente il tuo",
+      "WALLET_ID": "Il tuo Wallet ID è",
+      "COPY_INFO": "Informazioni copiate correttamente",
+      "COPY_INFO_ERROR": "Non è stato possibile copiare le informazioni"
+    },
+    "MOVEMENT": {
+      "MOVEMENTS": "Movimenti",
+      "ALL": "Tutti",
+      "RECEIVED": "Ricevuto",
+      "PAID": "Pagato",
+      "IN_WAITING": "In Attesa",
+      "REWARD_POINTS": "Punti Ricompensa",
+      "ATM_BACK": "ATM Back",
+      "CAUSE": "Causale",
+      "ACCEPT": "Accetta",
+      "RECECT": "Reject"
+    },
+    "RECEIVE_MODAL": {
+      "SHOW_QR": "Mostra il tuo QR code",
+      "GENERATE_QR": "Genera un QR code",
+      "REQUEST_FRIEND": "Richiedi ad un amico",
+      "EMIT_LINK": "Emetti un link"
+    },
+    "TRANSFER_ERROR": {
+      "TITLE": "C'è stato un errore",
+      "TEXT_1": "La tua transazione NON è andata",
+      "TEXT_2": "a buon fine. Ti invitiamo a",
+      "TEXT_3": "riprovare nuovamente",
+      "AMOUNT": "Importo",
+      "RETRY": "Riprova",
+      "CANCEL": "Annulla"
+    },
+    "MODAL_WITHDRAW": {
+      "BALANCE_AVAIBLE": "Saldo disponibile",
+      "WITHDRAW_METHOD": "Metodo di prelievo",
+      "BACK_TRANSFER": "Trasferimento bancario",
+      "ATM_PASSAPAROLA": "ATM Passaparola",
+      "PASSAPAROLA_CASH": "Passaparola Cash",
+      "AMOUNT": "Importo",
+      "FAVORITE_ACCOUNT": "Conto preferito",
+      "COMFIRM": "Conferma"
+    },
+    "MODAL_TRANSFER_ACCEPT_REJECT": {
+      "ATM_ACCEPTED": "ATM ACCETTATI",
+      "TEXT_1": "Hai accettato gli ATM inviati da",
+      "TEXT_2": "Hai",
+      "REFUSED": "RIFIUTATI",
+      "TEXT_3": "gli ATM inviati da",
+      "BACK": "Torna Al Wallet",
+      "TEXT_REQUETS_1": "Hai accettato gli ATM richiesti da",
+      "TEXT_REQUETS_3": "gli ATM richiesti da"
+    },
+    "RECHARGE": {
+      "HOW_RECHARGE": "Come vuoi ricaricare?",
+      "DEBIT_CREDIT_CARD": "Carta Debito/Credito",
+      "PASSAPAROLA_CASH": "PassaParola Cash",
+      "PAYMENT_METHOD": "Metodo di pagamento",
+      "ENDS_WITH": "Finisce con",
+      "NAME_ON_CARD": "Nome sulla carta",
+      "EXPIRES_ON": "Scade il",
+      "ADD_NEW_CARD": "AGGIUNGI NUOVA CARTA",
+      "RECHARGE_NOW": "Ricarica ora",
+      "ADD_CARD": "AGGIUNGI CARTA",
+      "INFO_ADD_CARD": "Qui è possibile vedere tutti i conti bancari salvati o aggiungerne di nuovi.",
+      "FULL_NAME": "Nome completo titolare",
+      "ENTER_NAME": "Inserisci il nome qui",
+      "EMAIL": "Email",
+      "ENTER_EMAIL": "Inserisci il email qui",
+      "CARD_NUMBER": "Numero di carta",
+      "DATE_EXPIRED": "Scadenza",
+      "CVV": "CVV",
+      "SAVE_FOR_FUTURE": "Salva per acquisti futuri",
+      "SAVE": "Salva",
+      "ERROR_ADD_CARD": "Non è stato possibile salvare le informazioni",
+      "ADD_CARD_SUCCESFULLY": "Informazioni memorizzate correttamente",
+      "TRANSACTION_EXE": "Transazione eseguita",
+      "YOU_RECHARGE": "Hai ricaricato",
+      "TRANSACTION_ID": "ID transazione",
+      "BACK_TO_HOME": "TORNA ALLA HOME",
+      "ERROR_RECHARGE": "Impossibile ricaricare",
+      "ERROR_PAYMENT": "Errore con il metodo di pagamento",
+      "TRANSFER": "Bonifico",
+      "GET_COORDINATES": "Ricevi le coordinate",
+      "TRANSFER_INFO": {
+        "BANK_DETAILS": "Coordinate bancarie",
+        "INFO_1": "Ti preghiamo di copiare e incollare direttamente",
+        "INFO_2": "le informazioni sottostanti per evitare errori",
+        "AMOUNT": "Importo della ricarica",
+        "ADDRESSEE": "Destinatario",
+        "CAUSE": "Causale",
+        "INFO_3": "Una volta realizzato il trasferimento, clicca qui",
+        "INFO_4": "sotto per confermare. I fondi sarano visualizzati",
+        "INFO_5": "sul tuo saldo entro 24 ore.",
+        "COMFIRM": "Conferma operazione"
+      },
+      "SUCCESFULLY": {
+        "TRANSACTION_PENDING": "Transazione in attesa",
+        "RECHARGE_AMOUNT": "Importo ricarica"
+      },
+      "RECOMEND": "raccomandato",
+      "FREE": "gratuito"
+    },
+    "MY_WALLETS": "Le mie Wallets",
+    "PASSAPAROLA_CASH": {
+      "RECHARGE": "Ricarica gratuitamente",
+      "ANY_POINT": "in qualsiasi punto Passaparola",
+      "TO": "fino a",
+      "COMMISION": "al giorno senza commissioni",
+      "HOW_TO_RECHARGE": "Come ricaricare",
+      "SEARCH": "Cerca un negozio Passaparola",
+      "AMOUNT": "Comunica al negoziante l'importo che vuoi ricaricare",
+      "DELIVER": "Consegna il denaro, ricevi il credito istantaneo e senza commissioni"
+    },
+    "MODAL_CONFIRM_WITHDRAW": {
+      "YOU_WITHDRAWING": "Stai ritirando",
+      "ON_THE_ACCOUNT": "sul conto",
+      "FAVORITE_ACCOUNT": "Conto preferito",
+      "ENTER_CODE": "Inserisci il codice di verifica che hai ricevuto",
+      "SMS_CONFIRM": "via SMS per confermare",
+      "VERIFICATION_CODE": "Codice di verifica",
+      "CLICK_TO_GET_ANOTHER": "Clicca qui per riceverne un'altro",
+      "CONFIRM": "Conferma"
+    },
+    "MODAL_SUCCESSFULLY_WITHDRAW": {
+      "TRANSACTION_EXECUTED": "Transazione eseguita",
+      "YOU_WITHDREW": "Hai ritirato",
+      "TRANSACTION_ID": "ID transazione",
+      "BACK_TO_HOME": "TORNA ALLA HOME"
+    },
+    "MODAL_ERROR_WITHDRAW": {
+      "TRANSACTION_NOT_EXECUTED": "Transazione NON eseguita",
+      "TRANSACTION_ID": "ID transazione",
+      "RETRY": "Riprova",
+      "CANCEL": "Annulla"
+    },
+    "ACCEPT": "Accetta",
+    "CANCEL": "Annulla",
+    "MODAL_WITHDRAW_REWARD": {
+      "TITLE": "IMPORTANTE",
+      "TEXT": "Ricorda che devi ritirare le tue ricompense antro l'ultimo giorno del mese successivo a quello di fatturazione. Se non ritiri le tue ricompense le perderai e noi le doneremo in beneficienza o per sostenere l'ambiente.",
+      "WITHDRAW": "Ritira"
+    },
+    "YOUR_NFC_DIVICES": "I tuoi dispositivi NFC",
+    "NO_NFC_DEVICES": "Non hai ancora dispositivi NFC"
+  },
+  "QR_SCAN": {
+    "START_SCAN": "Start Scan",
+    "STOP_SCAN": "Stop Scan",
+    "FLASH_ON": "Flash on",
+    "FLASH_OFF": "Turn off flash"
+  },
+  "KEYBOARD_ATM": {
+    "ENTER_AMOUNT": "Inserisci l'importo",
+    "NEXT": "AVANTI"
+  },
+  "COMPONENTS": {
+    "MALL_CARD": {
+      "FROM_MALL": "Dal nostro Mall",
+      "SEE_ALL": "vedi tutti"
+    },
+    "LOCAL_STORE_CARD": {
+      "LOCAL_ECONOMY": "Economica locale",
+      "SEE_ALL": "vedi tutti"
+    },
+    "ONLINE_STORE_CARD": {
+      "ONLINE_STORES": "I negozi online",
+      "SEE_ALL": "vedi tutti"
+    },
+    "SOCIAL_CARD": {
+      "TITLE": "Dalla tua community",
+      "SEE_ALL": "vedi tutti",
+      "NIVEL": "livello",
+      "PRODUCTS": "Prodotti utilizzati in questo video"
+    },
+    "MAP": {
+      "TEXT": "Scopri i negozi vicino a te"
+    },
+    "MODAL_RESTAURANT_INFO": {
+      "YOU_WILL_FIRST": "Sarai il primo",
+      "THE_ARE_NO": "Non ci sono ancora",
+      "AFFILIATED": "ristoranti affiliati",
+      "NEAR_YOU": "vicino a te. Cosa fare?",
+      "SUGGEST_YOUR_FAVORITE": "Suggerisci il tuo ristorante preferito che vorresti in Passaparola.",
+      "WE_CONTACT_HIM": "Noi lo contattiamo",
+      "IF_IT_ENTERS": "se entra nel circuito Passaparola",
+      "YOU_WILL_PERCENTAGE": "tu guadagnerai per sempre una percentuale del fatturato generato da tutti i nostri utenti.",
+      "SUGGEST_NOW": "Suggerisci ora",
+      "SEE_MORE": "Vedi tutto"
+    },
+    "MODAL_FORM_DOCTORS": {
+      "TITLE": "Sei un dottore?",
+      "TEXT": "Inviaci la tua richiesta se vuoi essere presente sulla nostra app. Verrai contattato da un nostro consulente che ti aiuterà a registrarti",
+      "NAME": "Il tuo nome",
+      "ENTER_NAME": "Inserisci il nome qui",
+      "PHONE": "Numero telefonico",
+      "ENTER_PHONE": "Inserisci il nome qui",
+      "EMAIL": "Indirizzo mail",
+      "ENTER_MAIL": "Inserisci qui il tuo indirizzo mail",
+      "TERMS_1": "Accetto l'",
+      "TERMS_2": "Informativa sulla Privacy",
+      "TERMS_3": "e il",
+      "TERMS_4": "Trattamento dei dati personali",
+      "SEND": "Invia la tua richiesta",
+      "FOR_EMAIL": {
+        "NAME": "Nome",
+        "EMAIL": "Mail",
+        "REQUETS": "Richiesta",
+        "DOCTOR": "Medico",
+        "ADMIN": "Amministratore",
+        "INFO_SEND": "Informazioni inviate correttamente"
+      }
+    },
+    "SLIDE_CATEGORIES": {
+      "LOOKING_FOR": "Cosa cerchi?",
+      "SEE_ALL": "vedi tutti"
+    },
+    "INVITE_CARD_MAIN": {
+      "INVITE": "Invita",
+      "NEW_FRIEND": "nuovi amici",
+      "AND_GROW": "e fai crescere la",
+      "YOUR_COMMUNITY": "tua community",
+      "INVITE_FRIENDS": "Invita amici"
+    }
+  },
+  "SOCIAL_PAGE": {
+    "CARDS": {
+      "TITLE": "Passaparola per te",
+      "CARD_1": {
+        "TITLE": "Benvenuto in Passaparola,",
+        "SUB_TITLE": "l'app che ti paga per i buoni consigli!",
+        "TEXT": "Con Passaparola puoi fare la spesa, consigliare prodotti o negozi e invitare amici per creare la tua community e guadagnare insieme a loro tutti i mesi",
+        "BUTTON": "Invita amici con un semplice link"
+      },
+      "CARD_2": {
+        "TITLE": "Suggerisci nuovi negozi",
+        "SUB_TITLE": "e guadagna per sempre",
+        "TEXT": "Fai un video nel tuo negozio, ristorante o bar preferito. Noi lo contattiamo e se entrerà in Passaparola, tu guadagnerai per sempre una % dellespese dei nostri utenti nel negozio da te suggerito.",
+        "BUTTON": "Suggerisci un nuevo negozio"
+      }
+    }
+  },
+  "BUSINESS_SUGGESTION": {
+    "TITLE1": "SUGGERISCI NUOVI NEGOZI",
+    "TITLE2": "E GUADAGNA PER SEMPRE",
+    "PARAPH": "Fai un video nel tuo negozio, ristorante o bar preferito. Noi lo contattiamo e se entrerà in Passaparola, tu guadagnerai per sempre una % delle spese dei nostri utenti nel negozio da te suggerito.",
+    "DONT_SHOW_MORE": "Non mostrare più",
+    "START_CAMERA": "Avvia camera",
+    "PREVIOUS": "Indietro",
+    "NEXT": "Avanti",
+    "ERROR_UP_IMG": "Errore durante il tentativo di salvare la foto aziendale",
+    "MY_SUGGESTIONS": "I miei suggerimenti",
+    "VOTE_AND_WIN": "Vota e vinci",
+    "STEP1": {
+      "TITLE1": "Informazioni generali",
+      "TITLE2": "Compila i campi sottostanti",
+      "NAME": "Nome negozio",
+      "NAME_PLACE_HOLDER": "inserisci il nome del negozio",
+      "CATEGORY": "Categoria",
+      "CATEGORY_PLACE_HOLDER": "Clicca per scegliere la categoria",
+      "ADDRESS": "Indirizzo sede",
+      "ADDRESS_PLACE_HOLDER": "inserisci l'indirizzo del negozio"
+    },
+    "ADDRESS_ON_THE_MAP": {
+      "TITLE": "Informazioni generali",
+      "ADDRESS_PLACE_HOLDER": "inserire l`indirizzo",
+      "ADDRESS_CONFIRMATION": "Conferma indirizzo",
+      "ADDRESS_NOT_FOUND": "Indirizzo non trovato"
+    },
+    "STEP2": {
+      "TITLE1": "Contatti (opzionale)",
+      "TITLE2": "Hai già parlato con il proprietario dell'attività che stai suggerendo? Se si, inserisci qui il suo contatto",
+      "OWNERS_NAME": "Nome proprietario",
+      "OWNERS_NAME_PLACEHOLDER": "inserisci il nome del proprietario",
+      "PHONE_NUMBER": "Numero telefonico",
+      "PHONE_NUMBER_PLACEHOLDER": "inserisci il numero telefonico",
+      "EMAIL": "Email"
+    },
+    "STEP3": {
+      "TITLE1": "Etica",
+      "TITLE2": "Descrivi in poche parole perché vuoi questo negozio in PassaParola e cosa ti è piaciuto di più",
+      "DESCRIPTION": "scrivi qui, max. 250 parole"
+    },
+    "STEP4": {
+      "TITLE1": "Ben fatto!",
+      "TITLE2": "Congratulazioni, hai appena suggerito un negozio",
+      "TITLE3": "Il nostro ufficio commerciale contatterà il negozio da te suggerito , se si affilierà entro i prossimi 7 giorni entrerà automaticamente a far parte della tua community.",
+      "GO_TO_HOME": "Torna alla Home",
+      "GO_TO_YOUR_SUGGESTIONS": "Vai ai tuoi suggerimenti"
+    },
+    "LIST": {
+      "TEXT1": "I tuoi desideri",
+      "TEXT2": "valgono soldi",
+      "TEXT3": "Suggerisci nuovi negozi,",
+      "TEXT4": "noi li contattiamo e tu",
+      "TEXT5": "guadagni per sempre.",
+      "NEW_SHOP": "Nuovo negozio",
+      "ALL": "Tutti",
+      "ACTIVE": "Attivi",
+      "ACTIVE2": "Attivo",
+      "PENDING": "In attesa",
+      "VALID_UNTIL": "Valido entro"
+    }
+  },
+  "ERROR_MESSAGE": {
+    "REQUIRED": "Questo campo è obbligatorio",
+    "EMAIL": "Email non valida",
+    "INVALID_BANK_CARD": "Invalid bank card",
+    "MIN_LENGTH": "Length must be greater than or equal to {{value}}",
+    "PIN_MIN_LENGTH": "the pin must be {{value}} digits",
+    "PIN_MAX_LENGTH": "the pin must be {{value}} digits"
+  },
+  "COMMUNITY": {
+    "TOTAL_MEMBERS": "Membri totali",
+    "YOUR_EARNINGS": "Il tuo guadagno",
+    "COMMUNITY_ACTIVE": "community attiva",
+    "COMMUNITY_NOT_ACTIVE": "community non attiva",
+    "MISSING": "Mancano",
+    "PR_PERSONAL": "Personali",
+    "FRIENDS_DIRECT": "Amici diretti",
+    "MY_LEVEL": "Il mio livello",
+    "PR_COMMUNITY": "Community",
+    "MY_PERCENTAJE": "La mia %",
+    "YOURS_DIRECT_FRIENDS": "I tuoi amici diretti",
+    "SORT_BY": "Ordina per",
+    "MEMBERS": "membri",
+    "LEVEL": "Livello",
+    "FRIENDS": "amici",
+    "FALLOW_FRIENDS": "Segui i tuoi amici",
+    "DIFFERENCE": "Difference",
+    "FRIENDS_ON_THIS_LEVEL": "Amici a questo livello",
+    "TEXT_INFO_USER_BY_LVL": "Scopri chi tra i tuoi amici ha raggiunto questo livello, quanti PR generano e quanti membri hanno le loro community"
+  },
+  "QR_CODE": {
+    "TITLE": "COMMUNITY QR",
+    "SUB_TITLE": "Questo è il tuo QR code per invitare nuovi amici nella tua community.",
+    "LABEL": "Il tuo community ID",
+    "DOWNLOAD": "Scarica"
+  },
+  "MENU": {
+    "ADD_ACCOUNT": "aggiungi un account",
+    "WALLET": "Wallet",
+    "COMMUNITY": "Community",
+    "INVESTMENTS": "Investimenti",
+    "LOGOUT": "Logout",
+    "EARNINGS": "Guadagni",
+    "SUGGESTIONS": "Suggerimenti",
+    "WIN": "WIN",
+    "PASPOT": "Paspot",
+    "FINANCE": "Finanza",
+    "YOUR_CARDS": "Carte",
+    "BANK_ACCOUNTS": "Conti bancari",
+    "PASSAPAROLA_CARD": "PassaParola Card",
+    "SHOPPING": "Shopping",
+    "MY_ORDERS": "I miei ordini",
+    "SHIPPING_DATA": "Dati spedizione",
+    "MY_LIST": "Le mie liste",
+    "RESERVATIONS": "Prenotazioni",
+    "MY_BOX": "My BOX",
+    "RICEVUTE_VOUCHER": "Ricevute e voucher",
+    "SPEDIZIONE": "Dati de spedizione",
+    "CARELLO": "Carrello",
+    "PERSONAL_DATA": "Dati Personali",
+    "YOUR_IDENTITY": "La tua identità",
+    "CONTACT_INFORMATION": "Dati di contatto",
+    "SECURITY": "Sicurezza",
+    "BUSSINES_ACCOUNT": "Business Account",
+    "PROFILO_PUBBLICO": "Profilo Pubblico",
+    "TAX_DATA": "Dati fiscali",
+    "OPERATING_HEADQUARTERS": "Sedi operative",
+    "OPERATING_HEADQUARTERS_PROFESSIONAL": "Profilo pubblico",
+    "COMMUNITY_MEMBERSHIP": "Community di apparteneza",
+    "BUSSINES": "Business",
+    "CREATE_BUSSINES_ACCOUT": "Crea un account business",
+    "HELP_AND_EARN": "Aiutaci e guadagna",
+    "MATERIAL_PROMO": "Materiale promozionale",
+    "PAY_STATIC_QR": "Pagamento QR statico",
+    "TERMS_AND_CONDITIONS": "Termini e condizioni",
+    "CANCEL_YOUR_ACCOUNT": "Cancellare il tuo account",
+    "ALTRO": "Altro"
+  },
+  "BANK_ACCOUNT": {
+    "TITLE": "CONTI BANCARI",
+    "SUB_TITLE": "Qui è possibile vedere tutti i conti bancari salvati o aggiungerne di nuovi.",
+    "BUTTON_ADD": "AGGIUNGI UN NUOVO CONTO CORRENTE",
+    "PREFERRED_ACCOUNT": "Conto preferito",
+    "DELETE": "Cancellare",
+    "DELETE_MSG": "Sicuro di voler eliminare l'account?",
+    "BANK_NAME": "Nome della banca",
+    "BANK_NAME_PLACEHOLDER": "Inserisci il nome della banca qui",
+    "OWNER": "Nome completo titolare",
+    "OWNER_PLACEHOLDER": "Inserisci il nome qui",
+    "ACCOUNT_NUMBER": "IBAN/Numero di conto",
+    "ACCOUNT_NUMBER_PLACEHOLDER": "scrivi qui il tuo IBAN",
+    "COUNTRY": "Paese",
+    "COUNTRY_PLACEHOLDER": "scegli dalla lista",
+    "CODE": "Codice BIC/SWIFT",
+    "CODE_PLACEHOLDER": "scrivi qui il tuo codice BIC/SWIFT",
+    "SALVA": "Salva",
+    "PREFERRED": "preferito",
+    "PREFERRED_MSG": "Sicuro di voler selezionare questo conto come preferito?"
+  },
+  "BANK_CARD": {
+    "TITLE": "CARTE",
+    "SUB_TITLE": "Qui è possibile vedere tutte le carte salvate o aggiungerne di nuove.",
+    "BUTTON_ADD": "AGGIUNGI UNA NUOVA CARTA",
+    "DELETE": "Cancellare",
+    "DELETE_MSG": "Sicuro di voler eliminare la tua carta?",
+    "OWNER": "Nome completo titolare",
+    "OWNER_PLACEHOLDER": "Inserisci il nome qui",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "Inserisci il email qui",
+    "CARD_NUMBER": "Numero di carta",
+    "CARD_NUMBER_PLACEHOLDER": "0000 0000 0000 0000",
+    "EXPIRATION": "Scadenza",
+    "EXPIRATION_PLACEHOLDER": "MM/YY",
+    "EXPIRATION_LABEL": "Expiry",
+    "OWNER_LABEL": "Card Holder",
+    "CVC": "CVC",
+    "SALVA": "Salva"
+  },
+  "PAYMENT": {
+    "TOTALE": "TOTALE",
+    "PAYMENT_TRADITIONAL": "Pagamento tradizionale",
+    "PAYMENT_IN_APP": "Pagamento in app",
+    "AMOUNT_WITHOUT_REWARDS": "importo senza ricompense",
+    "RICEVI_PAGAMENTO": "RICEVI PAGAMENTO",
+    "TRANSACTION_EXECUTED": "Transazione eseguita",
+    "YOU_HAVE_RECEIVED_A_PAYMENT_OF": "Hai ricevuto un pagamento di",
+    "WE_HAVE_ASSIGNED_THE": "Abbiamo assegnato il <span class='font-bold'>{{cashBackPercentage}}%</span>% di ricompensa al circuito Passaparola",
+    "TRANSACTION_ID": "ID transazione",
+    "BACK_TO_HOME": "TORNA ALLA HOME",
+    "AMOUNT": "Importo",
+    "WITHOUT_REWARDS": "senza ricompense",
+    "SAVE": "SALVA",
+    "REWARD": "Ricompensa",
+    "CASHBACK": "Cashback",
+    "TRY_AGAIN": "Riprova",
+    "CANCEL": "Annulla",
+    "YOURE_PAYING": "Stai pagando",
+    "TO": "a",
+    "YOU_WILL_RECEIVE": "Riceverai",
+    "PAY_NOW": "PAGA ORA",
+    "YOU_PAYED": "Hai pagato",
+    "YOU_RECEIVED": "Hai ricevuto",
+    "OPERATION_CARRIED_OUT_ON": "Operazione effettuata il",
+    "YOU_HAVE_MADE_A": "Hai effettuato un",
+    "REWARD_POINTS": "PUNTI RICOMPENSA",
+    "CLARIFICATION": "Le ricompense generate dai pagamenti tradizionali vengono accreditate entro 30 giorni",
+    "CLOSE": "Chiudi",
+    "CANCEL_NOTIFICATION": {
+      "TITLE": "C'è stato un errore",
+      "SUB_TITLE": "NON hai ricevuto il pagamento",
+      "EDIT": "Modifica",
+      "OR": "oppure",
+      "CANCEL_OPERATION": "Annulla Operazione"
+    },
+    "CONFIRM": {
+      "CONFIRM_OPERATION_AND_ASSIGN_REWARDS": "Conferma operazione<br />e assegna ricompense",
+      "BE_CAREFUL_CONFIRM": "Attento, conferma l'operazione solo<br />dopo aver ricevuto il pagamento.",
+      "CONFIRM_OPERATION": "Conferma Operazione"
+    },
+    "QR": {
+      "SHOW_THIS_QR_CODE_TO_YOUR_CUSTOMER": "Mostra questo QR code al tuo cliente",
+      "TOTALE": "Totale"
+    },
+    "SUMMARY": {
+      "SUMMARY": "Riepilogo",
+      "OF_WHICH_WITHOUT_REWARDS": "di cui {{amountWithoutRewards}}<br />senza ricompense",
+      "CONFIRM_OPERATION": "Conferma Operazione"
+    },
+    "DENIED": {
+      "THERE_WAS_AN_ERROR": "C'è stato un errore",
+      "TRY_AGAIN_DESCRIPTION": "La tua transazione NON è andata a buon fine. Ti invitiamo a riprovare nuovamente",
+      "AMOUNT_TO_BE_PAID": "Importo da pagare"
+    },
+    "TEXT_INFO_NFC_1": "avvicina la Passaparola",
+    "TEXT_INFO_NFC_2": "Card per pagare"
+  },
+  "COMPANY": {
+    "TAX_DATA": {
+      "TITLE": "Dati fiscali",
+      "SAVE": "Salva modifiche",
+      "NAME": "Ragione sociale",
+      "IVA": "Partita IVA",
+      "TYPE": "Tipologia impresa",
+      "LEGAL_REPRESENTATIVE": "Rappresentante legale",
+      "LEGAL_REPRESENTATIVE_FISCAL_CODE": "Codice Fiscale rappresentante legale",
+      "ADDRESS": "Indirizzo sede legale",
+      "ACCEPT": "Accettare"
+    }
+  },
+  "MODAL_CONFIRMATION_PIN": {
+    "TITLE": "Digita il tuo PIN per",
+    "TITLE_2": "confermare l'operazione"
+  },
+  "SEAT": {
+    "TITLE": "Sedi operative",
+    "ADD_SEAT": "AGGIUNGI SEDE OPERATIVA",
+    "CLICK_TO_SET": "clicca per impostare ",
+    "ADDRESS": "indirizzo",
+    "ADDRESS_WEB": "Indirizzo web",
+    "VISIBLE": "visible",
+    "NOT_VISIBLE": "non visibile",
+    "DESCRIPTION": "Descrizione della tua attività",
+    "SAVE": "Salva",
+    "CANCEL": "Annulla",
+    "PUBLISH": "Pubblica",
+    "CATEGORY": "Categoria",
+    "START_WRITING_HERE": "inizia a scrivere qui",
+    "WRITE_HERE": "scrivi qui",
+    "CHOOSE_SEAT": "Scegli la sede operativa",
+    "MODIFY": {
+      "NAME_TO_BE_DISPLAYED": "Name to be displayed on the app",
+      "SCHEDULE": "Orari",
+      "GALLERY": "Galleria",
+      "SEE_MORE": "Vedi tutto",
+      "WASHBASIN_NAME": "NOME LAVAGNA"
+    },
+    "COMPONENT": {
+      "ADDRESS": {
+        "TITLE": "Indirizzo di residenza"
+      },
+      "CATEGORY": {
+        "TITLE": "Categoria negozio",
+        "SUBTITLE": "Inizia a scrivere la categoria alla quale appartiene il tuo negozio e scegli uno dei nostri suggerimenti",
+        "STORE_CATEGORY": "Categoria negozio"
+      },
+      "CONTACT": {
+        "TITLE": "Contatto",
+        "DESCRIPTION": "Aggiungi un numero di telefono per questa sede operativa",
+        "DESCRIPTION_PUBLIC": "Aggiungi un numero di telefono per questa profilo pubblico",
+        "PHONE_NUMBER": "Numero di telefono",
+        "PHONE_NUMBER_PLACEHOLDER": "inserisci un numero telefonico",
+        "PIN": "PIN - crea un PIN di 5 numeri"
+      },
+      "DESCRIPTION": {
+        "TITLE": "Descrizione della tua attività",
+        "SUBTITLE": "Descrivi la tua attività in poche righe"
+      },
+      "GALLERY": {
+        "TITLE": "Galleria",
+        "SUBTITLE": "Aggiungi fino a 10 immagini del tuo locale, preferibilmente in formato verticale"
+      },
+      "HEADER": {
+        "RATING": "RATING",
+        "CASHBACK": "CASHBACK"
+      },
+      "LIST": {
+        "SEAT_NAME": "Nome sede operativa",
+        "SEAT_NAME_PUBLIC": "Nome profilo pubblico",
+        "PREVIEW": "Anteprima",
+        "MODIFY": "Modifica",
+        "SECURITY": "Sicurezza"
+      },
+      "MENU": {
+        "TITLE": "NOME LAVAGNA",
+        "ADD_TITLE": "Aggiungi titolo",
+        "INPUT_TITLE": "Titolo",
+        "PRODUCT_NAME": "Nome prodotto",
+        "ADD": "+ aggiungi"
+      },
+      "MESSAGE_NOT_VISIBLE": {
+        "TITLE": "Sede operativa non visibile",
+        "DESCRIPTION": "Attenzione, la tua sede operativa non è ancora visibile sulla nostra app. Per renderla visibile, ti preghiamo di compilare tutti i dettagli richiesti, nome, immagini, info di contatto ecc.",
+        "TITLE_PUBLIC": "Profilo pubblico non visibile",
+        "DESCRIPTION_PUBLIC": "Attenzione, la tua profilo pubblico non è ancora visibile sulla nostra app. Per renderla visibile, ti preghiamo di compilare tutti i dettagli richiesti, nome, immagini, info di contatto ecc.",
+        "COMPLETE_SEAT": "Continue",
+        "I_NEED_ASSISTANCE": "Ho bisogno di assistenza"
+      },
+      "NAME": {
+        "TITLE": "Nome da visualizzare sulle mappe",
+        "SUBTITLE": "Questo è il nome con il quale i tuoi clienti vedranno la tua attività sulle nostre mappe",
+        "INPUT_NAME": "scrivi il nome completo qui"
+      },
+      "REWARD_POINT_CASHBACK": {
+        "TITLE": "Punti Ricompensa e Cashback",
+        "SUBTITLE": "Indica la percentuale che <span class='font-bold'>puoi</span> riconoscere ai clienti Passaparola. Ricorda che questa percentuale si applica <span class='font-bold'>esclusivamente</span> ai clienti che noi ti mandiamo.",
+        "WRITE_YOUR_REWARD_HERE": "Scrivi qui la tua ricompensa",
+        "SUGGESTED_REWARDS_CATEGORY": "Ricompensa suggerita per la tua categoria",
+        "REWARD_SUMMARY": "Riepilogo ricompensa",
+        "CASHBACK": "Cashback",
+        "APP_FEES": "Commissioni app",
+        "COMMUNITY_REWARD": "Ricompensa community",
+        "HUMANITARIAN_AID": "Aiuti umanitari",
+        "MONTHLY_DRAWS": "Estrazioni mensili",
+        "TOTAL": "Totale",
+        "CHOOSE_CATEGORY": "Scegli categoria",
+        "REQUIRED_CATEGORY": "Categoria richiesta",
+        "DESCRIPTION_MSG": "Per poter indicare la tua ricompensa, ti invitiamo a scegliere prima la tua categoria"
+      },
+      "SECURITY": {
+        "TITLE": "Informazioni di contatto",
+        "TITLE2": "Crea nuovo PIN",
+        "PHONE_NUMBER": "Numero di telefono",
+        "PHONE_NUMBER_PLACEHOLDER": "inserisci il numero telefonico",
+        "CHANGE_NUMBER": "Cambia numero",
+        "PIN": "PIN",
+        "CHANGE_PIN": "Cambia PIN"
+      },
+      "SCHEDULE": {
+        "TITLE": "Orari di apertura",
+        "ALWAYS_OPEN": "sempre aperto",
+        "SAVE": "salva",
+        "APPLIES_TO_ALL": "applica a tutti"
+      },
+      "TAGS": {
+        "TITLE": "Parole chiave",
+        "SUBTITLE": "Le parole chiave aiutano i clienti a trovarti più facilmente sulle mappe. Aggiungi fino a 10 parole chiave (e.g. piatti pesce, piatti carne, pizza)",
+        "INPUT_NAME": "scrivi il nome completo qui",
+        "KEYWORDS": "Parole chiave",
+        "KEYWORDS_PLACEHOLDER": "inizia a scrivere le tue parole chiave",
+        "TIPS": "Suggerimenti"
+      },
+      "TYPE": {
+        "TITLE": "Sede operativa",
+        "SUBTITLE": "ora creiamo insieme l'immagine del tuo brand per massimizzare le tue vendite. Iniziamo scegliendo la tipologia della tua sede operativa",
+        "TITLE_PUBLIC": "Profilo pubblico",
+        "SUBTITLE_PUBLIC": "ora creiamo insieme l'immagine del tuo brand per massimizzare le tue vendite. Iniziamo scegliendo la tipologia della tua profilo pubblico",
+        "WHO_ARE_YOUR_CUSTOMERS": "Chi sono i tuoi clienti?",
+        "DESCRIPTION": "Scegli la tipologia di cliente ai quali è rivolta la tua offerta. Puoi anche sceglierli entrambi.",
+        "SAVE_AND_CONTINUE": "Salva e continua"
+      },
+      "WEB_ADDRESS": {
+        "TITLE": "Indirizzo di residenza"
+      }
+    },
+    "CALL": "Chiama",
+    "SUGGESTED": "Suggeriscilo",
+    "INFO_UPDATED": "Dati aggiornati correttamente"
+  },
+  "EXTERNAL_STORES": {
+    "NEAR_HERE": "Cerca qui...",
+    "SORT_BY": "Ordina per",
+    "FILTERS": "Filtri"
+  },
+  "SEAT_SUGGESTED": {
+    "TEXT_1": "l'app che ti paga per i buoni consigli",
+    "CASHBACK": "cashback",
+    "REWARD": "ricompensa",
+    "CALL": "Chiama",
+    "TEXT_2": " ti consiglia",
+    "TEXT_3": "Utilizza PassaParola per i tuoi acquisti quotidiani ricevi un cashback immediato e punti ricompensa che converti in soldi veri a fine mese",
+    "BTN": "Unisciti a PassaParola"
+  },
+  "MAP_PAGE": {
+    "CATEGORIES": {
+      "PHYSYCS": "Negozi Fisici",
+      "LOCAL": "Local Investing",
+      "PROFESIONALS": "Professionisti",
+      "EVENT": "Eventi"
+    },
+    "NEAREST_STORE": "Negozi più vicini",
+    "SHOW_MORE": "Vedi tutti",
+    "RECOMMENDED": "Raccomandati",
+    "TOP_PR": "TOP PR",
+    "SEARCH": "Cerca qui..."
+  },
+  "PROMOTIONAL_MAT": {
+    "TITLE": "Espositore banco",
+    "PAY_RECHARGE": "PAGA O RICARICA",
+    "DOWNLOAD_APP": "SCARICA L'APP CHE TI PAGA",
+    "YOUR_SUGGESTIONS": "per i tuoi consigli",
+    "SCARIA_PDF": "Scaria PDF",
+    "PRINT": "Richiedi stampa",
+    "REWARD": "ricompense",
+    "CASHBACK": "cashback"
+  },
+  "PASSAPAROLA_CARD": {
+    "SELECT": "Seleziona",
+    "OPERATION": "un'operazione",
+    "ASSING_CARD": "Assegna una Passaparola Card",
+    "RECHARGE_CARD": "Ricarica una Passaparola Card",
+    "CONTINUE": "Continua",
+    "CONFIRMATION": {
+      "LABEL_1": "Assegna una nuova",
+      "LABEL_2": "PassaParola Card",
+      "TEXT": "Ti preghiamo di confermare l'operazione",
+      "CARD_NUMBER": "Carta numero",
+      "ASSIGNED_TO": "verrà assegnata a",
+      "PHONE_NUMBER": "Numero telefonico",
+      "CONFIRM": "Conferma operazione"
+    },
+    "SUCCESS": {
+      "CARD_ASSIGN": "Carta assegnata",
+      "BACK_HOME": "Torna alla Home"
+    }
+  },
+  "MAIN_PAGE": {
+    "SLIDE_1": {
+      "TEXT_1": "Passaparola è l'app che ti",
+      "TEXT_2": "paga per i buoni consigli",
+      "TEXT_3": "Invita amici nella tua community e guadagna",
+      "TEXT_4": "insieme a loro per la spesa quotidiana"
+    },
+    "SLIDE_2": {
+      "TEXT_1": "Spendi e ricevi Punti",
+      "TEXT_2": "Ricompensa e cashback",
+      "TEXT_3": "Fai la spesa nei negozi affiliati fisici o presso i",
+      "TEXT_4": "negozi online per ricevere ricompense"
+    },
+    "COMMUNITY": {
+      "TITLE": "Conmmunity",
+      "COUNTRY": "Pease",
+      "YOUR_EARNINGS": "Il tuo guadagno",
+      "MISSING": "Mancano",
+      "NEXT_LEVEL": "al prossimo livello"
+    }
+  },
+  "BUG_REPORT": {
+    "INFORMATION": {
+      "WE_GIVE": "Ti diamo",
+      "ONE_EURO": "1 euro",
+      "FOR_EACH_BUG": "per ogni bug",
+      "YOU_FIND": "che trovi",
+      "NEXT": "Avanti"
+    },
+    "REGISTER": {
+      "TITLE": "Trova bug e verrai ricompensato",
+      "TEXT_1": "Inviaci degli screenshot dell'errore che hai trovato nell'app e spiegaci il problema. Il nostro team lo revisionerà e tu verrai ricompensato",
+      "TEXT_2": "1 euro",
+      "TEXT_3": "per ogni bug che trovi.",
+      "UPLOAD": "carica",
+      "MAX": "MAX 200MB",
+      "RECOMMENDED_SIZE": "Misure consigliate",
+      "SIZE": "1080x1920 px",
+      "DESCRIPTION": "Descrizione",
+      "DESCRIPE_THE_PROBLEM": "descrivi il problema riscontrato",
+      "NEXT": "Avanti"
+    },
+    "SUCCESFULLY": {
+      "TANK_YOU": "Grazie",
+      "TEXT": "Abbiamo ricevuto la tua segnalazione. Riceverai la tua ricompensa non appena il nostro team verificherà la tua segnalazione",
+      "GO_TO_HOME": "Vai alla Home"
+    }
+  },
+  "DAILY_CALENDAR": {
+    "DAILY_CHECK": "Daily check-in",
+    "TOTAL_REWARD": "Totale ritirato fin'ora",
+    "CONGRATULATIONS": "Congratulazioni!",
+    "HAS_COLLECTED_AWARD": "ha raccolto il premio di oggi",
+    "COME_BACK_TOMORROW": "Torna domani per un'altra ricompensa",
+    "CLOSE": "Chiudi"
+  },
+  "MONTHS": {
+    "JANUARY": "Gennaio",
+    "FEBRUARY": "Febbraio",
+    "MARCH": "Marzo",
+    "APRIL": "Aprile",
+    "MAY": "Maggio",
+    "JUNE": "Giugno",
+    "JULY": "Luglio",
+    "AUGUST": "Agosto",
+    "SEPTEMBER": "Settembre",
+    "OCTOBER": "Ottobre",
+    "NOVEMBER": "Novembre",
+    "DECEMBER": "Dicembre"
+  },
+  "DAYS": {
+    "MONDAY": "Lunedì",
+    "TUESDAY": "Martedì",
+    "WEDNESDAY": "Mercoledì",
+    "THURSDAY": "Giovedì",
+    "FRIDAY": "Venerdì",
+    "SATURDAY": "Sabato",
+    "SUNDAY": "Domenica"
+  },
+  "ONBOARDING": {
+    "TITLE": "Benvenuti in Passaparola",
+    "TEXT_1": "Passaparola è un'app piena di contenuti e funzionalità che ti permetteranno di migliorare la tua vita quotidiana e guadagnare soldi veri facendo ciò che hai sempre fatto, dare buoni consigli.",
+    "TEXT_2": "Personalizza il tuo profilo ora,",
+    "TEXT_3": "rendilo unico in pochi click e sfrutta tutte le potenzialità di Passaparola.",
+    "BTN": "Inizia",
+    "ADD_PHOTO": "Aggiungi un'immagine di profilo",
+    "SAVE": "Salva e continua",
+    "INFO_PROFILE": "Info profilo",
+    "YOUR_NAME": "Ci dici per favore il tuo nome?",
+    "TEXT_4": "Inizia a scrivere il tuo nome e scegli anche un nome utente, quest'ultimo è unico e non può contenere caratteri speciali o lettere maiuscole",
+    "AND_MORE": "e molto altro...",
+    "INFO_EVENT": "però tra tutte le nostre sezioni, la più amata è quella dedicata agli eventi",
+    "DISCOVER_EVENTS": "Scopri gli eventi",
+    "TITLE_ONBOARDING_EVENT": "In Passaparola trovi"
+  },
+  "NOTIFICATION_CONFIG": {
+    "SETTINGS": "IMPOSTAZIONI NOTIFICHE INCASSI QR",
+    "CHOOSE_TO_RECEIVE": "Scegli dove ricevere le notifiche dei tuoi incassi",
+    "APP_NOTIFICATIONS": "App notifications on",
+    "MOVEMENTS": "movimenti",
+    "FREE": "GRATUITA",
+    "EMAIL_NOTIFICATIONS": "Notifiche email",
+    "ENTER_EMAIL": "inserisci la mail",
+    "SMS_NOTIFICATIONS": "Notifiche SMS",
+    "FIRST_FREE_NUMBER": "Primo Numero gratuito",
+    "ENTER_FIRST_NUMBER": "inserisci primo numero",
+    "ENTER_SECOND_NUMBER": "insert second number",
+    "ENTER_THIRD_NUMBER": "inserisci terzo numero"
+  },
+  "ADD_NFC": {
+    "TITLE": "Stavolta più veloce è meglio",
+    "TEXT": "Associa un dispositivo NFC per pagare nei tuoi negozi preferiti senza bisogno di aprire l'app di Passaparola. Non hai ancora un dispositivo NFC idoneo? Richiedilo in un negozio affiliato",
+    "TEXT_BTN": "ASSOCIA ORA"
+  },
+  "SCAN_NFC": {
+    "DIVICE": "Dispositivo",
+    "DETECTED": "detected",
+    "SERIAL_NFC": "Seriale NFC",
+    "DIVICE_TYPE": "Che dispositivo stai associando?",
+    "KEYCHAIN": "Portachiavi NFC",
+    "STICKER": "Adesivo NFC",
+    "PASSAPAOLA_CARD": "Passaparola Card",
+    "OTHER_DIVICE": "Altro dispositivo",
+    "CONTINUE": "Continua",
+    "ACTIVATE_YOUR_NFC": "Attiva il tuo dispositivo NFC",
+    "MOVE_PHONE_TO_NFC": "Avvicina il tuo telefono al dispositivo NFC che vuoi associare (distanza 1-2 cm)",
+    "ENABLED_NFC": "Se non leggi NFC verifica che sia attivato nel menu superiore o laterale del tuo telefono"
+  },
+  "CREATE_NFC_SUCCESS": {
+    "CONGRATULATIONS": "Congratulazioni",
+    "YOU_ASSOCIATED": "Hai associato un dispositivo NFC",
+    "TEXT_INFO": "Provalo subito e inviaci una tua recensione alla mail nfc@passaparola.email per ricevere subito 50 WIN in regalo",
+    "ENJOY": "Enjoy with Passaparola NFC"
+  },
+  "SECURITY_NFC": {
+    "SECUTIRY": "La sicurezza",
+    "IMPORTANT": "è importante",
+    "TEXT_INFO": "Scegli l'importo massimo di spesa oltre il quale ti verrà richiesto di inserire il PIN della tua app Passaparola",
+    "AMOUNT": "Importi suggeriti",
+    "CUSTOM_AMOUNT": "Importo personalizzato",
+    "CONTINUE": "Continua"
+  },
+  "WELCOME": {
+    "WELCOME": "Benvenuto in",
+    "THE_APP_PAYS": "L'APP CHE TI PAGA PER I BUONI CONSIGLI",
+    "WITH": "Con",
+    "SHOPPING_ONLINE_OFFLINE": "Fai la spesa online e offline",
+    "FIND_STORES": "Trova negozi fisici, professionisti o negozi online e paga in tutta sicurezza",
+    "RECEIVE_REWARDS": "Ricevi ricompense",
+    "RECEIVE_CASH_POINTS_WIN": "Ricevi cashback, Punti Ricompensa e ticket WIN per ogni spesa che fai sull'app",
+    "ADIVISE_AND_EARN": "Consiglia e guadagna",
+    "SUGGEST_STORES": "Suggerisci i negozi, crea la community e guadagna tutti i mesi",
+    "JOIN": "Entra in Passaparola",
+    "HOW_IT_WORKS": "Come funziona Passaparola?"
+  },
+  "SPLASH_SCREEN": {
+    "TEXT_1": "Per ogni spesa ricevi WIN e partecipi all'estrazione mensile di 1.000 euro e alla maxi estrazione annuale di capodanno",
+    "TEXT_2": "Il cashback ti viene accreditato ad ogni acquisto che fai, lo puoi utilizzare o ritirare sul tuo conto corrente bancario",
+    "TEXT_3": "Se inviti un amico in Passaparola guadagnerai per sempre non solo sulle sue spese ma su tutta la sua community",
+    "TEXT_4": "Puoi ricaricare il tuo wallet in qualsiasi negozio affiliato Passaparola fino a 999 euro senza nessuna commissione",
+    "TEXT_5": "Se hai un negozio puoi entrare in Passaparola gratuitamente, dovrai solo garantire una % sugli acquisti degli utenti",
+    "TEXT_6": "Se completi il tuo profilo, carichi la tua foto e scegli il tuo username riceverai come premio WIN per la lotteria mensile",
+    "TEXT_7": "Se invii credito a qualsiasi utente di Passaparola non paghi nessuna commissione e l'arrivo è istantaneo",
+    "TEXT_8": "Se suggerisci un negozio che si affilia a Passaparola guadagni per sempre. Cerca l'icona sulla mappa e inizia adesso",
+    "TEXT_9": "Prenota un evento nella sezione eventi e invita i tuoi amici. Diventerai un fantastico PR con un semplice click",
+    "TEXT_10": "Per tuo ogni acquisto e di tutta la tua community nei negozi affiliati ricevi PR che converti in soldi veri a fine mese",
+    "TEXT_11": "Se inviti 5 amici al mese e generi 10 PR mensili, in meno di 6 mesi puoi guadagnare oltre 3.000 euro al mese",
+    "TEXT_12": "Se trovi un bug nell'app ce lo puoi segnalare e noi ti regaliamo 1 euro. Clicca sul menu laterale \"Aiutaci e guadagna\""
+  },
+  "ONBOARDING_APP_USER": {
+    "SKIP": "Salta",
+    "WELCOME": "Benvenuto in Passaparola",
+    "THE_APP_PAYS": "L'app che ti paga per i buoni consigli",
+    "START": "Inizia",
+    "NEXT": "Avanti",
+    "LOGIN": "Login",
+    "SLIDES": {
+      "SLIDE_1": {
+        "TITLE": "Acquista nei negozi fisici",
+        "DESCRIPTION": "Trova sulla mappa i negozi vicino a te. Per ogni acquisto ricevi cashback e punti ricompensa che converti in soldi veri a fine mese"
+      },
+      "SLIDE_2": {
+        "TITLE": "Suggerisci nuovi negozi",
+        "DESCRIPTION": "Se non hai negozi affiliati vicino a te puoi suggerirli cliccando sull'icona foto nella mappa. Noi li affiliamo e tu guadagni per sempre"
+      },
+      "SLIDE_3": {
+        "TITLE": "Acquista online",
+        "DESCRIPTION": "Su Passaparola trovi migliaia di prodotti e servizi. Fai la spesa, paga le tue bollette, ricarica il cellulare o compra le tue prossime scarpe da tennis"
+      },
+      "SLIDE_4": {
+        "TITLE": "Condividi Passaparola",
+        "DESCRIPTION": "Quante volte hai consigliato un buon ristorante, un dottore o un hotel? La prossima volta fallo con Passaparola e guadagna tutti i mesi"
+      },
+      "SLIDE_5": {
+        "TITLE": "Invia ovunque a chi vuoi",
+        "DESCRIPTION": "Traferisci crediti a qualsiasi utente registrato senza nessuna commissione. Ricezione immediata e credito subito disponibile"
+      },
+      "SLIDE_6": {
+        "TITLE": "Guadagna con i social tag",
+        "DESCRIPTION": "Se credi che per guadagnare sui social devi essere un influencer sei fuori strada. Con Passaparola tutti possono guadagnare dai loro contenuti"
+      }
+    }
+  }
+}

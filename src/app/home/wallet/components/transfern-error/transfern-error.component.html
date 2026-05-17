@@ -1,0 +1,74 @@
+<ion-content [fullscreen]="true" class="main-container">
+  <div class="main-container__content">
+    <ion-card class="main-container__card">
+      <ion-card-content class="main-container--text-center">
+        <div class="center-item">
+          <img
+            src="assets/images/transfer-error.png"
+            alt=""
+            class="main-container__card__icon-error"
+          />
+        </div>
+        <br />
+        <ion-text>
+          <span class="main-container--f-w-b main-container--f-z-25">{{
+            "WALLET.TRANSFER_ERROR.TITLE" | translate
+          }}</span>
+          <br />
+          <br />
+          <span>{{ "WALLET.TRANSFER_ERROR.TEXT_1" | translate }}</span>
+          <br />
+          <span>{{ "WALLET.TRANSFER_ERROR.TEXT_2" | translate }}</span>
+          <br />
+          <span>{{ "WALLET.TRANSFER_ERROR.TEXT_3" | translate }}</span>
+        </ion-text>
+
+        <div class="main-container__card__info">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <div
+                  class="main-container__card__info__img"
+                  [style.background-image]="
+                    contact.user?.profile?.profilePictureUrlFile!
+                      ? 'url(' +
+                        contact.user?.profile?.profilePictureUrlFile! +
+                        ')'
+                      : 'url(assets/images/no-image.jpg)'
+                  "
+                ></div>
+              </ion-col>
+              <ion-col size="6" class="main-container__card__info__name">{{
+                contact.name
+              }}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="main-container--text-left">{{
+                "WALLET.TRANSFER_ERROR.AMOUNT" | translate
+              }}</ion-col>
+              <ion-col class="main-container--text-right"
+                ><span class="main-container__card__info__amount">{{
+                  amount | formattNumber
+                }}</span>
+                <span class="main-container__card__info__atm">{{
+                  " ATM/€"
+                }}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <ion-button
+          (click)="transferATM()"
+          class="main-container__card__btn-retry"
+          >{{ "WALLET.TRANSFER_ERROR.RETRY" | translate }}</ion-button
+        >
+
+        <div class="main-container__card__btn-cancel">
+          <div (click)="backToHome()">
+            {{ "WALLET.TRANSFER_ERROR.CANCEL" | translate }}
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

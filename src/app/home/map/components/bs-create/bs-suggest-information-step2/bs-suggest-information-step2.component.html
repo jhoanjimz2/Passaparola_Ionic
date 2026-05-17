@@ -1,0 +1,131 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onNextStep()"
+  autocomplete="off"
+  class="h-full"
+>
+  <section class="p-3 pb-10 h-full flex flex-col justify-between">
+    <section class="flex flex-col justify-between">
+      <section class="flex flex-col items-center justify-center text-center">
+        <section class="text-[2.25rem] text-[#1D0F01] font-semibold px-2">
+          {{ "BUSINESS_SUGGESTION.STEP2.TITLE1" | translate }}
+        </section>
+        <section class="text-[0.938rem] text-[#1D0F01]">
+          {{ "BUSINESS_SUGGESTION.STEP2.TITLE2" | translate }}
+        </section>
+      </section>
+      <section class="pt-7">
+        <section class="flex flex-col h-[6.25rem]">
+          <label
+            for="owner"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "BUSINESS_SUGGESTION.STEP2.OWNERS_NAME" | translate }}
+          </label>
+          <input
+            #owner
+            class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="text"
+            [placeholder]="
+              'BUSINESS_SUGGESTION.STEP2.OWNERS_NAME_PLACEHOLDER' | translate
+            "
+            formControlName="owner"
+            name="owner"
+            autocomplete="off"
+          />
+          <div
+            *ngIf="displayMessage.owner"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.owner }}
+          </div>
+        </section>
+        <section class="flex flex-col h-[6.25rem]">
+          <label
+            for="countryCode"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "BUSINESS_SUGGESTION.STEP2.PHONE_NUMBER" | translate }}
+          </label>
+          <section class="flex flex-row relative">
+            <select
+              class="h-14 w-[80px] bg-white text-[0.688rem] border-l border-t border-b border-gray-300 text-gray-900 text-sm rounded-l-xl block p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300 appearance-none"
+              formControlName="countryCode"
+              name="countryCode"
+            >
+              <ng-container *ngFor="let country of countries">
+                <option [value]="country.id">
+                  {{ country.phonePrefix }} {{ country.code }}
+                </option>
+              </ng-container>
+            </select>
+            <input
+              class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border-r border-t border-b border-gray-300 text-gray-900 text-sm rounded-r-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+              type="number"
+              [placeholder]="
+                'BUSINESS_SUGGESTION.STEP2.PHONE_NUMBER_PLACEHOLDER' | translate
+              "
+              formControlName="phoneNumber"
+              name="phoneNumber"
+              autocomplete="off"
+            />
+            <div
+              class="absolute top-3 h-7 border-gray-300 border-r-[0.063rem] left-[4.5rem]"
+            ></div>
+          </section>
+          <div
+            *ngIf="displayMessage.countryCode || displayMessage.phoneNumber"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{
+              displayMessage.countryCode
+                ? displayMessage.countryCode
+                : displayMessage.phoneNumber
+            }}
+          </div>
+        </section>
+        <section class="flex flex-col h-[6.25rem]">
+          <label
+            for="email"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "BUSINESS_SUGGESTION.STEP2.EMAIL" | translate }}
+          </label>
+          <input
+            class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="text"
+            [placeholder]="'example@mail.com' | translate"
+            formControlName="email"
+            name="email"
+            autocomplete="off"
+          />
+          <div
+            *ngIf="displayMessage.email"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.email }}
+          </div>
+        </section>
+      </section>
+    </section>
+    <section class="grid grid-cols-2 gap-3 text-[0.938rem] leading-[1.375rem]">
+      <div
+        class="bg-white border border-[#00B1FF] text-[#00B1FF] py-4 px-4 rounded-full flex items-center justify-center"
+        (click)="onPreviousStep()"
+      >
+        {{ "BUSINESS_SUGGESTION.PREVIOUS" | translate }}
+      </div>
+      <button
+        class="bg-[#00B1FF] hover:bg-[#00b3ffcb] text-white py-4 px-4 rounded-full"
+        type="submit"
+      >
+        {{ "BUSINESS_SUGGESTION.NEXT" | translate }}
+      </button>
+    </section>
+  </section>
+</form>

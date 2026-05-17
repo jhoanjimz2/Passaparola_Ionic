@@ -1,0 +1,100 @@
+ion-content {
+  background: #f9f9f9;
+}
+
+.main-container {
+  background: #ffffff;
+  border-radius: 0.875rem;
+  margin-right: 0.188rem;
+  margin-left: 0.188rem;
+
+  &__search-panel {
+    position: fixed;
+    width: 100vw;
+    background: #f9f9f9;
+    z-index: 999;
+
+    &__icon-search {
+      position: absolute;
+      font-size: 1.875rem;
+      margin-top: 0.625rem;
+      margin-left: 0.625rem;
+    }
+
+    input {
+      width: 100%;
+      border: 0.063rem solid #70707030;
+      border-radius: 1.563rem;
+      height: 3.125rem;
+      padding-left: 3.125rem;
+    }
+
+    &__col-left {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+    }
+
+    &__icon-passaparola {
+      font-size: 1.25rem;
+      margin-right: 0.313rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    overflow: auto;
+
+    &__btn {
+      height: 2rem;
+      --border-radius: 1rem;
+      margin: 0.625rem;
+      text-transform: capitalize;
+      font-size: 0.75rem;
+      color: #000000;
+      --background: #e1e1e1;
+      --background-activated: #e1e1e1;
+      --background-focused: #e1e1e1;
+      --background-hover: #e1e1e1;
+      --box-shadow: none;
+    }
+
+    &--selected {
+      color: #ffffff !important;
+      --background: #fe8500 !important;
+      --background-activated: #fe8500 !important;
+      --background-focused: #fe8500 !important;
+      --background-hover: #fe8500 !important;
+    }
+  }
+
+  &__text-all {
+    color: #fe8c0f;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  &--f-w-600 {
+    font-weight: 600;
+  }
+
+  &--text-right {
+    text-align: right;
+  }
+
+  &--p-t-150 {
+    padding-top: 9.375rem;
+  }
+
+  &--f-z-16 {
+    font-size: 1rem;
+  }
+
+  &--p-l-10 {
+    padding-left: 0.625rem;
+  }
+
+  &--p-r-10 {
+    padding-right: 0.625rem;
+  }
+}

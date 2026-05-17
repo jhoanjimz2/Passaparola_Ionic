@@ -1,0 +1,121 @@
+<ion-content>
+
+
+
+
+
+
+  <ion-grid *ngIf="step == 1">
+    <ion-row>
+      <ion-col class="col-title">
+        <label class="col-title__title">Pagamento</label>
+        <div class="flex justify-around items-center w-[90px] h-[37px] rounded-[10px] text-white bg-[#EC0973]">
+          <span (click)="restar()" class="flex justify-center items-center h-[22px] w-[22px] rounded-[11px] bg-[#FFFFFF50] border border-solid border-[#FFF] text-white">-</span>
+          {{cantidad}}
+          <span (click)="sumar()" class="flex justify-center items-center h-[22px] w-[22px] rounded-[11px] bg-[#FFFFFF50] border border-solid border-[#FFF] text-white">+</span>
+        </div>
+        <p *ngIf="!product.isFree && product.offerValue != 0" class="text-[1.2rem] m-0 font-bold">€ {{ (cantidad * product.offerPrice).toString().split('.')[0] || 0 }}.<span class="text-[0.8rem]">{{ (cantidad * product.offerPrice).toString().split('.')[1] || 0 }}</span></p>
+        <p *ngIf="product.isFree || product.offerValue == 0" class="text-[1.2rem] m-0 font-bold text-pink-600">FREE</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row-card-payment-method">
+      <ion-col>
+        <ion-card class="row-card-payment-method__card" [ngClass]="{'b-g' : selectTypePay === 'wallet'} " (click)="onSelectTypePay('wallet')">
+          <ion-card-content class="row-card-payment-method__content">
+            <ion-icon src="assets/images/events/custom-icons/imgpayment.svg" class="row-card-payment-method__content--imgpayment"/>
+            <div class="row-card-payment-method__content--content--text">
+              <label class="row-card-payment-method__content--content--text--label1">Paga con credito</label>
+              <label class="row-card-payment-method__content--content--text--label2">Disponibile</label>
+              <label class="row-card-payment-method__content--content--text--label3">
+                {{ isViewed ? selectWallet.balance : '***' }}
+                <p>€/ATM</p>
+                <ion-icon (click)="isViewed = !isViewed" [src]="'assets/images/events/custom-icons/' + (isViewed ? 'eye-view.svg' : 'eye-not-view.svg')"/>
+              </label>
+            </div>
+            <ion-icon src="assets/images/events/custom-icons/checkbox.svg" class="row-card-payment-method__content--check" *ngIf="selectTypePay === 'wallet'"/>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row-card-payment-method" *ngIf="product.offerValue != 0">
+      <ion-col>
+        <ion-card
+          *ngFor="let card of bankCards" class="row-card-payment-method__card"
+          [ngClass]="selectTypePay === card.data[0].customer ? 'b-g' :  '' "
+          (click)="onSelectTypePay(card.data[0].customer); selectPaymentMethod = card;"
+        >
+          <ion-card-content class="row-card-payment-method__content">
+            <ion-icon src="assets/images/events/custom-icons/visa.svg" class="row-card-payment-method__content--imgpayment"/>
+            <div class="row-card-payment-method__content--content--text">
+              <label class="row-card-payment-method__content--content--text--label1">Carta</label>
+              <label class="row-card-payment-method__content--content--text--label2">
+                <span class="uppercase">{{card.data[0].card.brand}}</span>
+                &nbsp;&nbsp;{{ '**** **** ****' + card.data[0].card.last4}}&nbsp;&nbsp;
+                <span>{{card.data[0].card.exp_month}}/{{card.data[0].card.exp_year.toString().slice(-2)}}</span>
+              </label>
+              <label class="row-card-payment-method__content--content--text--label2">{{card.data[0].billing_details.name}}</label>
+            </div>
+            <ion-icon
+              src="assets/images/events/custom-icons/checkbox.svg"
+              class="row-card-payment-method__content--check"
+              *ngIf="selectTypePay === card.data[0].customer"
+            />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="buttons">
+        <button class="buttons__button-cancel" (click)="closeModal()">Anulla</button>
+        <button class="buttons__button-acept" (click)="initPay()" [disabled]="!!!selectTypePay || !cantidad">Paga ora</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+  <ion-grid *ngIf="step == 2">
+
+    <ion-row class="row-check">
+      <ion-col>
+        <div class="row-check__check">
+          <ion-icon src="assets/images/events/custom-icons/check.svg"/>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="row-text">
+      <ion-col>
+        <label class="row-text__title">Pagamento effettuato!</label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-text">
+      <ion-col class="text-center">
+        <p *ngIf="!product.isFree && product.offerValue != 0" class="text-[2.7rem] m-0 font-bold">€ {{ ( cantidad * product.offerPrice).toString().split('.')[0] || 0 }}.<span class="text-[1.7rem]">{{ ( cantidad * product.offerPrice).toString().split('.')[1] || 0 }}</span></p>
+        <p *ngIf="product.isFree || product.offerValue == 0" class="text-[2.7rem] m-0 font-bold text-pink-600">FREE</p>
+      </ion-col>
+    </ion-row>
+
+
+
+    <app-voucher-extra-event [cantidad]="cantidad" [ticketExtra]="product"/>
+
+    <ion-row>
+      <ion-col class="buttons">
+        <button class="buttons__button-finaly" (click)="openModalMyTicket()">Vedi i tuoi biglietti</button>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+
+
+
+
+</ion-content>

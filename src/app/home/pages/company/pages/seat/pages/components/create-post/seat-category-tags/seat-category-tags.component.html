@@ -1,0 +1,145 @@
+<section class="p-4 bg-[#FBFCFE] h-full flex flex-col">
+
+  <!-- Header con botón de cerrar -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-lg font-bold">Scegli fino a 5 categorie di interesse</h2>
+    <button
+      (click)="cancel()"
+      class="text-gray-500 hover:text-gray-700 text-2xl leading-none"
+      type="button"
+    >
+      ×
+    </button>
+  </div>
+
+  <!-- Sección de búsqueda y selección de categorías -->
+  <div class="w-full">
+
+    <input
+      [(ngModel)]="categorySearchTerm"
+      (ngModelChange)="onCategorySearchChange()"
+      class="w-full h-[2.688rem] rounded-[1.375rem] bg-white shadow-xl px-4 mt-2"
+      style="box-shadow: 0px 3px 6px rgba(0,0,0,0.16)"
+      placeholder="Cerca per nome o scegli dalla lista"
+    />
+
+    <div class="flex flex-wrap gap-2 relative w-full mt-4">
+      <span
+        *ngFor="let category of filteredCategories"
+        (click)="selectCategory(category)"
+        [class.bg-[#EF8500]]="selectedCategoryId && selectedCategoryId === category.categoryId"
+        [class.text-white]="selectedCategoryId && selectedCategoryId === category.categoryId"
+        [class.bg-white]="!selectedCategoryId || selectedCategoryId !== category.categoryId"
+        [class.text-black]="!selectedCategoryId || selectedCategoryId !== category.categoryId"
+        class="px-3 py-1 rounded-full text-sm font-medium border border-solid border-[#D8E2E8] cursor-pointer transition-colors hover:border-[#EF8500]"
+      >
+        {{ category.description }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay categoría seleccionada -->
+  <div *ngIf="!categorySelect" class="flex-1 flex items-center justify-center">
+    <p class="text-gray-400 text-sm">Seleziona una categoria per vedere e gestire i suoi topic</p>
+  </div>
+
+  <!-- Sección de topics de la categoría seleccionada -->
+  <div *ngIf="categorySelect" class="flex-1 flex flex-col mt-4">
+
+    <!-- Lista de topics existentes -->
+    <div class="w-full mb-4">
+      <div *ngIf="categorySelect.topics.length > 0" class="flex flex-wrap gap-2">
+        <span
+          *ngFor="let topic of categorySelect.topics"
+          class="px-3 py-1 rounded-full bg-[#FFF4E6] text-[#EF8500] text-sm font-medium border border-solid border-[#EF8500] flex items-center gap-2"
+        >
+          {{ topic }}
+          <button
+            (click)="removeTopic(topic)"
+            class="text-[#EF8500] hover:text-red-600 font-bold"
+            type="button"
+          >
+            ×
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <!-- Barra de búsqueda de topics -->
+    <div class="w-full mt-auto">
+      <h2 class="text-center text-[0.75rem] font-bold mb-3">
+        Aggiungi un tag diretto per raffinare la ricerca degli utenti
+      </h2>
+
+      <div class="w-full relative">
+        <input
+          [(ngModel)]="topicSearchTerm"
+          (ngModelChange)="onTopicSearchChange()"
+          (focus)="showTopicDropdown = topicSearchTerm.trim().length >= 2"
+          (blur)="hideTopicDropdown()"
+          [disabled]="totalTopicsCount >= 5"
+          class="w-full h-[2.688rem] rounded-[1.375rem] bg-white shadow-xl px-4 disabled:opacity-50 disabled:cursor-not-allowed"
+          style="box-shadow: 0px 3px 6px rgba(0,0,0,0.16)"
+          placeholder="Scrivi per cercare o aggiungere un nuovo topic"
+        />
+
+        <!-- Dropdown de resultados de búsqueda -->
+        <div
+          *ngIf="showTopicDropdown && topicSearchTerm.trim().length >= 2"
+          class="absolute w-full bg-white rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto z-10"
+          style="box-shadow: 0px 3px 6px rgba(0,0,0,0.16)"
+        >
+          <div *ngIf="isSearchingTopics" class="p-3 text-center text-gray-500 text-sm">
+            Cercando...
+          </div>
+
+          <div *ngIf="!isSearchingTopics">
+            <!-- Resultados de búsqueda -->
+            <button
+              *ngFor="let result of topicSearchResults"
+              (mousedown)="selectTopicFromSearch(result)"
+              class="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm border-b border-gray-100 last:border-b-0"
+              type="button"
+            >
+              {{ result.name }}
+            </button>
+
+            <!-- Opción para agregar como nuevo (siempre disponible si hay texto) -->
+            <button
+              *ngIf="topicSearchTerm.trim().length >= 2"
+              (mousedown)="addNewTopic()"
+              class="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm font-medium"
+              [class.text-[#EF8500]]="topicSearchResults.length === 0"
+              [class.text-gray-600]="topicSearchResults.length > 0"
+              [class.border-t]="topicSearchResults.length > 0"
+              [class.border-gray-200]="topicSearchResults.length > 0"
+              type="button"
+            >
+              <span *ngIf="topicSearchResults.length === 0">+ Aggiungi "{{ topicSearchTerm }}" come nuovo topic</span>
+              <span *ngIf="topicSearchResults.length > 0">+ Crea nuovo topic "{{ topicSearchTerm }}"</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-400 mt-2 text-center">
+        {{ totalTopicsCount }}/5 topics totali aggiunti
+      </p>
+    </div>
+  </div>
+
+  <!-- Botón de guardar fijo en la parte inferior -->
+  <div class="w-full mt-6 pt-4 border-t border-gray-200">
+    <button
+      (click)="saveAndClose()"
+      class="w-full h-[2.688rem] rounded-[1.375rem] bg-[#EF8500] text-white font-semibold hover:bg-[#D67700] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      [disabled]="totalTopicsCount === 0"
+    >
+      Salva
+    </button>
+    <p class="text-xs text-gray-400 mt-2 text-center" *ngIf="totalTopicsCount === 0">
+      Seleziona almeno un topic per salvare
+    </p>
+  </div>
+
+</section>

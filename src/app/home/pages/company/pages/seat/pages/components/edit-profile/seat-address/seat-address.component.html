@@ -1,0 +1,75 @@
+<section class="px-[16px] my-[48px] h-full">
+  <section class="text-[11px] leading-[17px] mt-[5px]">
+    {{ "SEAT.COMPONENT.ADDRESS.TITLE" | translate }}
+  </section>
+
+  <form autocomplete="off" class="h-full" (submit)="$event.preventDefault()">
+    <section class="h-full">
+      <section class="h-full">
+        <section class="relative">
+          <input
+            #address
+            class="h-14 pr-[2.813rem] bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl rounded-b-0 block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+            type="text"
+            [placeholder]="
+              'BUSINESS_SUGGESTION.ADDRESS_ON_THE_MAP.ADDRESS_PLACE_HOLDER'
+                | translate
+            "
+            name="address"
+            autocomplete="off"
+            (keydown.enter)="$event.preventDefault()"
+          />
+          <!-- <div>
+            <ion-icon
+              class="text-[#DDE5E9] h-[2.2rem] w-[2.2rem] absolute top-3 right-2"
+              name="locate"
+            ></ion-icon>
+            <div
+              class="h-[0.625rem] w-[0.625rem] absolute top-[1.5rem] right-[1.25rem] bg-[#DDE5E9] rounded-full"
+            ></div>
+          </div> -->
+        </section>
+
+        <section class="h-[250px] py-3">
+          <google-map
+            #myGoogleMap
+            height="100%"
+            width="100%"
+            class="map"
+            [options]="options"
+            [zoom]="zoom"
+            [center]="center"
+          >
+            <map-marker
+              *ngFor="let marker of mapMarkers"
+              [position]="marker.position"
+              [icon]="marker.icon!"
+            >
+            </map-marker>
+          </google-map>
+        </section>
+      </section>
+
+      <section
+        *ngIf="!keyboardIsOpen"
+        class="flex flex-row justify-center items-center py-[22px] fixed bottom-[40px] gap-[20px] w-full left-0"
+      >
+        <section
+          class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+          (click)="onCancel()"
+        >
+          {{ "SEAT.CANCEL" | translate }}
+        </section>
+
+        <button
+          type="button"
+          class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+          (click)="onSave()"
+          [disabled]="!place"
+        >
+          {{ "SEAT.SAVE" | translate }}
+        </button>
+      </section>
+    </section>
+  </form>
+</section>

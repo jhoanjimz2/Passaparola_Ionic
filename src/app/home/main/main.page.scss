@@ -1,0 +1,137 @@
+ion-content {
+  --background: #fbfcfe;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__card-slide {
+    margin-top: 0.938rem;
+    padding-bottom: 1.563rem;
+    // display: flex;
+    // overflow: auto;
+    // scrollbar-width: none;
+    // -ms-overflow-style: none;
+
+    &__item {
+      min-width: 20.375rem;
+      margin-right: 0.625rem;
+    }
+  }
+
+  &__card-info {
+    width: 100vw;
+    margin-bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../../assets/images/bg-slide-home.png");
+  }
+
+  &__next-btn {
+    position: absolute;
+    width: 1.688rem;
+    height: 1.688rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    margin-top: 4.063rem;
+    margin-left: 0.313rem;
+    border-radius: 5.625rem;
+
+    ion-icon {
+      color: #ff8000;
+      font-size: 1.563rem;
+    }
+  }
+
+  &__back-btn {
+    position: absolute;
+    width: 1.688rem;
+    height: 1.688rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    margin-top: 4.063rem;
+    right: 0.313rem;
+    border-radius: 5.625rem;
+
+    ion-icon {
+      color: #ff8000;
+      font-size: 1.563rem;
+    }
+  }
+
+  &__slide {
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
+    margin-bottom: 2rem;
+    line-height: 1rem;
+    padding-top: 0.938rem;
+    padding-bottom: 1.25rem;
+  }
+
+  &__separator-text {
+    height: 0.625rem;
+  }
+
+  &__search {
+    &__icon {
+      position: absolute;
+      font-size: 1.625rem;
+      margin-top: 0.75rem;
+      margin-left: 0.625rem;
+      z-index: 999;
+    }
+
+    input {
+      height: 3rem;
+      padding-left: 2.5rem;
+      border: solid 0.063rem #70707030;
+    }
+
+    input:focus {
+      outline: none;
+    }
+  }
+
+  &--text-light {
+    color: #ffffff;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--f-z-18 {
+    font-size: 1.125rem;
+  }
+
+  &--f-z-14 {
+    font-size: 0.875rem;
+  }
+
+  &--bg-light {
+    background: #f9f9f9;
+  }
+
+  &--m-l-10 {
+    margin-left: 0.625rem;
+  }
+}
+
+.pagination-swiper-line {
+  --swiper-pagination-bullet-width: 0.688rem;
+  --swiper-pagination-bullet-border-radius: 3.125rem;
+  --swiper-pagination-bullet-height: 0.688rem;
+  --swiper-pagination-color: #ffffff;
+  --swiper-navigation-color: transparent;
+}

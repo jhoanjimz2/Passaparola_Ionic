@@ -1,0 +1,124 @@
+<section class="pt-[34px]" class="main-container">
+  <section class="flex justify-between items-center px-3 pt-2">
+    <article class="flex text-[20px] leading-[27px] font-bold">
+      {{ "GENERAL.RESULTS" | translate }}
+    </article>
+    <!-- <article
+      class="flex justify-center items-center w-[43px] h-[43px] bg-white rounded-[14px] text-[#7A7A7A] shadow-md cursor-pointer"
+    >
+      <ion-icon class="text-[24px] rotate-90" name="options-outline"></ion-icon>
+    </article> -->
+  </section>
+  <section
+    *ngIf="categories.length"
+    class="flex flex-row gap-2 px-3 pb-2 mt-2 overflow-x-auto"
+  >
+    <article
+      class="rounded-full text-[14px] leading-[14px] px-3 py-2 shrink-0 shadow-md text-black bg-white border-[1px] border-[#00B1FF]"
+      *ngFor="let category of categories"
+    >
+      {{ category.companyCategoryTranslation.description }}
+    </article>
+  </section>
+  <section class="">
+    <section
+      class="border-t-[1px] border-b-[1px] border-gray py-3 mt-5 first:mt-1"
+      *ngFor="let seat of seats"
+    >
+      <section class="flex gap-2 rounded-[15px] px-3 pb-[6px] overflow-x-auto">
+        <article
+          *ngFor="let picture of seat?.pictureGallery"
+          (click)="goToDetail(seat.id)"
+          class="w-[160px] h-[128px] rounded-[15px] px-3 bg-green-300 shrink-0 bg-no-repeat bg-cover bg-center"
+          [style.background-image]="'url(' + (picture | image) + ')'"
+        ></article>
+      </section>
+      <section class="flex flex-row justify-between px-6 pt-2">
+        <section class="flex flex-col text-left">
+          <article
+            class="text-[15px] leading-[23px]"
+            (click)="goToDetail(seat.id)"
+          >
+            {{ seat.name }}
+          </article>
+          <article class="text-[11px] leading-[19px]">
+            {{ seat.categories[0].companyCategoryTranslation.description }} | €€
+            | {{ seat.distance < 1 ? seat.distance * 1000 : seat.distance }}
+            {{ seat.distance < 1 ? "m" : "km" }}|
+            <span class="text-[#00B1FF]">Accetta TIX</span>
+          </article>
+          <article class="text-[11px] leading-[19px]">
+            <span
+              [ngClass]="{
+                'text-[#17A541]': seat.isOpen,
+                'text-red-500': !seat.isOpen
+              }"
+            >
+              {{
+                (seat.isOpen ? "GENERAL.OPEN_NOW" : "GENERAL.CLOSED")
+                  | translate
+              }}
+            </span>
+            <span *ngIf="seat.isOpen">
+              | {{ "GENERAL.CLOSES_AT" | translate }}: {{ seat.closeAt }}</span
+            >
+          </article>
+          <section
+            class="flex flex-row gap-1 text-[10px] leading-[14px] text-white mt-1"
+          >
+            <article
+              (click)="suggestionSeat(seat)"
+              class="flex justify-center items-center bg-[#00B1FF] rounded-full pl-[6px] pr-[10px] py-[2px] gap-1"
+            >
+              <ion-icon
+                class="text-[14px]"
+                name="passaparola-suggest2"
+              ></ion-icon>
+              Suggeriscilo
+            </article>
+            <article
+              (click)="callPhoneNumber(seat)"
+              class="flex justify-center items-center bg-[#00B1FF] rounded-full px-[12px] py-[2px] gap-1"
+            >
+              <ion-icon class="text-[12px]" name="passaparola-call"></ion-icon>
+              Chiama
+            </article>
+            <article
+              (click)="howToGet(seat)"
+              class="flex justify-center items-center bg-[#00B1FF] rounded-full h-[22px] w-[22px]"
+            >
+              <ion-icon
+                class="text-[14px]"
+                name="passaparola-how-to-get-there"
+              ></ion-icon>
+            </article>
+          </section>
+        </section>
+        <section class="flex flex-col text-right w-[100px] shrink-0">
+          <article class="flex flex-row justify-end items-center gap-1">
+            <ion-icon class="text-[12px] text-[#F9B30E]" name="star"></ion-icon>
+            <span class="text-[11px] leading-[15px] text-[#6C757D]">
+              4.8/5 (255)
+            </span>
+            <ion-icon
+              class="text-[12px] text-[#6C757D]"
+              name="information-circle-outline"
+            ></ion-icon>
+          </article>
+          <article class="text-[16px] leading-[22px] font-bold text-[#41C837]">
+            {{ seat.pointsPercentage }}%
+          </article>
+          <article class="text-[10px] leading-[14px] text-[#6C757D]">
+            Cashback
+          </article>
+          <!-- <article class="text-[16px] leading-[22px] font-bold text-[#00B1FF]">
+            {{ seat.cashBackPercentage }}%
+          </article>
+          <article class="text-[10px] leading-[14px] text-[#6C757D]">
+            Cashback
+          </article> -->
+        </section>
+      </section>
+    </section>
+  </section>
+</section>

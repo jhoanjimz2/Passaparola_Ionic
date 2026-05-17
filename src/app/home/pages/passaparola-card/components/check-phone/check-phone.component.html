@@ -1,0 +1,209 @@
+<app-header
+  [backIcon]="true"
+  [modalDismiss]="true"
+  [border]="true"
+></app-header>
+<div class="main-container">
+  <ion-card>
+    <div>
+      <ion-card-header>
+        <ion-text>
+          <span class="main-container--f-z-27">
+            {{ "Assegna una nuova" | translate }}
+          </span>
+          <br />
+          <span class="main-container--f-z-36"> {{ "PassaParola Card" }} </span>
+          <br />
+          <br />
+          <span class="main-container--f-z-15">
+            {{
+              "Per assegnare una nuova Passaparola Card, inserisci il numero di telefono del cliente"
+                | translate
+            }}
+          </span>
+          <br />
+          <br />
+          <span
+            *ngIf="timer > 0 && !smsCodeId"
+            class="main-container__text-check"
+          >
+            {{ "SING_UP.WILL_SEND_CODE" | translate }}
+          </span>
+          <span
+            *ngIf="timer < 120 && smsCodeId"
+            class="main-container__text-check"
+          >
+            {{ "SING_UP.WE_SENT_CODE" | translate }}
+          </span>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="formRegister" (ngSubmit)="checkPhone()">
+          <div class="main-container__form-phone">
+            <ion-label>{{ "SING_UP.PHONE_NUMBER" | translate }}</ion-label>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3" class="main-container--b-r-1">
+                  <ion-select
+                    formControlName="phonePrefix"
+                    name="phonePrefix"
+                    color="primary"
+                    placeholder="{{ 'SING_UP.COUNTRY' | translate }}"
+                    (ionChange)="
+                      getIdCountry(formRegister.controls['phonePrefix'].value)
+                    "
+                  >
+                    <ion-select-option
+                      *ngFor="let country of countries"
+                      [value]="country.phonePrefix"
+                    >
+                      {{ country.phonePrefix }} {{ country.code }}
+                    </ion-select-option>
+                  </ion-select></ion-col
+                >
+                <ion-col size="9">
+                  <input
+                    formControlName="phone"
+                    name="phone"
+                    placeholder=""
+                    autocomplete="off"
+                    type="tel"
+                  />
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button
+              type="submit"
+              *ngIf="!smsCodeId"
+              [disabled]="formRegister.invalid"
+              expand="block"
+            >
+              {{ "Invia Codice" | translate }}
+            </ion-button>
+          </div>
+        </form>
+
+        <div *ngIf="smsCodeId" class="main-container__form-check-phone">
+          <form [formGroup]="formCode" (ngSubmit)="checkCode()">
+            <ion-label>{{ "SING_UP.VERIFICATION_CODE" | translate }}</ion-label>
+            <div class="main-container__form-check-phone__code">
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code1
+                  formControlName="code1"
+                  name="code1"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(1)"
+                  type="tel"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code2
+                  formControlName="code2"
+                  name="code2"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(2)"
+                  type="tel"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code3
+                  formControlName="code3"
+                  name="code3"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(3)"
+                  type="tel"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code4
+                  formControlName="code4"
+                  name="code4"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(4)"
+                  type="tel"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code5
+                  formControlName="code5"
+                  name="code5"
+                  mask="0"
+                  autocomplete="off"
+                  (keyup)="inputCode(5)"
+                  type="tel"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+              <div class="main-container__form-check-phone__input">
+                <input
+                  #code6
+                  formControlName="code6"
+                  name="code6"
+                  mask="0"
+                  autocomplete="off"
+                  type="tel"
+                  autocomplete="one-time-code"
+                  (input)="onOtpInput($event)"
+                />
+              </div>
+            </div>
+
+            <div class="main-container__form-check-phone__progress">
+              <circle-progress
+                [percent]="percent"
+                [radius]="30"
+                text
+                [outerStrokeWidth]="5"
+                [innerStrokeWidth]="0"
+                [outerStrokeColor]="'#FF3D00'"
+                [innerStrokeColor]="'#FF3D00'"
+                [animation]="true"
+                [animationDuration]="1"
+              ></circle-progress>
+              <div class="main-container__form-check-phone__time">
+                {{ minutes }}:{{ seconds }}
+              </div>
+            </div>
+            <div class="main-container__form-check-phone--text-center">
+              <ion-text>
+                <span>{{ "SING_UP.NOT_RECEIVED_CODE" | translate }}</span>
+                <br />
+                <span
+                  (click)="getCode()"
+                  class="main-container__form-check-phone__text-resend"
+                  >{{ "SING_UP.CLICK_HERE" | translate }}</span
+                >
+              </ion-text>
+            </div>
+            <ion-button
+              type="submit"
+              *ngIf="smsCodeId && timer > 0"
+              [disabled]="formCode.invalid"
+              expand="block"
+            >
+              {{ "SING_UP.VERIFY" | translate }}
+            </ion-button>
+          </form>
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>

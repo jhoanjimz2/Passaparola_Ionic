@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38.439" height="54.912" viewBox="0 0 38.439 54.912">
+  <g id="suggested_stores" data-name="suggested stores" transform="translate(-12.419 -15.324)">
+    <path id="Icon_material-location-on" data-name="Icon material-location-on" d="M26.719,3A19.2,19.2,0,0,0,7.5,22.219c0,14.415,19.219,35.693,19.219,35.693S45.939,36.634,45.939,22.219A19.2,19.2,0,0,0,26.719,3Zm0,26.083a6.864,6.864,0,1,1,6.864-6.864A6.867,6.867,0,0,1,26.719,29.083Z" transform="translate(4.919 12.324)" fill="#7a7a7a"/>
+    <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(14.419 17.267)" fill="#7a7a7a" stroke="#fff" stroke-width="1">
+      <circle cx="17" cy="17" r="17" stroke="none"/>
+      <circle cx="17" cy="17" r="16.5" fill="none"/>
+    </g>
+    <path id="Icon_awesome-question-circle" data-name="Icon awesome-question-circle" d="M19.322,9.942A9.38,9.38,0,1,1,9.942.563,9.379,9.379,0,0,1,19.322,9.942ZM10.194,3.664A4.9,4.9,0,0,0,5.786,6.075a.454.454,0,0,0,.1.615l1.312,1a.454.454,0,0,0,.63-.08C8.507,6.748,8.97,6.251,10,6.251c.773,0,1.728.5,1.728,1.247,0,.566-.468.857-1.23,1.285-.89.5-2.067,1.12-2.067,2.672v.151a.454.454,0,0,0,.454.454H11a.454.454,0,0,0,.454-.454v-.05c0-1.076,3.146-1.121,3.146-4.034C14.6,5.328,12.326,3.664,10.194,3.664Zm-.252,9.38a1.74,1.74,0,1,0,1.74,1.74A1.742,1.742,0,0,0,9.942,13.043Z" transform="translate(21.213 24.06)" fill="#fff"/>
+  </g>
+</svg>

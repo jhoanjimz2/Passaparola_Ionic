@@ -1,0 +1,25 @@
+[
+  {
+    "title": "MENU.BUSSINES",
+    "children": [
+      {
+        "icon": "passaparola-id-card",
+        "name": "Materiale promozionale",
+        "redirectTo": "pages/company/promotional materials",
+        "navType": "forward",
+        "queryParams": {},
+        "visible": true
+      },
+      {
+        "icon": "qr-code-outline",
+        "name": "Pagamento QR statico",
+        "redirectTo": "",
+        "navType": "forward",
+        "queryParams": {},
+        "visible": true,
+        "action": "modalQrCode"
+      }
+    ],
+    "visible": true
+  }
+]

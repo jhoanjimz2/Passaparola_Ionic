@@ -1,0 +1,35 @@
+<section class="flex flex-col px-[40px] text-center bg-[#F9F9F9] h-full">
+  <section class="mt-[80px] font-bold text-[20px] leading-[27px]">
+    {{ "PAYMENT.SUMMARY.SUMMARY" | translate }}
+  </section>
+  <section class="mt-[5px] text-[64px] leading-[87px]">
+    {{ mainAmount }},{{ decimalAmount }}
+  </section>
+  <section class="font-sans font-bold text-[18px] leading-[24px]">
+    €/ATM
+  </section>
+  <section
+    *ngIf="parseFloat(amountWithoutRewards) > 0"
+    class="mt-[10px] text-[18px] leading-[24px]"
+    [innerHTML]="
+      'PAYMENT.SUMMARY.OF_WHICH_WITHOUT_REWARDS'
+        | translate
+          : {
+              amountWithoutRewards:
+                parseFloat(amountWithoutRewards) | formattNumber
+            }
+    "
+  ></section>
+  <section
+    class="bg-[#41C837] text-white text-[15px] leading-[22px] py-[20px] mt-[90px] rounded-[34px] text-center font-semibold"
+    (click)="onConfirmOperationModal()"
+  >
+    {{ "PAYMENT.SUMMARY.CONFIRM_OPERATION" | translate }}
+  </section>
+  <section
+    class="mt-[30px] text-[#9E9C9C] font-bold text-[16px] leading-[22px]"
+    (click)="onCancelOperation()"
+  >
+    {{ "PAYMENT.CANCEL" | translate }}
+  </section>
+</section>

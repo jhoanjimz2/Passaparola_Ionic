@@ -1,0 +1,72 @@
+<section class="w-full px-[0.813rem] py-[1.313rem]">
+
+  <div class="relative w-full search-container">
+    <input
+      class="input-searchbar"
+      placeholder="Cerca qui..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchInput($event)"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+    />
+    <button
+      class="button-searchbar"
+      (click)="onSearchClick()"
+      [disabled]="isSearching">
+      <ion-icon
+        [name]="isSearching ? 'hourglass-outline' : 'search-outline'">
+      </ion-icon>
+    </button>
+
+    <!-- Resultados de búsqueda -->
+    <div
+      class="search-results"
+      *ngIf="showResults">
+
+      <!-- Sin resultados -->
+      <div
+        class="search-results__empty"
+        *ngIf="searchResults.length === 0 && !isSearching">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <span>Nessun risultato trovato</span>
+      </div>
+
+      <!-- Lista de resultados -->
+      <div
+        class="search-results__list"
+        *ngIf="searchResults.length > 0">
+        <div
+          class="search-results__item"
+          *ngFor="let willbuy of searchResults"
+          (click)="selectResult(willbuy)">
+
+          <img
+            [src]="willbuy.product?.pictureUrlFile || 'assets/images/placeholder.png'"
+            [alt]="willbuy.product?.name"
+            class="search-results__item-image">
+
+          <div class="search-results__item-info">
+            <span class="search-results__item-name">{{ willbuy.product?.name }}</span>
+            <span class="search-results__item-category">
+              {{ willbuy.product?.category?.description }}
+            </span>
+            <div class="search-results__item-price-wrapper">
+              <span class="search-results__item-price">
+                {{ getCurrentPhasePrice(willbuy) }}
+              </span>
+              <span class="search-results__item-cashback" *ngIf="willbuy.product?.cashBack">
+                {{ calculateCashback(willbuy) }} cashback
+              </span>
+            </div>
+          </div>
+
+          <ion-icon
+            name="chevron-forward-outline"
+            class="search-results__item-arrow">
+          </ion-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,96 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-card mode="md">
+    <ion-card-header>
+      <div
+        (click)="takePicture()"
+        class="img"
+        [style.background-image]="profilePictureUrl ? 'url(' + (profilePictureUrl | image) + ')' : 'url(' + (profile.profilePictureUrlFile! | image) + ')'"
+      ></div>
+
+      <ion-text *ngIf="!isLoginCompany" class="text-center">
+        <span class="profile-name">{{profile.name}} {{profile.lastName}}</span>
+        <br />
+        <span>{{profile.username ? '@' + profile.username : ''}}</span>
+      </ion-text>
+
+      <ion-text *ngIf="isLoginCompany" class="text-center">
+        <span class="profile-name">{{profile.name}}</span>
+        <br />
+        <span>{{profile.username ? '@' + profile.username : ''}}</span>
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="container-buttons">
+        <div class="container-buttons__buttons">
+          <ion-button class="container-buttons__buttons__btn-lg"
+            >{{"0 Following"}}</ion-button
+          >
+          <ion-button class="container-buttons__buttons__btn-lg"
+            >{{"Invita amici"}}</ion-button
+          >
+          <ion-button class="container-buttons__buttons__btn-circle">
+            <ion-icon name="grid-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <ion-grid class="text-center">
+        <ion-row>
+          <ion-col size="3" class="profile-data">{{"0"}}</ion-col>
+          <ion-col size="3" class="profile-data">{{"0"}}</ion-col>
+          <ion-col size="3" class="profile-data">{{communityFriends}}</ion-col>
+          <ion-col size="3" class="profile-data">{{"0"}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">{{"tags"}}</ion-col>
+          <ion-col size="3">{{"followers"}}</ion-col>
+          <ion-col size="3">{{"community"}}</ion-col>
+          <ion-col size="3">{{"likes"}}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-button
+              (click)="btbPostActive = 'myPost'"
+              class="btn-post"
+              [ngClass]="{'btn-post-active': btbPostActive === 'myPost'}"
+            >
+              {{"my post"}}</ion-button
+            >
+          </ion-col>
+          <ion-col size="4" class="text-center">
+            <ion-button
+              (click)="btbPostActive = 'liked'"
+              class="btn-post"
+              [ngClass]="{'btn-post-active': btbPostActive === 'liked'}"
+            >
+              {{"liked"}}</ion-button
+            >
+          </ion-col>
+          <ion-col size="4" class="text-right">
+            <ion-button
+              (click)="btbPostActive = 'saved'"
+              class="btn-post"
+              [ngClass]="{'btn-post-active': btbPostActive === 'saved'}"
+            >
+              {{"saved"}}</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- <div class="post-container">
+        <div class="post-container__items"></div>
+        <div class="post-container__items"></div>
+        <div class="post-container__items"></div>
+        <div class="post-container__items"></div>
+        <div class="post-container__items"></div>
+        <div class="post-container__items"></div>
+        <div class="post-container__items"></div>
+      </div> -->
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,150 @@
+.main-container {
+  --background: #f9f9f9;
+
+  &__community-summary {
+    ion-col {
+      text-align: center;
+    }
+
+    ion-text {
+      line-height: 180%;
+    }
+
+    &__text-dark {
+      color: #1d0f01;
+    }
+
+    &__text-large {
+      font-size: 1.375rem;
+      color: #636262;
+      font-weight: bold;
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    color: #000000;
+  }
+
+  &__icon-arrows {
+    position: absolute;
+    margin-left: -0.938rem;
+    margin-top: 0.094rem;
+    color: #000000;
+  }
+
+  &__col-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    &__img {
+      width: 3.875rem;
+      height: 3.875rem;
+      border: solid 0.25rem #ffffff;
+      border-radius: 0.938rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  &__text-name {
+    color: #000000;
+  }
+
+  &__text-members {
+    font-size: 0.688rem;
+    color: #8b8b8b;
+    font-weight: 600;
+  }
+
+  &__text-pr {
+    font-size: 0.938rem;
+    font-weight: bold;
+    color: #41c837;
+  }
+
+  &__text-level {
+    font-size: 0.938rem;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  &__text-earnings {
+    font-size: 0.688rem;
+    color: #707070;
+    white-space: nowrap;
+  }
+
+  &__earnings {
+    font-size: 0.938rem;
+    color: #707070;
+  }
+
+  &__col-info {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+  }
+
+  &--text-grey {
+    color: #6c757d;
+  }
+
+  &--text-right {
+    text-align: right;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--l-h-0 {
+    line-height: 0;
+  }
+
+  ion-card {
+    box-shadow: none;
+    margin: 0;
+    background: transparent;
+
+    ion-card-header {
+      padding-left: 0.313rem;
+      padding-right: 0.313rem;
+      padding-bottom: 0;
+
+      ion-grid,
+      ion-row {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    ion-card-content {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+
+      ion-grid {
+        margin: 0;
+        padding: 0;
+
+        ion-row {
+          border-bottom: solid 0.063rem #d9d3ce;
+          padding-left: 0.313rem;
+          padding-bottom: 0.625rem;
+          padding-top: 0.625rem;
+        }
+      }
+    }
+  }
+
+  ion-grid,
+  ion-row {
+    margin: 0;
+    padding: 0;
+  }
+}

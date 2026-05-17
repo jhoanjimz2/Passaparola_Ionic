@@ -1,0 +1,37 @@
+<section class="px-[16px] my-[48px] pt-0">
+
+  <section class="flex justify-between">
+    <section class="w-[calc(50%-.5rem)] h-[6.3129rem] rounded-[1.075rem] text-center flex flex-col justify-center items-center shadow-md border border-[#EC0973] bg-[#EC0973]">
+      <span class="text-3xl font-bold flex justify-center items-center text-white">
+        <ion-icon [src]="'assets/images/events/custom-icons/ticket-blanco.svg'" class="text-xl mr-1"/>
+        {{  eventProfile.tickets || [] | sumQuantity }}
+      </span>
+      <span class="text-white">biglietti totali</span>
+    </section>
+    <section class="w-[calc(50%-.5rem)] h-[6.3129rem] rounded-[1.075rem] text-center flex flex-col justify-center items-center shadow-md border border-[#D5D4D4] bg-white cursor-pointer" (click)="create()">
+      <span class="text-3xl font-bold text-black">+</span>
+      <span class="text-black px-[.5rem]">aggiungi nuova tipologia di biglietti</span>
+    </section>
+  </section>
+
+  <app-voucher-entrada-event
+    *ngFor="let ticket of eventProfile.tickets; let i = index"
+    (click)="create(i)"
+    [border]="true"
+    [ticket]="ticket">
+  </app-voucher-entrada-event>
+
+
+  <section class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0">
+    <section class="bg-white opacity-45 absolute h-full w-full"></section>
+    <section class="flex justify-center items-center w-[90%] py-[10px] rounded-full border-[2px] border-[#EC0973] border-solid bg-[#EC0973] text-white font-bold z-10"(click)="close()">
+      {{ 'Annulla' }}
+    </section>
+  </section>
+
+
+
+</section>
+
+
+

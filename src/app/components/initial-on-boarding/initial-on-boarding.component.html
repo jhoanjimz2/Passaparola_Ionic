@@ -1,0 +1,96 @@
+<div class="main-container" [ngClass]="{ 'main-container--p-t-50': isIos }">
+  <ion-label
+    (click)="close()"
+    class="main-container__skip"
+    [ngClass]="{ 'main-container--top-45': isIos }"
+    >{{ "ONBOARDING_APP_USER.SKIP" | translate }}</ion-label
+  >
+
+  <div class="main-container__container">
+    <ion-card *ngIf="!showSlide" class="main-container__card">
+      <ion-text>
+        <div class="main-container__card__img">
+          <img
+            class="animate__animated animate__backInDown"
+            src="assets/images/logo-text.png"
+            alt="Passaparola Logo"
+          />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <span class="main-container__card__title">{{
+          "ONBOARDING_APP_USER.WELCOME" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__text">{{
+          "ONBOARDING_APP_USER.THE_APP_PAYS" | translate
+        }}</span>
+      </ion-text>
+    </ion-card>
+
+    <swiper-container
+      #swiperEl
+      hidden
+      class="pagination-swiper-line swiper-container"
+      effect="creative"
+      grab-cursor="true"
+      creative-effect='{
+          "prev": {
+            "shadow": true,
+            "translate": [0, 0, -400]
+          },
+          "next": {
+            "translate": ["100%", 0, 0]
+          }
+        }'
+      (swiperslidechange)="onSlideChange($event)"
+    >
+      <swiper-slide *ngFor="let slide of slides; index as i">
+        <ion-card class="main-container__slide">
+          <div class="main-container__slide__img">
+            <img [src]="slide.image" alt="Slide Image" />
+          </div>
+          <ion-text>
+            <span class="main-container__slide__title">
+              {{ slide.title | translate }}
+            </span>
+            <br />
+            <span class="main-container__slide__text">
+              {{ slide.description | translate }}
+            </span>
+          </ion-text>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div class="main-container__buttons">
+    <ion-button
+      *ngIf="slides.length - 1 !== slideIndex"
+      (click)="!showSlide ? showSlideCard() : nextSlide(swiperEl)"
+      expand="block"
+      class="main-container__buttons--btn-orange"
+      type="button"
+      >{{ (!showSlide ? "Inizia" : "Avanti") | translate }}</ion-button
+    >
+    <ion-button
+      *ngIf="slides.length - 1 === slideIndex"
+      (click)="close()"
+      expand="block"
+      class="main-container__buttons--btn-orange"
+      type="button"
+      >{{ "Entra in Passaparola" | translate }}</ion-button
+    >
+    <ion-button
+      (click)="close()"
+      expand="block"
+      class="main-container__buttons--btn-light"
+      >{{ "Login" | translate }}</ion-button
+    >
+  </div>
+</div>

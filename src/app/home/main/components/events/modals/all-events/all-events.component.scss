@@ -1,0 +1,28 @@
+
+.title {
+  padding-right: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+}
+.select {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.main {
+  &__nearest-event {
+    margin-bottom: 20px;
+  }
+}
+ion-grid {
+  padding: 0px;
+  margin: 1rem;
+}
+ion-row {
+  padding: 0px;
+}
+ion-col {
+  padding: 0px;
+}

@@ -1,0 +1,51 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <div>
+      <ion-card-header>
+        <ion-text class="main-container__card__text">
+          <span *ngIf="wallet.name" class="main-container__card__name">
+            <ion-icon
+              name="passaparola-edit-circle"
+              class="main-container__card__icon"
+            ></ion-icon>
+            {{ wallet.name }}
+          </span>
+          <br />
+          <br />
+          <span>{{ "WALLET.QR_CODE.TEXT_1" | translate }}</span>
+          <br />
+          <span>{{ "WALLET.QR_CODE.TEXT_2" | translate }}</span>
+          <br />
+          <span> {{ "WALLET.QR_CODE.TEXT_3" | translate }}</span>
+          <span style="font-weight: bold">{{ " Wallet ID." }}</span>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card class="main-container__qr">
+          <div class="main-container__qr__card">
+            <ngx-qrcode-styling [config]="config"></ngx-qrcode-styling>
+          </div>
+        </ion-card>
+      </ion-card-content>
+
+      <ion-label>{{ "WALLET.QR_CODE.WALLET_ID" | translate }}</ion-label>
+      <div class="main-container__wallet">
+        <div class="main-container__wallet__text">
+          <span id="copyText">
+            {{ data }}
+          </span>
+          <ion-icon
+            (click)="copyDataToClipboard()"
+            name="copy-outline"
+          ></ion-icon>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

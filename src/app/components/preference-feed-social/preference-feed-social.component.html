@@ -1,0 +1,193 @@
+<ion-content>
+
+  <section class="preference-feed">
+
+    <section class="preference-feed__header">
+      <span class="preference-feed__title preference-feed__title--bold">PERSONALIZZA</span>
+      <span class="preference-feed__title preference-feed__title--medium">IL TUO FEED</span>
+    </section>
+
+    <section class="preference-feed__description">
+      <p class="preference-feed__description-text">
+        Scegli gli argomenti che ti interessano per <br>
+        visualizzare Paspot in linea con le tue preferenze
+      </p>
+    </section>
+
+    <section class="preference-feed__tabs">
+      <div class="preference-feed__tab">
+        <span
+          (click)="typePreference = preference.official"
+          [ngClass]="{
+            'preference-feed__tab-label--active': typePreference === preference.official
+          }"
+          class="preference-feed__tab-label">
+          ufficiali
+        </span>
+      </div>
+
+      <div class="preference-feed__tab">
+        <span
+          (click)="typePreference = preference.byusers"
+          [ngClass]="{
+            'preference-feed__tab-label--active': typePreference === preference.byusers
+          }"
+          class="preference-feed__tab-label">
+          dagli utenti
+        </span>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS OFICIALES -->
+    <section class="preference-feed__content" *ngIf="typePreference === preference.official">
+      <div class="preference-feed__list">
+        <div class="preference-feed__official-card" *ngFor="let category of getOfficialCategories()">
+          <!-- Imagen de la categoría -->
+          <img
+            [src]="
+              category?.urlImage
+              ? category.urlImage
+              : 'https://placehold.co/80x80?text=Img'
+            "
+            class="preference-feed__official-image"
+          >
+
+          <!-- Contenido: nombre y descripción -->
+          <div class="preference-feed__official-content">
+            <span class="preference-feed__official-name">
+              {{ category.socialCommunityCategoryTranslation[0].description ?? 'Name' }}
+            </span>
+            <span class="preference-feed__official-description">
+              {{ category.socialCommunityCategoryTranslation[0].longDescription }}
+            </span>
+          </div>
+
+          <!-- Iconos de acciones -->
+          <div class="preference-feed__official-actions">
+            <ion-icon
+              class="preference-feed__official-icon"
+              [ngClass]="{ 'preference-feed__official-icon--like-active': isOfficialIconActive(category.categoryId, preferenceLevel.like) }"
+              [name]="getIconName(preferenceLevel.like, isOfficialIconActive(category.categoryId, preferenceLevel.like))"
+              (click)="toggleOfficialPreference(category.categoryId, preferenceLevel.like)">
+            </ion-icon>
+
+            <ion-icon
+              class="preference-feed__official-icon"
+              [ngClass]="{ 'preference-feed__official-icon--love-active': isOfficialIconActive(category.categoryId, preferenceLevel.love) }"
+              [name]="getIconName(preferenceLevel.love, isOfficialIconActive(category.categoryId, preferenceLevel.love))"
+              (click)="toggleOfficialPreference(category.categoryId, preferenceLevel.love)">
+            </ion-icon>
+
+            <ion-icon
+              class="preference-feed__official-icon"
+              [ngClass]="{ 'preference-feed__official-icon--dislike-active': isOfficialIconActive(category.categoryId, preferenceLevel.dislike) }"
+              [name]="getIconName(preferenceLevel.dislike, isOfficialIconActive(category.categoryId, preferenceLevel.dislike))"
+              (click)="toggleOfficialPreference(category.categoryId, preferenceLevel.dislike)">
+            </ion-icon>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS DE USUARIOS -->
+    <section class="preference-feed__content preference-feed__content--with-input" *ngIf="typePreference === preference.byusers">
+      <div class="preference-feed__filters">
+        <div
+          (click)="selectParentFilter('all')"
+          [ngClass]="{ 'preference-feed__filter-chip--active': selectedParentFilter === 'all' }"
+          class="preference-feed__filter-chip">
+          Tutti
+        </div>
+        <div
+          *ngFor="let parentOption of getFilterOptions()"
+          (click)="selectParentFilter(parentOption.categoryId)"
+          [ngClass]="{ 'preference-feed__filter-chip--active': selectedParentFilter === parentOption.categoryId }"
+          class="preference-feed__filter-chip">
+          {{ parentOption.description }}
+        </div>
+      </div>
+
+      <div class="preference-feed__table-header">
+        <div class="preference-feed__header-cell preference-feed__header-cell--large">
+          <span class="preference-feed__header-text">argomenti</span>
+        </div>
+        <div class="preference-feed__header-cell preference-feed__header-cell--small">
+          <span class="preference-feed__header-text">mi piace</span>
+        </div>
+        <div class="preference-feed__header-cell preference-feed__header-cell--small">
+          <span class="preference-feed__header-text">adoro</span>
+        </div>
+        <div class="preference-feed__header-cell preference-feed__header-cell--small">
+          <span class="preference-feed__header-text">no, grazie</span>
+        </div>
+      </div>
+
+      <div class="preference-feed__list preference-feed__list--scrollable">
+        <div class="preference-feed__row" *ngFor="let child of getUserCategories()">
+          <div class="preference-feed__cell preference-feed__cell--large">
+            <div class="preference-feed__category-info">
+              <span class="preference-feed__category-name">
+                {{ child.description }}
+              </span>
+              <span class="preference-feed__category-parent">
+                {{ child.parentDescription }}
+              </span>
+            </div>
+          </div>
+          <div class="preference-feed__cell preference-feed__cell--small preference-feed__cell--center">
+            <ion-icon
+              class="preference-feed__icon"
+              [ngClass]="{ 'preference-feed__icon--like-active': isUserIconActive(child.id, preferenceLevel.like) }"
+              [name]="getIconName(preferenceLevel.like, isUserIconActive(child.id, preferenceLevel.like))"
+              (click)="toggleUserPreference(child.id, preferenceLevel.like)">
+            </ion-icon>
+          </div>
+          <div class="preference-feed__cell preference-feed__cell--small preference-feed__cell--center">
+            <ion-icon
+              class="preference-feed__icon"
+              [ngClass]="{ 'preference-feed__icon--love-active': isUserIconActive(child.id, preferenceLevel.love) }"
+              [name]="getIconName(preferenceLevel.love, isUserIconActive(child.id, preferenceLevel.love))"
+              (click)="toggleUserPreference(child.id, preferenceLevel.love)">
+            </ion-icon>
+          </div>
+          <div class="preference-feed__cell preference-feed__cell--small preference-feed__cell--center">
+            <ion-icon
+              class="preference-feed__icon"
+              [ngClass]="{ 'preference-feed__icon--dislike-active': isUserIconActive(child.id, preferenceLevel.dislike) }"
+              [name]="getIconName(preferenceLevel.dislike, isUserIconActive(child.id, preferenceLevel.dislike))"
+              (click)="toggleUserPreference(child.id, preferenceLevel.dislike)">
+            </ion-icon>
+          </div>
+        </div>
+
+        <!-- Mensaje cuando no hay categorías -->
+        <div *ngIf="getUserCategories().length === 0" class="preference-feed__empty">
+          <span class="preference-feed__empty-text">
+            Nessuna categoria utente disponibile
+          </span>
+        </div>
+      </div>
+
+      <div class="preference-feed__input-container">
+        <div class="preference-feed__input-wrapper">
+          <input
+            [(ngModel)]="newCategoryInput"
+            (keyup.enter)="addNewCategory()"
+            [placeholder]="getPlaceholderMessage()"
+            [disabled]="selectedParentFilter === 'all'"
+            class="preference-feed__input"
+          >
+          <button
+            (click)="addNewCategory()"
+            [disabled]="!canAddCategory()"
+            [ngClass]="{ 'preference-feed__button--disabled': !canAddCategory() }"
+            class="preference-feed__button">
+            aggiungi
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</ion-content>

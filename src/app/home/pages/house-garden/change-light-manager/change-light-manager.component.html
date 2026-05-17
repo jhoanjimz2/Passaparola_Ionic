@@ -1,0 +1,44 @@
+<app-header
+  (backPressed)="onBackPressed()"
+></app-header>
+
+<ion-content>
+  <app-step
+    [currentStep]="currentStep"
+    [totalSteps]="totalSteps"
+    (stepChange)="onStepChange($event)"
+    [hidden]="!(!confirmRequest)"
+  ></app-step>
+
+  <app-form-contract-holder
+    [contract]="contract"
+    [hidden]="!(currentStep === 1 && !confirmRequest)"
+    (save_data)="save_data($event)"
+  ></app-form-contract-holder>
+
+  <app-form-delivery-address
+    [contract]="contract"
+    [hidden]="!(currentStep === 2 && !confirmRequest)"
+    (save_data)="save_data($event)"
+  ></app-form-delivery-address>
+
+  <app-form-payment-method
+    [contract]="contract"
+    [hidden]="!(currentStep === 3 && !confirmRequest)"
+    [bankWallet]="bankWallet"
+    [bankCards]="bankCards"
+    [bankAccounts]="bankAccounts"
+    (save_data)="save_data($event)"
+  ></app-form-payment-method>
+
+  <app-form-supply-contract
+    [contract]="contract"
+    [hidden]="!(currentStep === 4 && !confirmRequest)"
+    (save_data)="save_data($event)"
+  ></app-form-supply-contract>
+
+  <app-confirm-request
+    [hidden]="!(currentStep === 4 && confirmRequest)"
+  ></app-confirm-request>
+
+</ion-content>

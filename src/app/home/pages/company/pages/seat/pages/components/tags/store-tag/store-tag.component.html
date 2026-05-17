@@ -1,0 +1,74 @@
+<div class="relative w-full border border-solid border-[#70707030] rounded-[1.1rem] bg-white p-[0.710625rem]">
+
+  <button (click)="deselect()" *ngIf="storeSelect && !storeTag && !storeTagProfile" class="flex justify-center items-center absolute z-50 top-[-.5rem] right-0 w-[1.8125rem] h-[1.8125rem] rounded-full bg-white border border-solid border-[#E4EDF3] shadow-[0px_3px_6px_#0000001C] ">
+    <ion-icon class="text-black text-[1.2rem]" name="trash"></ion-icon>
+  </button>
+
+
+  <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar" (click)="viewStore()">
+    <div class="shrink-0 w-1/2" *ngFor="let image of store.pictureGallery">
+      <img class="w-full h-[8.018125rem] rounded-[0.9375rem] object-cover" [src]="image">
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 w-full" (click)="viewStore()">
+    <div class="col-span-2 flex flex-col leading-[1]">
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 items-center justify-start">
+          <span class="text-[0.9375rem] text-[#000000]">{{ store?.name }}</span>
+          <ion-icon class="text-[#41C837] text-[1.1rem]" name="checkbox"></ion-icon>
+        </div>
+      </div>
+
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 items-center justify-start">
+          <span class="text-[0.6875rem] font-semibold text-black">
+              {{ store.categories[0].companyCategoryTranslation.description }} | €€ |
+              {{ store.distance < 1 ? store.distance * 1000 : store.distance }}
+              {{ store.distance < 1 ? "m" : "km" }}
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 items-center justify-start">
+          <span class="text-[0.6875rem] font-semibold" [ngClass]="{ 'text-[#17A541]': store.isOpen, 'text-red-500': !store.isOpen}">
+            {{ store.isOpen ? "Aperto adesso" : "Closed" }}
+          </span>
+          <span class="text-[0.6875rem] font-semibold text-black" *ngIf="store.isOpen">
+            | {{ "Chiude alle ore" }}: {{ store.closeAt }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-1 flex flex-col text-end leading-[1]">
+      <span class="text-[2rem] font-bold text-[#41C837]">{{ store.pointsPercentage }}%</span>
+      <span class="text-[.75rem] font-normal text-[#6C757D]">Back</span>
+    </div>
+  </div>
+
+  <div *ngIf="!storeSelect && !storeTag && !storeTagProfile" class="flex flex-row items-center justify-end gap-[0.8125rem] mt-1">
+    <button (click)="selected()" class="w-[6.125rem] h-[1.75rem] rounded-[0.875rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+      Tagga
+    </button>
+  </div>
+
+  <div *ngIf="storeTagProfile && !showDetail" class="flex flex-row items-center justify-start gap-[0.8125rem] mt-1">
+    <button (click)="modifyDelete()" class="w-[9.4375rem] h-[2.1875rem] rounded-[1.125rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+      Modifica/elimina
+    </button>
+  </div>
+
+  <div *ngIf="storeTag" class="flex flex-row items-center justify-start gap-[0.8125rem] mt-1">
+    <button class="w-[5.8125rem] h-[1.375rem] text-[0.625rem] flex justify-center items-center text-white bg-[#00B1FF] rounded-full">
+      Suggeriscilo
+    </button>
+    <button class="w-[4.740625rem] h-[1.375rem] text-[0.625rem] flex justify-center items-center text-white bg-[#00B1FF] rounded-full">
+      Chiama
+    </button>
+    <button class="w-[1.375rem] h-[1.375rem] text-[0.625rem] flex justify-center items-center text-white bg-[#00B1FF] rounded-full">
+      <ion-icon name="passaparola-post-go-store"></ion-icon>
+    </button>
+  </div>
+
+</div>

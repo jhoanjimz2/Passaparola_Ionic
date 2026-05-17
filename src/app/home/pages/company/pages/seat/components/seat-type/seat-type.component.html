@@ -1,0 +1,82 @@
+<section class="h-full flex flex-col px-[23px] pt-[32px] overflow-y-auto">
+  <section *ngIf="sessionService.isCompanyLegal" class="text-[22px] leading-[30px] font-semibold text-center">
+    {{ "SEAT.COMPONENT.TYPE.TITLE" | translate }}
+  </section>
+  <section *ngIf="sessionService.isCompanyLegal" class="text-[14px] leading-[17px] text-center mt-[12px]">
+    {{ "SEAT.COMPONENT.TYPE.SUBTITLE" | translate }}
+  </section>
+
+  <section *ngIf="sessionService.isProfessionalAdministrative" class="text-[22px] leading-[30px] font-semibold text-center">
+    {{ "SEAT.COMPONENT.TYPE.TITLE_PUBLIC" | translate }}
+  </section>
+  <section *ngIf="sessionService.isProfessionalAdministrative" class="text-[14px] leading-[17px] text-center mt-[12px]">
+    {{ "SEAT.COMPONENT.TYPE.SUBTITLE_PUBLIC" | translate }}
+  </section>
+
+  <section class="flex flex-row justify-between items-center mt-[28px]">
+    <section
+      class="flex px-[30px] py-[36px] border-[1px] text-[16px] leading-[17px] rounded-[19px]"
+      [ngClass]="{
+        'border-[#DDE5E9]': storeType === '',
+        'border-[#41C837]': storeType === seatType
+      }"
+      *ngFor="let seatType of seatTypes"
+      (click)="storeType = seatType"
+    >
+      {{
+        (seatType.companySeatTypeTranslation[0].description == 'Sede fisica'
+        && sessionService.isProfessionalAdministrative) ? 'In presenza' : seatType.companySeatTypeTranslation[0].description }}
+    </section>
+  </section>
+
+  <section class="text-[16px] leading-[17px] font-bold mt-[24px]">
+    {{ "SEAT.COMPONENT.TYPE.WHO_ARE_YOUR_CUSTOMERS" | translate }}
+  </section>
+
+  <section class="text-[14px] leading-[17px] mt-[10px]">
+    {{ "SEAT.COMPONENT.TYPE.DESCRIPTION" | translate }}
+  </section>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSave()"
+    focusInvalidInput
+    novalidate
+    autocomplete="false"
+    class="flex flex-col justify-between mb-[20px] h-full"
+  >
+    <section class="h-[60px]">
+      <section class="flex flex-row justify-between items-center mt-[20px]">
+        <section
+          class="flex items-center w-full pl-[20px]"
+          *ngFor="let seatClientType of seatClientTypes"
+        >
+          <ion-checkbox
+            class="mr-[13px]"
+            mode="md"
+            color="secondary"
+            [formControlName]="seatClientType.description"
+            (ionChange)="updateChecked()"
+          />
+          <ion-label (click)="toggleCheckbox(seatClientType.id)">
+            {{ seatClientType.companySeatClientTypeTranslation[0].description }}
+          </ion-label>
+        </section>
+      </section>
+      <section
+        *ngIf="keys.length"
+        class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+      >
+        {{ displayMessage[keys[0]] }}
+      </section>
+    </section>
+
+    <button
+      class="text-[14px] leading-[17px] bg-black text-white py-[27px] rounded-full disabled:opacity-50"
+      type="submit"
+      [disabled]="storeType === '' || !form.valid"
+    >
+      {{ "SEAT.COMPONENT.TYPE.SAVE_AND_CONTINUE" | translate }}
+    </button>
+  </form>
+</section>

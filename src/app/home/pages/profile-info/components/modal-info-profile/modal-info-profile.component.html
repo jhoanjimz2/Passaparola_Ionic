@@ -1,0 +1,84 @@
+<div class="main-container">
+  <form [formGroup]="formIdentity" (ngSubmit)="updateInfo()">
+    <ion-card class="main-container__card">
+      <ion-label color="dark" class="main-container__card__title">{{
+        "ONBOARDING.INFO_PROFILE" | translate
+      }}</ion-label>
+      <br />
+      <ion-label color="dark" class="main-container__card__form-label">{{
+        "IDENTITY.NAME" | translate
+      }}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="{{ 'IDENTITY.NAME' | translate }}"
+        fill="outline"
+        formControlName="name"
+        name="name"
+      >
+      </ion-input>
+      <div class="space"></div>
+      <section *ngIf="!isLoginCompany">
+        <ion-label color="dark" class="main-container__card__form-label">{{
+          "IDENTITY.LAST_NAME" | translate
+        }}</ion-label>
+        <ion-input
+          mode="md"
+          color="danger"
+          labelPlacement="stacked"
+          [clearInput]="true"
+          placeholder="{{ 'IDENTITY.LAST_NAME' | translate }}"
+          fill="outline"
+          formControlName="lastName"
+          name="lastName"
+        >
+        </ion-input>
+        <div class="space"></div>
+      </section>
+      <ion-label color="dark" class="main-container__card__form-label">{{
+        "IDENTITY.USERNAME" | translate
+      }}</ion-label>
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="{{ 'IDENTITY.USERNAME' | translate }}"
+        fill="outline"
+        formControlName="username"
+        name="username"
+      >
+      </ion-input>
+      <div class="space"></div>
+    </ion-card>
+
+    <ion-card class="main-container__card-text">
+      <ion-card-content class="main-container--text-center">
+        <ion-text>
+          <span class="main-container__card-text__title">
+            {{ "ONBOARDING.YOUR_NAME" | translate
+            }}<ion-icon name="happy-outline"></ion-icon>
+          </span>
+
+          <br />
+          <br />
+
+          <span class="main-container__card-text__text">{{
+            "ONBOARDING.TEXT_4" | translate
+          }}</span>
+        </ion-text>
+
+        <br />
+        <br />
+
+        <div class="main-container__btn">
+          <ion-button type="submit" [disabled]="formIdentity.invalid">
+            {{ "ONBOARDING.SAVE" | translate }}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</div>

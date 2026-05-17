@@ -1,0 +1,353 @@
+ion-content {
+  --padding-bottom: 2rem;
+  --padding-top: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #f4f5f8;
+}
+
+// ─── Page wrapper ─────────────────────────────────────────
+.contracts-page {
+  padding: 1.25rem 1rem 1rem;
+}
+
+// ─── Header ───────────────────────────────────────────────
+.contracts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: #0d0d0d;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.4rem;
+    border-radius: 999px;
+    background: #0d0d0d;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+
+// ─── Skeleton loader ──────────────────────────────────────
+.contracts-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contract-skeleton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem;
+
+  &__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    flex-shrink: 0;
+  }
+
+  &__lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__line {
+    height: 10px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+
+    &--wide   { width: 60%; }
+    &--narrow { width: 40%; }
+  }
+
+  &__badge {
+    width: 4.5rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// ─── Feedback (vacío / error) ─────────────────────────────
+.contracts-feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
+  gap: 0.5rem;
+
+  &__icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  &__retry {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0d0d0d;
+    background: none;
+    border: 1.5px solid #0d0d0d;
+    border-radius: 999px;
+    padding: 0.35rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+
+    &:active {
+      background: #0d0d0d;
+      color: #ffffff;
+    }
+  }
+}
+
+// ─── Lista ────────────────────────────────────────────────
+.contracts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// ─── Tarjeta ──────────────────────────────────────────────
+.contract-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  animation: card-in 0.35s ease both;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:active {
+    transform: scale(0.975);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  // ── Header ──
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f3f4f6;
+    display: block;
+  }
+
+  &__avatar-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+
+    &--pending  { background: #f59e0b; }
+    &--signed   { background: #3b82f6; }
+    &--approved { background: #10b981; }
+    &--rejected { background: #ef4444; }
+  }
+
+  &__user {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 2px;
+  }
+
+  &__user-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.01em;
+  }
+
+  &__user-email {
+    font-size: 0.72rem;
+    color: #9ca3af;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__status {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    &--pending  { background: #fef3c7; color: #92400e; }
+    &--signed   { background: #dbeafe; color: #1e40af; }
+    &--approved { background: #d1fae5; color: #065f46; }
+    &--rejected { background: #fee2e2; color: #991b1b; }
+  }
+
+  // ── Divider ──
+  &__divider {
+    margin: 0.875rem 0;
+    height: 1px;
+    background: #f3f4f6;
+  }
+
+  // ── Footer ──
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  // ── Stepper ──
+  &__stepper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+  }
+
+  &__step-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  &__step-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+
+    &--done {
+      background: #0d0d0d;
+    }
+
+    &--current {
+      background: #0d0d0d;
+      box-shadow: 0 0 0 3px rgba(13, 13, 13, 0.15);
+    }
+
+    &--rejected {
+      background: #ef4444;
+    }
+  }
+
+  &__step-check {
+    font-size: 9px;
+    color: #ffffff;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  &__step-label {
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  &__step-line {
+    flex: 1;
+    height: 2px;
+    background: #e5e7eb;
+    margin-bottom: 14px; // compensar label height
+    transition: background 0.2s ease;
+
+    &--done {
+      background: #0d0d0d;
+    }
+  }
+
+  // ── Date ──
+  &__date {
+    flex-shrink: 0;
+  }
+
+  &__date-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+}
+
+// ─── Animación entrada tarjetas ───────────────────────────
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

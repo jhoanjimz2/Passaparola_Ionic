@@ -1,0 +1,71 @@
+.main-container {
+  box-shadow: none;
+  margin-top: 1.875rem;
+
+  &__form-pin {
+    margin-top: 1.25rem;
+
+    &__code {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.625rem;
+    }
+
+    &__input {
+      height: 3.438rem;
+      max-width: 2.875rem;
+      border: solid 0.063rem;
+      padding: 0.188rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.563rem;
+      input {
+        border: none;
+        width: 100%;
+        text-align: center;
+        font-size: 2.125rem;
+        padding: 0;
+        background-color: transparent;
+      }
+    }
+
+    &__icon {
+      border: 0;
+      font-size: 1.875rem;
+    }
+
+    &__btn {
+      text-align: center;
+      width: 100%;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      ion-button {
+        margin-top: 0.938rem;
+        min-height: 3.938rem;
+        height: 3.938em;
+        max-width: 16.563rem;
+        --border-radius: 3.125rem;
+        text-transform: none;
+        --box-shadow: none;
+      }
+    }
+  }
+
+  ion-button {
+    min-height: 2.125rem;
+    height: 2.125rem;
+    width: 9rem;
+    --border-radius: 3.125rem;
+    text-transform: none;
+    --box-shadow: none;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  &--text-right {
+    text-align: right;
+  }
+}

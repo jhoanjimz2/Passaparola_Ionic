@@ -1,0 +1,52 @@
+<app-header-modal></app-header-modal>
+
+<ion-content>
+  <section class="px-4">
+    <!-- Tabs -->
+    <app-tabs-followers
+      [activeTab]="activeTab"
+      [totalFollowing]="followingState.total"
+      [totalFollowers]="followersState.total"
+      (selectTab)="selectTab($event)">
+    </app-tabs-followers>
+
+    <!-- Search bar -->
+    <app-searchbar></app-searchbar>
+
+    <!-- Listado -->
+    <div class="py-4">
+      <!-- FOLLOWERS -->
+      <div [hidden]="activeTab !== 'followers'" class="flex flex-col gap-[1.292rem] w-full h-full">
+        <app-follower
+          *ngFor="let follower of followersState.data"
+          [follower]="follower"
+          [id]="id">
+        </app-follower>
+
+        <!-- Infinite scroll FOLLOWERS -->
+        <ion-infinite-scroll threshold="100px"
+          (ionInfinite)="loadMore($event, 'followers')"
+          *ngIf="followersState.hasMore">
+          <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+
+      <!-- FOLLOWING -->
+      <div [hidden]="activeTab !== 'following'" class="flex flex-col gap-[1.292rem] w-full h-full">
+        <app-follower
+          *ngFor="let follower of followingState.data"
+          [follower]="follower"
+          [id]="id">
+        </app-follower>
+
+        <!-- Infinite scroll FOLLOWING -->
+        <ion-infinite-scroll
+          threshold="100px"
+          (ionInfinite)="loadMore($event, 'following')"
+          *ngIf="followingState.hasMore">
+          <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+    </div>
+  </section>
+</ion-content>

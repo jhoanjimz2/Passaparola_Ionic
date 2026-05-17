@@ -1,0 +1,67 @@
+<div class="relative">
+  <button (click)="taggaAction()" *ngIf="investmentSelected && !viewTagPost" class="flex justify-center items-center absolute z-50 top-[-.5rem] right-0 w-[1.8125rem] h-[1.8125rem] rounded-full bg-white border border-solid border-[#E4EDF3] shadow-[0px_3px_6px_#0000001C] ">
+    <ion-icon class="text-black text-[1.2rem]" name="trash"></ion-icon>
+  </button>
+  <div class="!block !p-0 !overflow-hidden card">
+    <div class="flex w-full rounded-2xl overflow-hidden bg-[#000000]">
+      <!-- Panel izquierdo -->
+      <div class="flex-1 p-4 bg-white rounded-r-2xl shadow-[0.25rem_0_0.5rem_-0.25rem_rgba(0,0,0,0.1)] z-10">
+        <div class="flex items-start gap-3 mb-3">
+          <!-- Logo -->
+          <div class="w-[2.5rem] h-[2.5rem] rounded-xl border border-gray-300 flex items-center justify-center text-xs text-gray-400 font-semibold">
+            <img [src]="project.logo ? project.logo : 'https://placehold.co/40x40?text=logo'" class="w-full h-full object-cover rounded-xl">
+          </div>
+          <!-- Nombre y categoría -->
+          <div>
+            <h2 class="text-[1.2rem] text-[#000000] leading-snug">
+              {{ project.name }} ({{ project.initial }})
+            </h2>
+            <p class="text-sm text-[#6D747A] -mt-1">{{ project.category?.name }}</p>
+          </div>
+        </div>
+
+        <!-- Detalles -->
+        <div class="space-y-1 text-sm text-gray-700 rounded-r-2xl">
+          <div class="flex justify-between">
+            <span class="text-[#414141] font-semibold">Token price</span>
+            <span class="text-[#000000] font-bold">
+              € {{ (project.metadataStages?.[0]?.tokenPrice || 0) | formattNumber }}
+            </span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-[#414141] font-semibold">Phase bonus</span>
+            <span class="text-[#000000] font-bold">{{ ( project.metadataStages?.[0]?.bonusPercent || 0 ) | formattNumber }} %</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-[#414141] font-semibold">Invest from</span>
+            <span class="text-[#000000] font-bold">{{ ( project.metadataStages?.[0]?.tokenPrice || 0 ) | formattNumber }} %</span>
+          </div>
+          <app-countdown-phase [targetDate]="project.metadataStages?.[0]?.endDate"></app-countdown-phase>
+        </div>
+
+        <div *ngIf="!tagga && !investmentSelected && !viewTagPost && !showDetail" class="col-span-1 flex flex-row items-center justify-end gap-[0.8125rem] mt-1">
+          <!-- <button class="w-[2.1875rem] h-[2.1875rem] text-[1rem] rounded-full bg-white border border-solid border-[#E1E1E1] flex justify-center items-center">
+            <ion-icon name="passaparola-profile-stats-tags"/>
+          </button> -->
+          <button class="w-[9.4375rem] h-[2.1875rem] rounded-[1.125rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+            Modifica/elimina
+          </button>
+        </div>
+
+        <div *ngIf="tagga && !investmentSelected && !viewTagPost" class="col-span-1 flex flex-row items-center justify-start gap-[0.8125rem] mt-1">
+          <button (click)="taggaAction()" class="w-[6.125rem] h-[1.75rem] rounded-[0.875rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+            Tagga
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Panel derecho (azul) -->
+      <div class="w-[5.625rem] bg-[#000000] text-white flex flex-col items-center justify-center px-[0.75rem] py-[1rem] text-center rounded-l-none rounded-r-2xl">
+        <ion-icon name="business-outline" class="text-white text-[1.25rem] mb-[0.5rem]"></ion-icon>
+        <div class="text-[0.75rem] leading-snug">Monthly billing<br />shared</div>
+        <div class="text-[1.25rem] font-bold mt-[0.25rem]">{{ (project.sharePercentage || 0) | formattNumber }}%</div>
+      </div>
+    </div>
+  </div>
+</div>

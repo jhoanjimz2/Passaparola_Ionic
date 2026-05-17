@@ -1,0 +1,109 @@
+<section
+  *ngFor="let seatItem of seatList"
+  class="flex flex-row justify-between border-[1px] rounded-[19px] p-[4px] mt-[12px] pb-[10px]"
+  [ngClass]="{
+    'border-[#41C837]': seatItem.isVisible,
+    'border-[#9B9EA7]': !seatItem.isVisible
+  }"
+>
+  <section class="flex flex-col">
+    <section class="flex flex-row items-center">
+      <article
+        class="flex flex-row justify-center items-center h-[25px] w-[25px] rounded-full text-[11px] leading-[17px] text-white"
+        [ngClass]="{
+          'bg-[#41C837]': seatItem.isVisible,
+          'bg-[#9B9EA7]': !seatItem.isVisible
+        }"
+      >
+        {{ seatItem.prog }}
+      </article>
+      <article
+        class="text-[15px] leading-[17px] ml-[5px] line-clamp-1 h-[20px]"
+      >
+        {{
+          sessionService.isProfessionalAdministrative
+          ? (seatItem.name ? seatItem.name : ("SEAT.COMPONENT.LIST.SEAT_NAME_PUBLIC" | translate))
+          : (seatItem.name ? seatItem.name : ("SEAT.COMPONENT.LIST.SEAT_NAME" | translate))
+        }}
+      </article>
+    </section>
+    <section class="pl-[15px] mt-[10px]">
+      <section
+        class="rounded-[8px] bg-[#e2e2e2] h-[88px] w-[163px] relative bg-no-repeat bg-cover bg-center"
+        [style.background-image]="
+          'url(' + (seatItem.coverUrlFile! | image) + ')'
+        "
+      >
+        <article
+          class="flex flex-row justify-center items-center h-[43px] w-[43px] border-[2px] border-white bg-[#E2E2E2] rounded-full text-[11px] leading-[17px] absolute left-[5px] bottom-[-18px] shadow-md bg-no-repeat bg-cover bg-center"
+          [style.background-image]="
+            'url(' + (seatItem.pictureUlrFile! | image) + ')'
+          "
+        ></article>
+      </section>
+      <section class="text-[11px] leading-[17px] mt-[25px] line-clamp-1">
+        {{
+          seatItem?.type?.description === "physical"
+            ? seatItem.address
+              ? seatItem.address
+              : ("SEAT.ADDRESS" | translate)
+            : seatItem.webAddress
+            ? seatItem.webAddress
+            : ("SEAT.ADDRESS_WEB" | translate)
+        }}
+      </section>
+    </section>
+  </section>
+  <section
+    class="flex flex-col justify-between items-center pr-[5px] w-[120px]"
+  >
+    <section class="flex flex-row items-center mt-[5px]">
+      <article
+        class="flex flex-row justify-center items-center h-[10px] w-[10px] rounded-full text-[11px] leading-[17px]"
+        [ngClass]="{
+          'bg-[#41C837]': seatItem.isVisible,
+          'bg-[#DB0000]': !seatItem.isVisible
+        }"
+      ></article>
+      <article
+        class="text-[13px] leading-[17px] ml-[5px] font-bold"
+        [ngClass]="{
+          'text-[#41C837]': seatItem.isVisible,
+          'text-[#DB0000]': !seatItem.isVisible
+        }"
+      >
+        {{
+          seatItem.isVisible
+            ? ("SEAT.VISIBLE" | translate)
+            : ("SEAT.NOT_VISIBLE" | translate)
+        }}
+      </article>
+    </section>
+    <section
+      class="flex flex-row justify-center items-center text-[14px] leading-[17px] rounded-full border-[1px] py-[10px] px-[15px] w-full border-[#41C837] text-[#41C837]"
+    >
+      {{ "SEAT.COMPONENT.LIST.PREVIEW" | translate }}
+    </section>
+    <section
+      class="flex flex-row justify-center items-center text-[14px] leading-[17px] rounded-full border-[1px] py-[10px] px-[15px] text-white w-full bg-[#41C837]"
+      (click)="onModify(seatItem)"
+    >
+      <ion-icon class="mr-[5px]" name="pencil-outline"></ion-icon>
+      {{ "SEAT.COMPONENT.LIST.MODIFY" | translate }}
+    </section>
+    <section
+      class="flex flex-row justify-between items-center w-full pt-[15px]"
+    >
+      <article
+        class="text-[13px] leading-[17px] ml-[5px] text-[#41C837] font-bold w-[100px] text-center border-b-[2px] pb-[2px]"
+        [ngClass]="{
+          'text-[#41C837]': seatItem.isVisible,
+          'text-[#9B9EA7]': !seatItem.isVisible
+        }"
+        (click)="onOpenModalSeatSecurity(seatItem)"
+      >
+        {{ "SEAT.COMPONENT.LIST.SECURITY" | translate }}
+      </article>
+    </section>
+  </section>
+</section>

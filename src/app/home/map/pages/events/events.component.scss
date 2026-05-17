@@ -1,0 +1,92 @@
+.event-title {
+    font-size: 1.68rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.event-subtitle {
+    font-size: 2.25rem;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.event-content {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0px 15px;
+}
+
+
+.countdown {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    gap: 5px;
+}
+
+.countdown-box {
+    background-color: white;
+    border-radius: 10px;
+    width: 82px;
+    height: 86px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.countdown-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    color: #666;
+}
+
+.countdown-title {
+    font-size: 36px;
+    color: white;
+}
+
+swiper-container {
+    width: 100%;
+    height: 420px;
+
+
+    --swiper-pagination-color: #F93986;
+    --swiper-pagination-bullet-width: 21px;
+    --swiper-pagination-bullet-height: 21px;
+    --swiper-pagination-bullet-inactive-color: #C4C4C4;
+}
+
+swiper-slide {
+    background-position: center;
+    background-size: cover;
+}
+
+swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+ion-button {
+    --background: #F93986;
+    --background-activated: #F93986;
+    --border-radius: 33px;
+}
+
+
+ion-card {
+    --background: #F93986;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 33px;
+    margin: 0;
+}

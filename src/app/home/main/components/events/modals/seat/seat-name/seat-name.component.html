@@ -1,0 +1,53 @@
+<section class="px-[16px] my-[48px]">
+
+  <section class="text-[16px] leading-[17px] font-bold">
+    {{ 'Nome da visualizzare sulle mappe' }}
+  </section>
+
+  <section class="text-[15px] leading-[17px] mt-[5px]">
+    {{ "Questo è il nome con cui i clienti vedranno il vostro evento sulle nostre mappe." }}
+  </section>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="seatName()"
+    autocomplete="off"
+    class="h-full relative"
+  >
+    <section class="mt-[10px]">
+      <input
+        class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+        type="text"
+        placeholder="scrivi il nome completo qui"
+        formControlName="name"
+        name="name"
+        autocomplete="off"
+      />
+      <!-- <app-error-message [control]="form.get('name')"></app-error-message> -->
+    </section>
+
+
+    <section
+    [ngClass]="{ 'fixed': !isKeyboardOpen }"
+    class="flex flex-row justify-center items-center py-[22px] bottom-[0px] w-full gap-[20px] left-0">
+      <section class="bg-white opacity-45 absolute h-full w-full"></section>
+      <section
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+        (click)="onCancel()"
+      >
+        {{ 'Annulla' }}
+      </section>
+      <button
+        [disabled]="!form.valid"
+        class=" disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+        type="submit"
+      >
+        {{ 'Salva' }}
+      </button>
+    </section>
+
+  </form>
+
+
+
+</section>

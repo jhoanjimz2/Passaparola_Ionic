@@ -1,0 +1,66 @@
+<ion-content>
+  <section class="w-full p-[1.4rem] py-[2rem] bg-white flex flex-col gap-4">
+
+    <form [formGroup]="form" (ngSubmit)="onSave()" autocomplete="off"  class="w-full flex flex-col gap-4">
+      <h1 class="font-bold text-[1.375rem] text-[#000000]">Crea o modifica prodotto</h1>
+
+      <div class="w-full h-[12.125rem] rounded-[1.2rem] bg-[#EBEBEB] border border-solid border-[#DDE5E9] flex flex-col items-center justify-center gap-3">
+        <ion-icon class="text-[3rem] text-[#000000]" name="image-outline"></ion-icon>
+        <span class="font-bold text-[1rem] text-[#000000] leading-4 text-center">
+          clicca per aggiungere <br> l'immagine principale
+        </span>
+      </div>
+
+      <div class="grid grid-cols-4">
+        <div class="col-span-3">
+          <span class="text-[0.9rem]">Galleria - aggiungi fino a 10 immagini</span>
+        </div>
+        <div class="col-span-1 text-end">
+          <span class="text-[0.9rem] font-bold text-[#00AA2D]">0/10</span>
+        </div>
+      </div>
+
+      <div class="w-full h-[4.5rem] rounded-[0.5625rem] bg-[#EBEBEB] border border-solid border-[#DDE5E9] flex flex-row items-center justify-center gap-3">
+        <ion-icon class="text-[1.5rem] text-[#000000]" name="image-outline"></ion-icon>
+        <span class="font-bold text-[1rem]">
+          aggiungi immagini
+        </span>
+      </div>
+
+      <input
+        class="w-full h-[3.5rem] px-4 rounded-[0.8rem] bg-white border-[#DDE5E9] border-solid border"
+        placeholder="Nome prodotto"
+        formControlName="name"
+        name="name"
+      />
+      <input
+        class="w-full h-[3.5rem] px-4 rounded-[0.8rem] bg-white border-[#DDE5E9] border-solid border"
+        placeholder="Price prodotto"
+        formControlName="price"
+        name="price"
+      />
+      <textarea
+        class="w-full h-[5.25rem] p-4 rounded-[0.8rem] bg-white border-[#DDE5E9] border-solid border"
+        placeholder="descrizione breve"
+        formControlName="description"
+        name="description"
+      ></textarea>
+      <select
+        class="w-full h-[3.5rem] px-4 rounded-[0.8rem] bg-white border-[#DDE5E9] border-solid border"
+        formControlName="category"
+        name="category"
+      >
+        <option value="">Categoria prodotto</option>
+        <option *ngFor="let category of [1,1,1,1,1]" [value]="category">
+          {{ 'category' }}
+        </option>
+      </select>
+    </form>
+
+    <button class="w-full h-[3rem] rounded-[1.375rem] bg-[#04A715] border border-solid border-[#E1E1E1] text-white">
+      Salva
+    </button>
+
+
+  </section>
+</ion-content>

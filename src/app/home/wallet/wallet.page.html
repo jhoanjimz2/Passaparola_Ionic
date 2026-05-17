@@ -1,0 +1,253 @@
+<app-page-action-button icon="qr-code-outline"></app-page-action-button>
+<ion-content [fullscreen]="true" class="main">
+  <ion-refresher (ionRefresh)="handleRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card class="main__id-wallet-card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="main__id-wallet-card__text"
+          >{{wallet.name}}
+
+          <ion-icon
+            class="main__id-wallet-card__icon"
+            (click)="modalMyWallets()"
+            color="success"
+            name="chevron-down-circle-outline"
+            [ngClass]="{'main__id-wallet-card--rorante': showModalWallets, 'main__id-wallet-card--expand': !showModalWallets}"
+          ></ion-icon>
+        </ion-col>
+        <!-- <ion-col
+          size="3"
+          class="main__id-wallet-card__icon"
+          style="text-align: left"
+        >
+          <ion-icon
+            (click)="modalMyWallets()"
+            color="success"
+            name="chevron-down-circle-outline"
+            [ngClass]="{'main__id-wallet-card--rorante': showModalWallets, 'main__id-wallet-card--expand': !showModalWallets}"
+          ></ion-icon>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="main__pass-wallet-card">
+    <ion-text class="main--text-center">
+      <span class="main__pass-wallet-card__label-pass"
+        >{{"ATM/€" | translate}}</span
+      >
+      <span class="main__pass-wallet-card__label-amount">
+        {{wallet.balance! | formattNumber:'EUR':'symbol':'it':2}}</span
+      >
+    </ion-text>
+  </ion-card>
+
+  <div class="main__wallet-btn">
+    <ion-button (click)="modalQrCode()" class="main__wallet-btn__id"
+      >Wallet ID</ion-button
+    >
+    <ion-button (click)="modalOptionsRecharge()" class="main__wallet-btn__add"
+      >+ {{"WALLET.ADD_CREDIT" | translate}}</ion-button
+    >
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" class="center-item">
+        <ion-card class="main__card-win">
+          <div class="main__card-win__icon-help">
+            <ion-icon name="help-outline"></ion-icon>
+          </div>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="3">
+                <div class="main__card-win_icon">
+                  <div class="main__card-win_icon__inner">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col>
+                <ion-text>
+                  <span>{{"WALLET.WIN" | translate}}</span>
+                  <br />
+                  <span>{{totalWins | formattNumber}}</span>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" class="center-item">
+        <ion-card class="main__card-win">
+          <div class="main__card-win__icon-help">
+            <ion-icon name="help-outline"></ion-icon>
+          </div>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="3">
+                <div class="main__card-win_icon">
+                  <div class="main__card-win_icon__inner">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col>
+                <ion-text>
+                  <span>{{"WALLET.BIG_WIN" | translate}}</span>
+                  <br />
+                  <span>{{walletDrawing.balance! | formattNumber}} €</span>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="main__buttons">
+    <ion-label class="main--f-w-600">{{"Cosa vuoi fare?"}}</ion-label>
+    <ion-card-content
+      class="main__buttons__content"
+      [ngClass]="{'main--height-225': showMoreBtn}"
+    >
+      <ion-grid>
+        <ion-row>
+          <ion-col (click)="modalAction()" class="main--text-center">
+            <ion-icon name="passaparola-invia"></ion-icon>
+            <br />
+            <ion-label class="main__buttons__content__text"
+              >{{"WALLET.SEND" | translate}}</ion-label
+            >
+          </ion-col>
+          <ion-col (click)="modalReceive()" class="main--text-center">
+            <ion-icon name="passaparola-ricevi"></ion-icon>
+            <br />
+            <ion-label class="main__buttons__content__text"
+              >{{"WALLET.RECEIVE" | translate}}</ion-label
+            >
+          </ion-col>
+          <ion-col (click)="modalMovements()" class="main--text-center">
+            <ion-icon name="passaparola-movimenti"></ion-icon>
+            <br />
+            <ion-label class="main__buttons__content__text"
+              >{{"WALLET.MOVEMENTS" | translate}}</ion-label
+            >
+          </ion-col>
+          <ion-col (click)="modalWithdraw()" class="main--text-center">
+            <ion-icon name="passaparola-ritira"></ion-icon>
+            <br />
+            <ion-label class="main__buttons__content__text"
+              >{{"WALLET.WITHDRAW" | translate}}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="showMoreBtn">
+          <ion-col (click)="modalCashBackMovements()" class="main--text-center">
+            <ion-icon name="passaparola-cash-back"></ion-icon>
+            <br />
+            <ion-label class="main__buttons__content__text"
+              >{{"Cash Back" | translate}}</ion-label
+            >
+          </ion-col>
+
+          <!-- <ion-col (click)="modalWithdrawRewards()" class="main--text-center">
+            <ion-icon name="passaparola-pr"></ion-icon>
+            <br />
+            <ion-label class="main__buttons__content__text"
+              >{{"PR" | translate}}</ion-label
+            >
+          </ion-col> -->
+          <ion-col class="main--text-center"> </ion-col>
+          <ion-col class="main--text-center"> </ion-col>
+          <ion-col class="main--text-center"> </ion-col>
+        </ion-row>
+
+        <ion-row class="main--m-t-20" [ngClass]="{'main--m-t-5': showMoreBtn}">
+          <ion-col class="center-item">
+            <div
+              (click)="showMoreBtn = !showMoreBtn"
+              class="main__buttons__btn-show"
+              [ngClass]="{'main--w-250': showMoreBtn}"
+            ></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="main__container-card">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="main__container-card__text-left"
+          >{{"WALLET.YOUR_NFC_DIVICES" | translate}}</ion-col
+        >
+        <ion-col
+          (click)="goToAddNFC()"
+          size="4"
+          class="main__container-card__text-right"
+          >{{"WALLET.ADD" | translate}}</ion-col
+        >
+      </ion-row>
+      <ion-card-content
+        class="center-item main--text-center"
+        *ngIf="nfcDivices.length === 0"
+      >
+        <div class="main__container-card__content">
+          <div>
+            <ion-icon name="add-outline"></ion-icon>
+            <br />
+            <ion-label>{{"WALLET.NO_NFC_DEVICES" | translate}}</ion-label>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content
+        class="center-item main--text-center"
+        *ngFor="let divice of nfcDivices"
+      >
+        <div class="main__container-card__content">
+          <div class="main__container-card__nfc-card">
+            <div class="main__container-card__nfc-card__content">
+              <img
+                *ngIf="divice.nfcType?.id === '20c5a4ce-55c2-404c-b502-a3cf48eee39b'"
+                src="assets/images/keychain.png"
+                alt="passaparola card"
+                class="main__container-card__nfc-card__img-keychain"
+              />
+
+              <img
+                *ngIf="divice.nfcType?.id === 'a5a78dfb-87a1-444d-aedc-dc6ab136d3e5'"
+                src="assets/images/nfc_sticker.png"
+                alt="passaparola card"
+                class="main__container-card__nfc-card__img-sticker"
+              />
+
+              <img
+                *ngIf="divice.nfcType?.id === 'b3aeb850-ea5e-422a-8a64-80ee0e4cfef0'"
+                src="assets/images/passaparola-card-front.png"
+                alt="passaparola card"
+                class="main__container-card__nfc-card__img-passaparola-card"
+              />
+
+              <ion-icon
+                *ngIf="divice.nfcType?.id === 'a4735b1e-2ef4-4adf-91c8-894d431246a7'"
+                class="main__container-card__nfc-card__icon-other-divice"
+                name="grid-outline"
+              ></ion-icon>
+            </div>
+            <ion-label class="main__container-card__nfc-card__text-nfc-type"
+              >{{divice.nfcType?.nfcTypeTranslation?.[0]?.description!}}</ion-label
+            >
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-grid>
+  </ion-card>
+  <div class="space-bottom"></div>
+</ion-content>

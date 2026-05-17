@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "passaparola.app",
+      "sha256_cert_fingerprints": [
+        "67:5C:91:91:4C:61:FB:53:10:49:37:0A:15:59:97:73:8F:EC:BC:14:A2:CA:AD:5D:2F:D9:FE:63:5A:21:F0:36"
+      ]
+    }
+  }
+]

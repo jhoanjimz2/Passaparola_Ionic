@@ -1,0 +1,62 @@
+<div
+  class="p-[0.375rem] w-full bg-white rounded-[0.9375rem] shadow-[0px_3px_6px_#0000001C] relative"
+  [ngClass]="{
+    'border border-solid border-[#FE8500]': productVerified || productSelected
+  }"
+  (click)="selectProduct()"
+>
+
+  <button
+    (click)="deleteProduct(); $event.stopPropagation()"
+    *ngIf="productSelected"
+    class="flex justify-center items-center absolute z-50 top-0 right-0 w-[1.8125rem] h-[1.8125rem] rounded-full bg-white border border-solid border-[#E4EDF3] shadow-[0px_3px_6px_#0000001C]"
+  >
+    <ion-icon class="text-black text-[1.2rem]" name="trash"></ion-icon>
+  </button>
+
+  <button
+    *ngIf="productVerified"
+    class="flex justify-center items-center absolute z-50 top-[8rem] right-3 w-[1.8125rem] h-[1.8125rem] rounded-full bg-[#FE8500] border border-solid border-white shadow-[0px_3px_6px_#0000001C]"
+  >
+    <ion-icon class="text-white text-[1.2rem]" name="checkmark-done"></ion-icon>
+  </button>
+
+  <!-- resto del código sin cambios -->
+  <!-- <div class="absolute top-4 left-1/2 -translate-x-1/2 rounded-[0.625rem] w-[90%] h-[1.125rem] text-white text-[0.6875rem] bg-[#000000] flex justify-center items-center">
+    tua commissione {{ product.pr | formattNumber }} %
+  </div> -->
+
+  <img
+    class="w-full h-[10.25rem] rounded-[1.25rem] object-cover"
+    [src]="
+      product?.pictureUlrFile
+      ? product.pictureUlrFile
+      : 'https://placehold.co/40x40?text=product'
+    ">
+
+  <div class="w-full flex flex-col gap-[0.25rem] py-4">
+    <ion-text>
+      <span class="text-[0.6875rem] block truncate whitespace-nowrap overflow-hidden">
+        {{ product?.name }}
+      </span>
+    </ion-text>
+
+    <ion-text>
+      <span class="text-[#EF3131] text-[0.875rem] font-bold">{{ product.price | formattNumber }}</span>&nbsp;
+      <span class="text-[#EF3131] text-[0.5625rem] font-bold">€/ATM</span>
+      <!-- &nbsp;&nbsp;&nbsp;<span class="line-through text-[#717171] text-[0.5625rem] italic">8,99 €/ATM</span> -->
+    </ion-text>
+
+    <ion-text class="flex justify-between items-center">
+      <span class="text-[#116DE5] text-[0.6875rem] font-bold">{{ product.pr | formattNumber }} back</span>
+      <!-- <span class="text-[#000000] text-[0.6875rem] font-bold">62pz</span> -->
+    </ion-text>
+
+    <!-- <ion-text class="flex justify-start items-center gap-1">
+      <ion-icon class="text-[0.6875rem]" name="passaparola-star-yellow"></ion-icon>
+      <span class="text-[#000000] text-[0.6875rem] font-bold">4,7/5</span>
+      <span class="text-[#929292] text-[0.6875rem]">(508 recensioni)</span>
+    </ion-text> -->
+  </div>
+
+</div>

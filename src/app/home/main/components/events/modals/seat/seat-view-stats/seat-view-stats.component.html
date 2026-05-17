@@ -1,0 +1,46 @@
+<ion-content>
+  <section class="grid grid-cols-2 pb-8 mt-4 pt-2 px-4">
+
+    <div class="col-span-1 flex flex-col items-center">
+      <label class="font-bold text-black text-[18px]">Ticket venduti</label>
+      <label class="font-bold text-black text-[30px]">{{stats.totalTicketsSold}}/{{stats.totalTickets}}</label>
+      <button class="bg-pink-600 text-white text-[16px] h-[2.5rem] w-[6rem] rounded-[.5rem] font-semibold flex justify-center items-center">€ {{ (stats.totalAmountTickets| number:'1.2-2')?.replace('.', ',')}}</button>
+    </div>
+    <div class="col-span-1 flex flex-col items-center">
+      <label class="font-bold text-black text-[18px]">Ticket utilizzati</label>
+      <label class="font-bold text-black text-[30px]">{{stats.totalUsedTickets}}/{{stats.totalTicketsSold}}</label>
+      <label class="h-[3rem]"></label>
+    </div>
+
+    <div class="mb-2 col-span-1 flex flex-col items-start justify-end">
+      <label class="font-bold text-black text-[20px]">Ticket ingresso</label>
+    </div>
+    <div class="mb-2 col-span-1 flex flex-col items-end">
+      <div class="flex flex-col justify-center items-center" (click)="cargarData()">
+        <ion-icon src="assets/images/events/custom-icons/refresh.svg" class="w-8 h-8 text-pink-600"/>
+        <label class="text-black text-[18px]">utilizzati</label>
+      </div>
+    </div>
+
+    <div *ngFor="let ticket of stats?.tickets"  class="grid grid-cols-12 my-2 col-span-2 gap-2">
+      <label class="col-span-5 flex items-center justify-start  font-semibold text-[16px] text-black">{{ticket.name}}</label>
+      <label class="col-span-2 flex items-center justify-center font-bold     text-[16px] text-pink-600">{{ticket.totalTicketsSold}}/{{ticket.totalTickets}}</label>
+      <label class="col-span-3 flex items-center justify-center font-bold     text-[16px] text-white w-full py-2 bg-pink-600 rounded-[.3rem]">€ {{ (ticket.totalAmountTickets| number:'1.2-2')?.replace('.', ',')}}</label>
+      <label class="col-span-2 flex items-center justify-center font-bold     text-[16px] text-pink-600">{{ticket.totalUsedTickets}}/{{ticket.totalTicketsSold}}</label>
+    </div>
+
+
+    <div *ngIf="stats?.products" class="mt-8 mb-2 col-span-1 flex flex-col items-start">
+      <label class="font-bold text-black text-[20px]">Extra</label>
+    </div>
+
+    <div *ngFor="let ticket of stats?.products"  class="grid grid-cols-12 my-2 col-span-2 gap-2">
+      <label class="col-span-5 flex items-center justify-start  font-semibold text-[16px] text-black">{{ticket.name}}</label>
+      <label class="col-span-2 flex items-center justify-center font-bold     text-[16px] text-pink-600">{{ticket.totalTicketsSold}}/{{ticket.totalTickets}}</label>
+      <label class="col-span-3 flex items-center justify-center font-bold     text-[16px] text-white w-full py-2 bg-pink-600 rounded-[.3rem]">€ {{ (ticket.totalAmountTickets| number:'1.2-2')?.replace('.', ',')}}</label>
+      <label class="col-span-2 flex items-center justify-center font-bold     text-[16px] text-pink-600">{{ticket.totalUsedTickets}}/{{ticket.totalTicketsSold}}</label>
+    </div>
+
+  </section>
+
+</ion-content>

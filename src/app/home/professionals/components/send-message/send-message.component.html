@@ -1,0 +1,47 @@
+<div class="send-message-modal">
+  <div class="send-message-modal__header">
+    <h2 class="send-message-modal__title">Invia la tua richiesta</h2>
+  </div>
+
+  <div class="send-message-modal__content">
+    <div class="send-message-modal__field">
+      <label class="send-message-modal__label">Il titolo della richiesta</label>
+      <input
+        type="text"
+        class="send-message-modal__input"
+        placeholder="scrivi qui"
+        [(ngModel)]="requestTitle"
+      />
+    </div>
+
+    <div class="send-message-modal__field">
+      <label class="send-message-modal__label">La tua richiesta</label>
+      <textarea
+        class="send-message-modal__textarea"
+        placeholder="descrivi la tua richiesta"
+        [(ngModel)]="requestDescription"
+        [maxlength]="maxDescriptionLength"
+        rows="6"
+      ></textarea>
+      <div class="send-message-modal__counter">
+        max {{ maxDescriptionLength }}
+      </div>
+    </div>
+  </div>
+
+  <div class="send-message-modal__actions">
+    <button
+      class="send-message-modal__button send-message-modal__button--cancel"
+      (click)="dismiss()"
+    >
+      Annulla
+    </button>
+    <button
+      class="send-message-modal__button send-message-modal__button--send"
+      (click)="send()"
+      [disabled]="!requestTitle.trim() || !requestDescription.trim()"
+    >
+      Invia
+    </button>
+  </div>
+</div>

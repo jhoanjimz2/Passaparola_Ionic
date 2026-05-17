@@ -1,0 +1,167 @@
+<!-- <app-payment-loader class="w-full h-full absolute left-0 top-0 z-50"></app-payment-loader> -->
+<!-- <app-payment-fail class="w-full h-full absolute left-0 top-0 z-50"></app-payment-fail> -->
+<!-- <app-payment-end class="w-full h-full absolute left-0 top-0 z-50"></app-payment-end> -->
+<ion-header class="ion-no-border">
+  <div class="grid grid-cols-2 bg-white border-b border-solid rounded-[1.5rem]">
+    <app-header class="col-span-2" [backIcon]="true" [border]="true"></app-header>
+
+
+    <label class="mt-4 flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">Totale articoli</label>
+    <label class="mt-4 flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">182,99</label>
+
+    <label class="flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">Costi di spedizione</label>
+    <label class="flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">5,99</label>
+
+    <label class="flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1.125rem]">Totale ordine</label>
+    <label class="flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1.125rem]">€/ATM <span class="font-bold text-[1.5rem]">182,99</span></label>
+
+
+    <div class="col-span-2 px-4 mt-4">
+      <button (click)="payOrder()" class="flex justify-center items-center w-full py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10">
+        Acquista ora
+      </button>
+    </div>
+    <label class="text-[#000000] text-center col-span-2 my-4"><span class="font-bold">e ricevi 0,5587</span> cashback <span class="font-bold">e 1,8299 PR</span></label>
+  </div>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+
+  <div class="px-3 pb-3 bg-[#FBFBFB] border-y border-solid border-[#E1E1E1] mt-6">
+    <label class="text-black py-4 text-[1.4rem] block font-bold">Paga con ATM</label>
+    <div class="p-2 grid grid-cols-12 gap-[1rem] border border-solid border-[#FE8C0F] rounded-[.9rem] bg-white">
+      <div class="col-span-2 flex justify-center items-center">
+        <!-- <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#E1E1E1]"></div> -->
+        <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#FE8C0F] flex justify-center items-center">
+          <div class="w-[1.1rem] aspect-square rounded-[50%] bg-[#FE8C0F]"></div>
+        </div>
+      </div>
+      <div class="col-span-10">
+        <label class="text-black text-[1.1rem] block font-bold">Il tuo saldo ATM</label>
+      </div>
+      <div class="col-span-2 flex justify-center items-center">
+        <ion-icon class="border border-solid border-[#E1E1E1] rounded-[.5rem] p-1 text-black text-[1.5rem]" [name]="'eye-outline'"/>
+      </div>
+      <div class="col-span-10">
+        <label class="text-black text-[1.1rem] block font-bold"><span class="text-[2rem]">1.278,44</span> €/ATM</label>
+      </div>
+    </div>
+
+
+    <label class="text-black py-4 text-[1.4rem] block font-bold">Ricarica e paga</label>
+    <div class="py-2 px-1 grid grid-cols-12 gap-[.1rem] border border-solid border-[#E1E1E1] rounded-[.9rem] bg-white">
+      <div class="col-span-2 flex justify-center items-center">
+        <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#E1E1E1]"></div>
+        <!-- <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#FE8C0F] flex justify-center items-center">
+          <div class="w-[1.1rem] aspect-square rounded-[50%] bg-[#FE8C0F]"></div>
+        </div> -->
+      </div>
+      <div class="col-span-10">
+        <label class="text-black text-[1.1rem] block font-bold">Nome e cognome persona</label>
+      </div>
+      <div class="col-span-3 flex justify-center items-center py-2">
+        <ion-icon name="card-outline" class="text-[2.5rem] p-[.4rem] rounded-[.9rem] border border-solid border-[#E1E1E1]"></ion-icon>
+      </div>
+      <div class="col-span-6 flex flex-col justify-center gap-2">
+        <label class="text-[1rem]">VISA finisce con ****7458</label>
+        <label class="text-[1rem]">scadenza <span class="font-bold">11/28</span></label>
+      </div>
+      <div class="col-span-3 flex justify-end items-end">
+        <label class="text-[#FE8C0F] font-semibold text-[1rem]">modifica</label>
+      </div>
+    </div>
+
+
+    <div class="mt-4 flex justify-center items-center py-5 px-1 border border-solid border-[#E1E1E1] rounded-[.9rem] bg-white">
+      <label class="text-[#FE8C0F] font-semibold text-[1rem]">+aggiungi metodo di pagamento</label>
+    </div>
+  </div>
+
+
+
+
+  <div class="px-3 pb-3 bg-[#FBFBFB] border-y border-solid border-[#E1E1E1] mt-6">
+    <label class="text-black py-4 text-[1.4rem] block font-bold">Dati di spedizione</label>
+
+
+    <label class="text-black pb-2 text-[1rem] block">Principale</label>
+    <div class="grid grid-cols-3 gap-1 p-4 border border-solid border-[#E1E1E1] rounded-[.9rem]">
+      <div class="col-span-2 flex flex-col justify-between">
+        <div class="flex flex-col mb-3">
+          <label class="text-black font-bold">Nome e cognome persona</label>
+          <label class="text-black font-bold">+39 322 5451 444</label>
+        </div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-2 flex justify-center items-center">
+            <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#FE8C0F] flex justify-center items-center">
+              <div class="w-[1.1rem] aspect-square rounded-[50%] bg-[#FE8C0F]"></div>
+            </div>
+            <!-- <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#E1E1E1]"></div> -->
+          </div>
+          <label class="col-span-10 line-clamp-2">Via della Rivoluzione, 14, Bologna, 478854, Italia</label>
+        </div>
+      </div>
+      <div class="text-right col-span-1 flex flex-col justify-between">
+        <label class="text-[#2ABE2F] font-semibold italic">Mio</label>
+        <label class="text-[#FE8C0F] font-semibold" (click)="modalCreateEditAddress(true)">modifica</label>
+      </div>
+    </div>
+
+
+
+    <label class="text-black pt-4 pb-2 text-[1rem] block">Altri profili di spedizione</label>
+    <div class="grid grid-cols-3 gap-1 p-4 border border-solid border-[#E1E1E1] rounded-[.9rem]">
+      <div class="col-span-2 flex flex-col justify-between">
+        <div class="flex flex-col mb-3">
+          <label class="text-black font-bold">Nome e cognome persona</label>
+          <label class="text-black font-bold">+39 322 5451 444</label>
+        </div>
+        <div class="grid grid-cols-12">
+          <div class="col-span-2 flex justify-center items-center">
+            <!-- <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#FE8C0F] flex justify-center items-center">
+              <div class="w-[1.1rem] aspect-square rounded-[50%] bg-[#FE8C0F]"></div>
+            </div> -->
+            <div class="w-[1.8rem] aspect-square rounded-[50%] border border-solid border-[#E1E1E1]"></div>
+          </div>
+          <label class="col-span-10 line-clamp-2">Via della Rivoluzione, 14, Bologna, 478854, Italia</label>
+        </div>
+      </div>
+      <div class="text-right col-span-1 flex flex-col justify-between">
+        <label class="text-[#2ABE2F] font-semibold italic">Flavio</label>
+        <label class="text-[#FE8C0F] font-semibold" (click)="modalCreateEditAddress(true)">modifica</label>
+      </div>
+    </div>
+
+
+    <div class="mt-4 flex justify-center items-center py-5 px-1 border border-solid border-[#E1E1E1] rounded-[.9rem] bg-white">
+      <label class="text-[#FE8C0F] font-semibold text-[1rem]">+aggiungi profilo spedizione</label>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <div class="my-[2rem] grid grid-cols-2 bg-white border-[#F2F2F2] border border-solid rounded-b-[1.5rem]">
+
+    <label class="mt-4 flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">Totale articoli</label>
+    <label class="mt-4 flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">182,99</label>
+
+    <label class="flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">Costi di spedizione</label>
+    <label class="flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1rem]">5,99</label>
+
+    <label class="flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1.125rem]">Totale ordine</label>
+    <label class="flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1.125rem]">€/ATM <span class="font-bold text-[1.5rem]">182,99</span></label>
+
+
+    <div class="col-span-2 px-4 mt-4">
+      <button (click)="payOrder()" class="flex justify-center items-center w-full py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10">
+        Acquista ora
+      </button>
+    </div>
+    <label class="text-[#000000] text-center col-span-2 my-4"><span class="font-bold">e ricevi 0,5587</span> cashback <span class="font-bold">e 1,8299 PR</span></label>
+  </div>
+
+</ion-content>

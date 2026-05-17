@@ -1,0 +1,175 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-text>
+      <span class="main-container__title"
+        >{{"BUG_REPORT.REGISTER.TITLE" | translate}}</span
+      >
+      <br />
+      <span class="main-container__text"
+        >{{"BUG_REPORT.REGISTER.TEXT_1" | translate}}</span
+      ><span class="main-container__text">{{" "}}</span>
+      <span class="main-container__text-orange"
+        >{{"BUG_REPORT.REGISTER.TEXT_2" | translate}}</span
+      >
+      <span class="main-container__text">{{" "}}</span>
+      <span class="main-container__text"
+        >{{"BUG_REPORT.REGISTER.TEXT_3" | translate}}</span
+      >
+    </ion-text>
+
+    <br />
+    <br />
+
+    <form [formGroup]="formBug" autocomplete="off" (ngSubmit)="save()">
+      <div class="main-container__full-content">
+        <ion-grid class="main-container__main-grid">
+          <ion-row class="main-container--m-p-0">
+            <ion-col size="4.5" class="main-container--p-l-0">
+              <div
+                *ngIf="!mainImageFile"
+                class="main-container__content-main-img"
+                (click)="takePicture('main')"
+              >
+                <ion-text>
+                  <ion-icon
+                    name="cloud-upload-outline"
+                    class="main-container--f-z-27"
+                  ></ion-icon>
+
+                  <br />
+                  <br />
+
+                  <span class="main-container--f-z-15 main-container--text-dark"
+                    >{{"BUG_REPORT.REGISTER.UPLOAD" | translate}}</span
+                  >
+                  <br />
+                  <span class="main-container--f-z-11 main-container--text-dark"
+                    >{{"BUG_REPORT.REGISTER.MAX" | translate}}</span
+                  >
+
+                  <br />
+                  <br />
+
+                  <span class="main-container--f-z-11 main-container--text-dark"
+                    >{{"BUG_REPORT.REGISTER.RECOMMENDED_SIZE" |
+                    translate}}</span
+                  >
+                  <br />
+                  <span
+                    class="main-container--f-z-15 main-container--text-dark main-container--f-w-b"
+                    >{{"BUG_REPORT.REGISTER.SIZE" | translate}}</span
+                  >
+                </ion-text>
+              </div>
+
+              <div
+                *ngIf="mainImageFile"
+                (click)="takePicture('main')"
+                class="main-container__main-image"
+                [style.background-image]="'url(' + (formBug.controls['mainImage'].value | image) + ')'"
+              ></div>
+            </ion-col>
+            <ion-col size="7.5" class="main-container--p-r-0">
+              <ion-grid class="main-container--m-p-0">
+                <ion-row class="main-container--m-p-0">
+                  <ion-col size="6" class="main-container--padding-0">
+                    <div
+                      *ngIf="!imageFile1"
+                      (click)="takePicture(1)"
+                      class="main-container__content-img"
+                    >
+                      <ion-icon name="add"></ion-icon>
+                    </div>
+
+                    <div
+                      *ngIf="imageFile1"
+                      (click)="takePicture(1)"
+                      class="main-container__img-small"
+                      [style.background-image]="'url(' + (formBug.controls['image1'].value | image) + ')'"
+                    ></div>
+                  </ion-col>
+                  <ion-col
+                    size="6"
+                    class="main-container--padding-0 main-container--p-r-0 main-container--right-item"
+                  >
+                    <div
+                      *ngIf="!imageFile2"
+                      (click)="takePicture(2)"
+                      class="main-container__content-img"
+                    >
+                      <ion-icon name="add"></ion-icon>
+                    </div>
+
+                    <div
+                      *ngIf="imageFile2"
+                      (click)="takePicture(2)"
+                      class="main-container__img-small"
+                      [style.background-image]="'url(' + (formBug.controls['image2'].value | image) + ')'"
+                    ></div>
+                  </ion-col>
+                </ion-row>
+                <ion-row
+                  class="main-container--padding-0 main-container--m-t-30"
+                >
+                  <ion-col size="6">
+                    <div
+                      *ngIf="!imageFile3"
+                      (click)="takePicture(3)"
+                      class="main-container__content-img"
+                    >
+                      <ion-icon name="add"></ion-icon>
+                    </div>
+
+                    <div
+                      *ngIf="imageFile3"
+                      (click)="takePicture(3)"
+                      class="main-container__img-small"
+                      [style.background-image]="'url(' + (formBug.controls['image3'].value | image) + ')'"
+                    ></div>
+                  </ion-col>
+                  <ion-col
+                    size="6"
+                    class="main-container--p-r-0 main-container--right-item"
+                  >
+                    <div
+                      *ngIf="!imageFile4"
+                      (click)="takePicture(4)"
+                      class="main-container__content-img"
+                    >
+                      <ion-icon name="add"></ion-icon>
+                    </div>
+
+                    <div
+                      *ngIf="imageFile4"
+                      (click)="takePicture(4)"
+                      class="main-container__img-small"
+                      [style.background-image]="'url(' + (formBug.controls['image4'].value | image) + ')'"
+                    ></div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div>
+        <ion-label>{{"BUG_REPORT.REGISTER.DESCRIPTION" | translate}}</ion-label>
+        <textarea
+          rows="5"
+          placeholder="{{'BUG_REPORT.REGISTER.DESCRIPE_THE_PROBLEM' | translate}}"
+          formControlName="description"
+        >
+        </textarea>
+      </div>
+      <br />
+      <br />
+      <div class="main-container__btn">
+        <ion-button type="submit" [disabled]="formBug.invalid || saving">
+          {{"BUG_REPORT.REGISTER.NEXT" | translate}}
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

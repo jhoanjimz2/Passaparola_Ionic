@@ -1,0 +1,30 @@
+<section class="flex flex-col items-center justify-center h-full">
+  <section
+    class="px-[30px] text-center flex flex-col items-center justify-center"
+  >
+    <section
+      class="h-[88px] w-[88px] bg-[#B2B2B2] rounded-full flex flex-col justify-center items-center"
+    >
+      <ion-icon
+        class="text-[68px] leading-[68px] font-bold text-white"
+        name="passaparola-warning"
+      ></ion-icon>
+    </section>
+    <section
+      class="mt-[15px] text-[22px] leading-[30px] font-bold"
+      [innerHTML]="
+        'PAYMENT.CONFIRM.CONFIRM_OPERATION_AND_ASSIGN_REWARDS' | translate
+      "
+    ></section>
+    <section
+      class="mt-[20px] text-[18px] leading-[24px]"
+      [innerHTML]="'PAYMENT.CONFIRM.BE_CAREFUL_CONFIRM' | translate"
+    ></section>
+    <section
+      class="bg-[#33B7E8] text-white text-[15px] leading-[22px] py-[20px] px-[30px] mt-[70px] rounded-[34px] text-center font-semibold"
+      (click)="onConfirmOperationModal()"
+    >
+      {{ "PAYMENT.CONFIRM.CONFIRM_OPERATION" | translate }}
+    </section>
+  </section>
+</section>

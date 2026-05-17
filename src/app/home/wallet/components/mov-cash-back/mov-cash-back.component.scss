@@ -1,0 +1,302 @@
+.main-container {
+    --background: #f9f9f9;
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__title {
+      font-size: 1.563rem; 
+      font-weight: bold; 
+      color: #3cc3a2
+    }
+
+    &__atm {
+      font-size: 1.125rem; 
+      font-weight: 600
+    }
+
+    &__amount-back {
+      font-size: 2.25rem; 
+      font-weight: 300
+    }
+  
+   
+    &__buttons {
+      padding: 0;
+      margin: 0;
+  
+      &__item {
+        width: 5.313rem;
+        height: 1.938rem;
+        --border-radius: 0.75rem;
+        --box-shadow: none;
+        text-transform: capitalize;
+        --border-color: #3cc3a2;
+        --background: #ffffff;
+        --border-style: solid;
+        color: #3cc3a2;
+        --background-activated: #ffffff;
+        --background-focused: #ffffff;
+        --background-hover: #ffffff;
+      }
+  
+      &--active {
+        --background: #3cc3a2;
+        --background-activated: #3cc3a2;
+        --background-focused: #3cc3a2;
+        --background-hover: #3cc3a2;
+        color: #ffffff;
+      }
+    }
+
+   
+    &__mov_icon {
+      width: 3.75rem;
+      height: 3.75rem;
+      max-width: 3.75rem;
+      box-shadow: 0 0.188rem 0.375rem #0000001c;
+      border-radius: 0.938rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.125rem;
+    }
+  
+    &__movements {
+      margin-top: 6.3rem;
+      overflow: auto;
+      padding-bottom: 4.75rem;
+      background: #f9f9f9;
+      
+      
+  
+      ion-grid {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  
+    &__amount-pr {
+      color: #41c837;
+      font-size: 0.875rem;
+      font-weight: bold;
+    }
+  
+    &__text-pr {
+      color: #41c837;
+      font-size: 0.875rem;
+    }
+  
+    &__amount-cashbak {
+      color: #ff8000;
+      font-size: 0.875rem;
+      font-weight: bold;
+    }
+  
+    &__text-cashbak {
+      color: #ff8000;
+      font-size: 0.875rem;
+    }
+  
+    &__text-win {
+      color: #00b1ff;
+      margin-left: 0.625rem;
+      font-weight: 600;
+    }
+  
+    &__text-date {
+      font-size: 0.688rem;
+      color: #8b8b8b;
+    }
+  
+    &__text-eur-atm {
+      font-size: 0.688;
+      color: #707070;
+    }
+  
+    &__text-amount {
+      color: #c83737;
+      font-size: 0.938rem;
+      font-weight: 600;
+    }
+  
+    &__content-accept {
+      padding-left: 0.375rem;
+      padding-right: 0.375rem;
+      padding-top: 0.938rem;
+      padding-bottom: 0.938rem;
+      text-align: justify;
+      width: 100%;
+      border-bottom: solid 0.063rem #8b8b8b;
+      margin-bottom: 2.5rem;
+  
+      &__text {
+        color: #8b8b8b;
+        font-size: 0.875rem;
+      }
+  
+      &--bg-success {
+        --background: #3cc3a2;
+        --background-activated: #3cc3a2;
+        --background-focused: #3cc3a2;
+        --background-hover: #3cc3a2;
+      }
+  
+      &--bg-danger {
+        --background: #f12900;
+        --background-activated: #f12900;
+        --background-focused: #f12900;
+        --background-hover: #f12900;
+      }
+  
+      ion-col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      ion-button {
+        width: 10.438rem;
+        height: 2.938rem;
+        --border-radius: 1.5rem;
+        --box-shadow: none;
+        color: #ffffff;
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+    }
+  
+    &--p-l-10 {
+      padding-left: 0.625rem;
+    }
+  
+    &--text-right {
+      text-align: right;
+    }
+  
+    &--text-success {
+      color: #41c837;
+    }
+  
+    &--m-l-6 {
+      margin-left: 0.375rem;
+    }
+  
+    &--m-r-6 {
+      margin-right: 0.375rem;
+    }
+
+    &--text-center {
+      text-align: center;
+    }
+  
+    ion-card {
+      box-shadow: none;
+      background: #f9f9f9;
+      margin-left: 0;
+      margin-right: 0;
+      height: 100%;
+      margin-top: 0;
+      padding-bottom: 0;
+  
+      ion-card-header {
+        width: 100%;
+        position: fixed;
+        height: 6.5rem;
+        padding: 0;
+        margin-top: 0;
+        padding-top: 0;
+        background: #f9f9f9;
+        z-index: 999;
+      }
+    }
+  
+    &--m-l-10 {
+      margin-left: 0.625rem;
+    }
+  
+    &--text-decline {
+      color: #9e9c9c;
+    }
+  }
+  
+  .pagination-container {
+    height: 5rem;
+    background: #f9f9f9;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    &__btn {
+      width: 1.813rem;
+      height: 1.813rem;
+      --border-radius: 6.25rem;
+      max-width: 1.813rem;
+      max-height: 1.813rem;
+      min-width: 1.813rem;
+      min-height: 1.813rem;
+      --padding-bottom: 0;
+      --padding-end: 0;
+      --padding-start: 0;
+      --padding-top: 0;
+      --background: #3cc3a2;
+      --background-activated: #3cc3a2;
+      --background-activated-opacity: 1;
+      --background-focused: #3cc3a2;
+      --background-focused-opacity:1;
+      --background-hover: #3cc3a2
+      --background-hover-opacity: 1;
+    }
+  
+    &__pages {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  
+      &__item {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.375rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #3cc3a2;
+      }
+  
+      &__points {
+        margin-right: 0.625rem;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        color: #3cc3a2;
+        font-weight: bold;
+        font-size: 1.125rem;
+      }
+  
+      &--actived {
+        background: #3cc3a2;
+        box-shadow: 0 0.188rem 0.375rem #0000001c;
+        color: #ffffff;
+      }
+    }
+  
+    &--center-item {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+    }
+  
+    &--right-item {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+    }
+    &--display-flex {
+      display: flex;
+    }
+  }
+  

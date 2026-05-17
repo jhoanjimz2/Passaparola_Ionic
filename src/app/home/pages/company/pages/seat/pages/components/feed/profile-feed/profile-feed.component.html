@@ -1,0 +1,9 @@
+<app-profile-feed-menu
+  (selectTabFeed)="setTabFeed($event)"
+  [isPublic]="isPublic"
+></app-profile-feed-menu>
+
+<app-profile-feed-tags    [isPublic]="isPublic" [active]="tabFeed === 'tags'"></app-profile-feed-tags>
+<app-profile-feed-my-post [isPublic]="isPublic" [active]="tabFeed === 'feed'"  [myPosts]="myPosts"></app-profile-feed-my-post>
+<app-profile-feed-likes   [isPublic]="isPublic" [active]="tabFeed === 'like'"  [postsFeedLikes]="postsFeedLikes"></app-profile-feed-likes>
+<app-profile-feed-saveds  [isPublic]="isPublic" [active]="tabFeed === 'saved'" [postsFeedSaveds]="postsFeedSaveds"></app-profile-feed-saveds>

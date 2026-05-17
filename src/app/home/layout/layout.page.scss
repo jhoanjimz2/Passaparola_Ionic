@@ -1,0 +1,12 @@
+ion-content {
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  background: #fbfcfe;
+}
+
+app-menu {
+  height: 100%;
+}

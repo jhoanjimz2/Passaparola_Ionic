@@ -1,0 +1,127 @@
+<div class="main-container">
+  <div class="main-container--p-r">
+    <div (click)="close()" class="main-container__close-icon">
+      <ion-icon name="close"></ion-icon>
+    </div>
+    <ion-card class="main-container__card">
+      <ion-card-header class="main-container--text-center">
+        <ion-text>
+          <div class="main-container--center-item">
+            <ion-icon
+              name="passaparola-notifications-active"
+              class="main-container--f-z-30"
+            ></ion-icon>
+            <span class="main-container__card__title">{{
+              "DAILY_CALENDAR.DAILY_CHECK" | translate
+            }}</span>
+          </div>
+        </ion-text>
+      </ion-card-header>
+
+      <ion-card-contnet>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-label class="main-container__card__year">{{
+                year
+              }}</ion-label>
+            </ion-col>
+            <ion-col
+              size="6"
+              class="main-container__card__month main-container--right-item"
+              >{{ months[0 + 1].name | translate }}</ion-col
+            >
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="8" class="main-container--left-item">
+              <ion-label class="main-container__card__total-reward">{{
+                "DAILY_CALENDAR.TOTAL_REWARD" | translate
+              }}</ion-label>
+            </ion-col>
+            <ion-col size="4" class="main-container--right-item">
+              <div class="main-container__card__amount">€{{ totalReward }}</div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div class="main-container__calendar">
+          <div>
+            <div class="main-container__calendar__grid">
+              <div
+                *ngFor="let day of days"
+                class="main-container__calendar__header"
+              >
+                {{ getFirstCharacter(day.name) }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-container__calendar">
+          <div>
+            <div class="main-container__calendar__grid">
+              <div
+                *ngFor="let day of calendar"
+                (click)="createCheckIn(day)"
+                class="main-container__calendar__item"
+                [ngClass]="{
+                  'main-container--day-border-success': isDateEqual(
+                    day.formattedDate
+                  ) && !day.checkIn,
+                  'main-container--day-light': isDateBefore(
+                    day.formattedDate
+                  ) && !day.checkIn,
+                  'main-container--day-success': day.checkIn,
+                }"
+              >
+                {{ day.monthDay }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section *ngIf="isCheckToday">
+          <div class="main-container--center-item main-container--m-t-15">
+            <ion-grid class="main-container--m-w-400">
+              <ion-row>
+                <ion-col size="3" class="main-container--right-item">
+                  <div class="main-container__reward-icon">{{ "1" }}€</div>
+                </ion-col>
+
+                <ion-col size="9">
+                  <ion-text>
+                    <span class="main-container__title-reward">
+                      {{ "DAILY_CALENDAR.CONGRATULATIONS" | translate }}
+                    </span>
+                    <br />
+                    <span class="main-container__sub-title-reward">
+                      {{ "DAILY_CALENDAR.HAS_COLLECTED_AWARD" | translate }}
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+          <div class="main-container--center-item main-container--m-t-15">
+            <ion-text>
+              <ion-icon name="passaparola-notifications-active"></ion-icon>
+              <span class="main-container__text-botton">{{
+                "DAILY_CALENDAR.COME_BACK_TOMORROW" | translate
+              }}</span>
+            </ion-text>
+          </div>
+
+          <div class="main-container--center-item main-container--m-t-20">
+            <ion-button (click)="close()" class="main-container__btn">
+              {{ "DAILY_CALENDAR.CLOSE" | translate }}
+            </ion-button>
+          </div>
+        </section>
+      </ion-card-contnet>
+    </ion-card>
+  </div>
+</div>

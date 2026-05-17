@@ -1,0 +1,125 @@
+<section class="pb-[24px] bg-white h-full flex flex-col justify-between">
+  <section>
+    <section class="text-[1rem] font-bold pt-[24px] px-[16px]">
+      {{ "Indica i tuoi orari di apertura" }}
+    </section>
+
+    <section class="text-[0.875rem] text-gray-700 px-[16px]">
+      {{ "Clicca su ogni giorno per modificare" }}
+    </section>
+
+    <section
+      class="flex flex-row gap-2 mt-4 overflow-x-auto px-[16px] no-scrollbar"
+    >
+      <button
+        #tabButton
+        *ngFor="let day of daysTranslation; let i = index"
+        class="px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap"
+        [ngClass]="
+          daySelection!.dayOfWeek.relation === day.description
+            ? 'bg-[#FF8000] text-white'
+            : 'bg-[#F6F6F6] text-gray-700'
+        "
+        (click)="onSelectTab(day)"
+      >
+        {{ day.companyScheduleDayTranslation[0].description }}
+      </button>
+    </section>
+
+    <section *ngIf="daySelection" class="flex flex-col gap-4 mt-4 px-[16px]">
+      <label class="flex flex-row gap-4 items-center">
+        <input
+          type="checkbox"
+          class="custom-checkbox flex-shrink-0"
+          [checked]="!daySelection.isOpen"
+          (change)="updateChecked($event)"
+        />
+        <span class="text-[16px] text-gray-900">
+          {{ "Giorno di chiusura" }}
+        </span>
+      </label>
+
+      <div
+        class="relative w-full border border-solid border-[#DDE6EE] rounded-[1rem] bg-white flex flex-row items-center justify-center gap-[3rem] p-[.5rem]"
+        *ngFor="let sch of daySelection?.schedule; let i = index"
+      >
+        <div class="flex flex-row items-center gap-4">
+          <span class="text-[0.875rem]">Dalle</span>
+          <select
+            class="text-[1.9375rem] font-bold border-b border-solid border-black bg-transparent focus:outline-none focus:ring-0 appearance-none"
+            [ngModel]="sch.start"
+            (ngModelChange)="onChangeHour('start', $event, sch)"
+          >
+            <option *ngFor="let hour of hours" [value]="hour">
+              {{ hour }}
+            </option>
+          </select>
+        </div>
+
+        <div class="flex flex-row items-center gap-4">
+          <span class="text-[0.875rem]">alle</span>
+          <select
+            class="text-[1.9375rem] font-bold border-b border-solid border-black bg-transparent focus:outline-none focus:ring-0 appearance-none"
+            [ngModel]="sch.end"
+            (ngModelChange)="onChangeHour('end', $event, sch)"
+          >
+            <option *ngFor="let hour of hours" [value]="hour">
+              {{ hour }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Botón para eliminar -->
+        <button
+          *ngIf="i > 0"
+          type="button"
+          class="text-red-500 text-sm ml-4 absolute right-3 top-1/2 -translate-y-1/2"
+          (click)="daySelection!.schedule.splice(i, 1)"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div
+        class="w-full border border-solid border-[#DDE6EE] rounded-[1rem] bg-white flex flex-col items-center justify-center gap-1 p-[.5rem] cursor-pointer hover:bg-gray-50 transition"
+        (click)="addSchedule()"
+      >
+        <span class="block text-[1rem]">+ aggiungi</span>
+        <span class="block text-[.875rem]"
+          >clicca qui per aggiungere una fascia oraria</span
+        >
+      </div>
+
+      <label class="flex flex-row gap-4 items-center">
+        <input
+          type="checkbox"
+          class="custom-checkbox flex-shrink-0"
+          [(ngModel)]="applySameSchedule"
+          (change)="toggleApplySameSchedule()"
+        />
+        <span class="text-[16px] text-gray-900">
+          {{ "Applica a tutti i giorni questo stesso orario" }}
+        </span>
+      </label>
+    </section>
+  </section>
+
+  <section
+    *ngIf="!keyboardIsOpen"
+    class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] z-10"
+  >
+    <section class="bg-white absolute h-full w-full"></section>
+    <section
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10 bg-[#FFFFFF]"
+      (click)="onCancel()"
+    >
+      {{ "SEAT.CANCEL" | translate }}
+    </section>
+    <button
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+      (click)="onSave()"
+    >
+      {{ "SEAT.SAVE" | translate }}
+    </button>
+  </section>
+</section>

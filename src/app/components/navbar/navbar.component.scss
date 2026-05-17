@@ -1,0 +1,33 @@
+ion-tabs {
+  padding-top: 3.125rem;
+  overflow: hidden;
+
+  ion-tab-bar {
+    box-shadow: 0 0.188rem 0.938rem #00000012;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &.main-tab {
+      overflow-x: scroll;
+      justify-content: left;
+    }
+  }
+}
+
+ion-icon {
+  font-size: 1.375rem;
+}
+
+// .main-tab {
+//   overflow-x: scroll;
+//   justify-content: left;
+// }
+
+.tab-selected {
+  border-bottom: solid 0.188rem;
+}
+
+.f-z-25 {
+  font-size: 1.563rem !important;
+}

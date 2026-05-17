@@ -1,0 +1,41 @@
+<section class="h-full px-[4rem] my-[48px] flex flex-col justify-center ">
+
+
+
+  <section class="flex justify-center">
+    <div class="bg-[#EC097350] h-[6rem] w-[6rem] flex items-center justify-center rounded-full">
+      <ion-icon name="alert-outline" class="text-[#EC0973]" size="large"></ion-icon>
+    </div>
+  </section>
+
+
+  <section class="text-[1.5rem] text-center font-bold mt-[1rem]">
+    Attenzione, stai per pubblicare il tuo evento e <span class="text-black">NON potrai più modificarlo!</span>
+  </section>
+
+
+  <section class="text-gray-600 text-[1rem] text-center  mt-[1rem]">
+    Una volta pubblicato l'evento, non potrai più apportare modifiche.
+    Assicurati che tutte le informazioni siano corrette.
+  </section>
+
+
+  <section class="text-gray-600 text-[1rem] text-center  mt-[1rem]">
+    I tempi per l'approvazione degli eventi sono di 24-48H. Appena online,
+    riceverai una notifica via e-mail.
+  </section>
+
+
+
+  <section class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0">
+    <section class="bg-white opacity-45 absolute h-full w-full"></section>
+    <section (click)="closeModal()" class="text-[0.9rem] flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#EC0973] border-solid text-[#EC0973] font-bold z-10">
+      {{ 'Modifica evento' }}
+    </section>
+    <button (click)="publishEvent()" class="text-[0.9rem] disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#EC0973] border-solid bg-[#EC0973] text-white font-bold z-10">
+      {{ 'Pubblica evento' }}
+    </button>
+  </section>
+
+
+</section>

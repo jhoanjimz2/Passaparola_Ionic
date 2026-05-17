@@ -1,0 +1,575 @@
+<app-header
+  [backIcon]="true"
+  [border]="false"
+  [modalDismiss]="false"
+></app-header>
+
+<ion-content>
+  <div class="page-wrapper">
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- READONLY — already signed / approved / rejected -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="contract"
+             *ngIf="!isLoadingContract && isReadonly">
+
+      <div class="contract__header">
+        <span class="contract__title">Contratto di fornitura</span>
+        <span class="contract__download" (click)="downloadContract()">Scarica</span>
+      </div>
+
+      <div class="contract__status-banner"
+           [ngClass]="'contract__status-banner--' + readonlyReason">
+        <ion-icon
+          [name]="readonlyReason === 'approved' ? 'checkmark-circle'
+                : readonlyReason === 'rejected' ? 'close-circle'
+                : 'time-outline'">
+        </ion-icon>
+        <span>
+          {{ readonlyReason === 'approved' ? 'Contratto approvato'
+           : readonlyReason === 'rejected' ? 'Contratto rifiutato'
+           : 'Contratto già firmato — in attesa di approvazione' }}
+        </span>
+      </div>
+
+      <!-- FIX 1: iframe en lugar de ngx-extended-pdf-viewer.
+           Los iframes no hacen XHR/fetch, no se aplica la política CORS
+           y el PDF se muestra sin errores. -->
+      <div class="contract__pdf-viewer">
+        <iframe
+          *ngIf="pdfUrl"
+          [src]="('https://docs.google.com/viewer?embedded=true&url=' + pdfUrl) | safe"
+          class="contract__pdf-iframe"
+          frameborder="0">
+        </iframe>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP INDICATOR (steps 1-4)                 -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="step-indicator"
+         *ngIf="!isLoadingContract && !isReadonly && step >= 1 && step <= 4">
+
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 1"
+           [class.step-indicator__item--done]="step > 1">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 1" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 1">1</span>
+        </div>
+        <span class="step-indicator__label">Fronte</span>
+      </div>
+
+      <div class="step-indicator__line" [class.step-indicator__line--done]="step > 1"></div>
+
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 2"
+           [class.step-indicator__item--done]="step > 2">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 2" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 2">2</span>
+        </div>
+        <span class="step-indicator__label">Retro</span>
+      </div>
+
+      <div class="step-indicator__line" [class.step-indicator__line--done]="step > 2"></div>
+
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 3"
+           [class.step-indicator__item--done]="step > 3">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 3" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 3">3</span>
+        </div>
+        <span class="step-indicator__label">Selfie</span>
+      </div>
+
+      <div class="step-indicator__line" [class.step-indicator__line--done]="step > 3"></div>
+
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 4"
+           [class.step-indicator__item--done]="step > 4">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 4" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 4">4</span>
+        </div>
+        <span class="step-indicator__label">Telefono</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP 0 — CONTRACT VIEW & ACCEPTANCE        -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="contract"
+             *ngIf="!isLoadingContract && !isReadonly && step === 0">
+
+      <div class="contract__header">
+        <span class="contract__title">Contratto di fornitura</span>
+        <span class="contract__download" (click)="downloadContract()">Scarica</span>
+      </div>
+
+      <!-- FIX 1: iframe en lugar de ngx-extended-pdf-viewer — sin CORS -->
+      <div class="contract__pdf-viewer">
+        <iframe
+          *ngIf="pdfUrl"
+          [src]="('https://docs.google.com/viewer?embedded=true&url=' + pdfUrl) | safe"
+          class="contract__pdf-iframe"
+          frameborder="0">
+        </iframe>
+      </div>
+
+      <label class="checkbox">
+        <input type="checkbox" class="checkbox__input" (change)="onTermsChange($event)">
+        <span class="checkbox__label">Accetto i Termini e le Condizioni contrattuali</span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" class="checkbox__input" (change)="onConditionsChange($event)">
+        <span class="checkbox__label">Accetto i Termini e le Condizioni di uso</span>
+      </label>
+
+      <div class="contract__actions">
+        <button
+          class="contract__button contract__button--sign"
+          [ngClass]="{'contract__button--disabled': !canSignContract()}"
+          [disabled]="!canSignContract()"
+          (click)="signContract()">
+          Firma contratto
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP 1 — ID FRONT                          -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="capture"
+             *ngIf="!isLoadingContract && !isReadonly && step === 1">
+
+      <div class="capture__header">
+        <div class="capture__icon"><ion-icon name="id-card-outline"></ion-icon></div>
+        <span class="capture__title">Fronte documento</span>
+        <span class="capture__subtitle">
+          Posiziona il fronte del tuo documento<br>all'interno della cornice
+        </span>
+      </div>
+
+      <div class="capture__content">
+
+        <div class="capture__preview-wrapper" *ngIf="frontDocumentPhoto">
+          <img [src]="frontDocumentPhoto" class="capture__preview-image" alt="ID Fronte" />
+          <div class="capture__preview-overlay">
+            <ion-icon name="checkmark-circle" class="capture__preview-check"></ion-icon>
+          </div>
+        </div>
+
+        <div class="capture__camera-container"
+             *ngIf="!frontDocumentPhoto"
+             [class.capture__camera-container--active]="isCameraActive">
+          <div class="capture__guide-frame">
+            <div class="capture__guide-corner capture__guide-corner--tl"></div>
+            <div class="capture__guide-corner capture__guide-corner--tr"></div>
+            <div class="capture__guide-corner capture__guide-corner--bl"></div>
+            <div class="capture__guide-corner capture__guide-corner--br"></div>
+            <span class="capture__guide-text" *ngIf="!isCameraActive">
+              <ion-icon name="id-card-outline"></ion-icon>
+              Avvia la camera
+            </span>
+            <span class="capture__guide-text capture__guide-text--active" *ngIf="isCameraActive">
+              Inquadra il documento
+            </span>
+          </div>
+          <video #videoElement class="capture__video"
+                 [class.capture__video--active]="isCameraActive"
+                 autoplay playsinline></video>
+          <canvas #canvasElement style="display:none;"></canvas>
+        </div>
+
+        <div class="capture__upload-alt" *ngIf="!frontDocumentPhoto && !isCameraActive">
+          <span class="capture__upload-alt__text">oppure</span>
+          <label class="capture__upload-label">
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            Carica dalla galleria
+            <input type="file" accept="image/*" style="display:none"
+                   (change)="onDocumentUpload($event, 'front')" />
+          </label>
+        </div>
+
+      </div>
+
+      <div class="capture__actions">
+        <button *ngIf="!isCameraActive && !frontDocumentPhoto"
+                class="capture__button capture__button--primary"
+                [disabled]="isCameraLoading"
+                (click)="startCamera()">
+          <div *ngIf="isCameraLoading" class="capture__spinner"></div>
+          <ion-icon *ngIf="!isCameraLoading" name="camera-outline"></ion-icon>
+          {{ isCameraLoading ? 'Avvio...' : 'Avvia camera' }}
+        </button>
+        <button *ngIf="isCameraActive && !frontDocumentPhoto"
+                class="capture__button capture__button--primary"
+                (click)="captureDocument('front')">
+          <ion-icon name="aperture-outline"></ion-icon>
+          Scatta foto
+        </button>
+        <button *ngIf="frontDocumentPhoto"
+                class="capture__button capture__button--secondary"
+                (click)="retakeDocument('front')">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Rifare
+        </button>
+        <button *ngIf="frontDocumentPhoto"
+                class="capture__button capture__button--primary"
+                (click)="goToStep(2)">
+          Continua
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP 2 — ID BACK                           -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="capture"
+             *ngIf="!isLoadingContract && !isReadonly && step === 2">
+
+      <div class="capture__header">
+        <div class="capture__icon"><ion-icon name="id-card-outline"></ion-icon></div>
+        <span class="capture__title">Retro documento</span>
+        <span class="capture__subtitle">
+          Gira il documento e inquadra<br>il retro all'interno della cornice
+        </span>
+      </div>
+
+      <div class="capture__content">
+
+        <div class="capture__preview-wrapper" *ngIf="backDocumentPhoto">
+          <img [src]="backDocumentPhoto" class="capture__preview-image" alt="ID Retro" />
+          <div class="capture__preview-overlay">
+            <ion-icon name="checkmark-circle" class="capture__preview-check"></ion-icon>
+          </div>
+        </div>
+
+        <div class="capture__camera-container"
+             *ngIf="!backDocumentPhoto"
+             [class.capture__camera-container--active]="isCameraActive">
+          <div class="capture__guide-frame">
+            <div class="capture__guide-corner capture__guide-corner--tl"></div>
+            <div class="capture__guide-corner capture__guide-corner--tr"></div>
+            <div class="capture__guide-corner capture__guide-corner--bl"></div>
+            <div class="capture__guide-corner capture__guide-corner--br"></div>
+            <span class="capture__guide-text" *ngIf="!isCameraActive">
+              <ion-icon name="id-card-outline"></ion-icon>
+              Avvia la camera
+            </span>
+            <span class="capture__guide-text capture__guide-text--active" *ngIf="isCameraActive">
+              Inquadra il retro del documento
+            </span>
+          </div>
+          <video #videoElement class="capture__video"
+                 [class.capture__video--active]="isCameraActive"
+                 autoplay playsinline></video>
+          <canvas #canvasElement style="display:none;"></canvas>
+        </div>
+
+        <div class="capture__upload-alt" *ngIf="!backDocumentPhoto && !isCameraActive">
+          <span class="capture__upload-alt__text">oppure</span>
+          <label class="capture__upload-label">
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            Carica dalla galleria
+            <input type="file" accept="image/*" style="display:none"
+                   (change)="onDocumentUpload($event, 'back')" />
+          </label>
+        </div>
+      </div>
+
+      <div class="capture__actions">
+        <button class="capture__button capture__button--ghost" (click)="goToStep(1)">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Indietro
+        </button>
+        <button *ngIf="!isCameraActive && !backDocumentPhoto"
+                class="capture__button capture__button--primary"
+                [disabled]="isCameraLoading"
+                (click)="startCamera()">
+          <div *ngIf="isCameraLoading" class="capture__spinner"></div>
+          <ion-icon *ngIf="!isCameraLoading" name="camera-outline"></ion-icon>
+          {{ isCameraLoading ? 'Avvio...' : 'Avvia camera' }}
+        </button>
+        <button *ngIf="isCameraActive && !backDocumentPhoto"
+                class="capture__button capture__button--primary"
+                (click)="captureDocument('back')">
+          <ion-icon name="aperture-outline"></ion-icon>
+          Scatta foto
+        </button>
+        <button *ngIf="backDocumentPhoto"
+                class="capture__button capture__button--secondary"
+                (click)="retakeDocument('back')">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Rifare
+        </button>
+        <button *ngIf="backDocumentPhoto"
+                class="capture__button capture__button--primary"
+                (click)="goToStep(3)">
+          Continua
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP 3 — SELFIE                            -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="capture"
+             *ngIf="!isLoadingContract && !isReadonly && step === 3">
+
+      <div class="capture__header">
+        <div class="capture__icon"><ion-icon name="person-circle-outline"></ion-icon></div>
+        <span class="capture__title">Foto del volto</span>
+        <span class="capture__subtitle">
+          Centra il viso nell'ovale<br>e assicurati di avere buona illuminazione
+        </span>
+      </div>
+
+      <div class="capture__content">
+
+        <div class="capture__preview-wrapper capture__preview-wrapper--round" *ngIf="selfiePhoto">
+          <img [src]="selfiePhoto" class="capture__preview-image" alt="Selfie" />
+          <div class="capture__preview-overlay">
+            <ion-icon name="checkmark-circle" class="capture__preview-check"></ion-icon>
+          </div>
+        </div>
+
+        <div class="capture__selfie-container"
+             *ngIf="!selfiePhoto"
+             [class.capture__selfie-container--active]="isCameraActive">
+          <span class="capture__instruction" *ngIf="!isCameraActive">
+            <ion-icon name="person-outline"></ion-icon>
+            Avvia la camera frontale
+          </span>
+          <video #videoElement class="capture__video"
+                 [class.capture__video--active]="isCameraActive"
+                 autoplay playsinline></video>
+          <canvas #canvasElement style="display:none;"></canvas>
+          <div class="capture__face-overlay" *ngIf="isCameraActive"></div>
+          <div class="capture__face-oval"
+               [class.capture__face-oval--detected]="isFaceDetected"></div>
+          <div class="capture__face-hint" *ngIf="isCameraActive">
+            <span [class.capture__face-hint--ready]="isFaceDetected">
+              {{ isFaceDetected ? '✓ Volto rilevato' : 'Centra il viso nell\'ovale' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="capture__actions">
+        <button class="capture__button capture__button--ghost" (click)="goToStep(2)">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Indietro
+        </button>
+        <button *ngIf="!isCameraActive && !selfiePhoto"
+                class="capture__button capture__button--primary"
+                [disabled]="isCameraLoading"
+                (click)="startCamera()">
+          <div *ngIf="isCameraLoading" class="capture__spinner"></div>
+          <ion-icon *ngIf="!isCameraLoading" name="camera-outline"></ion-icon>
+          {{ isCameraLoading ? 'Avvio...' : 'Avvia camera' }}
+        </button>
+        <button *ngIf="isCameraActive && !selfiePhoto"
+                class="capture__button capture__button--primary"
+                [class.capture__button--disabled]="!isFaceDetected"
+                [disabled]="!isFaceDetected"
+                (click)="captureSelfie()">
+          <ion-icon name="aperture-outline"></ion-icon>
+          Scatta foto
+        </button>
+        <button *ngIf="selfiePhoto"
+                class="capture__button capture__button--secondary"
+                (click)="retakeSelfie()">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Rifare
+        </button>
+        <button *ngIf="selfiePhoto"
+                class="capture__button capture__button--primary"
+                (click)="goToStep(4)">
+          Continua
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP 4 — PHONE VERIFICATION                -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="verification"
+             *ngIf="!isLoadingContract && !isReadonly && step === 4">
+
+      <div class="verification__header">
+        <div class="verification__icon">
+          <ion-icon name="phone-portrait-outline"></ion-icon>
+        </div>
+        <span class="verification__title">
+          Verifica il numero di telefono
+        </span>
+      </div>
+
+      <div class="verification__content">
+
+        <div class="verification__docs-summary">
+          <div class="verification__doc-thumb">
+            <img [src]="frontDocumentPhoto!" alt="Fronte" class="verification__doc-thumb-img" />
+            <span class="verification__doc-thumb-label">Fronte</span>
+          </div>
+          <div class="verification__doc-thumb">
+            <img [src]="backDocumentPhoto!" alt="Retro" class="verification__doc-thumb-img" />
+            <span class="verification__doc-thumb-label">Retro</span>
+          </div>
+          <div class="verification__doc-thumb verification__doc-thumb--round">
+            <img [src]="selfiePhoto!" alt="Selfie" class="verification__doc-thumb-img" />
+            <span class="verification__doc-thumb-label">Selfie</span>
+          </div>
+        </div>
+
+        <div class="verification__section-title">
+          <span class="verification__section-heading">Verifica numero telefonico</span>
+          <span class="verification__section-description">
+            Inserisci il numero associato al tuo account.<br>
+            Ti invieremo un codice di verifica.
+          </span>
+        </div>
+
+        <div class="phone-input" *ngIf="countries.length > 0">
+          <span class="phone-input__label">Numero di contatto</span>
+          <div class="phone-input__wrapper">
+            <img [src]="'assets/images/flags/' + selectedCountryCode + '.png'"
+                 class="phone-input__flag" alt="flag" />
+            <ion-select interface="popover"
+                        [value]="phonePrefix"
+                        (ionChange)="onCountryChange($event)"
+                        [disabled]="true"
+                        class="phone-input__select">
+              <ion-select-option *ngFor="let c of countries" [value]="c.phonePrefix">
+                {{ c.phonePrefix }} {{ c.code }}
+              </ion-select-option>
+            </ion-select>
+            <input type="tel"
+                   placeholder="numero di contatto"
+                   [value]="phoneNumber"
+                   (input)="onPhoneNumberInput($event)"
+                   [disabled]="true"
+                   class="phone-input__field" />
+            <span class="phone-input__code-sent">
+              {{ smsCodeId ? 'Codice inviato ✓' : 'Invio in corso...' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="verification-code" *ngIf="smsCodeId">
+          <span class="verification-code__label">Codice di verifica</span>
+          <div class="verification-code__inputs" [formGroup]="formCode">
+            <input #codeInput formControlName="code1" type="tel" inputmode="numeric"
+                   maxlength="1" mask="0" autocomplete="one-time-code"
+                   class="verification-code__input"
+                   (keyup)="inputCode(1)" (focus)="cleanInput('code1')"
+                   (input)="onOtpInput($event)" (paste)="onCodePaste($event)"
+                   (keydown)="onCodeKeydown($event, 0)" />
+            <input #codeInput formControlName="code2" type="tel" inputmode="numeric"
+                   maxlength="1" mask="0" autocomplete="one-time-code"
+                   class="verification-code__input"
+                   (keyup)="inputCode(2)" (focus)="cleanInput('code2')"
+                   (input)="onOtpInput($event)" (paste)="$event.preventDefault()"
+                   (keydown)="onCodeKeydown($event, 1)" />
+            <input #codeInput formControlName="code3" type="tel" inputmode="numeric"
+                   maxlength="1" mask="0" autocomplete="one-time-code"
+                   class="verification-code__input"
+                   (keyup)="inputCode(3)" (focus)="cleanInput('code3')"
+                   (input)="onOtpInput($event)" (paste)="$event.preventDefault()"
+                   (keydown)="onCodeKeydown($event, 2)" />
+            <input #codeInput formControlName="code4" type="tel" inputmode="numeric"
+                   maxlength="1" mask="0" autocomplete="one-time-code"
+                   class="verification-code__input"
+                   (keyup)="inputCode(4)" (focus)="cleanInput('code4')"
+                   (input)="onOtpInput($event)" (paste)="$event.preventDefault()"
+                   (keydown)="onCodeKeydown($event, 3)" />
+            <input #codeInput formControlName="code5" type="tel" inputmode="numeric"
+                   maxlength="1" mask="0" autocomplete="one-time-code"
+                   class="verification-code__input"
+                   (keyup)="inputCode(5)" (focus)="cleanInput('code5')"
+                   (input)="onOtpInput($event)" (paste)="$event.preventDefault()"
+                   (keydown)="onCodeKeydown($event, 4)" />
+            <input #codeInput formControlName="code6" type="tel" inputmode="numeric"
+                   maxlength="1" mask="0" autocomplete="one-time-code"
+                   class="verification-code__input"
+                   (keyup)="checkPinCount()" (focus)="cleanInput('code6')"
+                   (input)="onOtpInput($event)" (paste)="$event.preventDefault()"
+                   (keydown)="onCodeKeydown($event, 5)" />
+          </div>
+        </div>
+
+        <div class="timer" *ngIf="smsCodeId">
+          <div class="timer__circle">
+            <circle-progress
+              [percent]="percent"
+              [radius]="30"
+              [outerStrokeWidth]="5"
+              [innerStrokeWidth]="0"
+              [outerStrokeColor]="'#EF8500'"
+              [innerStrokeColor]="'#EF8500'"
+              [animation]="true"
+              [animationDuration]="1"
+              [showSubtitle]="false"
+              [showTitle]="false">
+            </circle-progress>
+            <div class="timer__time">{{ minutes }}:{{ seconds < 10 ? '0' + seconds : seconds }}</div>
+          </div>
+        </div>
+
+        <div class="resend-code" *ngIf="smsCodeId">
+          <span class="resend-code__text">Non hai ricevuto il codice?</span>
+          <span class="resend-code__link"
+                [class.resend-code__link--disabled]="timer > 0"
+                (click)="resendCode()">
+            Clicca qui per riceverne un altro
+          </span>
+          <span class="resend-code__count">{{ pinCount }}/6</span>
+        </div>
+
+        <button *ngIf="smsCodeId"
+                class="verification__verify-button"
+                [class.verification__verify-button--disabled]="!isCodeComplete() || isSubmitting"
+                [disabled]="!isCodeComplete() || isSubmitting"
+                (click)="verifyAndSign()">
+          <div *ngIf="isSubmitting" class="capture__spinner"></div>
+          {{ isSubmitting ? 'Invio in corso...' : 'Verifica e firma' }}
+        </button>
+
+        <button class="verification__back-button" (click)="goToStep(3)">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Indietro
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- STEP 5 — SUCCESS                           -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="success"
+             *ngIf="!isLoadingContract && !isReadonly && step === 5">
+      <div class="success__content">
+        <div class="success__icon">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </div>
+        <h1 class="success__title">Congratulazioni!</h1>
+        <p class="success__message">
+          Il tuo contratto è stato firmato con successo.<br>
+          Riceverai una mail di conferma appena la fornitura sarà attiva.
+        </p>
+        <button class="success__button" (click)="location.back()">
+          Torna alla lista
+        </button>
+      </div>
+    </section>
+
+  </div>
+</ion-content>

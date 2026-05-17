@@ -1,0 +1,143 @@
+<app-header [backIcon]="true" [border]="false"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <form [formGroup]="formTaxdata" (ngSubmit)="updateInfo()">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="title p-l-0">
+            {{"COMPANY.TAX_DATA.TITLE" | translate}}</ion-col
+          >
+          <ion-col *ngIf="!disabledForm" size="5" class="col-update">
+            <ion-button
+              type="submit"
+              color="success"
+              [disabled]="formTaxdata.invalid"
+            >
+              {{"COMPANY.TAX_DATA.SAVE" | translate }}
+            </ion-button>
+          </ion-col>
+          <ion-col *ngIf="disabledForm" size="2" class="col-btn-edit">
+            <ion-button
+              (click)="editProfile()"
+              type="button"
+              fill="outline"
+              [disabled]="formTaxdata.invalid"
+            >
+              <ion-icon color="dark" name="passaparola-edit"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-label color="dark"
+        >{{"COMPANY.TAX_DATA.NAME" | translate}}</ion-label
+      >
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"COMPANY.TAX_DATA.NAME" | translate}}'
+        fill="outline"
+        formControlName="name"
+        name="name"
+      >
+      </ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="7" class="p-l-0">
+            <ion-label color="dark"
+              >{{"COMPANY.TAX_DATA.IVA" | translate}}</ion-label
+            >
+            <ion-input
+              class="iva"
+              mode="md"
+              color="danger"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              fill="outline"
+              formControlName="iva"
+              name="iva"
+              readonly
+            >
+            </ion-input>
+            <ion-icon class="icon-lock" name="lock-closed"></ion-icon>
+          </ion-col>
+          <ion-col size="5" class="p-r-0">
+            <ion-label color="dark"
+              >{{"COMPANY.TAX_DATA.TYPE" | translate}}</ion-label
+            >
+            <ion-select
+              formControlName="type"
+              name="type"
+              color="primary"
+              interface="popover"
+            >
+              <ion-select-option value="">
+                {{ "GENERAL.SELECT" | translate }}
+              </ion-select-option>
+              <ion-select-option
+                [value]="type.id"
+                *ngFor="let type of companyLegalTypes"
+              >
+                {{ type.companyLegalTypeTranslation[0].description }}
+              </ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-label color="dark"
+        >{{"COMPANY.TAX_DATA.LEGAL_REPRESENTATIVE" | translate}}</ion-label
+      >
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"COMPANY.TAX_DATA.LEGAL_REPRESENTATIVE" | translate}}'
+        fill="outline"
+        formControlName="legalRepresentative"
+        name="legalRepresentative"
+      >
+      </ion-input>
+
+      <ion-label color="dark"
+        >{{"COMPANY.TAX_DATA.LEGAL_REPRESENTATIVE_FISCAL_CODE" |
+        translate}}</ion-label
+      >
+      <ion-input
+        mode="md"
+        color="danger"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder='{{"COMPANY.TAX_DATA.LEGAL_REPRESENTATIVE_FISCAL_CODE" | translate}}'
+        fill="outline"
+        formControlName="legalRepresentativeFiscal"
+        name="legalRepresentativeFiscal"
+      >
+      </ion-input>
+
+      <div>
+        <ion-label color="dark"
+          >{{"COMPANY.TAX_DATA.ADDRESS" | translate}}</ion-label
+        >
+        <ion-input
+          mode="md"
+          color="danger"
+          labelPlacement="stacked"
+          placeholder='{{"COMPANY.TAX_DATA.ADDRESS" | translate}}'
+          fill="outline"
+          formControlName="address"
+          name="address"
+        >
+        </ion-input>
+        <ion-icon
+          (click)="onOpenModalAddressOnTheMap()"
+          name="locate"
+          aria-hidden="true"
+          class="icon-location"
+        ></ion-icon>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

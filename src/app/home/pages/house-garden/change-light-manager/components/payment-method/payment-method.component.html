@@ -1,0 +1,52 @@
+<ion-item
+  class="payment-method"
+  lines="none"
+  (click)="selectPayment()"
+  [class.selected]="isSelected"
+>
+  <div class="w-full flex flex-col">
+    <ion-radio
+      #radioElement
+      mode="md"
+      labelPlacement="end"
+      class="radio-method w-fit"
+      [value]="'radio-' + type + (method.id ? '-' + method.id : '')"
+    >
+      <span class="font-bold text-[0.875rem]">
+        {{ getTitle() }}
+      </span>
+    </ion-radio>
+
+    <div class="w-full flex flex-row gap-3">
+      <div class="icon-method">
+        <ion-icon [name]="getIconName()"></ion-icon>
+      </div>
+
+      <div class="flex flex-col items-start justify-center">
+        <ng-container [ngSwitch]="type">
+          <!-- Wallet -->
+          <ng-container *ngSwitchCase="'wallet'">
+            <span class="text-[0.875rem]">Wallet ID</span>
+            <span class="font-bold text-[1.125rem]">{{ method.wallet }}</span>
+          </ng-container>
+
+          <!-- Bank -->
+          <ng-container *ngSwitchCase="'bank'">
+            <span class="text-[0.875rem]">IBAN che finisce con</span>
+            <span class="text-[1.125rem]">**** **** **** {{ method.accountNumber | slice: -4 }}</span>
+          </ng-container>
+
+          <!-- Card -->
+          <ng-container *ngSwitchCase="'card'">
+            <span class="text-[0.875rem]">
+              <span class="uppercase">{{ method.brand }}</span> finisce con **** {{ method.cardNumber | slice: -4 }}
+            </span>
+            <span class="text-[1.125rem]">
+              scadenza <span class="font-bold">{{ method.expiration }}</span>
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ion-item>

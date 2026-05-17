@@ -1,0 +1,28 @@
+<ion-grid style="padding: 0">
+  <ion-row>
+    <ion-col>
+      <ion-label> Negozi Passaparola </ion-label>
+    </ion-col>
+    <ion-col style="text-align: right">
+      <ion-label style="color: #35c93f"> vedi tutti </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<div style="display: flex; overflow: auto; width: 100vw">
+  <div style="width: 93px" *ngFor="let card of [1, 2, 3, 4, 5, 6]">
+    <ion-card
+      style="
+        width: 72px;
+        height: 72px;
+        background-color: #cccccc;
+        border-radius: 12px;
+        margin-bottom: 0;
+      "
+    >
+    </ion-card>
+    <div style="width: 100%; text-align: center">
+      <ion-label style="font-size: 10px">12 Travel Emotions</ion-label>
+    </div>
+  </div>
+</div>

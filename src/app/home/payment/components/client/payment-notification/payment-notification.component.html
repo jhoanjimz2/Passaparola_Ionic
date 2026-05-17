@@ -1,0 +1,61 @@
+<section
+  class="flex flex-col justify-center items-center h-full px-[17px] bg-white"
+>
+  <section class="flex flex-col justify-center items-center text-center w-full">
+    <section class="text-[25px] leading-[34px] font-bold mt-[15px]">
+      {{ "PAYMENT.YOU_HAVE_MADE_A" | translate }}
+    </section>
+    <section
+      class="flex flex-row text-[13px] leading-[18px] mt-[15px] border-[#35B726] py-[10px] px-[25px] rounded-[10px] text-[#35B726] border-[1px] shadow-gray-300 shadow-md"
+    >
+      <ion-icon class="w-[60px] h-[40px]" name="passaparola-money"></ion-icon>
+      <section class="text-[16px] leading-[22px] font-bold ml-[10px]">
+        {{ "PAYMENT.PAYMENT_TRADITIONAL" | translate }}
+      </section>
+    </section>
+    <section class="text-[60px] leading-[72px]">
+      {{ walletTransaction.amount | formattNumber }}
+    </section>
+    <section class="text-[15px] leading-[24px] font-bold">€/ATM</section>
+    <section class="text-[16px] leading-[22px] font-bold mt-[10px]">
+      {{ name }}
+    </section>
+    <section class="text-[14px] leading-[19px] text-[#9AA1B3]">
+      {{ address }}
+    </section>
+    <section
+      class="px-[10px] pt-[10px] pb-[15px] rounded-[14px] shadow-gray-300 shadow-md mt-[18px] border-[1px] border-gray-100"
+    >
+      <section class="text-[25px] leading-[34px] font-bold">
+        {{ "PAYMENT.YOU_RECEIVED" | translate }}
+      </section>
+      <section class="flex flex-row justify-center gap-[60px] my-[20px]">
+        <section class="text-[#35B726]">
+          <section class="text-[10px] leading-[14px]">
+            {{ "PAYMENT.CASHBACK" | translate }}
+          </section>
+          <section class="text-[27px] leading-[37px] font-bold">
+            {{ walletTransaction.cashBackAmount | formattNumber }}
+          </section>
+        </section>
+        <section class="text-[#FF9100]">
+          <section class="text-[10px] leading-[14px]">
+            {{ "PAYMENT.REWARD_POINTS" | translate }}
+          </section>
+          <section class="text-[27px] leading-[37px] font-bold">
+            {{ walletTransaction.rewardPoints | formattNumber }}
+          </section>
+        </section>
+      </section>
+      <section class="text-[#071336] text-[14px] leading-[19px] text-center">
+        {{ "PAYMENT.CLARIFICATION" | translate }}
+      </section>
+    </section>
+    <section
+      class="bg-[#41C837] text-white text-[16px] leading-[22px] py-[23px] px-[80px] mt-[30px] rounded-[34px] text-center font-bold"
+      (click)="onCloseModal()"
+    >
+      {{ "PAYMENT.CLOSE" | translate }}
+    </section>
+  </section>
+</section>

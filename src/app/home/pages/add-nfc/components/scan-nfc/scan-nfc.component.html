@@ -1,0 +1,148 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container__card__header">
+      <ion-text>
+        <span class="main-container__card__title1">{{
+          "SCAN_NFC.DIVICE" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__title2">{{
+          "SCAN_NFC.DETECTED" | translate
+        }}</span>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content class="main-container__card__content">
+      <ion-label class="main-container__card__label-input">{{
+        "SCAN_NFC.SERIAL_NFC" | translate
+      }}</ion-label>
+      <div class="main-container__card__input">
+        <input [(ngModel)]="nfcSerial" readonly />
+      </div>
+      <br />
+      <br />
+      <ion-label class="main-container__card__label-nfc-type">{{
+        "SCAN_NFC.DIVICE_TYPE" | translate
+      }}</ion-label>
+
+      <br />
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" class="main-container--p-l-0">
+            <div
+              (click)="nfcTypeSelected = 'keychain'"
+              class="main-container__divice"
+              [ngClass]="{
+                'main-container--selected': nfcTypeSelected === 'keychain'
+              }"
+            >
+              <section>
+                <div class="main-container__divice__img">
+                  <img
+                    src="assets/images/keychain.png"
+                    alt="passaparola card"
+                    class="main-container__divice__img-keychain"
+                    width=""
+                  />
+                </div>
+                <ion-label class="main-container--f-z-14">{{
+                  "SCAN_NFC.KEYCHAIN" | translate
+                }}</ion-label>
+              </section>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="main-container--p-r-0">
+            <div
+              (click)="nfcTypeSelected = 'sticker'"
+              class="main-container__divice"
+              [ngClass]="{
+                'main-container--selected': nfcTypeSelected === 'sticker'
+              }"
+            >
+              <section>
+                <div class="main-container__divice__img">
+                  <img
+                    src="assets/images/nfc_sticker.png"
+                    alt="passaparola card"
+                    class="main-container__divice__img-1"
+                  />
+                </div>
+                <ion-label class="main-container--f-z-14">{{
+                  "SCAN_NFC.STICKER" | translate
+                }}</ion-label>
+              </section>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="main-container--p-l-0">
+            <div
+              (click)="nfcTypeSelected = 'passaparola_card'"
+              class="main-container__divice"
+              [ngClass]="{
+                'main-container--selected':
+                  nfcTypeSelected === 'passaparola_card'
+              }"
+            >
+              <section>
+                <div class="main-container__divice__img">
+                  <img
+                    src="assets/images/passaparola-card-front.png"
+                    alt="passaparola card"
+                    class="main-container__divice__img-1"
+                  />
+                </div>
+                <ion-label class="main-container--f-z-14">{{
+                  "SCAN_NFC.PASSAPAOLA_CARD" | translate
+                }}</ion-label>
+              </section>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="main-container--p-r-0">
+            <div
+              (click)="nfcTypeSelected = 'other_divice'"
+              class="main-container__divice"
+              [ngClass]="{
+                'main-container--selected': nfcTypeSelected === 'other_divice'
+              }"
+            >
+              <section>
+                <div class="main-container__divice__img">
+                  <ion-icon
+                    class="main-container__divice__icon-other"
+                    name="grid-outline"
+                  ></ion-icon>
+                </div>
+
+                <ion-label class="main-container--f-z-14">{{
+                  "SCAN_NFC.OTHER_DIVICE" | translate
+                }}</ion-label>
+              </section>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <br />
+      <br />
+      <br />
+
+      <div class="main-container__card__btn">
+        <ion-button
+          [disabled]="!nfcSerial || !nfcTypeSelected"
+          (click)="continue()"
+        >
+          {{ "SCAN_NFC.CONTINUE" | translate }}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

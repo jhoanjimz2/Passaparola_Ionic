@@ -1,0 +1,9 @@
+swiper-container {
+  height: auto !important;
+  display: block !important; /* evita flexbox raro */
+}
+
+swiper-slide {
+  height: auto !important;
+  display: block !important; /* para que crezca con el contenido */
+}

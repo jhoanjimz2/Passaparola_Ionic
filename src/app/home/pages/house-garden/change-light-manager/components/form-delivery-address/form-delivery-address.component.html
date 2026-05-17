@@ -1,0 +1,226 @@
+<section class="pb-[1.438rem] pt-[.438rem]">
+  <h1 class="font-bold text-[0.75rem] text-black padding-x">
+    Indirizzo fornitura
+  </h1>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="formDelivery"
+    class="mt-2 text-center"
+  >
+    <!-- Lo stesso della residenza -->
+    <div class="flex items-center justify-start gap-4 padding-x">
+      <label class="text-field">Lo stesso della residenza</label>
+      <ion-radio-group
+        class="flex items-center justify-center h-[2.75rem] gap-2"
+        name="sameResidence"
+        formControlName="sameResidence"
+      >
+        <ion-radio value="si" labelPlacement="end">Si</ion-radio>
+        <ion-radio value="no" labelPlacement="end">No</ion-radio>
+      </ion-radio-group>
+    </div>
+
+    <!-- Via e Numero civico -->
+    <div class="grid grid-cols-12 gap-2 padding-x">
+      <div class="field col-span-8">
+        <label class="label-field">Via</label>
+        <input
+          name="supplyStreet"
+          formControlName="supplyStreet"
+          class="input-field"
+          [class.border-red-500]="hasError('supplyStreet')"
+          placeholder="scrivi qui l'indirizzo"
+        />
+        <div
+          *ngIf="hasError('supplyStreet')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("supplyStreet") }}
+        </div>
+      </div>
+      <div class="field col-span-4">
+        <label class="label-field">Numero civico</label>
+        <input
+          name="supplyNumber"
+          formControlName="supplyNumber"
+          class="input-field"
+          [class.border-red-500]="hasError('supplyNumber')"
+          placeholder="000"
+        />
+        <div
+          *ngIf="hasError('supplyNumber')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("supplyNumber") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Città, PR y CAP -->
+    <div class="grid grid-cols-12 gap-2 padding-x">
+      <div class="field col-span-7">
+        <label class="label-field">Città</label>
+        <input
+          name="supplyCity"
+          formControlName="supplyCity"
+          class="input-field"
+          [class.border-red-500]="hasError('supplyCity')"
+          placeholder="Nome città"
+        />
+        <div
+          *ngIf="hasError('supplyCity')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("supplyCity") }}
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label class="label-field">PR</label>
+        <input
+          name="supplyPr"
+          formControlName="supplyPr"
+          class="input-field"
+          [class.border-red-500]="hasError('supplyPr')"
+          placeholder="RM"
+          maxlength="2"
+        />
+        <div
+          *ngIf="hasError('supplyPr')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("supplyPr") }}
+        </div>
+      </div>
+      <div class="field col-span-3">
+        <label class="label-field">CAP</label>
+        <input
+          name="supplyCap"
+          formControlName="supplyCap"
+          class="input-field"
+          [class.border-red-500]="hasError('supplyCap')"
+          placeholder="000000"
+          maxlength="6"
+        />
+        <div
+          *ngIf="hasError('supplyCap')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("supplyCap") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- PDR/POD -->
+    <div class="container-blue">
+      <h1 class="font-bold text-[0.75rem] text-white text-left">
+        Richiede la voltura del contratto per la fornitura sotto specificata
+      </h1>
+      <input
+        name="supplyPdrPod"
+        formControlName="supplyPdrPod"
+        class="input-field"
+        [class.border-red-500]="hasError('supplyPdrPod')"
+        placeholder="scrivi qui il tuo PDR/POD indicato sulla fornitura"
+      />
+      <div
+        *ngIf="hasError('supplyPdrPod')"
+        class="text-red-500 text-xs mt-1 text-left"
+      >
+        {{ getErrorMessage("supplyPdrPod") }}
+      </div>
+    </div>
+
+    <!-- Potenza attuale y richiesta -->
+    <div class="grid grid-cols-12 gap-2 padding-x">
+      <div class="field col-span-6">
+        <label class="label-field">Potenza attuale (kW)</label>
+        <input
+          name="currentPower"
+          formControlName="currentPower"
+          class="input-field"
+          placeholder="facoltativo"
+          type="number"
+        />
+      </div>
+      <div class="field col-span-6">
+        <label class="label-field">Potenza richiesta (kW)</label>
+        <input
+          name="powerRequired"
+          formControlName="powerRequired"
+          class="input-field"
+          placeholder="facoltativo"
+          type="number"
+        />
+      </div>
+    </div>
+
+    <!-- Attuale fornitore y Tensione -->
+    <div class="grid grid-cols-12 gap-2 padding-x">
+      <div class="field col-span-7">
+        <label class="label-field">Attuale fornitore</label>
+        <input
+          name="currentSupplier"
+          formControlName="currentSupplier"
+          class="input-field"
+          [class.border-red-500]="hasError('currentSupplier')"
+          placeholder="obbligatorio"
+        />
+        <div
+          *ngIf="hasError('currentSupplier')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("currentSupplier") }}
+        </div>
+      </div>
+      <div class="field col-span-5">
+        <label class="label-field">Tensione (facoltativo)</label>
+        <ion-radio-group
+          class="flex items-center justify-center h-[2.75rem] gap-2"
+          name="voltage"
+          formControlName="voltage"
+        >
+          <ion-radio value="220V" labelPlacement="end">220V</ion-radio>
+          <ion-radio value="380V" labelPlacement="end">380V</ion-radio>
+        </ion-radio-group>
+      </div>
+    </div>
+
+    <!-- Data attivazione -->
+    <h1 class="font-bold text-[0.75rem] text-black text-left mt-4 padding-x">
+      Data attivazione
+    </h1>
+
+    <div class="grid grid-cols-12 gap-2 padding-x">
+      <div class="field col-span-6 flex items-start justify-center !mt-0">
+        <ion-checkbox
+          mode="ios"
+          labelPlacement="end"
+          name="immediateActivation"
+          formControlName="immediateActivation"
+          >Attivazione immediata</ion-checkbox
+        >
+      </div>
+      <div class="field col-span-6 !flex-row items-center justify-start !mt-0">
+        <label class="label-field !block">Scegli data</label>
+        <input
+          name="activationDate"
+          formControlName="activationDate"
+          class="input-field"
+          [class.border-red-500]="hasError('activationDate')"
+          placeholder="gg/mm/aaaa"
+          [disabled]="formDelivery.get('immediateActivation')?.value"
+        />
+        <div
+          *ngIf="hasError('activationDate')"
+          class="text-red-500 text-xs mt-1 text-left"
+        >
+          {{ getErrorMessage("activationDate") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Submit -->
+    <button class="button-field" type="submit">Continua</button>
+  </form>
+</section>

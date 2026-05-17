@@ -1,0 +1,76 @@
+.payment-method-card {
+  position: relative;
+  width: 100%;
+  min-height: 6.35rem;
+  border: 1px solid #D5D4D4;
+  border-radius: 1.25rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #3CC3A2;
+  }
+
+  &--selected {
+    border-color: #3CC3A2;
+  }
+
+  &__brand-box {
+    width: 4.813rem;
+    height: 4.813rem;
+    border-radius: 0.313rem;
+    box-shadow: 0 3px 6px #00000029;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #063549;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+  }
+
+  &__check-icon {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  &__card-info {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #6C757D;
+  }
+
+  &__expiration {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6C757D;
+    margin-left: 0.25rem;
+  }
+
+  &__owner {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #6C757D;
+  }
+}

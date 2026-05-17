@@ -1,0 +1,19 @@
+section {
+  width: 100%;
+  height: calc(100% - 5.125rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 13.375rem;
+  height: 3.375rem;
+  border-radius: 1.688rem;
+  font-size: 0.875rem;
+  color: white;
+  font-weight: bold;
+}

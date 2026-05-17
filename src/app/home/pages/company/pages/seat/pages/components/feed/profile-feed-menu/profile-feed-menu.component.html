@@ -1,0 +1,18 @@
+<section class="profile-menu">
+  <section (click)="setTabFeed('feed')">
+    <ion-icon class="feed" name="passaparola-profile-feed"></ion-icon>
+    <div *ngIf="tabFeed === 'feed'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setTabFeed('tags')">
+    <ion-icon class="tags" name="passaparola-profile-product"></ion-icon>
+    <div *ngIf="tabFeed === 'tags'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setTabFeed('like')">
+    <ion-icon class="like" name="passaparola-profile-like"></ion-icon>
+    <div *ngIf="tabFeed === 'like'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+  <section (click)="setTabFeed('saved')">
+    <ion-icon class="saved" name="passaparola-profile-saved"></ion-icon>
+    <div *ngIf="tabFeed === 'saved'" class="tab-indicator animate__animated animate__fadeInUp"></div>
+  </section>
+</section>

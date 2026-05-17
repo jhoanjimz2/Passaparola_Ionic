@@ -1,0 +1,50 @@
+<!-- search-bar-social.component.html -->
+<div class="search-bar">
+  <div class="search-bar__container">
+    <input
+      #searchInput
+      [(ngModel)]="searchText"
+      (input)="onSearchInput($event)"
+      (keyup.enter)="onSearchSubmit()"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+      placeholder="Cerca qui..."
+      class="search-bar__input"
+    >
+
+    <button
+      (click)="searchText ? onSearchSubmit() : searchInput.focus()"
+      class="search-bar__button"
+      type="button">
+      <ion-icon name="search-outline" class="search-bar__icon"></ion-icon>
+    </button>
+
+    <!-- Loading state -->
+    <div class="search-bar__suggestions" *ngIf="showSuggestions && isSearching">
+      <div class="search-bar__loading">
+        <div class="search-bar__spinner"></div>
+        <span>Cercando...</span>
+      </div>
+    </div>
+
+    <!-- Suggerimenti dal servizio -->
+    <div class="search-bar__suggestions" *ngIf="showSuggestions && !isSearching && suggestions.length > 0">
+      <button
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)"
+        class="search-bar__suggestion-item"
+        type="button">
+        <ion-icon name="search-outline" class="search-bar__suggestion-icon"></ion-icon>
+        <span class="search-bar__suggestion-text">{{ suggestion.text }}</span>
+      </button>
+    </div>
+
+    <!-- Stato senza risultati -->
+    <div class="search-bar__suggestions" *ngIf="showSuggestions && !isSearching && searchText.trim().length >= 2 && suggestions.length === 0">
+      <div class="search-bar__no-results">
+        <ion-icon name="search-outline" class="search-bar__no-results-icon"></ion-icon>
+        <span>Nessun suggerimento trovato</span>
+      </div>
+    </div>
+  </div>
+</div>

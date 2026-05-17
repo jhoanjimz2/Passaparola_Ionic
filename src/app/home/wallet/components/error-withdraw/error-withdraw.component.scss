@@ -1,0 +1,104 @@
+.main-container {
+  --background: transparent
+    radial-gradient(closest-side at 50% 50%, #f2d4d4fa 0%, #c33c3c 100%) 0% 0%
+    no-repeat padding-box;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  &__card {
+    background: #ffffff;
+    box-shadow: none;
+    border-radius: 1.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 1.875rem;
+    padding-bottom: 1.875rem;
+    margin: 1.875rem;
+
+    &__icon-error {
+      width: 5.813rem;
+      height: 6rem;
+    }
+
+    &__info {
+      width: 18.375rem;
+      height: 8.875rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__img {
+        width: 2.563rem;
+        height: 2.563rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 0.75rem;
+      }
+
+      &__name {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      &__amount {
+        font-size: 1.313rem;
+        font-weight: 600;
+      }
+
+      &__atm {
+        font-size: 0.625rem;
+        font-weight: bold;
+      }
+    }
+
+    &__btn-retry {
+      width: 14.25rem;
+      height: 4.25rem;
+      --border-radius: 2.125rem;
+      --background: #41c837;
+      margin-top: 1.875rem;
+    }
+
+    &__btn-cancel {
+      text-align: left;
+      font-weight: bold;
+      color: #9e9c9c;
+      margin-top: 1.25rem;
+      cursor: pointer;
+      width: 4.375rem;
+      height: 1.875rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+
+  &--text-left {
+    text-align: left;
+  }
+
+  &--text-right {
+    text-align: right;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--f-z-25 {
+    font-size: 1.563rem;
+  }
+}

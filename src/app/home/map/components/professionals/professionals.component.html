@@ -1,0 +1,59 @@
+<section>
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-title>Professionisti vicino a te</ion-title>
+
+      <ion-button
+        fill="clear"
+        style="font-weight: 600; text-transform: capitalize"
+        >vedi tutti</ion-button
+      >
+    </ion-row>
+  </ion-grid>
+
+  <ion-list style="border-radius: 19px; margin: 10px">
+    <ion-item *ngFor="let item of items; let index">
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+          <ion-col size="3">
+            <div>
+              <ion-avatar slot="start">
+                <img
+                  [src]="'https://picsum.photos/80/80?random=' + index"
+                  alt="avatar"
+                />
+              </ion-avatar>
+            </div>
+          </ion-col>
+
+          <ion-col size="7">
+            <div>
+              <p style="color: #6c757d; font-size: 12px">Legal</p>
+              <p
+                style="
+                  font-size: 15px;
+                  color: black;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+                {{ item }}
+              </p>
+            </div>
+          </ion-col>
+
+          <ion-col size="2">
+            <div style="font-size: 10px; color: #6c757d">PR</div>
+            <div style="font-size: 15px">12%</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingText="loading..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</section>

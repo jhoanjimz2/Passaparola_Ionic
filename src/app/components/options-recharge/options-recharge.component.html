@@ -1,0 +1,57 @@
+<ion-card class="main-container">
+  <ion-card-content>
+    <ion-label class="main-container__title">{{
+      "WALLET.RECHARGE.HOW_RECHARGE" | translate
+    }}</ion-label>
+    <ion-grid class="main-container--m-t-20">
+      <ion-row (click)="modalRecharge()" class="main-container--border-success">
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon name="card-outline"></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">{{
+          "WALLET.RECHARGE.DEBIT_CREDIT_CARD" | translate
+        }}</ion-col>
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+      <ion-row
+        (click)="modalRechargeTransfer()"
+        class="main-container--border-success"
+      >
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon name="passaparola-museum"></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">
+          <div class="main-container__label">
+            {{ "WALLET.RECHARGE.RECOMEND" | translate }}
+          </div>
+          {{ "WALLET.RECHARGE.TRANSFER" | translate }}</ion-col
+        >
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+      <ion-row
+        (click)="modalPassaparolaCash()"
+        class="main-container--border-success"
+      >
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon
+            class="main-container--opacity-05"
+            name="passaparola-location-success"
+          ></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">
+          <div class="main-container__label">
+            {{ "WALLET.RECHARGE.FREE" | translate }}
+          </div>
+          {{ "WALLET.RECHARGE.PASSAPAROLA_CASH" | translate }}
+        </ion-col>
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

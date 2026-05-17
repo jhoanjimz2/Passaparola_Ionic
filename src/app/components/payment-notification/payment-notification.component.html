@@ -1,0 +1,20 @@
+<section class="px-[22px] py-[22px] h-full" [ngClass]="type">
+  <section
+    class="flex flex-col justify-center items-center bg-white w-full rounded-t-[22px] p-[30px] h-full"
+  >
+    <section class="flex flex-col justify-center items-center text-center">
+      <img
+        class="h-[90px] w-[90px]"
+        [src]="'./assets/images/' + nameImg"
+        alt=""
+      />
+      <section class="text-[25px] leading-[34px] font-bold mt-[15px]">
+        {{ title }}
+      </section>
+      <section class="text-[15px] leading-[17px]mt-[5px]">
+        {{ subTitle }}
+      </section>
+      <ng-content></ng-content>
+    </section>
+  </section>
+</section>

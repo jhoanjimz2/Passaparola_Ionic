@@ -1,0 +1,13 @@
+<section [hidden]="!active" class="animate__animated pb-[5rem]" [ngClass]="{ 'animate__fadeIn': active }">
+  <ngx-masonry #masonryFeed [options]="masonryOptions" [ordered]="true">
+    <div ngxMasonryItem class="grid-sizer"></div>
+    <div ngxMasonryItem *ngFor="let post of myPosts" class="masonry-item relative">
+      <app-post-feed
+        [isPublic]="isPublic"
+        (onVideoLoaded)="onVideoLoaded()"
+        [post]="post"
+      >
+      </app-post-feed>
+    </div>
+  </ngx-masonry>
+</section>

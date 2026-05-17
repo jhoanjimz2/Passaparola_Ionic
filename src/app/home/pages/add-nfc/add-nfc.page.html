@@ -1,0 +1,36 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header
+      class="main-container__card__header"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <div class="main-container__card__header__img"></div>
+      <img src="assets/images/divices-nfc.png" alt="nfc" />
+    </ion-card-header>
+
+    <ion-card-content class="main-container__card__content">
+      <ion-text>
+        <span class="main-container__card__title"
+          >{{"ADD_NFC.TITLE" | translate}}</span
+        >
+        <br />
+        <br />
+        <span class="main-container__card__text">
+          {{"ADD_NFC.TEXT" | translate}}
+        </span>
+      </ion-text>
+
+      <br />
+      <br />
+
+      <div class="main-container__card__btn">
+        <ion-button (click)="scanModal()">
+          {{"ADD_NFC.TEXT_BTN" | translate}}
+        </ion-button>
+      </div>
+    </ion-card-content>
+
+    <app-map-nfc></app-map-nfc>
+  </ion-card>
+</ion-content>

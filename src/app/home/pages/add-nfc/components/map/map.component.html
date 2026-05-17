@@ -1,0 +1,21 @@
+<ion-card class="main-container">
+  <div class="main-container__map">
+    <app-google-map [position]="position" (click)="goToMap()"></app-google-map>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="11" class="main-container__text">{{
+          "COMPONENTS.MAP.TEXT" | translate
+        }}</ion-col>
+        <ion-col size="1" class="main-container--right-item">
+          <div class="main-container__circle">
+            <ion-icon
+              (click)="goToMap()"
+              class="main-container__circle__icon"
+              name="arrow-forward-outline"
+            ></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-card>

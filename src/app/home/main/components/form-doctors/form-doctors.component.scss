@@ -1,0 +1,128 @@
+.main-container {
+  --background: #fbfcfe;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &__card {
+    padding-top: 0.938rem;
+    background: transparent;
+    box-shadow: none;
+
+    &__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__img {
+        min-width: 20.625rem;
+        min-height: 9.563rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    &__phone {
+      text-align: left;
+      margin: 0;
+      padding: 0;
+      ion-grid {
+        border-bottom: solid 0.063rem;
+      }
+      ion-row {
+        padding: 0;
+        border: solid 0.063rem #e1e1e1;
+        padding-top: 0.313rem !important;
+        padding-bottom: 0.313rem !important;
+        border-radius: 0.438rem;
+      }
+      ion-select {
+        min-height: 1.563rem;
+      }
+    }
+
+    &__title {
+      font-size: 1.563rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    &__simple-text {
+      color: #000000;
+      font-size: 0.938rem;
+    }
+
+    &__text-terms {
+      font-size: 0.563rem;
+      color: #000000;
+    }
+
+    &__btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-button {
+        width: 13rem;
+        height: 3.813rem;
+        text-transform: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: 0.938rem;
+        --border-radius: 2.125rem;
+        --background: #3b9ff6;
+        --background-activated: #3b9ff6;
+        --background-activated-opacity: #3b9ff6;
+        --background-focused: #3b9ff6;
+        --background-focused-opacity: #3b9ff6;
+        --background-hover: #3b9ff6;
+        --background-hover-opacity: #3b9ff6;
+        --padding-bottom: 0;
+        --padding-top: 0;
+        --padding-end: 0;
+        --padding-start: 0;
+      }
+    }
+  }
+
+  &--m-l-15 {
+    margin-left: 0.938rem;
+  }
+
+  &--m-r-10 {
+    margin-right: 0.625rem;
+  }
+
+  &--b-r-1 {
+    border-right: solid 0.063rem #b9bfc1;
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+
+  &--m-b-10 {
+    margin-bottom: 0.625rem;
+  }
+
+  &--border-none {
+    border: none !important;
+  }
+
+  &--text-info {
+    color: #3b9ff6;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  ion-checkbox {
+    --checkmark-color: #ffffff;
+    --checkbox-background-checked: #3b9ff6;
+    --border-color-checked: #3b9ff6;
+  }
+}

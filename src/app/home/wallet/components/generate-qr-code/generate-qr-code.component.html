@@ -1,0 +1,34 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <div>
+      <ion-card-content>
+        <ion-card class="main-container__qr">
+          <div class="main-container__qr__card">
+            <ngx-qrcode-styling [config]="config"></ngx-qrcode-styling>
+          </div>
+        </ion-card>
+      </ion-card-content>
+
+      <div class="main-container__amount">
+        <div class="main-container__amount__text">
+          <ion-text>
+            <span class="main-container--f-z-30 main-container--f-w-b">
+              € {{ amount | formattNumber }}
+            </span>
+            <!-- <br />
+            <br />
+            <span class="main-container--f-z-15"
+              >{{ "WALLET.GENERATE_QR.REFERENCE_NUMBER" | translate }}
+              {{ "00000000" }}</span
+            > -->
+          </ion-text>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

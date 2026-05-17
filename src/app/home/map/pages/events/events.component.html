@@ -1,0 +1,110 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <p class="event-title">
+          {{ event_demo_selected.title }}
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <p class="event-subtitle">
+          {{ event_demo_selected.subtitle }}
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <p class="event-content">
+          {{ event_demo_selected.content }}
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <swiper-container
+          #my_swiper
+          [init]="false"
+          [allowTouchMove]="false"
+          (swiperslidechange)="onSlideChange($event)"
+        >
+          <swiper-slide>
+            <img src="assets/images/event_1.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="assets/images/event_2.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="assets/images/event_3.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title class="text-center countdown-title"
+                  >Countdown</ion-card-title
+                >
+              </ion-card-header>
+
+              <ion-card-content>
+                <div class="countdown">
+                  <div class="countdown-box">
+                    <span class="countdown-number">{{ days }}</span>
+                    <span class="countdown-label">giorni</span>
+                  </div>
+                  <div class="countdown-box">
+                    <span class="countdown-number">{{ hours }}</span>
+                    <span class="countdown-label">ore</span>
+                  </div>
+                  <div class="countdown-box">
+                    <span class="countdown-number">{{ minutes }}</span>
+                    <span class="countdown-label">minuti</span>
+                  </div>
+                  <div class="countdown-box">
+                    <span class="countdown-number">{{ seconds }}</span>
+                    <span class="countdown-label">secondi</span>
+                  </div>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </swiper-slide>
+        </swiper-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="flex ion-justify-content-between">
+        <ion-button
+          size="default"
+          color="dark"
+          fill="clear"
+          (click)="swiperPrev(my_swiper)"
+          class="swiper-button-prev w-100"
+        >
+          Indietro
+        </ion-button>
+
+        <ion-button
+          size="default"
+          (click)="swiperNext(my_swiper)"
+          class="swiper-button-next w-100"
+        >
+          {{ textButton }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

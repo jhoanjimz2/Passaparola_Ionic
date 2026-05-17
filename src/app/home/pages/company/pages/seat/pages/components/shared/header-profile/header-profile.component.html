@@ -1,0 +1,232 @@
+<section class="px-[0.875rem] pt-[1.5rem]">
+  <div class="flex flex-row justify-between gap-[1.1875rem]">
+    <div class="!w-[4.75rem] !h-[4.75rem] rounded-[0.5625rem]">
+      <img
+        (click)="imgProfile()"
+        class="h-full aspect-square object-cover rounded-[0.5625rem]"
+        [src]="seat.targetInfo?.seatInfo?.pictureUlrFile ? seat.targetInfo?.seatInfo?.pictureUlrFile : 'https://placehold.co/76x76?text=profile'"
+      />
+    </div>
+    <div class="w-[calc(100%-5.9375rem)] flex flex-col items-start justify-between relative">
+      <div>
+        <h1 (click)="name()" class="font-bold text-black text-[1rem]">
+          {{ seat.targetInfo?.seatInfo?.name ? seat.targetInfo?.seatInfo?.name : ("SEAT.MODIFY.NAME_TO_BE_DISPLAYED" | translate) }}
+        </h1>
+        <h2 (click)="username()" class="font-normal text-black text-[0.75rem]">
+          @{{ seat.userInfo?.profile?.username ? seat.userInfo?.profile?.username : 'username' }}
+        </h2>
+      </div>
+
+      <div class="w-full grid grid-cols-3" *ngIf="tab == 'tags'">
+        <div class="col-span-1 leading-4">
+          <span class="font-bold text-black text-[1rem] block">{{seat.myPublications | numberFormat}}</span>
+          <span class="font-normal text-black text-[0.875rem] block">paspot</span>
+        </div>
+        <div class="col-span-1 leading-4" (click)="following()">
+          <span class="font-bold text-black text-[1rem] block">{{seat.following | numberFormat}}</span>
+          <span class="font-normal text-black text-[0.875rem] block">seguiti</span>
+        </div>
+        <div class="col-span-1 leading-4">
+          <span class="font-bold text-black text-[1rem] block">{{seat.totalViewsOnMyPosts | numberFormat}}</span>
+          <span class="font-normal text-black text-[0.875rem] block">views totali</span>
+        </div>
+      </div>
+
+      <div class="w-full grid grid-cols-3" *ngIf="tab === 'business' || tab === 'shopping'">
+        <div class="col-span-1 leading-4">
+          <span class="font-bold text-black text-[1rem] block">--/5</span>
+          <span class="font-normal text-black text-[0.875rem] block">rating</span>
+        </div>
+        <div class="col-span-1 leading-4" (click)="cashback()">
+          <span class="block">
+            <span class="italic font-normal text-black text-[0.6875rem]">fino </span>
+            <span class="font-bold text-black text-[1rem]">{{ seat.targetInfo?.seatInfo?.pointsPercentage! | formattNumber }}%</span>
+          </span>
+          <span class="font-normal text-black text-[0.875rem] block">cashback</span>
+        </div>
+      </div>
+      <button
+        *ngIf="!showDetail"
+        (click)="viewTagRequests()"
+        class="absolute right-2 top-2 flex items-center justify-center w-[1.875rem] h-[1.875rem] rounded-full bg-[#E1E1E1]"
+      >
+        <ion-icon name="passaparola-profile-tag-requests"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-col mt-2 leading-4 gap-1">
+    <span (click)="name()" class="font-medium text-[1rem]">
+      {{ seat.targetInfo?.seatInfo?.name ? seat.targetInfo?.seatInfo?.name : ("SEAT.MODIFY.NAME_TO_BE_DISPLAYED" | translate) }}
+    </span>
+    <div (click)="toggleExpand(); category();" class="col-span-6 text-[#EF8500]" [ngClass]="{ 'line-clamp-1': !expanded && showDetail }">
+      <span
+        class="font-medium text-[0.8125rem] text-[#EF8500] border-b border-solid border-transparent"
+        *ngFor="let category of seat.targetInfo?.seatInfo?.categories; let i = index"
+      >
+        {{ (i > 0 ? ', ' : '') + category.companyCategoryTranslation?.description }}
+      </span>
+      <span
+        *ngIf="!seat.targetInfo?.seatInfo?.categories?.length"
+        class="text-[14px] leading-[17px] text-[#EF8500] flex justify-start items-center gap-[.5rem]"
+      >
+        {{ "SEAT.CATEGORY" | translate }}
+      </span>
+    </div>
+    <div (click)="schedule()" class="flex justify-start items-center">
+      <ng-container *ngIf="seat.targetInfo?.seatInfo | businessStatus as status">
+        <ng-container *ngIf="!status.hasSchedule">
+          <ion-icon
+            class="text-[1rem] text-[#EF8500]"
+            name="time">
+          </ion-icon>
+          <span class="text-[14px] leading-[17px] text-[#EF8500] flex justify-start items-center gap-[.5rem]">
+            {{ "SEAT.MODIFY.SCHEDULE" | translate }}
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="status.hasSchedule">
+          <ion-icon
+            [class.text-[#41C837]]="status.open"
+            [class.text-red-500]="!status.open"
+            class="text-[1rem]"
+            name="time">
+          </ion-icon>
+
+          <span *ngIf="status.open" class="font-medium text-[0.8125rem] text-[#41C837] border-b border-solid border-[#41C837]">
+            Aperto ora
+          </span>
+          <span *ngIf="!status.open" class="font-medium text-[0.8125rem] text-red-500 border-b border-solid border-red-500">
+            Chiuso ora
+          </span>
+          <span *ngIf="status.closesAt" class="font-medium text-[0.6875rem] text-[#848484] italic">
+            &nbsp;&nbsp;Chiude alle {{ status.closesAt }}
+          </span>
+        </ng-container>
+
+      </ng-container>
+    </div>
+
+    <div (click)="tags()">
+      <span *ngFor="let tag of seat.targetInfo?.seatInfo?.tags; let i = index" class="font-bold text-[0.6875rem]">
+        <span *ngIf="i != 0" class="font-bold text-[0.6875rem]">,</span>
+        {{ tag }}
+      </span>
+      <span
+        *ngIf="!showDetail"
+        class="text-[0.6875rem] font-bold rounded-full text-black"
+      >
+        tag +
+      </span>
+    </div>
+
+
+    <div
+      *ngIf="seat.targetInfo?.seatInfo?.type?.description!=='physical'"
+      class="flex flex-row items-center text-[0.8125rem] leading-[1.0625rem] gap-[0.2rem]"
+      [ngClass]="{
+        'text-[#000000] font-bold': seat.targetInfo?.seatInfo?.webAddress?.length,
+        'text-[#575A61]': !seat.targetInfo?.seatInfo?.webAddress?.length
+      }"
+      (click)="webAddress()"
+    >
+      <ion-icon
+        class="text-[1.25rem] mr-[0.3125rem]"
+        name="globe-outline"
+        [ngClass]="{
+          'text-[#41C837]': seat.targetInfo?.seatInfo?.webAddress?.length,
+          'text-[#575A61]': !seat.targetInfo?.seatInfo?.webAddress?.length
+        }"
+      ></ion-icon>
+      {{ seat.targetInfo?.seatInfo?.webAddress?.length ? seat.targetInfo?.seatInfo?.webAddress : ("SEAT.ADDRESS_WEB" | translate)}}
+    </div>
+
+
+    <div
+      *ngIf="seat.targetInfo?.seatInfo?.type?.description==='physical'"
+      class="flex flex-row items-center text-[0.8125rem] leading-[1.0625rem] gap-[0.2rem]"
+      [ngClass]="{
+        'text-[#000000] font-bold': seat.targetInfo?.seatInfo?.address?.length,
+        'text-[#575A61]': !seat.targetInfo?.seatInfo?.address?.length
+      }"
+      (click)="location()"
+    >
+      <ion-icon
+        class="text-[1.25rem] mr-[0.3125rem]"
+        name="location"
+        [ngClass]="{
+          'text-[#41C837]': seat.targetInfo?.seatInfo?.address?.length,
+          'text-[#575A61]': !seat.targetInfo?.seatInfo?.address?.length
+        }"
+      ></ion-icon>
+
+      {{ seat.targetInfo?.seatInfo?.address?.length ? seat.targetInfo?.seatInfo?.address : ("SEAT.ADDRESS" | translate) }}
+    </div>
+  </div>
+
+
+  <div (click)="followers_()" class="flex justify-start items-center gap-1 mt-2" *ngIf="followers.length || mutual.length">
+
+    <!-- Mostrar avatares de mutual cuando hay seguidores en común -->
+    <div class="flex -space-x-[.7rem]" *ngIf="mutual && mutual.length > 0">
+      <ng-container *ngFor="let follower of mutual">
+        <img
+          [src]="follower?.entity?.profile?.profilePictureUrlFile || 'https://placehold.co/40x40?text=profile'"
+          class="w-[1.5625rem] h-[1.5625rem] rounded-full object-cover border border-solid border-white" />
+      </ng-container>
+    </div>
+
+    <!-- Mostrar avatares de followers cuando NO hay seguidores en común -->
+    <div class="flex -space-x-[.7rem]" *ngIf="(!mutual || mutual.length === 0) && followers && followers.length > 0">
+      <ng-container *ngFor="let follower of followers">
+        <img
+          [src]="follower?.entity?.profile?.profilePictureUrlFile || 'https://placehold.co/40x40?text=profile'"
+          class="w-[1.5625rem] h-[1.5625rem] rounded-full object-cover border border-solid border-white" />
+      </ng-container>
+    </div>
+
+    <!-- Texto cuando hay seguidores en común Y showDetail es true -->
+    <span class="text-[0.6875rem]" *ngIf="showDetail && mutual && mutual.length > 0">
+      Seguito da
+      <span class="font-bold text-[0.6875rem]">{{mutual[0]?.entity?.profile?.name}}</span>
+      <ng-container *ngIf="mutual.length > 1">
+        e
+        <span class="font-bold text-[0.6875rem]">altri {{mutual.length - 1}}</span>
+      </ng-container>
+    </span>
+
+    <!-- Texto cuando NO hay seguidores en común -->
+    <span class="text-[0.6875rem]" *ngIf="!mutual || mutual.length === 0">
+      Seguitori
+      <span class="font-bold text-[0.6875rem]">{{followers.length}}</span>
+    </span>
+  </div>
+
+  <div class="grid grid-cols-4 gap-2 mt-2" *ngIf="!sessionService.isCompanyLegal">
+    <div class="col-span-2">
+      <button
+        *ngIf="showDetail"
+        (click)="follow()"
+        [ngClass]="isPublic ? 'bg-[#EF8500]' : (statusFollow ? 'bg-[#8B8B8B]' : 'bg-[#EF8500]')"
+        class="text-[0.875rem] text-white border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]"
+      >
+        {{ isPublic ? 'Segui' : (statusFollow ? 'Segui già' : 'Segui') }}
+      </button>
+
+      <button *ngIf="!showDetail" (click)="chat()" class="bg-[#EF8500] text-[0.875rem] text-white border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]">
+        Guadagni real-time
+      </button>
+    </div>
+    <div class="col-span-1">
+      <button (click)="share()" class="bg-[#E1EAF1] text-[0.875rem] text-black border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]">
+        Condividi
+      </button>
+    </div>
+    <div class="col-span-1">
+      <button (click)="chat()" class="bg-[#E1EAF1] text-[0.875rem] text-black border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]">
+        Chatta
+      </button>
+    </div>
+  </div>
+
+</section>

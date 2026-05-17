@@ -1,0 +1,39 @@
+.main-container {
+  --overflow: hidden;
+  overflow: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  --background: #f9f9f9;
+
+  &__card {
+    text-align: center;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 1.875rem;
+    font-weight: bold;
+    border-bottom: solid 1px #cccccc;
+  }
+
+  &__btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-button {
+      height: 3.438rem !important;
+      --border-radius: 3.125rem !important;
+      --background: #3cc3a2 !important;
+      width: 100% !important;
+    }
+  }
+}

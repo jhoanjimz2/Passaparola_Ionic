@@ -1,0 +1,140 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-content class="main-container__card__content">
+      <ion-text>
+        <span class="main-container--f-z-20 main-container--f-w-b">
+          {{ "KEYBOARD_ATM.ENTER_AMOUNT" | translate }}
+        </span>
+        <div
+          class="main-container__card__text-amount"
+          [ngClass]="{
+            'main-container--f-z-64': amount.length > 3 && amount.length <= 7  || amount.length > 22,
+            'main-container--f-z-44': amount.length > 7 && amount.length <= 9,
+            'main-container--f-z-24': amount.length > 9 && amount.length <= 22,
+          }"
+        >
+          {{ formAmount.controls["amount"].value | formattNumber }}
+        </div>
+
+        <div class="main-container__card__atm">
+          <span class="main-container__card__atm__text">
+            <span *ngIf="showAtm"> {{ balance | formattNumber }} ATM/€ </span>
+            <span *ngIf="!showAtm"> *****ATM/€ </span>
+          </span>
+          <ion-icon
+            (click)="showAtm = !showAtm"
+            class="main-container--f-z-30 main-container--m-l-5"
+            [name]="showAtm ? 'eye-off' : 'eye-outline'"
+          ></ion-icon>
+        </div>
+      </ion-text>
+
+      <ion-grid class="main-container--m-t-10" mode="md">
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('1')"
+              class="main-container__card__btn-key"
+              >1</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('2')"
+              class="main-container__card__btn-key"
+              >2</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('3')"
+              class="main-container__card__btn-key"
+              >3</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('4')"
+              class="main-container__card__btn-key"
+              >4</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('5')"
+              class="main-container__card__btn-key"
+              >5</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('6')"
+              class="main-container__card__btn-key"
+              >6</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('7')"
+              class="main-container__card__btn-key"
+              >7</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('8')"
+              class="main-container__card__btn-key"
+              >8</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('9')"
+              class="main-container__card__btn-key"
+              >9</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('.')"
+              class="main-container__card__btn-key"
+              >,</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('0')"
+              class="main-container__card__btn-key"
+              >0</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="erase()" class="main-container__card__btn-key">
+              <ion-icon color="danger" name="close-circle"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="main-container--m-t-10">
+          <ion-col size="12">
+            <ion-button
+              (click)="sendAmount()"
+              class="main-container__card__btn-next"
+              >{{ "KEYBOARD_ATM.NEXT" | translate }}</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

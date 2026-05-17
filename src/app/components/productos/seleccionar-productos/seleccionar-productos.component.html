@@ -1,0 +1,30 @@
+<div>
+
+  <label class="text-[20px] text-black font-bold">Prodotti selezionati</label>
+
+  <div (click)="openSearchProductos()" class="mt-2 p-6 flex flex-col text-center w-full border border-solid border-[#d1d5db] rounded-[.75rem]">
+    <label class="text-[22px] font-bold">+</label>
+    <label class="text-[18px]">clicca per selezionare</label>
+  </div>
+
+  <div class="mt-4 grid grid-cols-3 gap-4" *ngFor="let producto of productosSeleccionados; let i = index">
+    <div class="p-[.1px] relative aspect-square border border-solid border-[#FF9100] shadow-[0_0_15px_5px_#FF91003D] rounded-[.75rem]">
+      <img [src]="producto.pictureUlrFile | imageEvent" alt="Producto" class="w-full aspect-square rounded-[.75rem] object-cover"/>
+      <button (click)="eliminar(producto.id)" class="absolute top-[-10px] right-[-10px] bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center">✖</button>
+    </div>
+    <div class="relative grid grid-cols-3 text-center justify-center items-center aspect-square border border-solid border-[#F1F1F3] rounded-[.75rem]">
+      <label class="absolute text-[18px] italic left-[50%] translate-x-[-50%] top-[5%]">Quantità</label>
+      <label class="text-[22px]" (click)="restar(producto.id)">-</label>
+      <label class="text-[22px]">{{producto.amount}}</label>
+      <label class="text-[22px]" (click)="sumar(producto.id)">+</label>
+    </div>
+    <div class="flex justify-center items-center relative aspect-square border border-solid border-[#E3E3E9] bg-[#E3E3E9] rounded-[.75rem]">
+      <label class="absolute text-[18px] italic left-[50%] translate-x-[-50%] top-[5%]">Valore</label>
+      <label class="absolute font-bold text-[18px] text-[black] left-2 top-[50%] translate-y-[-50%]">€</label>
+      <input [(ngModel)]="producto.value" disabled
+          class="w-full font-bold p-2 text-center bg-transparent pl-2"
+          appDecimalValidator [decimalSeparator]="','" [min]="0" [max]="9999999.99" [maxIntegerDigits]="7" [allowDecimals]="true" />
+    </div>
+  </div>
+
+</div>

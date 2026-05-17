@@ -1,0 +1,13 @@
+<div class="swiper-wrapper-container">
+  <span class="span-title">Piattaforme suggerite</span>
+
+  <swiper-container #swiperContainerPlatform>
+    <swiper-slide *ngFor="let platform of platforms" (click)="openPlatform(platform)">
+      <div
+        class="platform"
+        [ngStyle]="{ 'background-image': 'url(' + platform.image + ')' }">
+      </div>
+      <span class="platform-text">{{ platform.text }}</span>
+    </swiper-slide>
+  </swiper-container>
+</div>

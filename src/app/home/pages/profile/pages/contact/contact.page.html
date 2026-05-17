@@ -1,0 +1,82 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="main-container">
+    <form [formGroup]="formContact">
+      <ion-grid>
+        <ion-label> {{"CONTACT.PHONE_NUMBER" | translate}} </ion-label>
+        <ion-row class="main-container__phone-email">
+          <ion-col size="3" class="main-container--p-tb-0">
+            <ion-select
+              mode="md"
+              aria-label="country"
+              color="primary"
+              placeholder="{{ 'CONTACT.COUNTRY' | translate }}"
+              formControlName="idCountry"
+              name="idCountry"
+            >
+              <ion-select-option
+                *ngFor="let country of countries"
+                [value]="country.id"
+              >
+                {{ country.phonePrefix }} {{ country.code }}
+              </ion-select-option>
+            </ion-select></ion-col
+          >
+          <ion-col size="9" class="main-container--p-tb-0">
+            <ion-input
+              labelPlacement="stacked"
+              [clearInput]="true"
+              mode="md"
+              color="danger"
+              type="tel"
+              placeholder="{{'CONTACT.ENTER_PHONE' | translate}}"
+              formControlName="phone"
+              name="phone"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="7"></ion-col>
+          <ion-col size="5" class="main-container--text-right">
+            <ion-button (click)="changePhone()" color="success"
+              >{{'CONTACT.CHANCGE_NUMBER' | translate}}</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <br />
+      <br />
+
+      <ion-grid>
+        <ion-label> {{"CONTACT.EMAIL" | translate}} </ion-label>
+        <ion-row class="main-container__phone-email">
+          <ion-col class="main-container--p-tb-0">
+            <ion-input
+              labelPlacement="stacked"
+              [clearInput]="true"
+              mode="md"
+              color="danger"
+              type="email"
+              placeholder="{{'CONTACT.ENTER_MAIL' | translate}}"
+              formControlName="email"
+              name="email"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="7"></ion-col>
+          <ion-col size="5" class="main-container--text-right">
+            <ion-button
+              (click)="updateEmail()"
+              color="success"
+              [disabled]="formContact.invalid"
+              >{{'CONTACT.CHANGE_MAIL' | translate}}</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>

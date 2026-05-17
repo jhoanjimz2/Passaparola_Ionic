@@ -1,0 +1,29 @@
+<ion-content>
+
+  <section class="contenedor">
+
+    <button
+      (click)="close()"
+      class="
+        absolute top-0 right-[20px] translate-y-[-50%] w-[40px] h-[40px]
+        rounded-full font-bold text-[1.5rem] text-[#9AA1B3] border-solid border border-[#9AA1B3] bg-[#E3E3E9]
+        flex items-center justify-center">x</button>
+
+
+    <div class="h-full flex flex-col mt-[20px] p-[20px] justify-evenly text-center">
+
+      <div class="mx-auto w-[6rem] h-[6rem] rounded-[3rem] bg-[#E3E3E9] flex items-center justify-center">
+        <img src="assets/images/events/custom-icons/signo_alerta.png" class="h-[4rem]">
+      </div>
+      <label class="text-[24px] font-semibold">Attenzione!</label>
+      <p class="text-[18px]">
+        Stai sospendendo la vendita di un'offerta voucher. Ricorda che dovrai rispettare gli obblighi contrattuali e accettare i voucher già venduti. <br><br>
+        Se sospendi la vendita potrai riattivarla in qualsiasi momento antecedente alla scadenza della tua offerta.
+      </p>
+      <div (click)="aceptar()" class="bg-[#C33C3C] font-bold text-[20px] text-white w-[90%] h-[5rem] rounded-[3rem] flex justify-center items-center mx-auto">Conferma Sospensione</div>
+      <label class="font-bold text-[18px] text-[#9E9C9C]" (click)="close()">Annulla</label>
+
+    </div>
+  </section>
+
+</ion-content>

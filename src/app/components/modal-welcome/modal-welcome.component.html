@@ -1,0 +1,118 @@
+<div class="main-container">
+  <div class="main-container__header">
+    <ion-text>
+      <span class="main-container__header__text-1">
+        {{ "WELCOME.WELCOME" | translate }} passa </span
+      ><span class="main-container__header__text-2">parola</span>
+      <br />
+      <span class="main-container__header__text-3">{{
+        "WELCOME.THE_APP_PAYS" | translate
+      }}</span>
+    </ion-text>
+  </div>
+
+  <div class="main-container--center-item">
+    <ion-card class="main-container__card">
+      <ion-card-header>
+        <ion-label class="main-container__card__main-title"
+          >{{ "WELCOME.WITH" | translate }} Passaparola</ion-label
+        >
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="main-container__card__col-left" size="3.5">
+              <div
+                class="main-container__card__img"
+                [style.background-image]="'url(assets/images/store.png)'"
+              ></div>
+            </ion-col>
+            <ion-col size="8.5" class="main-container__card__col-right">
+              <ion-text>
+                <span class="main-container__card__title">{{
+                  "WELCOME.SHOPPING_ONLINE_OFFLINE" | translate
+                }}</span>
+                <br />
+                <span class="main-container__card__text">{{
+                  "WELCOME.FIND_STORES" | translate
+                }}</span>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="main-container__card__col-left" size="3.5">
+              <div
+                class="main-container__card__img"
+                [style.background-image]="'url(assets/images/star.png)'"
+              ></div>
+            </ion-col>
+            <ion-col size="8.5" class="main-container__card__col-right">
+              <ion-text>
+                <span class="main-container__card__title">{{
+                  "WELCOME.RECEIVE_REWARDS" | translate
+                }}</span>
+                <br />
+                <span class="main-container__card__text">{{
+                  "WELCOME.RECEIVE_CASH_POINTS_WIN" | translate
+                }}</span>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="main-container__card__col-left" size="3.5">
+              <div
+                class="main-container__card__img"
+                [style.background-image]="'url(assets/images/money.png)'"
+              ></div>
+            </ion-col>
+            <ion-col size="8.5" class="main-container__card__col-right">
+              <ion-text>
+                <span class="main-container__card__title">{{
+                  "WELCOME.ADIVISE_AND_EARN" | translate
+                }}</span>
+                <br />
+                <span class="main-container__card__text">{{
+                  "WELCOME.SUGGEST_STORES" | translate
+                }}</span>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+
+      <div class="main-container__card__btn">
+        <ion-button (click)="close()"
+          >{{ "WELCOME.JOIN" | translate }}
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+
+  <ion-card class="main-container__video">
+    <ion-card-header class="main-container--text-center">
+      <ion-label class="main-container__video__text">
+        {{ "WELCOME.HOW_IT_WORKS" | translate }}
+      </ion-label>
+    </ion-card-header>
+    <ion-card-content class="main-container--center-item">
+      <video
+        width="320"
+        height="210"
+        controls
+        autoplay
+        poster="assets/images/background-video.png"
+      >
+        <source src="assets/videos/Stromae_Sante" type="video/mp4" />
+      </video>
+      <!-- <video
+        width="320"
+        height="223"
+        controls
+        autoplay
+        poster="assets/images/background-video.png"
+      >
+        <source src="assets/videos/Stromae_Sante.mp4" type="video/mp4" />
+      </video> -->
+    </ion-card-content>
+  </ion-card>
+</div>

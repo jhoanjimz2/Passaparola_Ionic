@@ -1,0 +1,174 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+
+  <div class="grid grid-cols-6 py-[1rem] bg-white border-b border-solid border-[#DDE5E9]">
+    <div class="col-span-1 flex justify-center items-center" (click)="selectProductTag('all')">
+    <!-- <div class="col-span-1 flex justify-center items-center"> -->
+      <ion-icon class="text-[1.5rem]" name="passaparola-tab-tags"></ion-icon>
+    </div>
+    <!-- <div class="col-span-1 flex justify-center items-center" (click)="selectProductTag('my')"> -->
+    <div class="col-span-1 flex justify-center items-center">
+      <ion-icon class="text-[1.5rem]" name="passaparola-shopping-bag"></ion-icon>
+    </div>
+    <div class="col-span-1 flex justify-center items-center" (click)="selectStoreTag()">
+      <ion-icon class="text-[1.5rem]" name="passaparola-location-on"></ion-icon>
+    </div>
+    <div class="col-span-1 flex justify-center items-center" (click)="selectFriendTag()">
+      <ion-icon class="text-[1.5rem]" name="passaparola-user-tag"></ion-icon>
+    </div>
+    <div class="col-span-1 flex justify-center items-center" (click)="selectEvent()">
+      <ion-icon class="text-[1.5rem]" name="passaparola-post-event"></ion-icon>
+    </div>
+    <div class="col-span-1 flex justify-center items-center" (click)="selectInvestment()">
+      <ion-icon class="text-[1.5rem]" name="passaparola-post-investment"></ion-icon>
+    </div>
+  </div>
+
+  <div class="w-full px-[0.625rem] py-[1rem]">
+
+
+    <div class="w-full" *ngIf="products.length">
+      <span class="text-[0.6875rem] text-black">Prodotti taggati</span>
+      <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar">
+        <div class="shrink-0 w-1/2" *ngFor="let product of products">
+          <app-product-tag-create
+            [product]="product"
+            [productSelected]="true"
+            (delete)="deleteProduct($event)"
+          ></app-product-tag-create>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="w-full" *ngIf="usersSelect.length">
+      <span class="text-[0.6875rem] text-black">Persone taggate</span>
+      <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar">
+        <div class="shrink-0 w-full" *ngFor="let user of usersSelect">
+          <app-user-tag (selectUserTag)="deselectUser($event)" [user]="user" [friendSelected]="true">
+          </app-user-tag>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full" *ngIf="storeSelect">
+      <span class="text-[0.6875rem] text-black">Posti taggati</span>
+      <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar">
+        <div class="shrink-0 w-full">
+          <app-store-tag
+            [store]="storeSelect"
+            [storeSelect]="true"
+            (selectStoreTag)="storeSelect = null"
+          ></app-store-tag>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full" *ngIf="event">
+      <span class="text-[0.6875rem] text-black">Eventi taggati</span>
+      <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar">
+        <div class="shrink-0 w-full">
+          <app-event-tag
+            [event]="event"
+            [eventSelected]="true"
+            (selectEventTag)="event = null"
+          ></app-event-tag>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full" *ngIf="project">
+      <span class="text-[0.6875rem] text-black">Investimenti taggati</span>
+      <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar">
+        <div class="shrink-0 w-full">
+          <app-investment-tag
+            [project]="project"
+            [investmentSelected]="true"
+            (selectProjectTag)="project = null">
+          </app-investment-tag>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <form [formGroup]="formCreateTag" (ngSubmit)="createSocialTag()">
+
+      <div class="w-full">
+        <span class="text-[0.6875rem] text-black">Titolo</span>
+        <input
+          type="text"
+          formControlName="title"
+          name="title"
+          placeholder="dai un titolo al tuo contenuto"
+          class="w-full h-[3.5rem] text-[0.9375rem] rounded-[0.875rem] px-[1rem] bg-white border border-solid border-[#DDE5E9]"
+        >
+      </div>
+
+      <div class="w-full">
+        <span class="text-[0.6875rem] text-black">Descrizione</span>
+        <textarea
+          type="text"
+          formControlName="description"
+          name="description"
+          placeholder="descrivi il tuo contenuto"
+          class="w-full h-[6.6875rem] text-[0.9375rem] rounded-[0.875rem] p-[1rem] bg-white border border-solid border-[#DDE5E9]"
+        ></textarea>
+      </div>
+
+      <span class="text-[0.6875rem] text-black">Argomenti correlati</span>
+      <div (click)="selectTags()" class="flex flex-wrap gap-2 relative w-full text-[0.9375rem] rounded-[0.875rem] p-[1rem] bg-white border border-solid border-[#DDE5E9]">
+        <ng-container *ngIf="tagsSelect.length; else placeholder">
+          <span
+            *ngFor="let tag of tagsSelect"
+            class="flex flex-wrap gap-2"
+          >
+            <span
+              *ngFor="let topic of tag.topics"
+              class="px-3 py-1 rounded-full bg-[#FE8500] text-[#FFFFFF] text-sm font-medium relative"
+            >
+            {{ topic }}
+          </span>
+          </span>
+        </ng-container>
+
+        <ng-template #placeholder>
+          <span class="text-[0.9375rem] text-black">
+            aggiungi fino a 5 argomenti correlati
+          </span>
+        </ng-template>
+        <ion-icon class="text-[2rem] absolute right-3 top-1/2 -translate-y-1/2" name="chevron-forward-outline"></ion-icon>
+      </div>
+
+
+
+      <app-upload-media
+        (uploadMedia)="uploadMedia($event)"
+      >
+      </app-upload-media>
+
+      <div class="w-full mt-4">
+        <button
+          [disabled]="!formCreateTag.valid || !file"
+          type="submit"
+          [ngClass]="{
+            'opacity-50 cursor-not-allowed': !formCreateTag.valid || !file,
+            'opacity-100': formCreateTag.valid && file
+          }"
+          class="bg-[#FE8500] text-white text-[1rem] font-bold w-full h-[3.875rem] rounded-[1.9375rem] transition-opacity duration-200"
+        >
+          Carica social tag
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</ion-content>

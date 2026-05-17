@@ -1,0 +1,100 @@
+<section
+  class="flex flex-col items-center justify-center h-full bg-[#FF8000] p-[18px]"
+>
+  <section
+    class="flex flex-col items-center justify-center h-full bg-white p-[28px] rounded-[22px] w-full"
+  >
+    <section class="">
+      <img
+        class="h-[90px] w-[90px]"
+        src="./assets/images/transfer-error.png"
+        alt=""
+      />
+    </section>
+
+    <section class="text-[25px] leading-[34px] mt-[20px] font-bold">
+      {{ "PAYMENT.DENIED.THERE_WAS_AN_ERROR" | translate }}
+    </section>
+
+    <section class="text-[15px] leading-[17px] mt-[30px] text-center">
+      {{ "PAYMENT.DENIED.TRY_AGAIN_DESCRIPTION" | translate }}
+    </section>
+
+    <section
+      class="flex flex-row justify-between items-center w-full mt-[30px]"
+    >
+      <section
+        class="flex flex-col justify-center items-center h-[44px] w-[44px] border-[2px] border-white bg-[#CFB878] rounded-[15px] text-[#313235] text-[26px] leading-[36px] shadow-sm shadow-gray-400"
+      >
+        <img
+          class="w-[44px] h-[44px] rounded-[10px] object-cover"
+          [src]="profilePictureUrlFile | image"
+        />
+      </section>
+      <section class="text-[16px] leading-[22px] mt-[10px] font-bold">
+        {{ companyName }}
+      </section>
+    </section>
+
+    <section
+      class="flex flex-row justify-between items-center w-full mt-[15px]"
+    >
+      <section class="text-[15px] leading-[17px]">
+        {{ "PAYMENT.DENIED.AMOUNT_TO_BE_PAID" | translate }}
+      </section>
+      <section class="flex flex-row justify-between items-center">
+        <div class="text-[21px] leading-[18px] font-semibold">
+          {{ amount | formattNumber }}
+        </div>
+        <div class="text-[10px] leading-[14px] font-bold ml-[5px] w-[35px]">
+          ATM/€
+        </div>
+      </section>
+    </section>
+
+    <section
+      class="flex flex-row justify-between items-center w-full mt-[15px]"
+    >
+      <section class="text-[15px] leading-[17px]">
+        {{ "PAYMENT.REWARD" | translate }}
+      </section>
+      <section class="flex flex-row justify-between items-center">
+        <div class="text-[21px] leading-[18px] font-semibold">
+          {{ points | formattNumber }}
+        </div>
+        <div class="text-[10px] leading-[14px] font-bold ml-[5px] w-[35px]">
+          PR
+        </div>
+      </section>
+    </section>
+
+    <section
+      class="flex flex-row justify-between items-center w-full mt-[15px]"
+    >
+      <section class="text-[15px] leading-[17px]">
+        {{ "PAYMENT.CASHBACK" | translate }}
+      </section>
+      <section class="flex flex-row justify-between items-center">
+        <div class="text-[21px] leading-[18px] font-semibold">
+          {{ cashBack | formattNumber }}
+        </div>
+        <div class="text-[10px] leading-[14px] font-bold ml-[5px] w-[35px]">
+          ATM/€
+        </div>
+      </section>
+    </section>
+
+    <section
+      class="bg-[#FF8000] text-white text-[15px] leading-[22px] py-[23px] px-[80px] mt-[60px] rounded-[40px] text-center font-bold"
+      (click)="confirmTransfer()"
+    >
+      {{ "PAYMENT.TRY_AGAIN" | translate }}
+    </section>
+    <section
+      class="text-[#9E9C9C] text-[16px] leading-[22px] font-bold mt-[60px] w-full"
+      (click)="cancel()"
+    >
+      {{ "PAYMENT.CANCEL" | translate }}
+    </section>
+  </section>
+</section>

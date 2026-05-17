@@ -1,0 +1,85 @@
+<ion-grid class="padding-0">
+  <ion-row>
+    <ion-col>
+      <ion-label>
+        {{ "COMPONENTS.MALL_CARD.FROM_MALL" | translate }}
+      </ion-label>
+    </ion-col>
+    <ion-col class="text-rigth">
+      <ion-label class="title f-w-b">
+        {{ "COMPONENTS.MALL_CARD.SEE_ALL" | translate }}</ion-label
+      >
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<div class="main-container">
+  <div *ngFor="let card of cards; index as i">
+    <ion-card class="main-container__card">
+      <ion-card class="main-container__card__item">
+        <ion-card-header
+          [style.background-image]="
+            i % 2 === 0
+              ? 'url(assets/images/examples/store.png)'
+              : 'url(assets/images/examples/27292x.png)'
+          "
+          class="main-container__card__header"
+        >
+          <div class="main-container__card__header__inner">
+            <ion-text>
+              <ion-icon
+                name="star"
+                class="main-container__card__header__icon"
+              ></ion-icon>
+              <span class="main-container__card__header__text">TOP PR</span>
+            </ion-text>
+          </div>
+        </ion-card-header>
+        <ion-card-content class="main-container__card__content">
+          <div class="main-container--d-f">
+            <ion-label class="main-container--f-z-14">Nome prodotto</ion-label>
+          </div>
+
+          <div class="main-container__card__content__amounts">
+            <div>
+              <span class="main-container--f-z-18 main-container--text-primary"
+                >1224</span
+              >
+              <span class="main-container--f-z-10 main-container--text-primary"
+                >,88€</span
+              >
+            </div>
+            <div>
+              <span
+                class="main-container--f-z-11 main-container--text-secondary"
+              >
+                {{ 1502.0 | formattNumber }}€
+              </span>
+            </div>
+          </div>
+          <ion-text>
+            <ion-icon
+              name="star"
+              class="main-container__card__star-icon"
+            ></ion-icon>
+            <span class="main-container__card__text-star">4.9 (400)</span>
+          </ion-text>
+          <div class="main-container__card__pr-back">
+            <div>
+              <ion-text>
+                <span class="main-container__card__amount-pr">3%</span>
+                <span class="main-container__card__text-pr"> PR</span>
+              </ion-text>
+            </div>
+            <div class="text-rigth">
+              <ion-text>
+                <span class="main-container__card__amount-back">3%</span>
+                <span class="main-container__card__text-back"> back</span>
+              </ion-text>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-card>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<app-payment-notification
+  class="h-full"
+  [nameImg]="'transfer-error.png'"
+  [type]="'cancel'"
+  [title]="'PAYMENT.CANCEL_NOTIFICATION.TITLE' | translate"
+  [subTitle]="'PAYMENT.CANCEL_NOTIFICATION.SUB_TITLE' | translate"
+>
+  <section
+    class="bg-[#41C837] text-white text-[15px] leading-[22px] py-[20px] px-[90px] mt-[40px] rounded-[34px] text-center font-bold"
+    (click)="onTryAgain()"
+  >
+    {{ "PAYMENT.TRY_AGAIN" | translate }}
+  </section>
+  <section
+    class="bg-white border-[#41C837] border-[1px] text-black text-[15px] leading-[22px] py-[20px] px-[90px] mt-[30px] rounded-[34px] text-center"
+    (click)="onEdit()"
+  >
+    {{ "PAYMENT.CANCEL_NOTIFICATION.EDIT" | translate }}
+  </section>
+
+  <section class="text-[15px] leading-[17px] italic mt-[30px]">
+    {{ "PAYMENT.CANCEL_NOTIFICATION.OR" | translate }}
+  </section>
+
+  <section
+    class="text-[16px] leading-[22px] text-[#9E9C9C] font-bold mt-[30px]"
+    (click)="onCancel()"
+  >
+    {{ "PAYMENT.CANCEL_NOTIFICATION.CANCEL_OPERATION" | translate }}
+  </section>
+</app-payment-notification>

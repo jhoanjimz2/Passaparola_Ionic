@@ -1,0 +1,37 @@
+<ion-content class="delete-post-modal">
+  <div class="delete-post-modal__container">
+
+    <!-- Preview del post usando el componente mini -->
+    <div class="delete-post-modal__image-container">
+      <app-post-preview-mini
+        [post]="post"
+      ></app-post-preview-mini>
+    </div>
+
+    <!-- Título y descripción -->
+    <h2 class="delete-post-modal__title">
+      Sicuro di voler cancellare questo Paspot?
+    </h2>
+    <p class="delete-post-modal__description">
+      Questa operazione non può essere recuperata
+    </p>
+
+    <!-- Botones -->
+    <div class="delete-post-modal__actions">
+      <button
+        (click)="confirmDelete()"
+        class="delete-post-modal__button delete-post-modal__button--delete"
+      >
+        Cancella Paspot
+      </button>
+
+      <button
+        (click)="cancel()"
+        class="delete-post-modal__button delete-post-modal__button--cancel"
+      >
+        Annulla
+      </button>
+    </div>
+
+  </div>
+</ion-content>

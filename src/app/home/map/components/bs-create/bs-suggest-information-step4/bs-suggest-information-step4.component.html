@@ -1,0 +1,38 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<div class="h-full">
+  <section class="p-3 pb-10 h-full flex flex-col justify-center">
+    <section class="flex flex-col items-center justify-center text-center">
+      <section class="text-[2.25rem] text-[#1D0F01] font-semibold px-12">
+        {{ "BUSINESS_SUGGESTION.STEP4.TITLE1" | translate }}
+      </section>
+      <section class="text-[0.938rem] leading-[1.063rem] text-[#1D0F01] px-12">
+        {{ "BUSINESS_SUGGESTION.STEP4.TITLE2" | translate }}
+      </section>
+      <section
+        class="text-[0.938rem] leading-[1.063rem] text-[#1D0F01] pt-5 px-11"
+      >
+        {{ "BUSINESS_SUGGESTION.STEP4.TITLE3" | translate }}
+      </section>
+    </section>
+    <section
+      class="pt-16 flex flex-col gap-3 text-[0.938rem] leading-[1.375rem] justify-center items-center"
+    >
+      <button
+        class="bg-[#00B1FF] hover:bg-[#00b3ffcb] text-white py-4 px-20 rounded-full"
+        (click)="onGoToHome()"
+      >
+        {{ "BUSINESS_SUGGESTION.STEP4.GO_TO_HOME" | translate }}
+      </button>
+      <div
+        class="bg-white py-4 px-4 rounded-full flex items-center justify-center"
+        (click)="onGoToYourSuggestions()"
+      >
+        {{ "BUSINESS_SUGGESTION.STEP4.GO_TO_YOUR_SUGGESTIONS" | translate }}
+      </div>
+    </section>
+  </section>
+</div>

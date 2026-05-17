@@ -1,0 +1,156 @@
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-icon
+      (click)="cancel()"
+      name="close-circle-outline"
+      class="main-container__close-icon"
+    ></ion-icon>
+    <ion-card-content class="main-container__card__content">
+      <ion-text>
+        <span class="main-container--f-z-20 main-container--f-w-b">
+          {{ title | translate }}
+        </span>
+        <br />
+        <span
+          *ngIf="!fromLogin"
+          class="main-container--f-z-20 main-container--f-w-b"
+        >
+          {{ "MODAL_CONFIRMATION_PIN.TITLE_2" | translate }}
+        </span>
+      </ion-text>
+
+      <ion-card class="main-container__card__check-pin">
+        <ion-card-content class="main-container__card__check-pin__content">
+          <div
+            class="main-container__card__check-pin__item"
+            [ngClass]="{ 'main-container--opacity-0-5': pin.length === 0 }"
+          ></div>
+          <div
+            class="main-container__card__check-pin__item"
+            [ngClass]="{ 'main-container--opacity-0-5': pin.length < 2 }"
+          ></div>
+          <div
+            class="main-container__card__check-pin__item"
+            [ngClass]="{ 'main-container--opacity-0-5': pin.length < 3 }"
+          ></div>
+          <div
+            class="main-container__card__check-pin__item"
+            [ngClass]="{ 'main-container--opacity-0-5': pin.length < 4 }"
+          ></div>
+          <div
+            class="main-container__card__check-pin__item"
+            [ngClass]="{ 'main-container--opacity-0-5': pin.length < 5 }"
+          ></div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-grid class="main-container--m-t-10" mode="md">
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('1')"
+              class="main-container__card__btn-key"
+              >1</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('2')"
+              class="main-container__card__btn-key"
+              >2</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('3')"
+              class="main-container__card__btn-key"
+              >3</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('4')"
+              class="main-container__card__btn-key"
+              >4</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('5')"
+              class="main-container__card__btn-key"
+              >5</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('6')"
+              class="main-container__card__btn-key"
+              >6</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('7')"
+              class="main-container__card__btn-key"
+              >7</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('8')"
+              class="main-container__card__btn-key"
+              >8</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('9')"
+              class="main-container__card__btn-key"
+              >9</ion-button
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="erase()" class="main-container__card__btn-key">
+              <ion-icon
+                class="main-container--f-z-35"
+                color="danger"
+                name="close-circle"
+              ></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="inputValue('0')"
+              class="main-container__card__btn-key"
+              >0</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              (click)="sendPin()"
+              class="main-container__card__btn-key"
+            >
+              <!-- <ion-icon name="checkmark-done-outline"></ion-icon> -->
+              <ion-label
+                style="
+                  font-size: 25px;
+                  color: #3cc3a2;
+                  font-weight: bold;
+                  text-transform: capitalize;
+                "
+              >
+                Ok
+              </ion-label>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

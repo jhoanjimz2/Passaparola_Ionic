@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Passaparola</string>
+    <string name="title_activity_main">Passaparola</string>
+    <string name="package_name">passaparola.app</string>
+    <string name="custom_url_scheme">passaparola.app</string>
+</resources>

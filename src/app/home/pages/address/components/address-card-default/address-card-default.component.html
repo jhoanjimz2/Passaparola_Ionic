@@ -1,0 +1,41 @@
+<div *ngIf="hasAddresses(); else noAddresses"
+     class="address-card address-card--default"
+     (dblclick)="editAddress()">
+
+  <div class="address-card__content">
+    <div class="address-card__header">
+      <span class="address-card__name">{{ address.name }}</span>
+      <span class="address-card__phone">{{ address.phoneNumber }}</span>
+    </div>
+    <span class="address-card__address">
+      {{ address.address }}
+    </span>
+    <span class="address-card__instruction">
+      {{ address.deliveryInstructions }}
+    </span>
+  </div>
+
+  <div class="address-card__actions">
+    <span class="address-card__badge">Predefinito</span>
+    <span class="address-card__label">{{ address.nickname }}</span>
+  </div>
+
+</div>
+
+<ng-template #noAddresses>
+  <div class="empty-state">
+    <div class="empty-state__icon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    </div>
+    <p class="empty-state__text">Nessun indirizzo salvato</p>
+    <button class="empty-state__button" (click)="addNewAddress()">
+      <span class="empty-state__button-icon">+</span>
+      Aggiungi indirizzo
+    </button>
+  </div>
+</ng-template>

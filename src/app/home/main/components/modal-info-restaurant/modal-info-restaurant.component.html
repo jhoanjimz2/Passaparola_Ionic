@@ -1,0 +1,112 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-content class="main-container--text-center">
+      <div class="main-container--center-item">
+        <img
+          src="assets/images/cup.png"
+          alt="icon cup"
+          class="main-container__card__cup-img"
+        />
+      </div>
+
+      <br />
+
+      <ion-text>
+        <span class="main-container__card__title">{{
+          "COMPONENTS.MODAL_RESTAURANT_INFO.YOU_WILL_FIRST" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__simple-text">{{
+          "COMPONENTS.MODAL_RESTAURANT_INFO.THE_ARE_NO" | translate
+        }}</span
+        ><span>{{ " " }}</span>
+        <span class="main-container__card__simple-text main-container--f-w-b">{{
+          category
+        }}</span>
+        <span>{{ " " }}</span>
+        <span class="main-container__card__simple-text main-container--f-w-b">{{
+          "affilliati" | translate
+        }}</span>
+        <span>{{ " " }}</span>
+        <span class="main-container__card__simple-text">{{
+          "COMPONENTS.MODAL_RESTAURANT_INFO.NEAR_YOU" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__simple-text">{{
+          "COMPONENTS.MODAL_RESTAURANT_INFO.SUGGEST_YOUR_FAVORITE" | translate
+        }}</span>
+      </ion-text>
+
+      <br />
+      <br />
+
+      <div class="main-container--center-item main-container--w-100">
+        <div class="main-container__card__content-call">
+          <ion-text>
+            <ion-icon name="call"></ion-icon>
+            <ion-label>{{
+              "COMPONENTS.MODAL_RESTAURANT_INFO.WE_CONTACT_HIM" | translate
+            }}</ion-label>
+          </ion-text>
+        </div>
+      </div>
+
+      <br />
+
+      <ion-label class="main-container__card__simple-text">{{
+        "COMPONENTS.MODAL_RESTAURANT_INFO.IF_IT_ENTERS" | translate
+      }}</ion-label>
+
+      <br />
+      <br />
+
+      <div class="main-container--center-item main-container--w-100">
+        <div class="main-container__card__info">
+          <ion-text>
+            <div class="main-container--center-item main-container--w-100">
+              <div class="main-container__card__info__icon-euro">€</div>
+            </div>
+            <span>{{
+              "COMPONENTS.MODAL_RESTAURANT_INFO.IF_IT_ENTERS" | translate
+            }}</span>
+          </ion-text>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="main-container--center-item main-container--w-100">
+        <ion-button
+          (click)="onOpenModalBsSuggestCamera()"
+          class="main-container__card__btn"
+        >
+          <ion-icon name="happy"></ion-icon>
+          <ion-label>{{
+            "COMPONENTS.MODAL_RESTAURANT_INFO.SUGGEST_NOW" | translate
+          }}</ion-label>
+        </ion-button>
+      </div>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col
+            (click)="close()"
+            size="6"
+            class="main-container__card__text-all"
+            >{{
+              "COMPONENTS.MODAL_RESTAURANT_INFO.SEE_MORE" | translate
+            }}</ion-col
+          >
+          <ion-col size="6"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

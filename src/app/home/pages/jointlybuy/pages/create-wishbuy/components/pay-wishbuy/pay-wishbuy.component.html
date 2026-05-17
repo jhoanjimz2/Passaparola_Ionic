@@ -1,0 +1,41 @@
+<ion-content>
+  <section class="w-full h-full">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="col-title">
+          <label class="col-title__title">Metodo di pagamento</label>
+          <label class="col-title__price">{{ priceNumber | formattNumber }}</label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-payment-methods">
+        <ion-col>
+          <app-address-card-default
+            class="shipping-section__card"
+            (defaultAddressSelected)="onDefaultAddressSelected($event)">
+          </app-address-card-default>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-payment-methods">
+        <ion-col>
+          <app-slides-payment-methods
+            (paymentSelected)="onPaymentSelected($event)">
+          </app-slides-payment-methods>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col class="buttons">
+        <button
+          class="buttons__button-acept"
+          (click)="initPay()"
+          [disabled]="!selectedPayment">
+          Paga ora
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

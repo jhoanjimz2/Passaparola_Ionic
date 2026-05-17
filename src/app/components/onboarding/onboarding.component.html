@@ -1,0 +1,38 @@
+<div class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container__header">
+      <img src="assets/images/logo-orange-br.png" alt="logo" />
+    </ion-card-header>
+    <ion-card-content class="main-container__content">
+      <ion-text>
+        <span class="main-container__header__title">{{
+          "ONBOARDING.TITLE" | translate
+        }}</span>
+        <br />
+        <br />
+        <span class="main-container--f-z-16"
+          >{{ "ONBOARDING.TEXT_1" | translate }}
+        </span>
+        <br />
+        <br />
+        <span class="main-container--f-z-16 main-container--f-w-b">
+          {{ "ONBOARDING.TEXT_2" | translate }}</span
+        >
+        <br />
+        <span class="main-container--f-z-16">
+          {{ "ONBOARDING.TEXT_3" | translate }}</span
+        >
+      </ion-text>
+
+      <br />
+      <br />
+      <br />
+
+      <div class="main-container__button">
+        <ion-button (click)="close()">{{
+          "ONBOARDING.BTN" | translate
+        }}</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

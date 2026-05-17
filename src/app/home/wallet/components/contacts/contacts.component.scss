@@ -1,0 +1,121 @@
+.main-container {
+  --background: #f9f9f9;
+
+  &__search-panel {
+    position: fixed;
+    width: 100vw;
+    background: #f9f9f9;
+    z-index: 9999;
+
+    &__icon-search {
+      position: absolute;
+      font-size: 1.875rem;
+      margin-top: 0.625rem;
+      margin-left: 0.625rem;
+    }
+
+    input {
+      width: 100%;
+      box-shadow: 0 0.188rem 0.375rem #00000029;
+      border: 0.063rem solid #70707030;
+      border-radius: 1.563rem;
+      height: 3.125rem;
+      padding-left: 3.125rem;
+    }
+
+    &__col-left {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+    }
+
+    &__icon-passaparola {
+      font-size: 1.25rem;
+      margin-right: 0.313rem;
+    }
+  }
+
+  &__contacts {
+    margin-left: -0.313rem;
+    margin-right: -0.313rem;
+    margin-top: 6.563rem;
+
+    &__card {
+      border-bottom: solid 0.063rem #8b8b8b;
+      padding-bottom: 0.313rem;
+    }
+
+    &__picture {
+      max-width: 4.688rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__inner {
+        width: 3.75rem;
+        height: 3.75rem;
+        box-shadow: 0 0.188rem 0.375rem #0000001c;
+        border-radius: 0.938rem;
+        border: solid 0.188rem #ffffff;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      ion-icon {
+        position: absolute;
+        z-index: 999;
+        margin-top: 3.125rem;
+        margin-right: -2.813rem;
+        box-shadow: 0 0.188rem 0.375rem #0000001c;
+      }
+    }
+
+    &__text {
+      display: flex;
+      align-items: center;
+    }
+
+    &__col-right {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+    }
+
+    &__icon-arrow {
+      color: #3cc3a2;
+    }
+  }
+
+  &--f-z-11 {
+    font-size: 0.688rem;
+  }
+
+  &--f-z-15 {
+    font-size: 0.938rem;
+  }
+
+  &--f-z-20 {
+    font-size: 1.25rem;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--m-r-5 {
+    margin-right: 0.313rem;
+  }
+
+  &--text-gray {
+    color: #8b8b8b;
+  }
+
+  &--p-t-5 {
+    padding-top: 0.313em;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}

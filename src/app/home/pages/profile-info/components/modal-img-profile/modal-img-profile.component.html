@@ -1,0 +1,41 @@
+<div class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-content class="main-container__content">
+      <div class="main-container--center-item">
+        <div
+          (click)="takePicture()"
+          class="main-container__img"
+          [style.background-image]="
+            profilePictureUrl && 'url(' + (profilePictureUrl | image) + ')'
+          "
+        >
+          <img
+            *ngIf="!profilePictureUrl"
+            src="assets/images/logo-orange-br.png"
+            alt="logo"
+          />
+
+          <ion-icon *ngIf="!profilePictureUrl" name="camera"></ion-icon>
+        </div>
+      </div>
+
+      <br />
+      <br />
+      <br />
+
+      <ion-label class="main-container__text">{{
+        "ONBOARDING.ADD_PHOTO" | translate
+      }}</ion-label>
+
+      <br />
+      <br />
+      <br />
+
+      <div class="main-container__btn">
+        <ion-button [disabled]="!profilePictureUrl" (click)="updateInfo()">
+          {{ "ONBOARDING.SAVE" | translate }}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

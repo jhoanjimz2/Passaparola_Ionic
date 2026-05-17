@@ -1,0 +1,218 @@
+.search-content {
+  box-shadow: none;
+  padding-bottom: 0.625rem;
+
+  ion-icon {
+    font-size: 1.875rem;
+    position: absolute;
+    z-index: 999;
+    margin-left: 0.313rem;
+    margin-top: 0.313rem;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 3.125rem;
+    border: solid 0.063rem;
+    height: 2.5rem;
+    padding-left: 2.5rem;
+  }
+}
+
+.title-info {
+  text-align: center;
+  box-shadow: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: transparent;
+
+  ion-icon {
+    float: right;
+    color: #000000;
+    font-size: 1.875rem;
+  }
+}
+
+.icon-rorante {
+  transform: rotate(180deg);
+  transition-duration: 0.3s;
+}
+
+.icon-expand {
+  transform: rotate(0deg);
+  transition-duration: 0.3s;
+}
+
+.card-info {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  padding: 0.625rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+
+  &__item {
+    width: 20.563rem;
+    height: 17.313rem;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0 0.125rem 0.313rem #e0edf3;
+    border-radius: 0.938rem;
+    margin-right: 0.625rem;
+    text-align: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &__title {
+      font-size: 1.125rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    &__text-1 {
+      color: #000000;
+    }
+
+    &__text-2 {
+      font-size: 0.75rem;
+      color: #000000;
+    }
+
+    ion-button {
+      margin-top: 1.25rem;
+      max-width: 18.688rem;
+      height: 3.313rem;
+      --border-radius: 1.688rem;
+      font-weight: bold;
+      color: #ffffff;
+      text-transform: capitalize;
+      --box-shadow: none;
+      --background: #000000;
+      --background-activated: #000000;
+      --background-focused: #000000;
+      --background-hover: #000000;
+    }
+  }
+}
+
+.card-info::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.card- input:focus {
+  outline: none;
+}
+
+ion-fab[slot="fixed"] {
+  position: fixed !important;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+}
+
+ion-fab-button {
+  --background: #000;
+  --background-activated: #000;
+  --background-hover: #0000006e;
+  --border-radius: 15px;
+  --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --color: white;
+}
+
+// Masonry Grid
+ngx-masonry {
+  width: 100%;
+}
+
+.grid-sizer,
+.masonry-item {
+  width: 50%;
+}
+
+.masonry-item {
+  padding: 0.1rem 0.25rem;
+}
+
+// Sticky Header (estilo TikTok)
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding-top: env(safe-area-inset-top, 0);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .underline-indicator {
+    width: 40px;
+    height: 2px;
+    background: transparent;
+    margin: 0 auto;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform: scaleX(0);
+
+    &.active {
+      background: white;
+      transform: scaleX(1);
+    }
+  }
+}
+
+// Animaciones suaves
+.animate__fadeIn {
+  animation-duration: 0.3s;
+}
+
+// Mejoras adicionales para el scroll
+:host {
+  --offset-top: 0px;
+  --offset-bottom: 0px;
+}
+
+// Espaciado para el contenido cuando el header sticky está visible
+ion-content {
+  &.sticky-active {
+    padding-top: 60px;
+  }
+}
+
+// Contenedores de feed separados
+.feed-container {
+  width: 100%;
+  min-height: 200px;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+
+  // &--all {
+    // Estilos específicos para feed all si los necesitas
+  // }
+
+  // &--friends {
+    // Estilos específicos para feed friends si los necesitas
+  // }
+}
+
+// Optimización de renderizado
+.masonry-item {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+// Mejora de rendimiento para transiciones
+ngx-masonry {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}

@@ -1,0 +1,33 @@
+<!-- <div
+  *ngIf="typeActionButton === eTypeActionButton.variousCircles"
+  class="main-container"
+  (click)="modalQrScan()"
+>
+  <div class="main-container__circle_1">
+    <div class="main-container__circle_1__circle_2">
+      <ion-icon class="main-container__icon" [name]="icon"></ion-icon>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="typeActionButton === eTypeActionButton.solid"
+  class="rounded-full h-14 w-14 bg-[#FF8000] z-50 fixed bottom-[1.875rem] right-[0.938rem] flex items-center justify-center text-white"
+>
+  <ion-icon class="w-[28px] h-[28px]" [name]="icon"></ion-icon>
+</div> -->
+
+<div class="main-container">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="main-container__col">
+        <div (click)="modalQrScan()" class="main-container__icon">
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </div>
+        <span (click)="modalQrScan()">
+          {{ "Fast Pay" }}
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

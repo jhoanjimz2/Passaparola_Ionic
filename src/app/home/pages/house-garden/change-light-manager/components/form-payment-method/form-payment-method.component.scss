@@ -1,0 +1,58 @@
+.custom-checkbox {
+  // Base styles
+  position: relative;
+  appearance: none;
+  width: 1.241875rem;
+  height: 1.241875rem;
+  min-width: 1.241875rem; // Evita que se comprima
+  min-height: 1.241875rem; // Evita que se comprima
+  flex-shrink: 0; // IMPORTANTE: Evita que se comprima en flex
+  border-radius: 0.1875rem;
+  border: 1px solid #116DE5;
+  background-color: white;
+  transition: background-color 0.2s, border-color 0.2s;
+  cursor: pointer;
+
+  // Checkmark (before pseudo-element)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+
+  // Checked state
+  &:checked {
+    background-color: #116DE5;
+    border-color: #116DE5;
+
+    &::before {
+      content: '✔';
+    }
+  }
+
+  // Optional: hover effect
+  &:hover:not(:checked) {
+    border-color: #116DE5;
+  }
+
+  // Optional: focus state
+  &:focus {
+    outline: none;
+  }
+}
+
+.button-field {
+  width: 12.293rem;
+  height: 2.625rem;
+  border-radius: 1.313rem;
+  font-size: 0.875rem;
+  color: #FDF6EE;
+  background: #116DE5;
+}
+

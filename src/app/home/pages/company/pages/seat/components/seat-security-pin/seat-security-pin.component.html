@@ -1,0 +1,52 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section class="flex flex-col h-full px-[24px] pt-[22px]">
+  <section class="text-[16px] leading-[22px] font-bold">{{ "SEAT.COMPONENT.SECURITY.TITLE2" | translate }}</section>
+  <form
+    focusInvalidInput
+    (ngSubmit)="onSavePin()"
+    [formGroup]="form"
+    novalidate
+    autocomplete="false"
+    class="flex flex-col justify-between mt-[12px] h-full"
+  >
+    <section>
+      <section class="h-[110px] mt-[20px]">
+        <section class="text-[11px] leading-[17px] mb-[10px]">
+          {{ "SEAT.COMPONENT.CONTACT.PIN" | translate }}
+        </section>
+        <app-pin-input formControlName="pin"></app-pin-input>
+        <section
+          *ngIf="displayMessage.pin"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.pin }}
+        </section>
+      </section>
+  
+      <section class="h-[110px] mt-[0px]">
+        <section class="text-[11px] leading-[17px] mb-[10px]">
+          {{ "SEAT.COMPONENT.CONTACT.PIN" | translate }}
+        </section>
+        <app-pin-input formControlName="repeatPin"></app-pin-input>
+        <section
+          *ngIf="displayMessage.repeatPin"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.repeatPin }}
+        </section>
+      </section>
+    </section>
+
+    <button
+      class="text-[14px] leading-[17px] bg-black text-white py-[27px] rounded-full disabled:opacity-50 mb-[40px]"
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      {{ "SEAT.SAVE" | translate }}
+    </button>
+  </form>
+</section>

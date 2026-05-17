@@ -1,0 +1,178 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+  [modalNotificationConfigActive]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-text>
+      <span class="main-container__card__title">{{
+        "NOTIFICATION_CONFIG.SETTINGS" | translate
+      }}</span>
+      <br />
+      <span class="main-container__card__sub-title">{{
+        "NOTIFICATION_CONFIG.CHOOSE_TO_RECEIVE" | translate
+      }}</span>
+    </ion-text>
+  </ion-card>
+
+  <form [formGroup]="configForm" autocomplete="off">
+    <div class="main-container__card">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="7">
+            <ion-text>
+              <span class="main-container--f-z-14">{{
+                "NOTIFICATION_CONFIG.APP_NOTIFICATIONS" | translate
+              }}</span>
+              <SPan>{{ " " }}</SPan>
+              <span class="main-container--f-z-14 main-container--text-info">{{
+                "NOTIFICATION_CONFIG.MOVEMENTS" | translate
+              }}</span>
+              <br />
+              <span class="main-container--f-w-b main-container--f-z-14">{{
+                "NOTIFICATION_CONFIG.FREE" | translate
+              }}</span>
+            </ion-text>
+          </ion-col>
+          <ion-col size="5" class="main-container--right-item">
+            <ion-toggle
+              (ionChange)="update($event)"
+              formControlName="freeNotification"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="7">
+            <ion-text>
+              <span class="main-container--f-z-14">{{
+                "NOTIFICATION_CONFIG.EMAIL_NOTIFICATIONS" | translate
+              }}</span>
+              <br />
+              <span class="main-container--f-w-b main-container--f-z-14">{{
+                "NOTIFICATION_CONFIG.FREE" | translate
+              }}</span>
+            </ion-text>
+          </ion-col>
+          <ion-col size="5" class="main-container--right-item">
+            <ion-toggle
+              (ionChange)="update($event)"
+              formControlName="freeEmailNotificaction"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="main-container__card__input">
+            <input
+              placeholder="{{ 'NOTIFICATION_CONFIG.ENTER_EMAIL' | translate }}"
+              formControlName="email1"
+              readonly
+            />
+            <ion-toggle
+              (ionChange)="update($event, 'email1')"
+              formControlName="checkEmail1"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="main-container__card__input main-container--m-t-10">
+            <input
+              placeholder="{{ 'NOTIFICATION_CONFIG.ENTER_EMAIL' | translate }}"
+              formControlName="email2"
+            />
+            <ion-toggle
+              (ionChange)="update($event, 'email2')"
+              formControlName="checkEmail2"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="main-container__card__input main-container--m-t-10">
+            <input
+              placeholder="{{ 'NOTIFICATION_CONFIG.ENTER_EMAIL' | translate }}"
+              formControlName="email3"
+            />
+            <ion-toggle
+              (ionChange)="update($event, 'email3')"
+              formControlName="checkEmail3"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <br />
+        <ion-row>
+          <ion-col size="7">
+            <ion-text>
+              <span class="main-container--f-z-14">{{
+                "NOTIFICATION_CONFIG.SMS_NOTIFICATIONS" | translate
+              }}</span>
+              <br />
+              <span class="main-container--f-w-b main-container--f-z-14">{{
+                "NOTIFICATION_CONFIG.FIRST_FREE_NUMBER" | translate
+              }}</span>
+            </ion-text>
+          </ion-col>
+          <ion-col size="5" class="main-container--right-item">
+            <ion-toggle
+              (ionChange)="update($event)"
+              formControlName="phoneNotificaction"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="main-container__card__input">
+            <input
+              placeholder="{{
+                'NOTIFICATION_CONFIG.ENTER_FIRST_NUMBER' | translate
+              }}"
+              formControlName="phone1"
+              readonly
+            />
+            <ion-toggle
+              (ionChange)="update($event, 'phone1')"
+              formControlName="checkPhone1"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="main-container__card__input main-container--m-t-10">
+            <input
+              placeholder="{{
+                'NOTIFICATION_CONFIG.ENTER_SECOND_NUMBER' | translate
+              }}"
+              formControlName="phone2"
+            />
+            <ion-toggle
+              (ionChange)="update($event, 'phone2')"
+              formControlName="checkPhone2"
+              mode="ios"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="main-container__card__input main-container--m-t-10">
+            <input
+              placeholder="{{
+                'NOTIFICATION_CONFIG.ENTER_THIRD_NUMBER' | translate
+              }}"
+              formControlName="phone3"
+            />
+            <ion-toggle
+              (ionChange)="update($event, 'phone3')"
+              formControlName="checkPhone3"
+              mode="ios"
+              readonly
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </form>
+</ion-content>

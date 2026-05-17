@@ -1,0 +1,602 @@
+[
+  {
+    "id": "ca4d731d-3c90-459d-89bd-380f593f4498",
+    "name": "Encantados & Enmascarados",
+    "description": "Encantados & Enmascarados es una fiesta donde la magia, el misterio y la diversión se entrelazan en una noche inolvidable. Desde máscaras venecianas hasta criaturas fantásticas, cada disfraz cuenta una historia y esconde un secreto.",
+    "webAddress": "",
+    "address": "Milán, Italia",
+    "latitude": "45.468503",
+    "longitude": "9.182402699999999",
+    "countryCode": "ES",
+    "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/picture/757f92ec-695f-477c-81df-ead61ad15cd9.jpeg",
+    "coverUrlFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/e2ed71fb-5b87-44e0-a570-17c70c6852c6.jpeg",
+    "pictureGallery": [
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741190134400.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741190134398.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741190134401.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741190134400.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741190134400.avif"
+    ],
+    "tags": [
+      "Disfraces",
+      "comida",
+      "Bebida",
+      "Mojito"
+    ],
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": [
+      {
+        "id": 1,
+        "date": "2025-03-29",
+        "hourStart": "23:00"
+      }
+    ],
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": true,
+    "greenDescription": "Encantados & Enmascarados es una fiesta mágica y sostenible. Disfraces reciclados, cero plásticos desechables, decoración ecológica y reciclaje garantizan una noche inolvidable sin dañar el planeta. ¡Misterio, magia y conciencia verde en un solo evento!",
+    "processStatus": "inactive",
+    "createdAt": "2025-03-04T17:57:41.000Z",
+    "updatedAt": "2025-03-05T16:14:04.000Z",
+    "categories": [
+      {
+        "id": "fd3bc9c4-3a79-4744-89a0-e0a0b9adf918",
+        "status": true,
+        "children": [],
+        "parentId": "",
+        "createdAt": null,
+        "updatedAt": null,
+        "description": "Eventi Fashion",
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/categories/eventi-fashion.png",
+        "eventCategoryTranslation": {
+          "id": "fe44b0b9-f3cf-46e4-88ee-1791b3ffb2eb",
+          "description": "Eventi Fashion",
+          "languageCode": "IT"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "3e41c3c0-d177-4836-869e-7e3aa3811362",
+        "name": "Champagne",
+        "pr": 2.5,
+        "description": "Botella de champagne",
+        "price": 40,
+        "isFree": false,
+        "quantity": 50,
+        "availableQuantity": 1,
+        "quantityCreated": 0,
+        "status": true,
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/aa448a52-1cb5-4594-a7a0-a5b9d59f0bf8.webp",
+        "createdAt": "2025-03-05T16:00:18.000Z",
+        "updatedAt": "2025-03-05T16:01:12.000Z"
+      }
+    ],
+    "tickets": [
+      {
+        "id": "54922e72-fb2f-4e10-9086-ed6628873b69",
+        "name": "Entrada Fiesta de Disfraces",
+        "pr": 2.5,
+        "description": "Este ticket solo para entrada",
+        "price": 10,
+        "isFree": false,
+        "isPreSale": false,
+        "quantity": 350,
+        "status": true,
+        "createdAt": "2025-03-05T14:08:47.000Z",
+        "updatedAt": "2025-03-05T15:43:36.000Z"
+      },
+      {
+        "id": "9d23bdfd-9fc4-4756-9a35-63f8d2f87d8c",
+        "name": "Entrada & Mojito",
+        "pr": 2.5,
+        "description": "Este tickets es para entrada y para un mojito",
+        "price": 12,
+        "isFree": false,
+        "isPreSale": false,
+        "quantity": 100,
+        "status": true,
+        "createdAt": "2025-03-05T15:46:40.000Z",
+        "updatedAt": "2025-03-05T15:46:40.000Z"
+      }
+    ],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "5d7fb8dd-88a2-49f5-96a8-c7e19e0dec02",
+      "description": "inactive",
+      "eventStatusTranslation": [
+        {
+          "id": "848dc0a0-ede2-46a0-bce7-29d124e95f87",
+          "description": "non attivo",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "707aae6c-d3b4-45dd-a530-63f711458999",
+    "name": "Love & Beats",
+    "description": "Una noche donde el amor y la música se fusionan. 🎶❤️ Disfruta de DJs en vivo, luces vibrantes y cócteles irresistibles en un ambiente lleno de ritmo y pasión. Ven con tu pareja o amigos y baila sin parar. 🔥💃 ",
+    "webAddress": "",
+    "address": "Roma, Italia",
+    "latitude": "41.8967068",
+    "longitude": "12.4822025",
+    "countryCode": "ES",
+    "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/picture/d173326d-0e5d-4310-bc9b-c436aaa1bb3b.jpeg",
+    "coverUrlFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/941e0aad-c9fd-4456-a092-0065af1bad12.jpeg",
+    "pictureGallery": [
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741200557101.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741200557103.webp",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741200557103.jpeg"
+    ],
+    "tags": [
+      "San Valentin",
+      "Party",
+      "comida",
+      "Drinks"
+    ],
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": [
+      {
+        "id": 1,
+        "date": "2025-03-31",
+        "hourStart": "23:00"
+      }
+    ],
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": false,
+    "greenDescription": "",
+    "processStatus": "inactive",
+    "createdAt": "2025-03-04T18:03:56.000Z",
+    "updatedAt": "2025-03-05T18:49:21.000Z",
+    "categories": [
+      {
+        "id": "fd3bc9c4-3a79-4744-89a0-e0a0b9adf918",
+        "status": true,
+        "children": [],
+        "parentId": "",
+        "createdAt": null,
+        "updatedAt": null,
+        "description": "Eventi Fashion",
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/categories/eventi-fashion.png",
+        "eventCategoryTranslation": {
+          "id": "fe44b0b9-f3cf-46e4-88ee-1791b3ffb2eb",
+          "description": "Eventi Fashion",
+          "languageCode": "IT"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "faa41a3d-5387-4357-8d1c-d0dd02c6060e",
+        "name": "Champagne",
+        "pr": 2,
+        "description": "Ticket para apartar una champagne",
+        "price": 40,
+        "isFree": false,
+        "quantity": 50,
+        "availableQuantity": 1,
+        "quantityCreated": 0,
+        "status": true,
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/93d39043-4349-47ac-aef2-98513a7b5d77.webp",
+        "createdAt": "2025-03-05T18:51:28.000Z",
+        "updatedAt": "2025-03-05T18:53:46.000Z"
+      }
+    ],
+    "tickets": [
+      {
+        "id": "736427de-3a70-410c-b053-2127a81b0f81",
+        "name": "Entrada Fiesta San Valentin",
+        "pr": 3,
+        "description": "Este ticket solo sirve para la entrada",
+        "price": 10,
+        "isFree": false,
+        "isPreSale": false,
+        "quantity": 300,
+        "status": true,
+        "createdAt": "2025-03-05T18:47:14.000Z",
+        "updatedAt": "2025-03-05T18:47:14.000Z"
+      }
+    ],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "5d7fb8dd-88a2-49f5-96a8-c7e19e0dec02",
+      "description": "inactive",
+      "eventStatusTranslation": [
+        {
+          "id": "848dc0a0-ede2-46a0-bce7-29d124e95f87",
+          "description": "non attivo",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "59850302-9ef9-45b6-bed7-d907573bc603",
+    "name": "☕ Café & Versos 📖",
+    "description": "Sumérgete en Café & Versos, una noche donde el aroma del café se mezcla con el arte de la palabra. 🎙️✨ Disfruta de poesía, micrófono abierto y conversaciones inspiradoras en un ambiente cálido y acogedor",
+    "webAddress": "",
+    "address": "Nápoles, Italia",
+    "latitude": "40.8517746",
+    "longitude": "14.2681244",
+    "countryCode": "ES",
+    "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/picture/e1d6131e-6282-4476-a666-08c46e9cff16.jpeg",
+    "coverUrlFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/ae4cba3d-832c-4c01-b587-3cc1a602b8b4.avif",
+    "pictureGallery": [
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741203413558.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741203413558.avif",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741203413557.avif",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741203413556.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741203413558.png"
+    ],
+    "tags": [
+      "Coffe",
+      "Versos",
+      "Friends",
+      "Free"
+    ],
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": [
+      {
+        "id": 1,
+        "date": "2025-03-06",
+        "hourStart": "18:00"
+      }
+    ],
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": false,
+    "greenDescription": "",
+    "processStatus": "rejected",
+    "createdAt": "2025-03-04T18:04:01.000Z",
+    "updatedAt": "2025-03-05T19:37:42.000Z",
+    "categories": [
+      {
+        "id": "f92772c8-488c-4715-8cec-24d926fd4e8c",
+        "status": true,
+        "children": [],
+        "parentId": "",
+        "createdAt": null,
+        "updatedAt": null,
+        "description": "Eventi enogastronomici",
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/categories/eventi-enogastronomici.png",
+        "eventCategoryTranslation": {
+          "id": "b9a21869-8a27-42c5-a4db-c08adf9b6d34",
+          "description": "Eventi enogastronomici",
+          "languageCode": "IT"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "2ab83f34-c9ba-4f08-8059-e0aa2dc17f1f",
+        "name": "Coffe",
+        "pr": 2,
+        "description": "Taza de coffe",
+        "price": 4,
+        "isFree": false,
+        "quantity": 100,
+        "availableQuantity": 1,
+        "quantityCreated": 0,
+        "status": true,
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/6c0dea5e-c9cd-41ff-a7ab-a0f5d147f0c0.avif",
+        "createdAt": "2025-03-05T19:32:12.000Z",
+        "updatedAt": "2025-03-05T19:32:33.000Z"
+      },
+      {
+        "id": "a07b0a36-ca14-4a64-88b3-9d4f742d36b9",
+        "name": "Muffiins",
+        "pr": 2,
+        "description": "Muffins",
+        "price": 3,
+        "isFree": false,
+        "quantity": 100,
+        "availableQuantity": 1,
+        "quantityCreated": 0,
+        "status": true,
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/fafdd0ce-e412-4fda-ad46-74916138fa39.avif",
+        "createdAt": "2025-03-05T19:32:45.000Z",
+        "updatedAt": "2025-03-05T19:33:07.000Z"
+      },
+      {
+        "id": "ca43b763-6dd4-4052-9fc3-9b9e738cf2bd",
+        "name": "chamoagne",
+        "pr": 2,
+        "description": "champagne",
+        "price": 50,
+        "isFree": false,
+        "quantity": 100,
+        "availableQuantity": 1,
+        "quantityCreated": 0,
+        "status": true,
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/7e6d4a49-1a2f-415e-81ed-0cb7f57f4ddc.jpeg",
+        "createdAt": "2025-03-05T19:33:16.000Z",
+        "updatedAt": "2025-03-05T19:33:34.000Z"
+      }
+    ],
+    "tickets": [
+      {
+        "id": "d22428ec-2d3a-48ed-9b48-95a7586a2349",
+        "name": "Entrada al Evento",
+        "pr": 2,
+        "description": "Esto sirve solo para la entrada al evento",
+        "price": 0,
+        "isFree": true,
+        "isPreSale": false,
+        "quantity": 200,
+        "status": true,
+        "createdAt": "2025-03-05T19:28:50.000Z",
+        "updatedAt": "2025-03-05T19:28:50.000Z"
+      }
+    ],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "adad2aab-172a-4b51-91db-5a59c0a2d9c3",
+      "description": "rejected",
+      "eventStatusTranslation": [
+        {
+          "id": "a1bd2dbc-6415-44c7-a297-2daec227bdef",
+          "description": "rifiutati",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "8b4cf9f7-3fdc-47b9-9176-c0497632d6ce",
+    "name": "🕶️ Neon Nights 🔥",
+    "description": "Prepárate para Neon Nights, una fiesta donde las luces brillan, la música vibra y la energía no se detiene. 🌈✨ Sumérgete en un ambiente electrizante con DJs en vivo, efectos de neón y la mejor pista de baile.",
+    "webAddress": "",
+    "address": "Milán, Italia",
+    "latitude": "45.468503",
+    "longitude": "9.182402699999999",
+    "countryCode": "ES",
+    "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/picture/75a2edb6-c485-4303-98ae-106b41362697.jpeg",
+    "coverUrlFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/fd8adaad-4a9b-44a4-923b-b39f53988166.jpeg",
+    "pictureGallery": [
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041744.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041743.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041742.webp",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041743.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041742.webp",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041740.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741204041744.jpeg"
+    ],
+    "tags": [
+      "Neon",
+      "Party"
+    ],
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": [
+      {
+        "id": 1,
+        "date": "2025-03-06",
+        "hourStart": "23:00"
+      }
+    ],
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": false,
+    "greenDescription": "",
+    "processStatus": "rejected",
+    "createdAt": "2025-03-04T18:04:05.000Z",
+    "updatedAt": "2025-03-05T19:47:40.000Z",
+    "categories": null,
+    "products": [
+      {
+        "id": "d98e77ab-7614-4341-91e3-91e94fef1b08",
+        "name": "Blue label",
+        "pr": 10,
+        "description": "Botella de blue label",
+        "price": 1000,
+        "isFree": false,
+        "quantity": 10,
+        "availableQuantity": 1,
+        "quantityCreated": 0,
+        "status": true,
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/e4a4e3af-99f6-4654-a730-57d106fb8251.webp",
+        "createdAt": "2025-03-05T19:48:55.000Z",
+        "updatedAt": "2025-03-05T19:49:17.000Z"
+      }
+    ],
+    "tickets": [
+      {
+        "id": "aceadc9c-e7cf-454e-8dc0-4443214acb88",
+        "name": "Entrada",
+        "pr": 2,
+        "description": "Ticket solo para entrada",
+        "price": 10,
+        "isFree": false,
+        "isPreSale": false,
+        "quantity": 500,
+        "status": true,
+        "createdAt": "2025-03-05T19:39:48.000Z",
+        "updatedAt": "2025-03-05T19:39:48.000Z"
+      }
+    ],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "adad2aab-172a-4b51-91db-5a59c0a2d9c3",
+      "description": "rejected",
+      "eventStatusTranslation": [
+        {
+          "id": "a1bd2dbc-6415-44c7-a297-2daec227bdef",
+          "description": "rifiutati",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "9c094ba1-06a2-430e-a71e-38662c24e92a",
+    "name": "Evento 4",
+    "description": "Event description",
+    "webAddress": "",
+    "address": "",
+    "latitude": "",
+    "longitude": "",
+    "countryCode": "ES",
+    "pictureUlrFile": "",
+    "coverUrlFile": "",
+    "pictureGallery": null,
+    "tags": null,
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": null,
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": false,
+    "greenDescription": "",
+    "processStatus": "active",
+    "createdAt": "2025-03-04T18:04:09.000Z",
+    "updatedAt": "2025-03-05T10:40:22.000Z",
+    "categories": null,
+    "products": [],
+    "tickets": [],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "46a914c0-8412-435a-b7de-b513d1d9b1df",
+      "description": "active",
+      "eventStatusTranslation": [
+        {
+          "id": "1dcd71e0-c931-4d5f-858e-7a1d66bb6cfd",
+          "description": "attivi",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "71a6b9bd-5f44-465d-bd3a-fb2435036c4b",
+    "name": "Evento 5",
+    "description": "Event description",
+    "webAddress": "",
+    "address": "",
+    "latitude": "",
+    "longitude": "",
+    "countryCode": "ES",
+    "pictureUlrFile": "",
+    "coverUrlFile": "",
+    "pictureGallery": null,
+    "tags": null,
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": null,
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": false,
+    "greenDescription": "",
+    "processStatus": "active",
+    "createdAt": "2025-03-04T18:04:13.000Z",
+    "updatedAt": "2025-03-04T18:04:13.000Z",
+    "categories": null,
+    "products": [],
+    "tickets": [],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "46a914c0-8412-435a-b7de-b513d1d9b1df",
+      "description": "active",
+      "eventStatusTranslation": [
+        {
+          "id": "1dcd71e0-c931-4d5f-858e-7a1d66bb6cfd",
+          "description": "attivi",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  },
+  {
+    "id": "1ab77080-da48-48d1-8f79-46cc8f19c4bf",
+    "name": "Love & Pixels 💖",
+    "description": "Sumérgete en Love & Pixels, la fiesta virtual donde el amor y la tecnología se unen. 💻✨ Conecta con amigos, juega, baila y disfruta de una noche llena de diversión desde cualquier lugar del mundo. 🎶💘\n",
+    "webAddress": "https://www.google.com",
+    "address": "",
+    "latitude": "0",
+    "longitude": "0",
+    "countryCode": "ES",
+    "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/picture/30a9ada5-70e9-4ca5-a87c-b79cc9ff4e3b.webp",
+    "coverUrlFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/cover/d8d9cf11-3ea1-42f1-8511-096e16f8d9fb.png",
+    "pictureGallery": [
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741202601487.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741202601486.jpeg",
+      "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/seats/gallery//1741202601488.png"
+    ],
+    "tags": [
+      "Zoom",
+      "Love"
+    ],
+    "ticketsFrom": 0,
+    "availability": 0,
+    "schedule": [
+      {
+        "id": 1,
+        "date": "2025-03-31",
+        "hourStart": "23:00"
+      }
+    ],
+    "dateFrom": null,
+    "dateTo": null,
+    "status": true,
+    "isGreen": false,
+    "greenDescription": "",
+    "processStatus": "inactive",
+    "createdAt": "2025-03-04T18:04:17.000Z",
+    "updatedAt": "2025-03-05T19:23:26.000Z",
+    "categories": [
+      {
+        "id": "fd3bc9c4-3a79-4744-89a0-e0a0b9adf918",
+        "status": true,
+        "children": [],
+        "parentId": "",
+        "createdAt": null,
+        "updatedAt": null,
+        "description": "Eventi Fashion",
+        "pictureUlrFile": "https://s3youetix.s3.nl-ams.scw.cloud/passaparola/events/categories/eventi-fashion.png",
+        "eventCategoryTranslation": {
+          "id": "fe44b0b9-f3cf-46e4-88ee-1791b3ffb2eb",
+          "description": "Eventi Fashion",
+          "languageCode": "IT"
+        }
+      }
+    ],
+    "products": [],
+    "tickets": [
+      {
+        "id": "77e890d1-ba88-4965-98f2-e578bd1a5ab5",
+        "name": "Ticket de entrada",
+        "pr": 2,
+        "description": "Ticket para entrada al evento",
+        "price": 0,
+        "isFree": true,
+        "isPreSale": false,
+        "quantity": 300,
+        "status": true,
+        "createdAt": "2025-03-05T19:11:35.000Z",
+        "updatedAt": "2025-03-05T19:11:35.000Z"
+      }
+    ],
+    "scheduleHour": [],
+    "eventStatus": {
+      "id": "5d7fb8dd-88a2-49f5-96a8-c7e19e0dec02",
+      "description": "inactive",
+      "eventStatusTranslation": [
+        {
+          "id": "848dc0a0-ede2-46a0-bce7-29d124e95f87",
+          "description": "non attivo",
+          "languageCode": "IT"
+        }
+      ]
+    }
+  }
+]

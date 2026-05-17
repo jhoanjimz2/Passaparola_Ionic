@@ -1,0 +1,132 @@
+<ion-content>
+
+  <div class="w-full h-full relative bg-[#FBFCFE] px-[.625rem] pt-[1.1rem]">
+
+    <h1 class="text-center mb-4 text-[#1D0F01]">
+      {{
+        typeProduct === 'all' ?
+        'Ti stiamo mostrando tutti i prodotti' :
+        'Ti stiamo mostrando i prodotti acquistati da te'
+      }}
+      <span *ngIf="multiSelect && selectedProducts.length > 0" class="block text-sm text-[#FE8500] mt-1">
+        {{ selectedProducts.length }} {{ selectedProducts.length === 1 ? 'prodotto selezionato' : 'prodotti selezionati' }}
+      </span>
+    </h1>
+
+    <!-- Información de filtros activos -->
+    <div *ngIf="hasActiveFilters()" class="mb-4 px-2">
+      <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+        <span class="text-sm text-blue-700">
+          Mostrando {{ filteredProducts.length }} di {{ allProducts.length }} prodotti
+        </span>
+        <button
+          (click)="resetFilters()"
+          class="text-sm text-blue-600 font-medium hover:text-blue-800 transition-colors"
+        >
+          Pulisci filtri
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de productos filtrados -->
+    <div class="grid grid-cols-2 gap-2 h-auto w-full pb-[13rem]">
+
+      <!-- Mensaje cuando no hay resultados -->
+      <div *ngIf="filteredProducts.length === 0 && hasActiveFilters()" class="col-span-2 text-center py-8">
+        <div class="text-gray-500">
+          <p class="text-lg mb-2">Nessun prodotto trovato</p>
+          <p class="text-sm">Prova con altri termini di ricerca o seleziona una categoria diversa</p>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="col-span-1" *ngFor="let product of filteredProducts">
+        <app-product-tag-create
+          [product]="product"
+          [productSelected]="isProductSelected(product)"
+          (selectProductTag)="selectProductTag($event)"
+          (delete)="selectProductTag($event)"
+        ></app-product-tag-create>
+      </div>
+    </div>
+
+    <!-- Barra de búsqueda y categorías fija -->
+    <div class="w-full bg-white px-[0.625rem] py-[1rem] fixed left-0 bottom-0 z-10">
+
+      <!-- Botones de acción para selección múltiple -->
+      <div *ngIf="multiSelect && selectedProducts.length > 0" class="mb-3 flex gap-2">
+        <button
+          (click)="cancelSelection()"
+          class="flex-1 h-[2.6875rem] text-[0.9375rem] font-semibold text-gray-700 bg-gray-200 rounded-[1.375rem] hover:bg-gray-300 transition-colors"
+        >
+          Annulla
+        </button>
+        <button
+          (click)="confirmSelection()"
+          class="flex-1 h-[2.6875rem] text-[0.9375rem] font-semibold text-white bg-[#FE8500] rounded-[1.375rem] hover:bg-[#e57700] transition-colors"
+        >
+          Conferma ({{ selectedProducts.length }})
+        </button>
+      </div>
+
+      <!-- Barra de búsqueda -->
+      <div class="relative">
+        <input
+          [(ngModel)]="searchQuery"
+          [placeholder]="'Cerca il prodotto per nome'"
+          (input)="onSearchChange()"
+          class="px-4 pr-10 w-full h-[2.6875rem] text-[0.9375rem] bg-white rounded-[1.375rem] shadow-[0px_3px_6px_#0000001C]"
+        >
+        <!-- Botón para limpiar la búsqueda -->
+        <button
+          *ngIf="searchQuery && searchQuery.length > 0"
+          (click)="searchQuery = ''; onSearchChange()"
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Categorías -->
+      <div class="w-full py-4 flex flex-row gap-4 overflow-x-auto no-scrollbar">
+
+        <!-- Opción "Tutte" -->
+        <div
+          (click)="selectedCategory = null; filterProducts()"
+          class="px-2 flex-shrink-0 flex flex-col items-center justify-center cursor-pointer"
+        >
+          <span
+            class="text-[0.9375rem] font-bold transition-colors duration-200"
+            [ngClass]="{
+              '!text-[#FE8500]': selectedCategory === null,
+              'text-black': selectedCategory !== null
+            }"
+          >
+            Tutte
+          </span>
+          <span class="text-xs text-gray-500">{{ allProducts.length }}</span>
+        </div>
+
+        <!-- Categorías -->
+        <div
+          *ngFor="let category of categories"
+          (click)="onCategorySelected(category)"
+          class="px-2 flex-shrink-0 flex flex-col items-center justify-center cursor-pointer"
+        >
+          <span
+            class="text-[0.9375rem] font-bold transition-colors duration-200"
+            [ngClass]="{
+              '!text-[#FE8500]': category.id === selectedCategory?.id,
+              'text-black': category.id !== selectedCategory?.id
+            }"
+          >
+            {{ category?.description | titlecase }}
+          </span>
+          <!-- Contador de productos por categoría -->
+          <span class="text-xs text-gray-500">{{ getProductCountForCategory(category.id) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

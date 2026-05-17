@@ -1,0 +1,61 @@
+<app-header-modal></app-header-modal>
+<ion-content>
+
+  <section class="w-full h-full relative p-4 bg-[#F8F9FC]">
+
+    <div class="grid grid-cols-2">
+      <div class="col-span-1">
+        <label class="font-bold text-[#1A1A1A] text-[1rem]">Richieste tag</label>
+      </div>
+      <div class="col-span-1 text-end">
+        <button (click)="close()" class="ml-auto flex items-center justify-center text-[1rem] w-[1.75rem] h-[1.75rem] rounded-full text-black bg-[#E1E1E1]">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <div class="flex flex-row gap-2 pb-2">
+        <button
+          *ngFor="let filter of filters"
+          (click)="setActiveFilter(filter.key)"
+          [ngClass]="{'!bg-black !border-black': activeFilter === filter.key}"
+          class="w-full h-[1.9rem] font-medium rounded-[1.125rem] bg-[#949494] border border-[#E1E1E1] border-solid text-white text-[0.875rem] transition-all duration-200">
+          {{ filter.label }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div *ngIf="isLoading && !hasData" class="flex justify-center items-center mt-8">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="mt-4" *ngIf="!isLoading || hasData">
+      <!-- No hay datos -->
+      <div *ngIf="!hasData && !isLoading" class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+        <span class="text-sm text-blue-700">
+          Non ci sono richieste da mostrare
+        </span>
+      </div>
+
+      <!-- Lista de requests -->
+      <div *ngIf="hasData">
+        <app-tag-request
+          class="block mb-1"
+          *ngFor="let request of currentData"
+          [request]="request"
+          (actions)="actions($event, request)"
+        ></app-tag-request>
+      </div>
+    </div>
+
+    <!-- Load more indicator -->
+    <div *ngIf="isLoading && hasData" class="flex justify-center items-center mt-4 mb-4">
+      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-black"></div>
+    </div>
+
+  </section>
+
+</ion-content>

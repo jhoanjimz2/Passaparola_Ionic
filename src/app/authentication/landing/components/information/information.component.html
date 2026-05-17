@@ -1,0 +1,27 @@
+<div
+  class="information-container"
+  [style.background-image]="
+    'linear-gradient(rgba(0, 0, 11, 0.5), rgba(0, 0, 11, 0.5)), url(' +
+    information.image +
+    ')'
+  "
+>
+  <ion-card>
+    <ion-card-header>
+      <img src="assets/images/logo.png" alt="" />
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text color="light">
+        <span class="information-container__text">
+          {{ information.info | translate }}
+        </span>
+      </ion-text>
+
+      <div *ngIf="information.button" class="information-container__buttons">
+        <ion-button (click)="singUp()">
+          {{ "LANDING.JOIN_APP" | translate }}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

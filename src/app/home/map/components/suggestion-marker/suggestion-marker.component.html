@@ -1,0 +1,110 @@
+<section class="flex flex-col p-2">
+  <section style="line-height: 16px; margin-top: 15px; margin-bottom: 15px">
+    <ion-text>
+      <span style="font-size: 15px; font-weight: bold; color: #000000"
+        >Negozio suggerito - vota anche tu</span
+      >
+      <br />
+      <span style="font-size: 11px; color: #000000"
+        >Questo negozio è stato suggerito da uno dei nostri utenti. Se anche tu
+        lo vuoi in mappa, vota ora. Per ogni voto riceverai 10 WIN</span
+      >
+    </ion-text>
+  </section>
+  <section
+    class="h-[184px] rounded-[15px] bg-gray-500 bg-no-repeat bg-cover bg-center"
+    [style.background-image]="'url(' + (suggestion.urlImage | image) + ')'"
+  ></section>
+  <section class="flex flex-row justify-between items-center mt-2">
+    <article>
+      <div class="text-[15px] leading-[23px] font-bold">
+        {{ suggestion.name }}
+      </div>
+      <div class="text-[11px] leading-[19px]">
+        {{ suggestion.address }}
+      </div>
+      <div class="text-[11px] leading-[19px]">
+        {{ suggestion.description }}
+      </div>
+
+      <!-- <div class="text-[11px] leading-[19px]">
+        {{
+          suggestion.category
+            ? suggestion.category.companyCategoryTranslation[0].description
+            : ""
+        }}
+        | €€
+      </div> -->
+      <!-- <div class="text-[11px] leading-[19px]">
+        <span
+          [ngClass]="{
+            'text-[#17A541]': seat.isOpen,
+            'text-red-500': !seat.isOpen
+          }"
+        >
+          {{
+            (seat.isOpen ? "GENERAL.OPEN_NOW" : "GENERAL.CLOSED") | translate
+          }}
+        </span>
+        <span *ngIf="seat.isOpen">
+          | {{ "GENERAL.CLOSES_AT" | translate }}: {{ seat.closeAt }}</span
+        >
+      </div> -->
+    </article>
+    <section class="flex flex-row justify-between items-center">
+      <article class="flex gap-4">
+        <div class="flex justify-center items-center">
+          <ion-icon
+            class="text-[32px] mr-2 text-[#41C837]"
+            name="passaparola-vote"
+          ></ion-icon>
+          <span class="text-[32px] leading-[32px] text-[#41C837] font-bold">
+            {{ votes.length }}
+          </span>
+        </div>
+      </article>
+    </section>
+  </section>
+  <section class="flex flex-row justify-between gap-2 mt-3">
+    <article
+      *ngIf="!businessSuggestionVote"
+      (click)="vote()"
+      style="width: 213px"
+      class="flex items-center bg-[#41C837] rounded-[26px] py-1 px-2 pr-3"
+    >
+      <ion-icon
+        class="text-[25px] mr-[45px] text-white"
+        name="passaparola-vote"
+      ></ion-icon>
+      <span class="text-[14px] text-white">Vota ora</span>
+    </article>
+
+    <article
+      *ngIf="businessSuggestionVote"
+      style="width: 213px"
+      class="flex items-center bg-[#7A7A7A] rounded-[26px] py-1 px-2 pr-3"
+    >
+      <ion-icon
+        class="text-[25px] ml-[5px] mr-[25px] text-white"
+        name="checkmark-done-outline"
+      ></ion-icon>
+
+      <span class="text-[14px] text-white">Hai già votato</span>
+    </article>
+
+    <article class="flex flex-row items-center gap-2">
+      <div
+        class="flex flex-row justify-center items-center h-[54px] w-[54px] bg-[#00B1FF] rounded-full"
+      >
+        <ion-icon
+          class="text-[35px] text-white"
+          name="passaparola-how-to-get-there"
+        ></ion-icon>
+      </div>
+      <span class="text-[20px] leading-[25px] font-bold"
+        >{{ distance < 1 ? distance * 1000 : distance }}
+        {{ distance < 1 ? "m" : "km" }}</span
+      >
+    </article>
+  </section>
+</section>

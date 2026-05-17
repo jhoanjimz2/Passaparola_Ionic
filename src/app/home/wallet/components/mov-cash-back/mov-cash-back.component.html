@@ -1,0 +1,139 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card>
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="main-container--text-center">
+            <ion-text>
+              <span class="main-container__title">ATM Back</span>
+              <br />
+              <span class="main-container__atm">{{ "ATM/€" | translate }}</span>
+              <span class="main-container__amount-back">
+                {{ cashBack | formattNumber }}</span
+              >
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <div
+      class="main-container__movements"
+      [style.height]="heightContainer + 'px'"
+    >
+      <ion-grid>
+        <ion-row *ngFor="let mov of movementsFiltered">
+          <ion-col class="main-container__mov_icon main-container--m-l-6"
+            ><ion-icon
+              [style.color]="
+                mov.status === 3
+                  ? mov.reasonStatusTransferTranslated.iconColor
+                  : mov.reasonTranslated.iconColor
+              "
+              [name]="
+                'passaparola-icon-wallet-mov-' + mov.reasonTranslated.reason
+              "
+            ></ion-icon
+          ></ion-col>
+          <ion-col class="main-container--p-l-10">
+            <ion-text>
+              <span>{{ mov.reasonTranslated.reasonTranslated }}</span>
+              <span *ngIf="mov.status === 3">{{ " " }}</span>
+              <span *ngIf="mov.status === 3">{{
+                mov.reasonStatusTransferTranslated.reasonTranslated
+              }}</span>
+
+              <br />
+
+              <span class="main-container__amount-pr"
+                >+{{ mov.rewardPoints }}
+              </span>
+              <span class="main-container__text-pr">{{
+                "WALLET.MOVEMENT.REWARD_POINTS" | translate
+              }}</span>
+
+              <br />
+
+              <span class="main-container__amount-cashbak"
+                >+{{ mov.cashBackAmount }}
+              </span>
+              <span class="main-container__text-cashbak">{{
+                "WALLET.MOVEMENT.ATM_BACK" | translate
+              }}</span>
+              <span class="main-container__text-win">{{
+                mov.win + " WIN"
+              }}</span>
+            </ion-text>
+          </ion-col>
+          <ion-col
+            size="3"
+            class="main-container--text-right main-container--m-r-6"
+          >
+            <ion-text>
+              <span class="main-container__text-date">{{
+                mov.createdAt | date : "dd/MM/yy, hh:mm"
+              }}</span>
+              <br />
+              <span class="main-container__text-eur-atm">{{ "EUR/ATM" }}</span>
+              <br />
+              <span
+                *ngIf="mov.walletFrom === wallet.id"
+                class="main-container__text-amount"
+                >-{{ mov.amount | formattNumber }}</span
+              >
+              <span
+                *ngIf="mov.walletTo === wallet.id"
+                class="main-container__text-amount main-container--text-success"
+                [ngClass]="{ 'main-container--text-decline': mov.status === 3 }"
+                >+{{ mov.amount | formattNumber }}</span
+              >
+            </ion-text>
+          </ion-col>
+          <div
+            *ngIf="
+              (buttonIndex === 3 &&
+                mov.status === 2 &&
+                mov.walletTo === wallet.id &&
+                mov.transactionType === 'send') ||
+              (buttonIndex === 3 &&
+                mov.status === 2 &&
+                mov.walletFrom === wallet.id &&
+                mov.transactionType === 'receive')
+            "
+            class="main-container__content-accept"
+          >
+            <ion-text class="main-container__content-accept__text">
+              <span> {{ "WALLET.MOVEMENT.CAUSE" | translate }}: </span>
+
+              <span> {{ mov.observation }} </span>
+            </ion-text>
+            <ion-grid>
+              <ion-row>
+                <ion-col
+                  ><ion-button
+                    (click)="acceptTranferATM(mov)"
+                    class="main-container__content-accept--bg-success"
+                    >{{ "WALLET.MOVEMENT.ACCEPT" | translate }}</ion-button
+                  ></ion-col
+                >
+                <ion-col
+                  ><ion-button
+                    (click)="declineTranferATM(mov)"
+                    class="main-container__content-accept--bg-danger"
+                    >{{ "WALLET.MOVEMENT.RECECT" | translate }}</ion-button
+                  ></ion-col
+                >
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card>
+</ion-content>

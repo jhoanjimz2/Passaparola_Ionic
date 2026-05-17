@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "DJ94KW7FG8.passaparola.app.com",
+        "paths": [
+          "*"
+        ]
+      }
+    ]
+  }
+}

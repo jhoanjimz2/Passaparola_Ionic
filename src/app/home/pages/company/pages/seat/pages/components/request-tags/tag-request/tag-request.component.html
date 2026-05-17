@@ -1,0 +1,77 @@
+<div
+  class="gap-4 flex flex-row w-full h-[9.75rem] rounded-[0.8125rem] bg-white border border-solid border-[#E1E1E1] p-[0.375rem]"
+  [ngClass]="{
+    '!border-[#209E12]' : (request?.status && request?.isAccepted),
+    '!border-[#C62525]' : (!request?.status && !request?.isAccepted),
+  }"
+>
+  <ng-container *ngIf="request.socialCommunity.typeFile === 'image'; else videoTemplate">
+    <img
+      class="w-[6.375rem] rounded-[0.8125rem] h-full object-cover"
+      [src]="request.socialCommunity.urlFile || 'https://placehold.co/80x80?text=post'"
+    />
+  </ng-container>
+  <ng-template #videoTemplate>
+    <video
+      class="w-[6.375rem] rounded-[0.8125rem] h-full object-cover pointer-events-none select-none"
+      [src]="request.socialCommunity.urlFile"
+      muted
+      playsinline
+      preload="metadata"
+      [attr.poster]="null"
+    ></video>
+  </ng-template>
+  <div class="w-[calc(100%-6.375rem)] h-full flex flex-col justify-around relative">
+    <ion-icon (click)="action('view')" class="text-[1.5rem] text-black absolute right-2 top-2" name="eye-outline"></ion-icon>
+    <div class="flex flex-row gap-4">
+      <img
+        class="w-[3.208rem] h-[3.208rem] rounded-[50%] object-cover"
+        [src]="
+          request?.socialCommunity?.user?.profile?.profilePictureUrlFile
+          ? request?.socialCommunity?.user?.profile?.profilePictureUrlFile
+          : 'https://placehold.co/50x50?text=profile'
+        "
+      >
+      <div class="flex flex-col items-start justify-center">
+        <span class="text-[0.875rem] font-bold">
+          {{ request?.socialCommunity?.user?.profile?.username }}
+        </span>
+        <!-- <span class="text-[0.75rem]">58 paspot</span> -->
+      </div>
+    </div>
+    <div class="text-start">
+      <span class="block text-[0.875rem]">
+        ti ha taggato in un <b>Paspot</b>
+      </span>
+      <span class="block italic text-[0.75rem]">
+        {{ request.createdAt | date:'MM/dd/yyyy HH:mm' }}
+      </span>
+    </div>
+
+    <div class="flex flex-row gap-2">
+      <button (click)="action('reject')" *ngIf="request?.status && !request?.isAccepted" class="w-full text-white h-[2.1875rem] rounded-[1.125rem] text-[0.9rem] border border-solid border-[#E1E1E1] bg-[#C62525]">
+        Rifuta
+      </button>
+      <button (click)="action('accept')" *ngIf="request?.status && !request?.isAccepted" class="w-full text-white h-[2.1875rem] rounded-[1.125rem] text-[0.9rem] border border-solid border-[#E1E1E1] bg-[#209E12]">
+        Accetta tag
+      </button>
+
+
+      <button (click)="action('delete')" *ngIf="request?.status && request?.isAccepted" class="flex items-center justify-center gap-1 w-full text-white h-[2.1875rem] rounded-[1.125rem] text-[0.9rem] border border-solid border-[#E1E1E1] bg-[#888888]">
+        <ion-icon name="trash"></ion-icon>
+        Rimuovi
+      </button>
+      <button *ngIf="request?.status && request?.isAccepted" class="w-full text-[#209E12] h-[2.1875rem] rounded-[1.125rem] text-[0.9rem]">
+        Accettato
+      </button>
+
+
+      <button *ngIf="!request?.status && !request?.isAccepted" class="w-full h-[2.1875rem] rounded-[1.125rem] text-[0.9rem]">
+      </button>
+      <button *ngIf="!request?.status && !request?.isAccepted" class="text-[#C62525] w-full h-[2.1875rem] rounded-[1.125rem] text-[0.9rem]">
+        Rifiutato
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,109 @@
+<app-header [modal]="true"></app-header>
+
+<ion-content>
+  <section class="notifications">
+
+    <!-- Tabs principales -->
+    <section class="notifications__tabs">
+      <div class="notifications__tab">
+        <span
+          (click)="changeNotificationType(notificationType.willbuyManaged)"
+          [class.notifications__tab-label--active]="typeNotification === notificationType.willbuyManaged"
+          class="notifications__tab-label">
+          Willbuy gestiti
+        </span>
+      </div>
+
+      <div class="notifications__tab">
+        <span
+          (click)="changeNotificationType(notificationType.willbuyInvestes)"
+          [class.notifications__tab-label--active]="typeNotification === notificationType.willbuyInvestes"
+          class="notifications__tab-label">
+          Willbuy partecipati
+        </span>
+      </div>
+
+      <div class="notifications__tab">
+        <span
+          (click)="changeNotificationType(notificationType.wishbuy)"
+          [class.notifications__tab-label--active]="typeNotification === notificationType.wishbuy"
+          class="notifications__tab-label">
+          Wishbuy
+        </span>
+      </div>
+    </section>
+
+    <!-- Filtros secundarios - NO se muestran para Willbuy gestiti -->
+    <section class="notifications__filters-section" *ngIf="shouldShowFilters()">
+      <div class="notifications__filters">
+        <!-- Filtro "Tutti" - siempre visible cuando hay filtros -->
+        <div
+          (click)="changeSubtype(wishbuyWillbuyNotificationType.all)"
+          [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.all"
+          class="notifications__filter-chip">
+          Tutti
+        </div>
+
+        <!-- Filtros para Willbuy Investes -->
+        <ng-container *ngIf="typeNotification === notificationType.willbuyInvestes">
+          <div
+            (click)="changeSubtype(wishbuyWillbuyNotificationType.completed)"
+            [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.completed"
+            class="notifications__filter-chip">
+            completati
+          </div>
+          <div
+            (click)="changeSubtype(wishbuyWillbuyNotificationType.expired)"
+            [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.expired"
+            class="notifications__filter-chip">
+            scaduti
+          </div>
+          <div
+            (click)="changeSubtype(wishbuyWillbuyNotificationType.newPrice)"
+            [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.newPrice"
+            class="notifications__filter-chip">
+            nuovo prezzo
+          </div>
+          <div
+            (click)="changeSubtype(wishbuyWillbuyNotificationType.newUser)"
+            [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.newUser"
+            class="notifications__filter-chip">
+            nuovo utente
+          </div>
+        </ng-container>
+
+        <!-- Filtros para Wishbuy -->
+        <ng-container *ngIf="typeNotification === notificationType.wishbuy">
+          <div
+            (click)="changeSubtype(wishbuyWillbuyNotificationType.newState)"
+            [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.newState"
+            class="notifications__filter-chip">
+            accettati
+          </div>
+          <div
+            (click)="changeSubtype(wishbuyWillbuyNotificationType.rejected)"
+            [class.notifications__filter-chip--active]="typeWishbuyWillbuyNotification === wishbuyWillbuyNotificationType.rejected"
+            class="notifications__filter-chip">
+            rifiutati
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <!-- Lista de notificaciones -->
+    <section class="notifications__list">
+      <ng-container *ngIf="(notifications | filterNotifications:typeNotification:typeWishbuyWillbuyNotification) as filteredNotifications">
+        <app-notification
+          *ngFor="let notification of filteredNotifications; trackBy: trackByNotificationId"
+          [notification]="notification">
+        </app-notification>
+
+        <!-- Mensaje cuando no hay notificaciones -->
+        <div *ngIf="filteredNotifications.length === 0" class="notifications__empty">
+          <p>Non ci sono notifiche da visualizzare</p>
+        </div>
+      </ng-container>
+    </section>
+
+  </section>
+</ion-content>

@@ -1,0 +1,201 @@
+.col-title {
+  margin: 0rem .5rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+  }
+  &__price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+  }
+}
+.row-card {
+  ion-card {
+    margin: 0rem 0.5rem;
+    box-shadow: none;
+    border: 1px solid #D5D4D4;
+    border-radius: 1rem;
+  }
+  ion-card-content {
+    padding: 0.2rem;
+  }
+  &__col-button-price {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  &__label-price {
+    font-size: 1rem;
+    color: #EC0973;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-icon {
+      margin-right: 0.2rem;
+    }
+  }
+  &__button-price {
+    background: #EC0973;
+    color: white;
+    width: 100%;
+    height: 2.8rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+  }
+}
+.p-t-b {
+  padding: 0.2rem 0rem;
+}
+.b-r {
+  border: 1px solid #EC0973 !important;
+}
+.b-g {
+  border: 0.1rem solid #3cc3a2 !important;
+}
+
+
+.row-card-payment-method {
+  &__card {
+    border-radius: 1.2rem;
+    border: 0.1rem solid #D5D4D4;
+    margin: 0rem;
+  }
+  &__content {
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 1.2rem;
+    &--check {
+      color: #3cc3a2;
+      font-size: 2rem;
+      right: 1rem;
+      bottom: 1rem;
+      position: absolute;
+    }
+    &--imgpayment {
+      font-size: 5rem;
+      box-shadow: 0 .188rem .375rem #00000080;
+      border-radius: 0.6rem;
+    }
+    &--content--text {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1rem;
+      &--label1 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: black;
+      }
+      &--label2 {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #6C757D;
+        display: flex;
+        p {
+          font-weight: bold;
+        }
+      }
+      &--label3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        justify-content: left;
+        align-items: end;
+        color: #3cc3a2;
+        gap: 0.3rem;
+        p {
+          color: #3cc3a2;
+          margin: 0px !important;
+        }
+      }
+    }
+  }
+}
+
+
+
+.buttons {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  padding: 0;
+  margin: 0;
+  margin-top: 2rem;
+  width: 100%;
+  &__button-cancel {
+    background: white;
+    border: .1rem solid #EC0973;
+    color: #ec0973;
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: 45%;
+    height: 3.5rem;
+    border-radius: 2rem;
+  }
+  &__button-acept {
+    background: #EC0973;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 45%;
+    height: 3.5rem;
+    border-radius: 2rem;
+  }
+  &__button-finaly {
+    background: #EC0973;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 70%;
+    height: 3.5rem;
+    border-radius: 2rem;
+  }
+  &__button-acept:disabled{
+    opacity: 0.5;
+  }
+}
+
+
+
+.row-check {
+  margin-top: 2rem;
+  &__check {
+    width: 5.125rem;
+    height: 5.125rem;
+    border-radius: 4rem;
+    background-color: #3cc3a2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+    margin: auto;
+  }
+}
+.row-text {
+  ion-col {
+    text-align: center;
+  }
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18rem;
+    margin: auto;
+  }
+  &__price {
+    font-size: 2.7rem;
+    font-weight: bold;
+  }
+}

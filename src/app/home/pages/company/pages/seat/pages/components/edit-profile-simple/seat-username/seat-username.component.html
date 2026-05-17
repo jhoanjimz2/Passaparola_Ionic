@@ -1,0 +1,53 @@
+<section class="px-[16px] my-[48px]">
+  <section class="text-[16px] leading-[17px] font-bold">
+    {{ 'Nome che ti identificherà su passaparola' }}
+  </section>
+
+  <section class="text-[15px] leading-[17px] mt-[5px]">
+    {{ 'Questo è il nome con cui i tuoi clienti potranno identificarti nel passaparola.' }}
+  </section>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSave()"
+    autocomplete="off"
+    class="h-full relative"
+  >
+    <section class="mt-[10px]">
+      <input
+        #username
+        class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+        type="text"
+        [placeholder]="'@username'"
+        formControlName="username"
+        name="username"
+        autocomplete="off"
+      />
+      <div
+        *ngIf="displayMessage.name"
+        class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+      >
+        {{ displayMessage.name }}
+      </div>
+    </section>
+
+    <section
+      class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0"
+    >
+      <section class="bg-white opacity-45 absolute h-full w-full"></section>
+      <section
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+        (click)="onCancel()"
+      >
+        {{ "SEAT.CANCEL" | translate }}
+      </section>
+      <button
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        {{ "SEAT.SAVE" | translate }}
+      </button>
+    </section>
+  </form>
+</section>

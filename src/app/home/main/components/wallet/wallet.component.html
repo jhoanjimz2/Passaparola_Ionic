@@ -1,0 +1,70 @@
+<ion-card class="main-container">
+  <div>
+    <ion-card class="id-wallet-card">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="id-wallet-card__text">
+            <span (click)="goToWallet()">
+              {{ wallet.name }}
+            </span>
+
+            <ion-icon
+              class="id-wallet-card__icon"
+              (click)="modalMyWallets()"
+              name="chevron-down-circle-outline"
+              [ngClass]="{
+                'id-wallet-card--rorante': showModalWallets,
+                'id-wallet-card--expand': !showModalWallets
+              }"
+            ></ion-icon>
+          </ion-col>
+          <!-- <ion-col size="4" class="id-wallet-card__icon">
+            <ion-icon
+              (click)="modalMyWallets()"
+              name="chevron-down-circle-outline"
+              [ngClass]="{
+                'id-wallet-card--rorante': showModalWallets,
+                'id-wallet-card--expand': !showModalWallets
+              }"
+            ></ion-icon>
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="card" mode="md">
+      <ion-card-header class="card__header">
+        <ion-text>
+          <span class="card__header__text-atm">{{ "ATM/€ " | translate }}</span>
+          <span *ngIf="showAmount" class="card__header__amount">{{
+            wallet.balance! | formattNumber : "EUR" : "symbol" : "it" : 2
+          }}</span>
+          <span *ngIf="!showAmount" class="card__header__amount">{{
+            "********"
+          }}</span>
+          <ion-icon
+            (click)="showAmount = !showAmount"
+            class="card__header__icon-eye"
+            [name]="showAmount ? 'eye-off-outline' : 'eye-outline'"
+          ></ion-icon>
+        </ion-text>
+        <!-- <div class="card__header__add">
+          <ion-button (click)="modalOptionsRecharge()">
+            {{ "+ aggiungi credito" }}
+          </ion-button>
+        </div> -->
+
+        <div class="card__header__add">
+          <ion-button (click)="modalQrCode()" class="card__header__add__id"
+            >Wallet ID</ion-button
+          >
+          <ion-button
+            (click)="modalOptionsRecharge()"
+            class="card__header__add__add"
+            >+ {{ "WALLET.ADD_CREDIT" | translate }}</ion-button
+          >
+        </div>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-card>

@@ -1,0 +1,541 @@
+<!-- <app-header-auth></app-header-auth> -->
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1" *ngIf="phoneIsChecked">
+          <ion-button (click)="back()">
+            <ion-icon color="dark" name="arrow-back"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col [ngClass]="{ 'col-logo': phoneIsChecked }">
+          <img src="assets/images/logo-text.png" alt="" width="150px" />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-container" *ngIf="!isLoginCompany">
+    <ion-card>
+      <div>
+        <ion-card-header>
+          <ion-text>
+            <span class="main-container--f-z-27"
+              >{{"LOGIN.INTO" | translate }}</span
+            >
+            <br />
+            <span class="main-container--f-z-36">PassaParola</span>
+            <br />
+            <br />
+            <span>{{"LOGIN.ENTER_DATA" | translate }}</span>
+          </ion-text>
+        </ion-card-header>
+        <ion-card-content class="main-container--p-l-0 main-container--p-r-0">
+          <div class="main-container__form-login">
+            <form [formGroup]="formLogin" autocomplete="off">
+              <ion-grid
+                class="main-container__form-login__phone main-container--m-l-15 main-container--m-r-10"
+              >
+                <ion-label> {{"LOGIN.PHONE_NUMBER" | translate}} </ion-label>
+                <ion-row>
+                  <ion-col
+                    size="4.5"
+                    class="main-container--b-r-1"
+                    style="display: flex"
+                  >
+                    <img
+                      [src]="'assets/images/flags/' + codeCountry + '.png'"
+                      class="main-container__form-login__flag"
+                    />
+                    <ion-select
+                      class="main-container--m-l-30"
+                      formControlName="phonePrefix"
+                      name="phonePrefix"
+                      color="primary"
+                      placeholder="{{ 'SING_UP.COUNTRY' | translate }}"
+                      (ionChange)="
+                        getCountryCode(formLogin.controls['phonePrefix'].value)
+                      "
+                      interface="popover"
+                      toggleIcon="caret-down-outline"
+                    >
+                      <ion-select-option
+                        *ngFor="let country of countries"
+                        [value]="country.phonePrefix"
+                      >
+                        {{ country.phonePrefix }} {{ country.code }}
+                      </ion-select-option>
+                    </ion-select></ion-col
+                  >
+                  <ion-col size="7.5">
+                    <input
+                      class="border-transparent focus:border-transparent focus:ring-0"
+                      formControlName="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="{{'LOGIN.ENTER_PHONE' | translate}}"
+                    />
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <br />
+              <div
+                *ngIf="!phoneIsChecked"
+                class="main-container__form-login__btn_submit main-container--m-t-250"
+              >
+                <ion-button
+                  type="button"
+                  (click)="checkPhone()"
+                  expand="block"
+                  [disabled]="!formLogin.controls['phonePrefix'].value || !formLogin.controls['phone'].value"
+                >
+                  {{ "LOGIN.CHECK" | translate }}
+                </ion-button>
+              </div>
+
+              <div
+                *ngIf="!phoneIsChecked"
+                class="center-item"
+                style="margin-top: 15px; text-align: center"
+              >
+                <ion-text>
+                  <span
+                    >{{ "Non hai un account in Passaparola?" | translate
+                    }}</span
+                  >
+                  <br />
+                  <span (click)="goToRegister(true)" style="font-weight: 600"
+                    >{{ "Crealo adesso" | translate }}</span
+                  >
+                </ion-text>
+              </div>
+
+              <div *ngIf="phoneIsChecked">
+                <div class="main-container__card-pin-user">
+                  <ion-label
+                    color="light"
+                    class="main-container--f-z-12 main-container--f-w-b"
+                  >
+                    {{ "LOGIN.PIN" | translate}}
+                  </ion-label>
+                  <div class="main-container__form-login__code">
+                    <div
+                      class="main-container__form-login__input main-container--bg-b-light"
+                    >
+                      <input
+                        class="border-transparent main-container--bg-light"
+                        #code1
+                        (keyup)="inputCode(1); togglePasswordVisibility(code1)"
+                        (focus)="cleanInput('code1')"
+                        formControlName="code1"
+                        name="code1"
+                        mask="0"
+                        [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                        [type]="!showPassword ? 'password' : 'text'"
+                        inputmode="numeric"
+                      />
+                    </div>
+                    <div
+                      class="main-container__form-login__input main-container--bg-b-light"
+                    >
+                      <input
+                        class="border-transparent focus:border-transparent focus:ring-0"
+                        #code2
+                        (keyup)="inputCode(2); togglePasswordVisibility(code2)"
+                        (focus)="cleanInput('code2')"
+                        formControlName="code2"
+                        name="code2"
+                        mask="0"
+                        [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                        [type]="!showPassword ? 'password' : 'text'"
+                        inputmode="numeric"
+                      />
+                    </div>
+                    <div
+                      class="main-container__form-login__input main-container--bg-b-light"
+                    >
+                      <input
+                        class="border-transparent focus:border-transparent focus:ring-0"
+                        #code3
+                        (keyup)="inputCode(3); togglePasswordVisibility(code3)"
+                        (focus)="cleanInput('code3')"
+                        formControlName="code3"
+                        name="code3"
+                        mask="0"
+                        [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                        [type]="!showPassword ? 'password' : 'text'"
+                        inputmode="numeric"
+                      />
+                    </div>
+                    <div
+                      class="main-container__form-login__input main-container--bg-b-light"
+                    >
+                      <input
+                        class="border-transparent focus:border-transparent focus:ring-0"
+                        #code4
+                        (keyup)="inputCode(4); togglePasswordVisibility(code4)"
+                        (focus)="cleanInput('code4')"
+                        formControlName="code4"
+                        name="code4"
+                        mask="0"
+                        [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                        [type]="!showPassword ? 'password' : 'text'"
+                        inputmode="numeric"
+                      />
+                    </div>
+                    <div
+                      class="main-container__form-login__input main-container--bg-b-light"
+                    >
+                      <input
+                        class="border-transparent focus:border-transparent focus:ring-0"
+                        #code5
+                        formControlName="code5"
+                        (focus)="cleanInput('code5')"
+                        (keyup)="togglePasswordVisibility(code5)"
+                        name="code5"
+                        mask="0"
+                        [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                        [type]="!showPassword ? 'password' : 'text'"
+                        inputmode="numeric"
+                      />
+                    </div>
+                    <div
+                      class="main-container__form-login__input main-container__form-login__icon"
+                    >
+                      <ion-icon
+                        (click)="showPassword = !showPassword"
+                        color="light"
+                        [name]="showPassword ? 'eye-off' : 'eye-outline'"
+                      ></ion-icon>
+                    </div>
+                  </div>
+
+                  <!-- <ion-grid>
+                    <ion-row>
+                      <ion-col size="1"
+                        ><ion-checkbox
+                          mode="md"
+                          color="orange"
+                          formControlName="stayConnected"
+                          name="stayConnected"
+                        ></ion-checkbox
+                      ></ion-col>
+                      <ion-col>{{'LOGIN.REMEMBER' | translate}}</ion-col>
+                    </ion-row>
+                  </ion-grid> -->
+                  <br />
+                  <div class="main-container__form-login__btn_submit-user">
+                    <ion-button
+                      type="button"
+                      (click)="loginUser()"
+                      [disabled]="!userAvailable || this.formLogin.invalid"
+                      expand="block"
+                      [ngClass]="{'main-container__form-login__btn_submit-user--disabled': !userAvailable || this.formLogin.invalid}"
+                    >
+                      {{ "Entra in Passaparola" | translate }}
+                    </ion-button>
+                  </div>
+                </div>
+
+                <br />
+
+                <!-- <div class="main-container__form-login__btn_submit-company">
+                  <ion-button
+                    type="button"
+                    (click)="loginCompanytOrSeat()"
+                    [disabled]="!companyAvailable"
+                    expand="block"
+                    color="dark"
+                  >
+                    {{ "LOGIN.ENTER_BUSINESS_PROFILE" | translate }}
+                  </ion-button>
+                </div> -->
+
+                <div class="main-container__form-login__text-change-pin">
+                  <ion-text>
+                    <span>{{ "LOGIN.FOGOTTEN_PIN" | translate }}</span>
+                    <br />
+                    <span
+                      (click)="changePin()"
+                      class="main-container__form-login__text-change-pin--text-orange"
+                      >{{ "LOGIN.CLICK_TO_CHANGE" | translate }}</span
+                    >
+                  </ion-text>
+                </div>
+              </div>
+            </form>
+          </div>
+        </ion-card-content>
+      </div>
+    </ion-card>
+  </div>
+
+  <div *ngIf="isLoginCompany" class="login-company">
+    <ion-text>
+      <!-- <span class="login-company__text1">{{"Bentornato" | translate}},</span>
+      <br />
+      <span class="login-company__text2">{{profileCompany.name}}</span> -->
+      <span class="main-container--f-z-27">{{"LOGIN.INTO" | translate }}</span>
+      <br />
+      <span class="main-container--f-z-36">PassaParola</span>
+      <br />
+      <br />
+      <span *ngIf="!accountCompany.id" class="login-company__text3"
+        >{{"LOGIN.CHOOSE_ACCOUNT" | translate}}</span
+      >
+      <span *ngIf="accountCompany.id" class="login-company__text3"
+        >{{"LOGIN.YOU_KNOW_BY_ACCESING" | translate}}</span
+      >
+    </ion-text>
+
+    <div *ngIf="!accountCompany.id">
+      <div class="center-item">
+        <ion-card
+          class="login-company__card-seat"
+          (click)="selectCompanyAccount(company.profile, 'assets/images/legal-seat-icon.png', 'main')"
+        >
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" class="center-item">
+                <div class="login-company__card-seat__img">
+                  <img src="assets/images/legal-seat-icon.png" alt="" />
+                </div>
+              </ion-col>
+              <ion-col size="8" class="login-company__card-seat__text">
+                <ion-text>
+                  <span class="login-company__card-seat__text-legal"
+                    >{{"LOGIN.LEGAL_SEAT" | translate}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__legal-name"
+                    >{{company.profile?.name}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__access"
+                    >{{"LOGIN.FULL_ACCESS" | translate}}</span
+                  >
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+
+      <div class="center-item" *ngFor="let seat of company.profile?.seats">
+        <ion-card
+          class="login-company__card-seat"
+          (click)="selectCompanyAccount(seat, 'assets/images/operative-seat-icon.png', 'seat')"
+        >
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" class="center-item">
+                <div class="login-company__card-seat__img">
+                  <img src="assets/images/operative-seat-icon.png" alt="" />
+                </div>
+              </ion-col>
+              <ion-col size="8" class="login-company__card-seat__text">
+                <ion-text>
+                  <span class="login-company__card-seat__text-legal"
+                    >{{"LOGIN.OPER_SEAT" | translate}} {{seat.prog}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__legal-name"
+                    >{{seat.name}} - {{seat.address}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__access-orange"
+                    >{{'LOGIN.PARTIAL_ACCESS' | translate}}</span
+                  >
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+    </div>
+
+    <div *ngIf="accountCompany.id" class="login-company__container">
+      <div class="center-item">
+        <ion-card
+          *ngIf="accountCompany.type === 'main'"
+          class="login-company__card-seat-select"
+          (click)="selectCompanyAccount(company.profile, 'assets/images/legal-seat-icon.png', 'main')"
+        >
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" class="center-item">
+                <div class="login-company__card-seat-select__img">
+                  <img src="assets/images/legal-seat-icon.png" alt="" />
+                </div>
+              </ion-col>
+              <ion-col
+                size="auto"
+                class="login-company__card-seat-select__text"
+              >
+                <ion-text>
+                  <span class="login-company__card-seat__text-legal"
+                    >{{"LOGIN.LEGAL_SEAT" | translate}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__legal-name"
+                    >{{company.profile?.name}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__access"
+                    >{{"LOGIN.FULL_ACCESS" | translate}}</span
+                  >
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+
+        <ion-card
+          *ngIf="accountCompany.type === 'seat'"
+          class="login-company__card-seat-select"
+          (click)="selectCompanyAccount(company.profile, 'assets/images/legal-seat-icon.png', 'main')"
+        >
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto" class="center-item">
+                <div class="login-company__card-seat__img">
+                  <img src="assets/images/operative-seat-icon.png" alt="" />
+                </div>
+              </ion-col>
+              <ion-col size="auto" class="login-company__card-seat__text">
+                <ion-text>
+                  <span class="login-company__card-seat__text-legal"
+                    >{{"LOGIN.OPER_SEAT" | translate}}
+                    {{accountCompany.prog}}</span
+                  >
+                  <br />
+                  <span class="login-company__card-seat__legal-name"
+                    >{{accountCompany.name}}
+                  </span>
+                  <br />
+                  <span class="login-company__card-seat__access-orange"
+                    >{{'LOGIN.PARTIAL_ACCESS' | translate}}</span
+                  >
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+
+      <div class="main-container__card-pin-seat">
+        <form
+          [formGroup]="formLogin"
+          autocomplete="off"
+          (ngSubmit)="checkPhone()"
+        >
+          <div class="main-container--text-left">
+            <ion-label
+              class="main-container--f-z-12 main-container--f-w-b main-container--text-dark"
+            >
+              {{ "LOGIN.PIN" | translate}}
+            </ion-label>
+          </div>
+          <div class="main-container__form-login__code">
+            <div
+              class="main-container__form-login__input main-container--bg-b-grey"
+            >
+              <input
+                class="border-transparent main-container--bg-light"
+                #code1
+                (keyup)="inputCode(1); togglePasswordVisibility(code1)"
+                (focus)="cleanInput('code1')"
+                formControlName="code1"
+                name="code1"
+                mask="0"
+                [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                [type]="!showPassword ? 'password' : 'text'"
+                inputmode="numeric"
+              />
+            </div>
+            <div
+              class="main-container__form-login__input main-container--bg-b-grey"
+            >
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                #code2
+                (keyup)="inputCode(2); togglePasswordVisibility(code2)"
+                (focus)="cleanInput('code2')"
+                formControlName="code2"
+                name="code2"
+                mask="0"
+                [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                [type]="!showPassword ? 'password' : 'text'"
+                inputmode="numeric"
+              />
+            </div>
+            <div
+              class="main-container__form-login__input main-container--bg-b-grey"
+            >
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                #code3
+                (keyup)="inputCode(3); togglePasswordVisibility(code3)"
+                (focus)="cleanInput('code3')"
+                formControlName="code3"
+                name="code3"
+                mask="0"
+                [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                [type]="!showPassword ? 'password' : 'text'"
+                inputmode="numeric"
+              />
+            </div>
+            <div
+              class="main-container__form-login__input main-container--bg-b-grey"
+            >
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                #code4
+                (keyup)="inputCode(4); togglePasswordVisibility(code4)"
+                (focus)="cleanInput('code4')"
+                formControlName="code4"
+                name="code4"
+                mask="0"
+                [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                [type]="!showPassword ? 'password' : 'text'"
+                inputmode="numeric"
+              />
+            </div>
+            <div
+              class="main-container__form-login__input main-container--bg-b-grey"
+            >
+              <input
+                class="border-transparent focus:border-transparent focus:ring-0"
+                #code5
+                formControlName="code5"
+                (focus)="cleanInput('code5')"
+                (keyup)="inputCode(4); togglePasswordVisibility(code5)"
+                name="code5"
+                mask="0"
+                [autocomplete]="!showPassword ? 'new-password' : 'off'"
+                [type]="!showPassword ? 'password' : 'text'"
+                inputmode="numeric"
+              />
+            </div>
+            <div
+              class="main-container__form-login__input main-container__form-login__icon"
+            >
+              <ion-icon
+                (click)="showPassword = !showPassword"
+                [name]="showPassword ? 'eye-off' : 'eye-outline'"
+              ></ion-icon>
+            </div>
+          </div>
+          <br />
+          <div class="main-container__form-login__btn_submit-seat">
+            <ion-button type="button" (click)="loginBusiness()" expand="block">
+              {{ "LOGIN.ENTER_BUSINESS" | translate }}
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,124 @@
+<!-- post-feed.component.html -->
+<ng-container *ngIf="post.typeFile === 'image'; else videoTemplate">
+  <div class="post-media post-media--image" (click)="handleClick()" (dblclick)="handleDoubleClick()">
+    <img
+      class="post-media__image"
+      [src]="post.urlFile || 'https://placehold.co/600x400?text=Image'"
+      [ngClass]="{
+        'post-media__image--slide': slide
+      }"
+    />
+
+    <!-- Animación de like — oculta para usuarios restringidos -->
+    <div
+      *ngIf="!isRestrictedUser"
+      class="post-media__like-overlay"
+      [ngClass]="{
+        'post-media__like-overlay--moving': showLikeOverlay
+      }"
+    >
+      <ion-icon
+        name="passaparola-post-like"
+        class="post-media__like-overlay-icon"
+        [ngClass]="{
+          'post-media__like-overlay-icon--active': showLikeOverlay
+        }"
+      ></ion-icon>
+    </div>
+
+    <!-- Icono de like — oculto para usuarios restringidos -->
+    <div class="post-media__like-container" *ngIf="!isRestrictedUser && (statusLike || isDisappearing)">
+      <ion-icon
+        name="passaparola-post-like"
+        class="post-media__like-icon post-media__like-icon--liked"
+        [ngClass]="{
+          'post-media__like-icon--appearing': isAnimating,
+          'post-media__like-icon--disappearing': isDisappearing,
+          'post-media__like-icon--disabled': likeDisponible
+        }">
+      </ion-icon>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #videoTemplate>
+  <div class="post-media post-media--video" (click)="handleClick()" (dblclick)="handleDoubleClick()">
+    <!-- Contenedor para el skeleton -->
+    <div
+      *ngIf="!videoReady"
+      class="post-media__skeleton-container"
+      [ngClass]="{
+        'post-media__skeleton-container--slide': slide
+      }"
+    >
+      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+    </div>
+
+    <!-- Video sin audio, siempre muted -->
+    <video
+      #videoEl
+      class="post-media__video"
+      [ngClass]="{
+        'post-media__video--slide': slide
+      }"
+      [class.video-hidden]="!videoReady"
+      [src]="post.urlFile + '#t=0.1'"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      disablePictureInPicture
+      controlsList="nodownload nofullscreen noremoteplayback"
+      (loadeddata)="onVideoReady()"
+    ></video>
+
+    <!-- Animación de like — oculta para usuarios restringidos -->
+    <div
+      *ngIf="!isRestrictedUser"
+      class="post-media__like-overlay"
+      [ngClass]="{
+        'post-media__like-overlay--moving': showLikeOverlay
+      }"
+    >
+      <ion-icon
+        name="passaparola-post-like"
+        class="post-media__like-overlay-icon"
+        [ngClass]="{
+          'post-media__like-overlay-icon--active': showLikeOverlay
+        }"
+      ></ion-icon>
+    </div>
+
+    <ion-icon
+      *ngIf="videoReady"
+      name="passaparola-post-video"
+      class="post-media__video-icon">
+    </ion-icon>
+
+    <!-- Icono de like — oculto para usuarios restringidos -->
+    <div class="post-media__like-container" *ngIf="!isRestrictedUser && (statusLike || isDisappearing)">
+      <ion-icon
+        name="passaparola-post-like"
+        class="post-media__like-icon post-media__like-icon--liked"
+        [ngClass]="{
+          'post-media__like-icon--appearing': isAnimating,
+          'post-media__like-icon--disappearing': isDisappearing,
+          'post-media__like-icon--disabled': likeDisponible
+        }">
+      </ion-icon>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  *ngIf="feed && amountTags"
+  class="post-tags"
+>
+  <ion-icon
+    name="passaparola-post-tags"
+    class="post-tags__icon">
+  </ion-icon>
+  <span class="post-tags__text">
+    {{ amountTags }} tag
+  </span>
+</div>

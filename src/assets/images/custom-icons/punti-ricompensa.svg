@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_5751" data-name="Path 5751" d="M15,18.164H40.538V42.39H15Zm0,0"/>
+    </clipPath>
+    <clipPath id="clip-punti_ricompensa">
+      <rect width="56" height="56"/>
+    </clipPath>
+  </defs>
+  <g id="punti_ricompensa" data-name="punti ricompensa" clip-path="url(#clip-punti_ricompensa)">
+    <g id="Component_572_11" data-name="Component 572 – 11" transform="translate(2 2)">
+      <g id="invia">
+        <rect id="Rectangle_2721" data-name="Rectangle 2721" width="52" height="52" rx="11" fill="#fff" opacity="0.2"/>
+        <rect id="Rectangle_2722" data-name="Rectangle 2722" width="48" height="48" rx="11" transform="translate(2 2)" fill="#fff" opacity="0.3"/>
+        <g id="punti_ricompensa-2" data-name="punti ricompensa" transform="translate(-1.511 -4.033)" clip-path="url(#clip-path)">
+          <path id="Path_5750" data-name="Path 5750" d="M35.154,42.321a.656.656,0,0,1-.35-.1l-7.084-4.277-7.084,4.277a.668.668,0,0,1-.738-.031.667.667,0,0,1-.258-.693l1.88-8.064-6.267-5.425a.668.668,0,0,1-.2-.712.668.668,0,0,1,.579-.459l8.247-.7,3.224-7.6a.7.7,0,0,1,1.231,0l3.222,7.6,8.247.7a.668.668,0,0,1,.38,1.17l-6.261,5.425,1.88,8.064a.646.646,0,0,1,.017.149.7.7,0,0,1-.016.15.677.677,0,0,1-.129.269.713.713,0,0,1-.106.106.676.676,0,0,1-.269.13A.687.687,0,0,1,35.154,42.321ZM27.721,36.5a.66.66,0,0,1,.344.1l6.078,3.668-1.612-6.915a.664.664,0,0,1,.016-.358.655.655,0,0,1,.2-.3l5.37-4.652-7.072-.6a.667.667,0,0,1-.559-.4L27.721,20.51l-2.764,6.524a.668.668,0,0,1-.559.4l-7.072.6,5.37,4.652a.665.665,0,0,1,.214.657L21.3,40.262l6.078-3.668A.661.661,0,0,1,27.721,36.5Zm0,0" transform="translate(-0.018 -0.003)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

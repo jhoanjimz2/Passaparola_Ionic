@@ -1,0 +1,162 @@
+<app-header
+  [backIcon]="true"
+  [border]="false"
+  [modalDismiss]="false"
+></app-header>
+<ion-content>
+
+  <section class="create-address">
+
+    <span class="create-address__title">{{ getTitle() }}</span>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-address__form">
+
+      <div class="create-address__field">
+        <span class="create-address__label">Nickname profilo di spedizione (opzionale)</span>
+        <input
+          formControlName="nickname"
+          class="create-address__input"
+          placeholder="crea un nickname per il profilo di spedizione"
+        >
+      </div>
+
+      <div class="create-address__field">
+        <span class="create-address__label">Nome e cognome</span>
+        <input
+          formControlName="name"
+          class="create-address__input"
+          [class.create-address__input--error]="isFieldInvalid('name')"
+          placeholder="scrivi qui il nome e cognome completo"
+        >
+      </div>
+
+      <div class="create-address__field">
+        <span class="create-address__label">Numero telefonico di contatto</span>
+        <div class="create-address__phone">
+          <img
+            [src]="'assets/images/flags/' + selectedCountryCode + '.png'"
+            class="create-address__phone-flag"
+          />
+          <ion-select
+            interface="popover"
+            formControlName="phonePrefix"
+            (ionChange)="onCountryChange($event)"
+            class="create-address__phone-select">
+            <ion-select-option *ngFor="let country of countries" [value]="country.phonePrefix">
+              {{ country.phonePrefix }} {{ country.code }}
+            </ion-select-option>
+          </ion-select>
+          <input
+            type="tel"
+            placeholder="numero di contatto"
+            formControlName="phoneNumber"
+            [class.create-address__input--error]="isFieldInvalid('phoneNumber')"
+            class="create-address__phone-input"
+          />
+        </div>
+      </div>
+
+      <div class="create-address__field">
+        <span class="create-address__label">Indirizzo di spedizione</span>
+        <div class="create-address__address-wrapper">
+          <input
+            #inputAddress
+            formControlName="address"
+            placeholder="Nome della via"
+            [class.create-address__input--error]="isFieldInvalid('address')"
+            class="create-address__input create-address__input--icon"
+          />
+          <ion-icon class="create-address__location-icon" name="locate"></ion-icon>
+          <div class="create-address__location-dot"></div>
+        </div>
+      </div>
+
+      <div class="create-address__row">
+        <div class="create-address__col-2">
+          <input
+            formControlName="nro"
+            [class.create-address__input--error]="isFieldInvalid('nro')"
+            class="create-address__input"
+            placeholder="numero civico"
+          >
+        </div>
+        <div class="create-address__col-3">
+          <input
+            formControlName="locality"
+            [class.create-address__input--error]="isFieldInvalid('locality')"
+            class="create-address__input"
+            placeholder="località"
+          >
+        </div>
+      </div>
+
+      <div class="create-address__row">
+        <div class="create-address__col-3">
+          <input
+            formControlName="province"
+            [class.create-address__input--error]="isFieldInvalid('province')"
+            class="create-address__input"
+            placeholder="Provincia"
+          >
+        </div>
+        <div class="create-address__col-2">
+          <input
+            formControlName="CAP"
+            [class.create-address__input--error]="isFieldInvalid('CAP')"
+            class="create-address__input"
+            placeholder="CAP"
+          >
+        </div>
+      </div>
+
+      <div class="create-address__divider">
+        <div class="create-address__divider-line"></div>
+        <span class="create-address__divider-text">opzionale</span>
+        <div class="create-address__divider-line"></div>
+      </div>
+
+      <div class="create-address__field">
+        <span class="create-address__label">Istruzioni per la consegna</span>
+        <textarea
+          formControlName="deliveryInstructions"
+          class="create-address__textarea"
+          rows="6"
+          placeholder="note, preferenze, codici di accesso e altro"
+        ></textarea>
+      </div>
+
+      <div class="create-address__checkbox-wrapper">
+        <ion-checkbox
+          mode="md"
+          formControlName="predefine"
+          labelPlacement="end"
+          class="create-address__checkbox">
+          Usa come indirizzo predefinito
+        </ion-checkbox>
+      </div>
+
+    </form>
+
+  </section>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div class="create-address__footer">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="create-address__button create-address__button--secondary">
+        Annulla
+      </button>
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="form.invalid || isSubmitting || isLoadingAddress"
+        class="create-address__button create-address__button--primary">
+        {{ getSubmitButtonText() }}
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

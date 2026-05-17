@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border" mode="md">
+  <ion-toolbar>
+    <div class="header-content">
+      <div class="header-content__left">
+        <button (click)="back()" class="btn btn--orange" *ngIf="backButton">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        <img src="assets/images/jointlybuy/jointlybuy-logo.png" class="header-content__logo">
+      </div>
+
+      <button
+        (click)="openNotifications()"
+        [ngClass]="{
+          'btn--blue-outline': !modal,
+          'btn--blue': modal
+        }"
+        class="btn notification-button"
+        *ngIf="notification"
+      >
+        <ion-icon name="notifications"></ion-icon>
+        <!-- Badge indicador de notificaciones sin leer -->
+        <span class="notification-badge" *ngIf="hasUnreadNotifications"></span>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>

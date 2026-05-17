@@ -1,0 +1,47 @@
+<swiper-container
+  #swiperItem
+  [ngClass]="{
+    onboarding: disabled && startAnimation,
+    'swiper-disabled': disabled
+  }"
+  [attr.slides-per-view]="disabled && startAnimation ? 4 : 'auto'"
+  [attr.space-between]="disabled && startAnimation ? 15 : 10"
+  [attr.centered-slides]="disabled && startAnimation"
+  [attr.slide-to-clicked-slide]="disabled && startAnimation"
+>
+  <swiper-slide
+    *ngFor="let item of categoriesTranslates; let i = index"
+    [ngClass]="{
+      'm-r-10': categoriesTranslates.length === i + 1,
+      'swiper-slide-active-custom': i === selectedIndex && disabled && startAnimation
+    }"
+  >
+    <ion-card (click)="onNavigateCategorie(item)">
+      <ion-card-header class="p-5">
+        <img
+          [src]="item.img"
+          [alt]="item.title"
+          width="100%"
+          height="90px"
+          class="object-cover"
+        />
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ item.title }}</p>
+      </ion-card-content>
+    </ion-card>
+  </swiper-slide>
+</swiper-container>
+
+<div *ngIf="disabled && startAnimation" class="onboarding-info">
+  <div class="text">
+    <span>{{ "ONBOARDING.INFO_EVENT" | translate }}</span>
+  </div>
+
+  <div class="btn">
+    <ion-button>
+      {{ "ONBOARDING.DISCOVER_EVENTS" | translate }}
+    </ion-button>
+  </div>
+</div>

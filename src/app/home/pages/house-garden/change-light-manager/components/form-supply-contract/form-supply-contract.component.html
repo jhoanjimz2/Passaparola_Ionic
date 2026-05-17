@@ -1,0 +1,197 @@
+<section class="p-[0.625rem] text-center">
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="formDocuments" class="flex flex-col gap-4">
+
+    <!-- Documentos de identidad -->
+    <div class="flex flex-row gap-2">
+      <!-- Frente -->
+      <div
+        class="input-field-file cursor-pointer relative"
+        [class.opacity-60]="urlFrontIdDoc"
+        [style.background-image]="urlFrontIdDoc ? 'url(' + urlFrontIdDoc + ')' : 'none'"
+        [style.background-size]="'cover'"
+        [style.background-position]="'center'"
+        (click)="takePictureFront()"
+      >
+        <ng-container *ngIf="!urlFrontIdDoc && !loadingFront">
+          <ion-icon class="icon-field" name="cloud-upload-outline"></ion-icon>
+          <span class="span-field">Carica documento d'identità</span>
+          <span class="span-field font-bold">Fronte</span>
+        </ng-container>
+        <ng-container *ngIf="loadingFront">
+          <ion-icon class="icon-field animate-spin" name="reload-outline"></ion-icon>
+          <span class="span-field">Caricamento...</span>
+        </ng-container>
+        <ng-container *ngIf="urlFrontIdDoc && !loadingFront">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-[0.438rem]">
+            <ion-icon class="text-white text-4xl" name="checkmark-circle"></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Retro -->
+      <div
+        class="input-field-file cursor-pointer relative"
+        [class.opacity-60]="urlBackIdDoc"
+        [style.background-image]="urlBackIdDoc ? 'url(' + urlBackIdDoc + ')' : 'none'"
+        [style.background-size]="'cover'"
+        [style.background-position]="'center'"
+        (click)="takePictureBack()"
+      >
+        <ng-container *ngIf="!urlBackIdDoc && !loadingBack">
+          <ion-icon class="icon-field" name="cloud-upload-outline"></ion-icon>
+          <span class="span-field">Carica documento d'identità</span>
+          <span class="span-field font-bold">Retro</span>
+        </ng-container>
+        <ng-container *ngIf="loadingBack">
+          <ion-icon class="icon-field animate-spin" name="reload-outline"></ion-icon>
+          <span class="span-field">Caricamento...</span>
+        </ng-container>
+        <ng-container *ngIf="urlBackIdDoc && !loadingBack">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-[0.438rem]">
+            <ion-icon class="text-white text-4xl" name="checkmark-circle"></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Código fiscal y última boleta -->
+    <div class="flex flex-row gap-2">
+      <!-- Código fiscal -->
+      <div
+        class="input-field-file cursor-pointer relative"
+        [class.opacity-60]="urlTaxIdDoc"
+        [style.background-image]="urlTaxIdDoc ? 'url(' + urlTaxIdDoc + ')' : 'none'"
+        [style.background-size]="'cover'"
+        [style.background-position]="'center'"
+        (click)="takePictureTaxId()"
+      >
+        <ng-container *ngIf="!urlTaxIdDoc && !loadingTaxId">
+          <ion-icon class="icon-field" name="cloud-upload-outline"></ion-icon>
+          <span class="span-field">Codice fiscale</span>
+        </ng-container>
+        <ng-container *ngIf="loadingTaxId">
+          <ion-icon class="icon-field animate-spin" name="reload-outline"></ion-icon>
+          <span class="span-field">Caricamento...</span>
+        </ng-container>
+        <ng-container *ngIf="urlTaxIdDoc && !loadingTaxId">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-[0.438rem]">
+            <ion-icon class="text-white text-4xl" name="checkmark-circle"></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Última boleta -->
+      <div
+        class="input-field-file cursor-pointer relative"
+        [class.opacity-60]="urlLastBill"
+        [style.background-image]="urlLastBill ? 'url(' + urlLastBill + ')' : 'none'"
+        [style.background-size]="'cover'"
+        [style.background-position]="'center'"
+        (click)="takePictureBill()"
+      >
+        <ng-container *ngIf="!urlLastBill && !loadingBill">
+          <ion-icon class="icon-field" name="cloud-upload-outline"></ion-icon>
+          <span class="span-field">Ultima bolletta</span>
+        </ng-container>
+        <ng-container *ngIf="loadingBill">
+          <ion-icon class="icon-field animate-spin" name="reload-outline"></ion-icon>
+          <span class="span-field">Caricamento...</span>
+        </ng-container>
+        <ng-container *ngIf="urlLastBill && !loadingBill">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-[0.438rem]">
+            <ion-icon class="text-white text-4xl" name="checkmark-circle"></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Lugar y Fecha -->
+    <div class="grid grid-cols-12 gap-2">
+      <div class="field col-span-6">
+        <label class="label-field">Luogo</label>
+        <input
+          name="place"
+          formControlName="place"
+          class="input-field"
+          [class.border-red-500]="hasError('place')"
+          placeholder="esempio: Roma"
+        />
+        <div *ngIf="hasError('place')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('place') }}
+        </div>
+      </div>
+      <div class="field col-span-6">
+        <label class="label-field">Data</label>
+        <input
+          name="registrationDate"
+          formControlName="registrationDate"
+          class="input-field"
+          [class.border-red-500]="hasError('registrationDate')"
+          placeholder="formato gg/mm/aaaa"
+        />
+        <div *ngIf="hasError('registrationDate')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('registrationDate') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Términos y condiciones -->
+    <div class="border-[#E1E1E1] bg-white border border-solid rounded-[15px] p-4 flex flex-col gap-2">
+      <label class="cursor-pointer flex items-start gap-2">
+        <input
+          type="checkbox"
+          name="termsAcceptance1"
+          formControlName="termsAcceptance1"
+          class="custom-checkbox peer shrink-0"
+        >
+        <span class="text-black font-light text-sm">
+          Accettazione termini contrattuali
+        </span>
+      </label>
+      <div *ngIf="hasError('termsAcceptance1')" class="text-red-500 text-xs text-left">
+        {{ getErrorMessage('termsAcceptance1') }}
+      </div>
+
+      <label class="cursor-pointer flex items-start gap-2">
+        <input
+          type="checkbox"
+          name="termsAcceptance2"
+          formControlName="termsAcceptance2"
+          class="custom-checkbox peer shrink-0"
+        >
+        <span class="text-black font-light text-sm">
+          Accettazione termini contrattuali
+        </span>
+      </label>
+      <div *ngIf="hasError('termsAcceptance2')" class="text-red-500 text-xs text-left">
+        {{ getErrorMessage('termsAcceptance2') }}
+      </div>
+
+      <label class="cursor-pointer flex items-start gap-2">
+        <input
+          type="checkbox"
+          name="termsAcceptance3"
+          formControlName="termsAcceptance3"
+          class="custom-checkbox peer shrink-0"
+        >
+        <span class="text-black font-light text-sm">
+          Accettazione termini contrattuali
+        </span>
+      </label>
+      <div *ngIf="hasError('termsAcceptance3')" class="text-red-500 text-xs text-left">
+        {{ getErrorMessage('termsAcceptance3') }}
+      </div>
+    </div>
+
+    <!-- Botón Submit -->
+    <button
+      class="button-field mx-auto"
+      type="submit"
+    >
+      Continua
+    </button>
+
+  </form>
+
+</section>

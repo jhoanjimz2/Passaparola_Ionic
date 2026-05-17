@@ -1,0 +1,308 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__community-card" (click)="modalFriends()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" class="main-container__community-card__flag"
+          ><img
+            [src]="
+              'assets/images/flags/' + summaryCommunity.countryCode + '.png'
+            "
+          />
+        </ion-col>
+        <ion-col size="4" class="main-container__community-card__country">
+          <ion-text>
+            <span class="main-container__community-card__country__text1">{{
+              "Community"
+            }}</span>
+            <br />
+            <span class="main-container__community-card__country__text2">{{
+              summaryCommunity.country
+            }}</span>
+          </ion-text>
+        </ion-col>
+        <ion-col
+          size="4"
+          class="main-container__community-card__country__friends"
+        >
+          <span class="main-container__community-card__country__friends__text">
+            {{ summaryCommunity.friends }}
+          </span>
+        </ion-col>
+        <ion-col
+          size="2"
+          class="main-container__community-card__country__friends__btn-plus"
+        >
+          <ion-button>
+            <ion-icon name="passaparola-user-plus"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <div class="main-container__community-info">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-text>
+            <span class="main-container__community-info__label">
+              {{ "COMMUNITY.YOUR_EARNINGS" | translate }}
+              <ion-icon
+                (click)="showAtm = !showAtm"
+                class="main-container__community-info__icon-eye"
+                [name]="showAtm ? 'eye-off-outline' : 'eye-outline'"
+              ></ion-icon>
+            </span>
+            <br />
+            <span *ngIf="showAtm" class="main-container__community-info__atm">
+              {{
+                summaryCommunity.earnings!
+                  | formattNumber : "EUR" : "symbol" : "it" : 2
+              }}
+              ATM/€
+            </span>
+            <span *ngIf="!showAtm" class="main-container__community-info__atm">
+              {{ "******" }} ATM/€
+            </span>
+            <br />
+            <span class="main-container__community-info__label">{{
+              user.createdAt | date : "'dd/MM/yyyy"
+            }}</span>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6" class="main-container--text-right">
+          <ion-text>
+            <span class="main-container__community-info__label">
+              {{ "COMMUNITY.MISSING" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-info__text-next-level">
+              -{{
+                summaryCommunity.missingToNextLevel!
+                  | formattNumber : "EUR" : "symbol" : "it" : 2
+              }}
+            </span>
+            <br />
+            <span class="main-container__community-info__label">{{
+              "al prossimo livello" | translate
+            }}</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="main-container__hr"></div>
+
+  <div class="main-container__community-summary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-text>
+            <span class="main-container__community-summary__text-dark">
+              {{ "COMMUNITY.PR_PERSONAL" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-summary__text-large">
+              {{
+                summaryCommunity.myRewardPoints
+                  | formattNumber : "EUR" : "symbol" : "it" : 2
+              }} €
+            </span>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>
+            <span class="main-container__community-summary__text-dark">
+              {{ "COMMUNITY.FRIENDS_DIRECT" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-summary__text-large">
+              {{ summaryCommunity.friends }}
+            </span>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>
+            <span class="main-container__community-summary__text-dark">
+              {{ "COMMUNITY.MY_LEVEL" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-summary__text-large">
+              {{ summaryCommunity.worldRewardPoints?.level }}
+            </span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="main-container--m-t-15">
+        <ion-col>
+          <ion-text>
+            <span class="main-container__community-summary__text-dark">
+              {{ "COMMUNITY.PR_COMMUNITY" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-summary__text-large">
+              {{
+                summaryCommunity.rewardPoints
+                  | formattNumber : "EUR" : "symbol" : "it" : 2
+              }}
+              €
+            </span>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>
+            <span class="main-container__community-summary__text-dark">
+              {{ "COMMUNITY.TOTAL_MEMBERS" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-summary__text-large">
+              {{ summaryCommunity.communityFriends }}
+            </span>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>
+            <span class="main-container__community-summary__text-dark">
+              {{ "COMMUNITY.MY_PERCENTAJE" | translate }}
+            </span>
+            <br />
+            <span class="main-container__community-summary__text-large">
+              {{ summaryCommunity.worldRewardPoints?.percentage }}%
+            </span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <app-invite-card></app-invite-card>
+
+  <br />
+
+  <ion-label class="main-container__label_level">{{
+    "COMMUNITY.LEVEL" | translate
+  }}</ion-label>
+  <ion-card class="main-container__level-card">
+    <ion-grid>
+      <ion-row
+        *ngFor="let worldRewardPoint of worldRewardPoints"
+        (click)="modalFriendsByLevel(worldRewardPoint)"
+        [ngClass]="{
+          'main-container__level-card--row-active':
+            summaryCommunity.worldRewardPoints?.level! ===
+            worldRewardPoint.level,
+          'main-container--opacity-0-5':
+            summaryCommunity.worldRewardPoints?.level! !==
+            worldRewardPoint.level
+        }"
+      >
+        <ion-col size="2">
+          <div class="main-container__level-card__circle">
+            <div
+              [style.border-color]="worldRewardPoint.color"
+              class="main-container__level-card__circle__inner"
+            >
+              {{ worldRewardPoint.level }}
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="5" class="main-container__level-card__col-pr">
+          <ion-text>
+            <span
+              class="main-container__level-card__col-pr__text-pr"
+              [ngClass]="{
+                'main-container__level-card--text-white':
+                  summaryCommunity.worldRewardPoints?.level! ===
+                  worldRewardPoint.level
+              }"
+              >{{
+                worldRewardPoint.rewardPointsFrom
+                  | formattNumber : "EUR" : "symbol" : "it" : 2
+              }}
+              € cashback</span
+            >
+            <br />
+            <span
+              class="main-container__level-card__col-pr__text-percentage"
+              [ngClass]="{
+                'main-container__level-card--text-white':
+                  summaryCommunity.worldRewardPoints?.level! ===
+                  worldRewardPoint.level
+              }"
+              >{{ worldRewardPoint.percentage }}%</span
+            >
+          </ion-text>
+        </ion-col>
+        <ion-col size="1" class="main-container__level-card__col-icon">
+          <ion-icon
+            [style.color]="
+              summaryCommunity.worldRewardPoints?.level! >
+              worldRewardPoint.level
+                ? '#41C837'
+                : '#DFDFDF'
+            "
+            [ngClass]="{
+              'main-container__level-card--text-white':
+                summaryCommunity.worldRewardPoints?.level! ===
+                worldRewardPoint.level
+            }"
+            name="checkmark-done-outline"
+          ></ion-icon>
+        </ion-col>
+        <ion-col size="4" class="main-container__level-card__col-friends">
+          <ion-text>
+            <span
+              class="main-container__level-card__col-friends__text"
+              [ngClass]="{
+                'main-container__level-card--text-white':
+                  summaryCommunity.worldRewardPoints?.level! ===
+                  worldRewardPoint.level
+              }"
+              >{{ "COMMUNITY.FRIENDS" | translate }}</span
+            >
+            <br />
+            <span
+              class="main-container__level-card__col-friends__amount"
+              [ngClass]="{
+                'main-container__level-card--text-white':
+                  summaryCommunity.worldRewardPoints?.level! ===
+                  worldRewardPoint.level
+              }"
+            >
+              {{ worldRewardPoint.friendsBylevel?.length }}
+            </span>
+          </ion-text>
+        </ion-col>
+        <!-- <ion-col size="3" class="main-container__level-card__col-atm">
+          <ion-text>
+            <span
+              class="main-container__level-card__col-atm__text"
+              [ngClass]="{
+                'main-container__level-card--text-white':
+                  summaryCommunity.worldRewardPoints?.level! ===
+                  worldRewardPoint.level
+              }"
+              >{{ "My ATM/€" | translate }}</span
+            >
+            <br />
+            <span
+              class="main-container__level-card__col-atm__amount"
+              [ngClass]="{
+                'main-container__level-card--text-white':
+                  summaryCommunity.worldRewardPoints?.level! ===
+                  worldRewardPoint.level
+              }"
+            >
+              {{ worldRewardPoint.earnings! | formattNumber }}
+            </span>
+          </ion-text>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

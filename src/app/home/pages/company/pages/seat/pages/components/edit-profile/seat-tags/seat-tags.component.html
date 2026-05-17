@@ -1,0 +1,118 @@
+<section class="px-[16px] py-[48px] bg-white h-full">
+  <section class="text-[16px] leading-[17px] font-bold">
+    {{ "SEAT.COMPONENT.TAGS.TITLE" | translate }}
+  </section>
+
+  <section class="text-[15px] leading-[17px] mt-[5px]">
+    {{ "SEAT.COMPONENT.TAGS.SUBTITLE" | translate  }}
+  </section>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSave()"
+    autocomplete="off"
+    class="h-full relative"
+  >
+    <section class="mt-[10px]">
+      <section class="flex flex-col relative">
+        <section class="flex flex-row justify-between items-center">
+          <label
+            for="name"
+            class="block mb-1 mt-2 text-[0.688rem] leading-[1.063rem] font-medium text-gray-900"
+          >
+            {{ "SEAT.COMPONENT.TAGS.KEYWORDS" | translate }}
+          </label>
+          <article class="text-[11px] leading-[17px] font-bold text-[#41C837]">
+            {{ selectedTags?.length }}/{{ maxTags }}
+          </article>
+        </section>
+        <input
+          #search
+          class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border border-gray-300 text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'SEAT.COMPONENT.TAGS.KEYWORDS_PLACEHOLDER' | translate"
+          formControlName="search"
+          name="search"
+          autocomplete="off"
+          (keydown.enter)="onPreventSubmit($event)"
+          (keyup)="onKeyUp($event)"
+        />
+
+        <section class="flex flex-wrap mt-[10px] gap-[5px]">
+          <article
+            class="flex border-[1px] border-[#EEEEEE] px-[15px] py-[4px] rounded-full bg-white relative font-bold text-[15px] leading-[17px]"
+            *ngFor="let tag of selectedTags"
+          >
+            <article
+              class="flex justify-center items-center h-[15px] w-[15px] border-[1px] border-[#EEEEEE] rounded-full bg-white absolute right-[-3px] top-[-4px] font-bold"
+            >
+              <ion-icon
+                class="h-[13px] w-[13px]"
+                name="close-outline"
+                (click)="deleteSelectedSelectedTags(tag)"
+              ></ion-icon>
+            </article>
+            {{ tag }}
+          </article>
+        </section>
+
+        <section
+          *ngIf="search.value.length || showSearch"
+          class="border-[1px] border-[#E2E2E2] rounded-[18px] py-[18px] px-[10px] absolute bg-white top-[87px] w-full mt-[3px] h-[250px] overflow-x-hidden overflow-y-auto"
+        >
+          <article
+            class="flex justify-center items-center h-[20px] w-[20px] border-[1px] border-[#EEEEEE] rounded-full bg-white absolute right-[-3px] top-[-4px] font-bold"
+            (click)="showSearch = false"
+          >
+            <ion-icon class="h-[18px] w-[18px]" name="close-outline"></ion-icon>
+          </article>
+          <section class="text-[15px] leading-[17px] font-bold">
+            {{ "SEAT.COMPONENT.TAGS.TIPS" | translate }}
+          </section>
+          <section
+            *ngIf="filteredSuggestedTags.length"
+            class="pt-[10px] pl-[10px]"
+          >
+            <section
+              class="flex flex-row items-center mt-[10px]"
+              *ngFor="let tag of filteredSuggestedTags"
+            >
+              <ion-checkbox
+                class="mr-[13px] border-[#DDE5E9]"
+                mode="md"
+                color="secondary"
+                [checked]="findSuggestedTags(tag)"
+                (ionChange)="updateChecked($event, tag)"
+              />
+              <ion-label
+                class="text-[15px] leading-[17px]"
+                (click)="onSelectedTag(tag)"
+              >
+                {{ tag }}
+              </ion-label>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+
+    <section
+      class="flex flex-row justify-center items-center py-[22px] fixed bottom-[40px] gap-[20px] w-full left-0"
+    >
+      <section
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+        (click)="onCancel()"
+      >
+        {{ "SEAT.CANCEL" | translate }}
+      </section>
+
+      <button
+        class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10 disabled:opacity-50"
+        type="submit"
+        [disabled]="!selectedTags?.length"
+      >
+        {{ "SEAT.SAVE" | translate }}
+      </button>
+    </section>
+  </form>
+</section>

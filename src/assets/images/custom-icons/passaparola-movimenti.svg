@@ -1,0 +1,10 @@
+<svg id="ricevi" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52">
+  <g id="ritira">
+    <rect id="Rettangolo_2721" data-name="Rettangolo 2721" width="52" height="52" rx="11" fill="#fff" opacity="0.2"/>
+    <rect id="Rettangolo_2722" data-name="Rettangolo 2722" width="48" height="48" rx="11" transform="translate(2 2)" fill="#fff" opacity="0.3"/>
+    <g id="Raggruppa_1975" data-name="Raggruppa 1975" transform="translate(11 11)">
+      <path id="Tracciato_434" data-name="Tracciato 434" d="M14.381,4.814a1.792,1.792,0,0,1,2.243,0l7.853,6.227a1.378,1.378,0,0,1-.792,2.459H7.314a1.378,1.378,0,0,1-.792-2.459Zm1.119,5.81a1.233,1.233,0,1,0-1.187-1.232A1.212,1.212,0,0,0,15.5,10.625ZM8.375,15.143v4.929H10.75V15.143Zm3.958,0v4.929h2.375V15.143Zm3.958,0v4.929h2.375V15.143Zm3.958,0v4.929h2.375V15.143ZM6,23.768a2.018,2.018,0,0,1,1.979-2.054H23.021A2.018,2.018,0,0,1,25,23.768v.411a.806.806,0,0,1-.792.821H6.792A.806.806,0,0,1,6,24.179Z" fill="#fff"/>
+      <path id="Tracciato_435" data-name="Tracciato 435" d="M0,0H31V31H0Z" fill="none"/>
+    </g>
+  </g>
+</svg>

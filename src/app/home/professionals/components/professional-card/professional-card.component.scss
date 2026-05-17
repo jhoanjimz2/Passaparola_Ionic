@@ -1,0 +1,194 @@
+.professional-card {
+  width: 100%;
+
+  // Header - Contiene imagen e información principal
+  &__header {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  // Contenedor de imagen - Tamaño fijo
+  &__image-container {
+    width: 5.563rem;
+    min-width: 5.563rem; // Importante: previene que se apiñe
+    height: 5.563rem;
+    border: 1px solid rgba(112, 112, 112, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+    flex-shrink: 0; // Importante: previene que se encoja
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  // Información principal
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    min-width: 0; // Permite que los textos largos se corten correctamente
+  }
+
+  // Categoría
+  &__category {
+    color: #6C757D;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    width: 80%;
+  }
+
+  // Cashback (posicionado absolutamente)
+  &__cashback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+  }
+
+  &__cashback-label {
+    font-size: 0.75rem;
+    color: #6C757D;
+    line-height: 1;
+  }
+
+  &__cashback-value {
+    font-size: 1rem;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  // Nombre del profesional
+  &__name {
+    color: #000000;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    width: 80%;
+  }
+
+  // Dirección
+  &__address {
+    color: #6C757D;
+    font-size: 0.75rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  // Botones de acción
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  &__button {
+    width: 6.625rem;
+    height: 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border: 1px solid #F9B139;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    // Botón primario (Invia richiesta)
+    &--primary {
+      background-color: #F9B139;
+      color: #000000;
+
+      &:hover {
+        background-color: #e09e2d;
+      }
+    }
+
+    // Botón secundario (Contatti)
+    &--secondary {
+      background-color: #ffffff;
+      color: #000000;
+
+      &:hover {
+        background-color: rgba(249, 177, 57, 0.1);
+      }
+    }
+  }
+
+  &__button-icon {
+    font-size: 1rem;
+  }
+
+  // Footer - Servicios
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(112, 112, 112, 0.125);
+    gap: 0.5rem;
+  }
+
+  &__services-label {
+    color: #6C757D;
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: 5.563rem; // Mismo ancho que la imagen
+    min-width: 5.563rem; // Importante: mantiene el ancho fijo
+    text-align: center;
+    flex-shrink: 0; // Importante: previene que se encoja
+  }
+
+  &__services-text {
+    color: #6C757D;
+    font-size: 0.75rem;
+    margin: 0;
+    text-align: justify;
+    width: 100%;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// Responsive para pantallas muy pequeñas
+@media (max-width: 360px) {
+  .professional-card {
+    &__button {
+      width: 5.5rem;
+      font-size: 0.6875rem;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.main-container {
+  box-shadow: none;
+  margin-top: 1.875rem;
+
+  &__phone-email {
+    border: solid 0.063rem #e1e1e1;
+    border-radius: 0.438rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+    height: 2.625rem;
+    min-height: 2.625rem;
+    padding-top: 0.313rem;
+  }
+
+  ion-select {
+    max-height: 1.875rem;
+    height: 1.875rem;
+    min-height: 1.875rem;
+    border-right: solid 0.063rem #e1e1e1;
+    font-size: 0.938rem;
+  }
+
+  ion-input {
+    max-height: 1.875rem;
+    height: 1.875rem;
+    min-height: 1.875rem;
+    font-size: 0.938rem;
+  }
+
+  ion-button {
+    min-height: 2.125rem;
+    height: 2.125rem;
+    width: 9rem;
+    --border-radius: 3.125rem;
+    text-transform: none;
+    --box-shadow: none;
+  }
+
+  ion-label {
+    font-size: 0.688rem;
+  }
+
+  &--p-tb-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &--text-right {
+    text-align: right;
+  }
+}

@@ -1,0 +1,223 @@
+<section class="px-[16px] pt-[48px] overflow-auto">
+
+
+  <section class="overflow-y-auto pb-[100px]">
+    <section class="text-[16px] leading-[17px] font-bold mb-[1.5rem]">
+      {{ 'Crea un prodotto o un servizio' }}
+    </section>
+    <form [formGroup]="form" class="h-full relative" (ngSubmit)="updateCreateProduct()">
+      <section class="mt-[10px]">
+
+        <section class="grid grid-cols-12">
+          <section class="col-span-3">
+            <img [src]="imgUrl" *ngIf="imgUrl" class="w-[5rem] h-[5rem] flex items-center justify-center border border-gray-300 rounded-xl object-cover" (click)="takePicture()">
+            <div class="w-[5rem] h-[5rem] flex items-center justify-center border border-gray-300 rounded-xl" *ngIf="!imgUrl" (click)="takePicture()">
+              <img src="assets/images/events/custom-icons/upload.svg" alt="Upload Icon" class="w-8 h-8">
+            </div>
+          </section>
+          <section class="col-span-9 flex items-center" (click)="takePicture()">
+            <span class="text-gray-700 text-lg font-semibold italic leading-[1.063rem]">
+              Clicca qui per caricare una foto per il tuo servizio
+            </span>
+          </section>
+        </section>
+
+        <section class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+
+          <section class="col-span-9">
+            <ion-input
+              mode="md" label-placement="floating" label="Nome prodotto/servizio"
+              placeholder="nome prodotto/servizio" fill="outline"
+              id="name" name="name" formControlName="name">
+            </ion-input>
+          </section>
+
+          <section class="col-span-3 relative">
+            <ion-input
+              mode="md"
+              label-placement="floating"
+              label="PR"
+              placeholder="PR"
+              fill="outline"
+              id="pr"
+              name="pr"
+              formControlName="pr"
+              appDecimalValidator
+              [decimalSeparator]="','"
+              [min]="10"
+              [max]="99.99"
+              [maxIntegerDigits]="2"
+              [allowDecimals]="true">
+              <label aria-hidden="true" slot="start">%</label>
+            </ion-input>
+          </section>
+
+        </section>
+
+        <section class="grid grid-cols-12 mt-[0.8rem]">
+          <section class="col-span-12">
+            <ion-textarea
+              mode="md" label-placement="floating" label="Descrizione" rows="6"
+              placeholder="descrizione: scrivi cosa include" fill="outline"
+              id="description" name="description" formControlName="description"/>
+          </section>
+        </section>
+
+        <section class="flex justify-around space-x-4 mt-[0.8rem]">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="radio" formControlName="option" value="free" class="hidden peer" (change)="onOptionChange($event)"/>
+            <span class="w-5 h-5 flex items-center justify-center bg-gray-200 text-white rounded peer-checked:bg-orange-500 peer-checked:text-white">
+              <ng-container *ngIf="form.get('option')?.value === 'free'">✔</ng-container>
+            </span>
+            <span class="text-black">Gratuito</span>
+          </label>
+
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="radio" formControlName="option" value="pay" class="hidden peer" (change)="onOptionChange($event)"/>
+            <span class="w-5 h-5 flex items-center justify-center bg-gray-200 text-white rounded peer-checked:bg-orange-500 peer-checked:text-white">
+              <ng-container *ngIf="form.get('option')?.value === 'pay'">✔</ng-container>
+            </span>
+            <span class="text-black">A pagamento</span>
+          </label>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <section class="mt-[1rem]" *ngIf="typeCheck == 'free' || typeCheck == 'pay'">
+
+          <section class="text-[18px] text-center text-[#FF9100] leading-[17px] font-[600] mt-[0.4rem]">
+            {{ 'IMPORTANTE' }}
+          </section>
+
+          <section class="text-[16px] text-center leading-[17px] font-[600] mt-[0.4rem]">
+            {{ 'Indica quante offerte vuoi creare, il prezzo di ogni offerta e la quantità di voucher incusi in ogni offerta' }}
+          </section>
+
+          <div class="grid grid-cols-3 gap-2 p-2 mt-[0.4rem]">
+            <div>
+              <div class="border rounded-xl p-1 grid items-center justify-center bg-white" onclick="this.querySelector('input').focus()">
+                <label class="text-black block text-[14px] text-center" onclick="event.stopPropagation(); this.nextElementSibling.focus();">Quantità<br>voucher</label>
+                <input
+                  formControlName="quantity"
+                  name="quantity" class="w-full font-bold p-2 text-center"
+                  appDecimalValidator [allowDecimals]="false" />
+              </div>
+            </div>
+            <div>
+              <div class="border relative rounded-xl p-1 grid items-center justify-center bg-white" onclick="this.querySelector('input').focus()">
+                <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">€</label>
+                <label class="text-black block text-[14px] text-center" onclick="event.stopPropagation(); this.nextElementSibling.focus();">Valore<br>voucher</label>
+                <input (input)="setValues()"
+                  formControlName="price"
+                  name="price"
+                  class="w-full font-bold p-2 text-center"
+                  appDecimalValidator
+                  [decimalSeparator]="','"
+                  [min]="0"
+                  [max]="9999999.99"
+                  [maxIntegerDigits]="7"
+                  [allowDecimals]="true"/>
+              </div>
+            </div>
+            <div>
+              <div class="border rounded-xl p-1 grid items-center justify-center bg-white" onclick="this.querySelector('input').focus()">
+                <label class="text-black block text-[14px] text-center" onclick="event.stopPropagation(); this.nextElementSibling.focus();">Quantità<br>voucher / offerta</label>
+                <input (input)="setValues()" formControlName="quantityOffer" name="quantityOffer" class="w-full font-bold p-2 text-center" appDecimalValidator [allowDecimals]="false" />
+              </div>
+            </div>
+
+
+            <div>
+              <div class="border relative rounded-xl p-1 grid items-center justify-center bg-[#E3E3E9]">
+                <label class="text-black block text-[14px] text-center">Valore<br>offerta</label>
+                <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">€</label>
+                <input formControlName="offerValue" name="offerValue" class="w-full font-bold p-2 text-center bg-transparent"
+                  appDecimalValidator [decimalSeparator]="','" [min]="0" [max]="9999999.99" [maxIntegerDigits]="7" [allowDecimals]="true" />
+                <ion-icon class="absolute  text-[18px] text-[black] right-1 bottom-[1rem]" src="assets/images/events/custom-icons/lock-closed.svg"/>
+              </div>
+            </div>
+            <div>
+              <div [ngClass]="form.controls['discount'].disabled ? 'bg-[#E3E3E9]' : 'bg-white'" class="border relative rounded-xl p-1 grid items-center justify-center" onclick="this.querySelector('input').focus()">
+                <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">%</label>
+                <label class="text-black block text-[14px] text-center" onclick="event.stopPropagation(); this.nextElementSibling.focus();">Sconto<br>applicato</label>
+                <input (input)="setValues()" formControlName="discount" name="discount" class="w-full font-bold p-2 text-center bg-transparent"
+                appDecimalValidator [decimalSeparator]="','" [min]="10" [max]="99.99" [maxIntegerDigits]="2" [allowDecimals]="true" />
+              </div>
+            </div>
+            <div>
+              <div class="border relative rounded-xl p-1 grid items-center justify-center bg-[#E3E3E9]">
+                <label class="text-black block text-[14px] text-center">Prezzo<br>offerta</label>
+                <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">€</label>
+                <input formControlName="offerPrice" name="offerPrice"  class="w-full font-bold p-2 text-center bg-transparent"
+                appDecimalValidator [decimalSeparator]="','" [min]="0" [max]="9999999.99" [maxIntegerDigits]="7" [allowDecimals]="true"/>
+                <ion-icon class="absolute  text-[18px] text-[black] right-1 bottom-[1rem]" src="assets/images/events/custom-icons/lock-closed.svg"/>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <section
+        [ngClass]="{ 'fixed': !isKeyboardOpen }"
+        class="flex flex-row justify-center items-center py-[22px] bottom-[0px] w-full gap-[20px] left-0">
+          <section class="bg-white opacity-45 absolute h-full w-full"></section>
+          <section *ngIf="!idProduct" class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+            (click)="onCancel()"
+          >
+            {{ 'Annulla' }}
+          </section>
+          <section *ngIf="idProduct" class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+            (click)="deleteProduct()"
+          >
+            {{ 'Delete' }}
+          </section>
+          <button
+            [disabled]="!form.valid || !imgUrl"
+            class=" disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+            type="submit"
+          >
+            {{ 'Salva' }}
+          </button>
+        </section>
+      </section>
+    </form>
+  </section>
+
+
+
+</section>

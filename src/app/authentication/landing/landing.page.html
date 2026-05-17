@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true">
+  <div *ngIf="!viewInfo; else informatioApp" class="landing-container">
+    <ion-card>
+      <ion-card-header>
+        <img src="assets/images/logo.png" alt="" />
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text color="dark">
+          <span class="landing-container--f-z-l landing-container--f-w-b">
+            {{'LANDING.WELCOME' | translate}},
+          </span>
+          <br />
+          <span class="landing-container--f-z-s landing-container--f-w-b"
+            >{{'LANDING.INVITATION' | translate}}</span
+          >
+          <br />
+          <div>
+            <img
+              src="assets/images/logo-text.svg"
+              alt=""
+              class="landing-container__logo-text"
+            />
+          </div>
+          <br />
+          <span class="landing-container--f-z-s"
+            >{{'LANDING.PAYS_YOU' | translate}}</span
+          >
+        </ion-text>
+
+        <div class="landing-container__buttons">
+          <ion-button
+            class="landing-container__buttons__btn-landing"
+            (click)="showInfoApp()"
+          >
+            {{'LANDING.HOW_IT_WORKS' | translate}}
+          </ion-button>
+          <br />
+          <ion-button
+            (click)="singUp()"
+            fill="outline"
+            class="landing-container__buttons__btn-register"
+          >
+            {{'LANDING.REGISTER_NOW' | translate}}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #informatioApp>
+    <app-information [information]="information"></app-information>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,27 @@
+<div
+  class="payment-method-wallet"
+  [class.payment-method-wallet--selected]="selected"
+  (click)="onSelectPayment()">
+
+  <img
+    src="assets/images/payments/wallet-payment.svg"
+    class="payment-method-wallet__image">
+
+  <img
+    *ngIf="selected"
+    src="assets/images/payments/payment-selected.svg"
+    class="payment-method-wallet__check-icon">
+
+  <div class="payment-method-wallet__content">
+    <span class="payment-method-wallet__title">Paga con credito</span>
+    <span class="payment-method-wallet__subtitle">Disponibile</span>
+    <span class="payment-method-wallet__balance">
+      {{ isViewed ? (wallet.balance ?? 0 | formattNumber) : '******' }}
+      <span class="payment-method-wallet__currency">€/ATM</span>
+      <ion-icon
+        class="payment-method-wallet__eye-icon"
+        (click)="toggleView($event)"
+        [src]="'assets/images/payments/' + (isViewed ? 'eye-view.svg' : 'eye-not-view.svg')"/>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+ion-content {
+  --background: #f9f9f9;
+  --overflow: hidden;
+  height: 100vh;
+  padding-bottom: 6.25rem;
+
+  @media (max-height: 670px) {
+    --overflow: auto;
+    height: 50rem;
+  }
+}
+
+.main-container {
+  box-shadow: none;
+  margin-top: 1.875rem;
+  height: 100%;
+  background: transparent;
+
+  @media (max-height: 670px) {
+    height: 46.875rem;
+  }
+
+  &__label-1 {
+    font-size: 1.688rem;
+    color: #1d0f01;
+  }
+
+  &__label-2 {
+    font-size: 2.188rem;
+    font-weight: 600;
+    color: #1d0f01;
+  }
+
+  &__text {
+    font-size: 0.938rem;
+    color: #1d0f01;
+  }
+
+  &__card {
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__img {
+      width: 22.125rem;
+      height: 12.625rem;
+      box-shadow: none;
+      margin: 0;
+      border-radius: 1.375rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-image: url("../../../../../../assets/images/passaparola-card-front.png");
+    }
+  }
+
+  &__prefix {
+    padding: 0;
+    border: solid 0.063rem #e1e1e1;
+    padding-top: 0.313rem !important;
+    padding-bottom: 0.313rem !important;
+    border-radius: 0.438rem;
+
+    &__text {
+      border-right: solid 0.063rem #e1e1e1;
+      color: #000000;
+      font-size: 0.875rem;
+    }
+  }
+
+  &__phone {
+    color: #000000;
+    font-size: 0.875rem;
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 2.75rem;
+
+    ion-button {
+      width: 14.25rem;
+      height: 4.25rem;
+      text-transform: capitalize;
+      --border-radius: 2.125rem;
+      --background: #ff9100;
+      --background-activated: #ff9100;
+      --background-activated-opacity: #ff9100;
+      --background-focused: #ff9100;
+      --background-focused-opacity: #ff9100;
+      --background-hover: #ff9100;
+      --background-hover-opacity: #ff9100;
+    }
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+
+  &--f-z-30 {
+    font-size: 1.875rem;
+  }
+
+  &--text-dark {
+    color: #071336;
+  }
+
+  &--m-t-25 {
+    margin-top: 1.563rem;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+
+  &--font-italic {
+    font-style: italic;
+  }
+}

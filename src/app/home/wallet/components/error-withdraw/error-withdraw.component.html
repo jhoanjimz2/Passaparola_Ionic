@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true" class="main-container">
+  <div class="main-container__content">
+    <ion-card class="main-container__card">
+      <ion-card-content class="main-container--text-center">
+        <div class="center-item">
+          <img
+            src="assets/images/transfer-error.png"
+            alt=""
+            class="main-container__card__icon-error"
+          />
+        </div>
+        <br />
+        <ion-text>
+          <span class="main-container--f-w-b main-container--f-z-25">{{
+            "WALLET.MODAL_ERROR_WITHDRAW.TRANSACTION_NOT_EXECUTED" | translate
+          }}</span>
+        </ion-text>
+
+        <div class="main-container__card__info">
+          <ion-text>
+            <span>{{
+              "WALLET.MODAL_ERROR_WITHDRAW.TRANSACTION_ID" | translate
+            }}</span>
+            <br />
+            <span>{{ transferRequets?.transactionId! }}</span>
+          </ion-text>
+        </div>
+        <ion-button
+          (click)="withdraw()"
+          class="main-container__card__btn-retry"
+          >{{ "WALLET.MODAL_ERROR_WITHDRAW.RETRY" | translate }}</ion-button
+        >
+
+        <div class="main-container__card__btn-cancel">
+          <div (click)="backToHome()">
+            {{ "WALLET.MODAL_ERROR_WITHDRAW.CANCEL" | translate }}
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,11 @@
+ion-content {
+  --background: #FBFCFE;
+}
+/* Oculta la scrollbar horizontal (para Webkit y Firefox) */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari & Chrome */
+}

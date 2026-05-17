@@ -1,0 +1,35 @@
+stages:
+  - deploy
+before_script:
+  - docker container prune -f || true # Limpiar contenedores no utilizados
+  - docker volume prune -f || true # Limpiar volúmenes no utilizados
+cache:
+  paths:
+    - node_modules/
+deploy_prod:
+  image: docker:dind
+  stage: deploy
+  script:
+    - export CONFIGURATION=production
+    - docker stop passaparola_app || true # Detener el contenedor existente (ignorar errores si no existe)
+    - docker rm passaparola_app || true # Eliminar el contenedor existente (ignorar errores si no existe)
+    - docker build --build-arg CONFIGURATION=$CONFIGURATION -t app/apppassaparola .
+    - docker run -d -p 3105:3105 --restart always --name passaparola_app app/apppassaparola || true
+  tags:
+    - prod
+  only:
+    - prod
+
+deploy_test:
+  image: docker:dind
+  stage: deploy
+  script:
+    - export CONFIGURATION=test
+    - docker stop passaparola_app || true # Detener el contenedor existente (ignorar errores si no existe)
+    - docker rm passaparola_app || true # Eliminar el contenedor existente (ignorar errores si no existe)
+    - docker build --build-arg CONFIGURATION=$CONFIGURATION -t app/apppassaparola .
+    - docker run -d -p 3105:3105 --restart always --name passaparola_app app/apppassaparola || true
+  tags:
+    - test
+  only:
+    - test

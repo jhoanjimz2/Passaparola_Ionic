@@ -1,0 +1,230 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<div class="filter-modal">
+
+  <!-- Toggle de filtros -->
+  <div class="filter-modal__toggle-section">
+    <span class="filter-modal__toggle-label">Filtri</span>
+    <div class="filter-modal__toggle" [class.filter-modal__toggle--active]="filtersEnabled" (click)="toggleFilters()">
+      <div class="filter-modal__toggle-circle"></div>
+    </div>
+  </div>
+
+  <!-- Contenido de filtros con scroll -->
+  <div class="filter-modal__body" [class.filter-modal__body--disabled]="!filtersEnabled">
+
+    <!-- Servizio a domicilio - CORREGIDO -->
+    <div class="filter-section">
+      <h3 class="filter-section__title">Servizio a domicilio</h3>
+      <div class="filter-section__options">
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isHomeServiceSelected(true)"
+          [disabled]="!filtersEnabled"
+          (click)="selectHomeService(true)"
+          type="button">
+          Si
+        </button>
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isHomeServiceSelected(false)"
+          [disabled]="!filtersEnabled"
+          (click)="selectHomeService(false)"
+          type="button">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Ordina per -->
+    <div class="filter-section">
+      <h3 class="filter-section__title">Ordina per</h3>
+      <div class="filter-section__options">
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isOrderBySelected('cashback')"
+          [disabled]="!filtersEnabled"
+          (click)="selectOrderBy('cashback')"
+          type="button">
+          Cashback
+        </button>
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isOrderBySelected('distance')"
+          [disabled]="!filtersEnabled"
+          (click)="selectOrderBy('distance')"
+          type="button">
+          Distanza
+        </button>
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isOrderBySelected('rating')"
+          [disabled]="!filtersEnabled"
+          (click)="selectOrderBy('rating')"
+          type="button">
+          Valutazioni
+        </button>
+      </div>
+    </div>
+
+    <!-- Distanza da te -->
+    <div class="filter-section">
+      <h3 class="filter-section__title">Distanza da te</h3>
+      <div class="filter-section__options">
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isDistanceSelected(150)"
+          [disabled]="!filtersEnabled"
+          (click)="selectDistance(150)"
+          type="button">
+          150 m
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isDistanceSelected(500)"
+          [disabled]="!filtersEnabled"
+          (click)="selectDistance(500)"
+          type="button">
+          500 m
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isDistanceSelected(1000)"
+          [disabled]="!filtersEnabled"
+          (click)="selectDistance(1000)"
+          type="button">
+          1 km
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isDistanceSelected(5000)"
+          [disabled]="!filtersEnabled"
+          (click)="selectDistance(5000)"
+          type="button">
+          5 km
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isDistanceSelected(20000)"
+          [disabled]="!filtersEnabled"
+          (click)="selectDistance(20000)"
+          type="button">
+          20 km
+        </button>
+      </div>
+    </div>
+
+    <!-- Valutazione -->
+    <div class="filter-section">
+      <h3 class="filter-section__title">Valutazione</h3>
+      <div class="filter-section__options">
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isRatingSelected(5)"
+          [disabled]="!filtersEnabled"
+          (click)="selectRating(5)"
+          type="button">
+          5
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isRatingSelected(4)"
+          [disabled]="!filtersEnabled"
+          (click)="selectRating(4)"
+          type="button">
+          4
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isRatingSelected(3)"
+          [disabled]="!filtersEnabled"
+          (click)="selectRating(3)"
+          type="button">
+          3
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isRatingSelected(null)"
+          [disabled]="!filtersEnabled"
+          (click)="selectRating(null)"
+          type="button">
+          altre
+        </button>
+      </div>
+    </div>
+
+    <!-- Disponibilità -->
+    <!-- <div class="filter-section">
+      <h3 class="filter-section__title">Disponibilità</h3>
+      <div class="filter-section__options">
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isAvailabilitySelected('now')"
+          [disabled]="!filtersEnabled"
+          (click)="selectAvailability('now')"
+          type="button">
+          Aperto ora
+        </button>
+        <button
+          class="filter-button"
+          [class.filter-button--active]="isAvailabilitySelected('always')"
+          [disabled]="!filtersEnabled"
+          (click)="selectAvailability('always')"
+          type="button">
+          Sempre aperto
+        </button>
+      </div>
+    </div> -->
+
+    <!-- Cashback -->
+    <!-- <div class="filter-section">
+      <h3 class="filter-section__title">Cashback</h3>
+      <div class="filter-section__options">
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isMinCashbackSelected(10)"
+          [disabled]="!filtersEnabled"
+          (click)="selectMinCashback(10)"
+          type="button">
+          >10%
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isMinCashbackSelected(15)"
+          [disabled]="!filtersEnabled"
+          (click)="selectMinCashback(15)"
+          type="button">
+          >15%
+        </button>
+        <button
+          class="filter-button filter-button--small"
+          [class.filter-button--active]="isMinCashbackSelected(20)"
+          [disabled]="!filtersEnabled"
+          (click)="selectMinCashback(20)"
+          type="button">
+          >20%
+        </button>
+      </div>
+    </div> -->
+
+  </div>
+
+  <!-- Footer con botones de acción - FIJO -->
+  <div class="filter-modal__footer">
+    <button
+      class="filter-modal__button filter-modal__button--secondary"
+      (click)="onAnnulla()"
+      type="button">
+      Annulla
+    </button>
+    <button
+      class="filter-modal__button filter-modal__button--primary"
+      (click)="onApplyFilters()"
+      type="button">
+      Applica filtri
+    </button>
+  </div>
+</div>

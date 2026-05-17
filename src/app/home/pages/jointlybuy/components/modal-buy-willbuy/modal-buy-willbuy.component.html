@@ -1,0 +1,171 @@
+<ion-content>
+
+  <section class="container" *ngIf="!successPay">
+
+    <div class="product-card">
+      <img
+        class="product-card__image"
+        [src]="willbuy.product?.pictureUrlFile"
+        [alt]="willbuy.product?.name">
+      <div class="product-card__info">
+        <span class="product-card__name">{{ willbuy.product?.name }}</span>
+        <span class="product-card__description">{{ willbuy.product?.description }}</span>
+      </div>
+      <!-- <div class="product-card__stats">
+        <span class="product-card__units">{{ getSoldUnits() }}/{{ getCurrentPhase?.minimumPurchaseUnits ?? 0 }}</span>
+        <span class="product-card__price">€ {{ +(getCurrentPhase?.total || 0) | formattNumber }}</span>
+      </div> -->
+    </div>
+
+    <div class="purchase-section">
+      <div class="purchase-section__quantity">
+        <span class="purchase-section__label">Quante unità vuoi acquistare?</span>
+        <div class="quantity-control">
+          <button
+            class="quantity-control__button"
+            (click)="decreaseQuantity()"
+            [disabled]="quantity <= 1">
+            -
+          </button>
+          <span class="quantity-control__value">{{ quantity }}</span>
+          <button
+            class="quantity-control__button"
+            (click)="increaseQuantity()">
+            +
+          </button>
+        </div>
+      </div>
+
+      <div class="purchase-section__total">
+        <span class="purchase-section__total-label">Totale</span>
+        <span class="purchase-section__total-price">€ {{ getTotalPrice() | formattNumber }}</span>
+        <span class="purchase-section__cashback">
+          ricevi
+          <span class="purchase-section__cashback-amount">
+            {{ getTotalCashback() | formattNumber:'EUR':'symbol':'it':2 }}
+          </span>
+          € cashback
+        </span>
+      </div>
+    </div>
+
+    <p class="info-text">
+      Se più persone si uniranno a questo <b>willbuy</b> il prezzo si abbasserà, ti rimborseremo la differenza sul tuo wallet Passaparola.
+    </p>
+
+
+    <div class="shipping-section">
+      <span class="shipping-section__title">
+        Spedizione
+      </span>
+
+      <app-address-card-default
+        class="shipping-section__card"
+        (defaultAddressSelected)="onDefaultAddressSelected($event)">
+      </app-address-card-default>
+    </div>
+
+    <div class="shipping-section">
+      <span class="shipping-section__title">
+        Pagamento
+      </span>
+
+      <app-slides-payment-methods
+        class="shipping-section__card"
+        (paymentSelected)="onPaymentSelected($event)">
+      </app-slides-payment-methods>
+    </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="container-success" *ngIf="successPay">
+
+    <div class="flex flex-col gap-1 text-center">
+      <ion-icon class="m-auto text-[5rem]" name="passaparola-double-check-success"></ion-icon>
+      <span class="font-bold text-lg">Pagamento <br> effettuato!</span>
+      <span class="text-5xl font-black">€ {{ getTotalPrice() | formattNumber }}</span>
+    </div>
+
+    <div class="product-card">
+      <img
+        class="product-card__image"
+        [src]="willbuy.product?.pictureUrlFile"
+        [alt]="willbuy.product?.name">
+      <div class="product-card__info">
+        <span class="product-card__name">{{ willbuy.product?.name }}</span>
+        <span class="product-card__description">{{ willbuy.product?.description }}</span>
+      </div>
+      <div class="product-card__stats">
+        <span class="product-card__price">€ {{ +(getCurrentPhase?.total || 0) | formattNumber }}</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+
+      <ion-icon class="text-[5rem] m-auto text-[#18B10D]" name="passaparola-piggy"></ion-icon>
+
+      <div class="flex flex-col gap-1 text-center">
+        <span>Con questo acquisto hai ottenuto il</span>
+        <span class="text-3xl font-bold text-[#18B10D]">
+          {{ getTotalCashback() | formattNumber:'EUR':'symbol':'it':2 }}€ cashback
+        </span>
+        <span>
+          che verrà inviato al tuo wallet una volta<br>
+          finalizzata l'operazione di acquisto
+        </span>
+      </div>
+
+    </div>
+
+    <button
+      (click)="back()"
+      class="w-[80%] h-[3.313rem] text-base text-white font-bold rounded-[1.688rem] bg-[#22A9E8]"
+    >Torna alla home</button>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>
+
+<ion-footer class="ion-no-border" *ngIf="!successPay">
+  <ion-toolbar>
+    <div class="actions">
+      <button class="actions__button actions__button--cancel" (click)="cancel()">
+        Annulla
+      </button>
+      <button
+        class="actions__button actions__button--confirm"
+        (click)="initPay()"
+        [disabled]="!canProceedWithPayment()">
+        Paga ora
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,86 @@
+<section class="main-container">
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-title>{{ "MAP_PAGE.TOP_PR" | translate }}</ion-title>
+
+      <ion-button
+        fill="clear"
+        id="tuti-button"
+        class="main-container__btn-more"
+      >
+        {{ "MAP_PAGE.SHOW_MORE" | translate }}
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+
+  <swiper-container #swiperContainer [init]="false">
+    <swiper-slide
+      class="main-container__slide"
+      *ngFor="let item of topPrProducts"
+    >
+      <ion-card class="main-container__slide__card">
+        <ion-card-header class="main-container__slide__header">
+          <div class="main-container__slide__header__img">
+            <img [src]="item.pictureUlrFile" (click)="goSeatDetail(item.id)" />
+
+            <!-- <div
+              style="
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+              "
+              [style.background-image]="
+                'url(' + (item.pictureUlrFile | image) + ')'
+              "
+            ></div> -->
+
+            <div class="main-container__slide__btn-like">
+              <ion-icon name="heart-outline"></ion-icon>
+            </div>
+          </div>
+        </ion-card-header>
+
+        <ion-card-content class="main-container__slide__content">
+          <ion-grid class="main-container--p-0">
+            <ion-row>
+              <p
+                (click)="goSeatDetail(item.id)"
+                class="main-container__slide__content__name"
+              >
+                {{ item.name }}
+              </p>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid class="main-container--p-m-0">
+            <ion-row
+              class="ion-justify-content-between ion-align-items-center main-container--p-m-0"
+            >
+              <p class="main-container__slide__content__pr">
+                <span class="main-container__slide__content__pr-value"
+                  >{{ item.pointsPercentage }}%</span
+                >
+                PR
+              </p>
+              <p class="main-container--f-z-10">
+                <span class="main-container__slide__content__cb">
+                  {{ item.cashBackPercentage }}%
+                  <!-- {{ item.cashBackPercentage * 10 }}% -->
+                </span>
+                CASHBACK
+              </p>
+
+              <ion-button
+                size="small"
+                (click)="goSeatDetail(item.id)"
+                class="main-container__slide__btn-ellipsis"
+              >
+                <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
+              </ion-button>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+</section>

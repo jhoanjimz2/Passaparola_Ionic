@@ -1,0 +1,151 @@
+h2 {
+  font-size: 15px;
+  color: black;
+}
+
+p {
+  font-size: 11px;
+  color: black;
+}
+
+.recommendation-tag {
+  font-size: 11px;
+  color: #17a541;
+  margin-right: 5px;
+}
+
+.btn-redo-circle {
+  color: #00b1ff;
+  font-size: 24px;
+}
+
+.recommendation-points {
+  font-size: 16px;
+  color: #41c837;
+  text-align: right;
+}
+
+.recommendation-rewards {
+  color: #6c757d;
+  font-size: 10px;
+}
+
+.recommendation-cashback {
+  font-size: 16px;
+  color: #00b1ff;
+  text-align: right;
+}
+
+.recommendation-cashback-title {
+  color: #6c757d;
+  font-size: 10px;
+  text-align: right;
+}
+
+.recommendation-address {
+  font-size: 11px;
+  color: black;
+  margin-left: 5px;
+}
+
+.spacing-arrow {
+  padding-top: 2px;
+  padding-left: 3px;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+
+  ion-card {
+    flex-shrink: 0;
+    display: inline-block;
+    border-radius: 15px;
+    border: 1px solid #70707030;
+    margin: 5px;
+    width: 98%;
+    box-shadow: none;
+
+    ion-header {
+      max-width: 100%;
+      box-shadow: none;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.horizontal-scroll-image {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+  gap: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.horizontal-scroll-image img {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 161px;
+  height: 130px;
+  border-radius: 15px;
+}
+
+.category {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 8.75rem;
+  margin-right: 0.188rem;
+}
+
+ion-button.option {
+  --border-radius: 12px;
+  --background: #00b1ff;
+  text-transform: capitalize;
+  font-size: 0.625rem;
+}
+
+ion-button#tuti-button {
+  --color: #ff8000;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.f-z-16 {
+  font-size: 1rem;
+}
+
+.p-5 {
+  padding: 0.313rem;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.f-z-11 {
+  font-size: 0.688rem;
+}
+
+.p-l-10 {
+  padding-left: 0.625rem;
+}
+
+.p-r-10 {
+  padding-right: 0.625rem;
+}
+
+.text-all {
+  color: #fe8c0f;
+  font-size: 1rem;
+  font-weight: bold;
+}

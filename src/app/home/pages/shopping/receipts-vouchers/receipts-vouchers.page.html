@@ -1,0 +1,44 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true">
+  <section class="h-full bg-white text-black overflow-y-auto p-4 relative">
+
+    <ion-segment [(ngModel)]="segmentValue" mode="ios">
+      <ion-segment-button value="Ricevute">
+        <ion-label class="text-[20px] font-semibold">Ricevute</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Voucher">
+        <ion-label class="text-[20px] font-semibold">Voucher</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div class="flex flex-row justify-between my-4">
+      <label class="text-black text-[18px] font-semibold">Le mie ricevute</label>
+      <label class="text-black text-[18px] flex items-center justify-center gap-1">ordina per
+        <ion-icon name="passaparola-arrows-filters"></ion-icon>
+      </label>
+    </div>
+
+
+    <!-- Lista Ricevute -->
+    <ng-container *ngIf="segmentValue === 'Ricevute'">
+      <div [@fadeInOut]>
+        <app-receipt-voucher
+          [voucher]="false"
+          *ngFor="let item of [1,1,1,1,1,1,1,1,1,1]"
+        ></app-receipt-voucher>
+      </div>
+    </ng-container>
+
+    <!-- Lista Voucher -->
+    <ng-container *ngIf="segmentValue === 'Voucher'">
+      <div [@fadeInOut]>
+        <app-receipt-voucher
+          [voucher]="true"
+          *ngFor="let item of [1,1,1,1,1,1,1,1,1,1]"
+        ></app-receipt-voucher>
+      </div>
+    </ng-container>
+
+
+  </section>
+</ion-content>

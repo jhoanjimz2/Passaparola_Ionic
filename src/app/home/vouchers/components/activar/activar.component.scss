@@ -1,0 +1,10 @@
+ion-content {
+  --background: transparent;
+}
+.contenedor {
+  height: calc(100% - 20px);
+  margin-top: 20px;
+  position: relative;
+  border-radius: 1.875rem 1.875rem 0px 0px;
+  background-color: white;
+}

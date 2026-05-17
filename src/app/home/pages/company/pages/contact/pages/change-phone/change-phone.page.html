@@ -1,0 +1,181 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="!changePhoneSuccess; else success" class="main-container">
+    <ion-card-header>
+      <ion-text>
+        <span class="main-container--f-z-18 main-container--f-w-b"
+          >{{"CONTACT.CHANGE_PHONE_NUMBER" | translate}}</span
+        >
+        <br />
+        <br />
+        <span class="main-container--f-z-14"
+          >{{"CONTACT.ENTER_NEW_PHONE_NUMBER" | translate}}</span
+        >
+        <br />
+        <span class="main-container--f-z-14"
+          >{{"CONTACT.VERIFICATION_CODE" | translate}}</span
+        >
+      </ion-text>
+    </ion-card-header>
+
+    <form [formGroup]="formContact" (ngSubmit)="getCode()">
+      <ion-grid>
+        <ion-label> {{"CONTACT.PHONE_NUMBER" | translate}} </ion-label>
+        <ion-row class="main-container__phone">
+          <ion-col size="3" class="main-container--p-tb-0">
+            <ion-select
+              mode="md"
+              aria-label="country"
+              color="primary"
+              placeholder="{{ 'CONTACT.COUNTRY' | translate }}"
+              formControlName="idCountry"
+              name="idCountry"
+            >
+              <ion-select-option
+                *ngFor="let country of countries"
+                [value]="country.id"
+              >
+                {{ country.phonePrefix }} {{ country.code }}
+              </ion-select-option>
+            </ion-select></ion-col
+          >
+          <ion-col size="9" class="main-container--p-tb-0">
+            <ion-input
+              labelPlacement="stacked"
+              [clearInput]="true"
+              mode="md"
+              color="danger"
+              type="tel"
+              placeholder="{{'CONTACT.ENTER_PHONE' | translate}}"
+              formControlName="phone"
+              name="phone"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="!smsCodeId" class="main-container__btn center-item">
+        <ion-button expand="block" type="submit" color="success"
+          >{{'CONTACT.CHANCGE_NUMBER' | translate}}</ion-button
+        >
+      </div>
+    </form>
+
+    <div *ngIf="smsCodeId" class="main-container__form-check-code">
+      <form [formGroup]="formCode" (ngSubmit)="checkCode()">
+        <ion-label>{{ "CONTACT.VERIFICATION_CODE_2" | translate }}</ion-label>
+        <div class="main-container__form-check-code__code">
+          <div class="main-container__form-check-code__input">
+            <input
+              #code1
+              formControlName="code1"
+              name="code1"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(1)"
+              type="tel"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code2
+              formControlName="code2"
+              name="code2"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(2)"
+              type="tel"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code3
+              formControlName="code3"
+              name="code3"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(3)"
+              type="tel"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code4
+              formControlName="code4"
+              name="code4"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(4)"
+              type="tel"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code5
+              formControlName="code5"
+              name="code5"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(5)"
+              type="tel"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code6
+              formControlName="code6"
+              name="code6"
+              mask="0"
+              autocomplete="off"
+              type="tel"
+            />
+          </div>
+        </div>
+
+        <div class="main-container__form-check-code__progress">
+          <circle-progress
+            [percent]="percent"
+            [radius]="30"
+            text
+            [outerStrokeWidth]="5"
+            [innerStrokeWidth]="0"
+            [outerStrokeColor]="'#FF3D00'"
+            [innerStrokeColor]="'#FF3D00'"
+            [animation]="true"
+            [animationDuration]="1"
+          ></circle-progress>
+          <div class="main-container__form-check-code__time">
+            {{ minutes }}:{{ seconds }}
+          </div>
+        </div>
+        <div class="main-container__form-check-code--text-center">
+          <ion-text>
+            <span>{{ "CONTACT.NOT_RECEIVED_CODE" | translate }}</span>
+            <br />
+            <span
+              (click)="getCode()"
+              class="main-container__form-check-code__text-resend"
+              >{{ "CONTACT.CLICK_HERE" | translate }}</span
+            >
+          </ion-text>
+        </div>
+        <div class="main-container__form-check-code__btn center-item">
+          <ion-button
+            type="submit"
+            *ngIf="smsCodeId && timer > 0"
+            [disabled]="formCode.invalid"
+            expand="block"
+            color="success"
+          >
+            {{ "CONTACT.CHECK_CODE" | translate }}
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </ion-card>
+
+  <ng-template #success>
+    <app-change-phone-success></app-change-phone-success>
+  </ng-template>
+</ion-content>

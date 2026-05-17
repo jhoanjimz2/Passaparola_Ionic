@@ -1,0 +1,12 @@
+<ion-card>
+  <div>
+    <div
+      *ngIf="loading"
+      class="spinner-container"
+      [style.min-height]="heightContainer + 'px'"
+    >
+      <div class="spinner"></div>
+    </div>
+    <img (click)="modalInfo()" (load)="loading = false" [src]="img" alt="" />
+  </div>
+</ion-card>

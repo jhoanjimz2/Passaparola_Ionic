@@ -1,0 +1,21 @@
+<ion-tabs mode="md">
+  <ion-tab-bar
+    slot="top"
+    class="gap-[10px] nav-full"
+    [ngClass]="{ 'main-tab': !sessionService.isCompanyOperative}"
+  >
+    <ion-tab-button
+      *ngFor="let tab of options; index as i"
+      [tab]="tab.url"
+      [style]="'--color-selected:' + tab.color"
+      class="flex items-center justify-center"
+      (click)="tab.url === 'mega-stores' && openStore()"
+    >
+      <ion-icon
+        [color]="tab.color"
+        [name]="tab.icon"
+        [ngClass]="{ 'f-z-25': tab.url === 'community' }"
+      ></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

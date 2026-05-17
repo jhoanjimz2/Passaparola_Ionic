@@ -1,0 +1,135 @@
+<section class="px-[16px] my-[48px]">
+
+  <section class="text-[16px] leading-[17px] font-bold">
+    {{ 'Biglietti e prezzi' }}
+  </section>
+
+  <section class="text-[15px] leading-[17px] mt-[5px]">
+    {{ "Inizia a scrivere o scegli la categoria del tuo evento" }}
+  </section>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="newTicket()"
+    class="h-full relative"
+  >
+    <section class="mt-[10px]">
+      <section class="grid grid-cols-12 gap-2">
+
+        <section class="col-span-9">
+          <ion-input
+            mode="md" label-placement="floating" label="Nome ticket"
+            placeholder="nome ticket" fill="outline"
+            id="name" name="name" formControlName="name">
+          </ion-input>
+        </section>
+
+        <section class="col-span-3 relative">
+          <ion-input
+            mode="md"
+            label-placement="floating"
+            label="PR"
+            placeholder="PR"
+            fill="outline"
+            id="pr"
+            name="pr"
+            formControlName="pr"
+            appDecimalValidator
+            [decimalSeparator]="','"
+            [min]="10"
+            [max]="99.99"
+            [maxIntegerDigits]="2"
+            [allowDecimals]="true">
+            <label aria-hidden="true" slot="start">%</label>
+          </ion-input>
+        </section>
+
+      </section>
+
+
+      <section class="grid grid-cols-12 mt-[0.8rem]">
+        <section class="col-span-12">
+          <ion-textarea
+            mode="md" label-placement="floating" label="Descrizione" rows="6"
+            placeholder="descrizione: scrivi cosa include questo biglietto" fill="outline"
+            id="description" name="description" formControlName="description"/>
+        </section>
+      </section>
+
+      <section class="flex justify-around space-x-4 mt-[0.8rem]">
+        <ion-checkbox mode="md" (ionChange)="changeIsFree($event)" formControlName="isFree" name="isFree">Ingresso gratuito</ion-checkbox>
+        <ion-checkbox mode="md" formControlName="isPreSale" name="isPreSale">Accetta prevendite</ion-checkbox>
+      </section>
+
+      <section class="grid grid-cols-12 mt-[0.8rem] gap-2">
+        <section class="col-span-6">
+          <ion-input
+            mode="md"
+            label-placement="floating"
+            label="Prezzo biglietto"
+            placeholder="Prezzo biglietto"
+            fill="outline"
+            id="price"
+            name="price"
+            formControlName="price"
+            appDecimalValidator
+            [decimalSeparator]="','"
+            [min]="0"
+            [max]="9999999.99"
+            [maxIntegerDigits]="7"
+            [allowDecimals]="true">
+            <label aria-hidden="true" slot="start">€</label>
+          </ion-input>
+        </section>
+
+        <section class="col-span-6">
+          <ion-input
+            mode="md"
+            label-placement="floating"
+            label="Quantità"
+            placeholder="Quantità"
+            fill="outline"
+            id="quantity"
+            name="quantity"
+            formControlName="quantity"
+            appDecimalValidator
+            [allowDecimals]="false">
+          </ion-input>
+        </section>
+
+      </section>
+
+      <section class="text-[15px] leading-[17px] mt-[5px]" *ngIf="isPreSale">
+        {{ "A breve presenteremo la funzione 'prevendita' che ti permette di ricevere prenotazioni con pagamenti parziali e decidere quando chiedere il saldo." }}
+      </section>
+
+      <section
+        [ngClass]="{ 'fixed': !isKeyboardOpen }"
+        class="flex flex-row justify-center items-center py-[22px] bottom-[0px] w-full gap-[20px] left-0">
+        <section class="bg-white opacity-45 absolute h-full w-full"></section>
+        <button
+          *ngIf="!ticket"
+          type="button"
+          (click)="onCancel()"
+          class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10">
+            {{ 'Annulla' }}
+        </button>
+        <button
+          *ngIf="ticket"
+          type="button"
+          (click)="eliminar()"
+          class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10">
+            {{ 'Elimina' }}
+        </button>
+        <button
+          type="submit"
+          [disabled]="!form.valid"
+          class="disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10">
+          {{ 'Salva' }}
+        </button>
+      </section>
+
+    </section>
+  </form>
+
+</section>

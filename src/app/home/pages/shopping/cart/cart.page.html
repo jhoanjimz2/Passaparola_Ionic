@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+  <div class="grid grid-cols-2 bg-white border-b border-solid rounded-[1.5rem]">
+    <app-header class="col-span-2" [backIcon]="true" [border]="true"></app-header>
+    <label class="mt-4 flex items-end justify-start px-4 col-span-1 text-[#000000] font-semibold text-[1.125rem]">Totale provvisorio</label>
+    <label class="mt-4 flex items-end justify-end px-4 col-span-1 text-[#000000] font-semibold text-[1.125rem]">€/ATM <span class="font-bold text-[1.5rem]">182,99</span></label>
+    <div class="col-span-2 px-4 mt-4">
+      <button (click)="orderCart()" class="flex justify-center items-center w-full py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10">
+        Procedi all'ordine (8 articoli)
+      </button>
+    </div>
+    <label class="text-[#000000] text-center col-span-2 my-4"><span class="font-bold">e ricevi 0,5587</span> cashback <span class="font-bold">e 1,8299 PR</span></label>
+  </div>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+
+  <div class="p-3">
+    <app-product-cart *ngFor="let item of [1,1,1,1,1]"></app-product-cart>
+  </div>
+
+
+  <div class="px-3 pb-3 bg-[#F3F3F3]">
+
+    <label class="text-black py-4 text-[1.2rem] block font-semibold">Scelti per te</label>
+
+    <swiper-container class="col-span-12 w-full mb-2" slides-per-view="auto" space-between="10px">
+      <swiper-slide class="w-[10rem]" *ngFor="let producto of [1,1,1,1,1,1]; let i = index">
+        <app-product-for-you></app-product-for-you>
+      </swiper-slide>
+    </swiper-container>
+
+  </div>
+
+
+  <div class="px-3 pb-3">
+    <label class="text-black py-4 text-[1.5rem] block font-bold">Salvati per dopo (3 articoli)</label>
+    <app-product-saved-for-later *ngFor="let item of [1,1,1]"></app-product-saved-for-later>
+  </div>
+
+
+
+
+
+  <div class="px-3 pb-3 bg-[#F3F3F3]">
+
+    <label class="text-black py-4 text-[1.2rem] block font-semibold">Compra di nuovo</label>
+
+    <swiper-container class="col-span-12 w-full mb-2" slides-per-view="auto" space-between="10px">
+      <swiper-slide class="w-[16rem]" *ngFor="let producto of [1,1,1,1,1,1]; let i = index">
+        <app-product-buy-again></app-product-buy-again>
+      </swiper-slide>
+    </swiper-container>
+
+  </div>
+
+</ion-content>

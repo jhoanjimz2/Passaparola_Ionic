@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+  <g id="Component_577" data-name="Component 577" transform="translate(0.25)">
+    <g id="Group_3541" data-name="Group 3541">
+      <g id="Ellipse_285" data-name="Ellipse 285" transform="translate(-0.25)" fill="none" stroke="#000" stroke-width="1">
+        <circle cx="14.5" cy="14.5" r="14.5" stroke="none"/>
+        <circle cx="14.5" cy="14.5" r="14" fill="none"/>
+      </g>
+      <path id="Icon_awesome-star" data-name="Icon awesome-star" d="M8.745.544l-2,4.049-4.468.651a.979.979,0,0,0-.541,1.67l3.233,3.15-.765,4.45a.978.978,0,0,0,1.419,1.031l4-2.1,4,2.1a.979.979,0,0,0,1.419-1.031l-.765-4.45,3.233-3.15a.979.979,0,0,0-.541-1.67L12.5,4.593,10.5.544a.98.98,0,0,0-1.756,0Z" transform="translate(4.627 6.001)" fill="none" stroke="#000" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,84 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container__card__header">
+      <ion-text>
+        <span class="main-container--f-w-b">{{
+          "WALLET.PASSAPAROLA_CASH.RECHARGE" | translate
+        }}</span>
+        <br />
+        <span>{{ "WALLET.PASSAPAROLA_CASH.ANY_POINT" | translate }}</span>
+      </ion-text>
+
+      <div class="main-container__card__center-item-full">
+        <ion-card class="main-container__card__center-item-full__card">
+          <ion-text>
+            <span class="main-container--f-z-14 main-container--f-italic">{{
+              "WALLET.PASSAPAROLA_CASH.TO" | translate
+            }}</span>
+            <br />
+            <span class="main-container__card__center-item-full__amount">{{
+              "999"
+            }}</span>
+            <span class="main-container__card__center-item-full__eur">€</span>
+            <br />
+            <span class="main-container--f-z-12">{{
+              "WALLET.PASSAPAROLA_CASH.COMMISION" | translate
+            }}</span>
+          </ion-text>
+        </ion-card>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>
+        <span class="main-container--f-z-22 main-container--f-w-b">{{
+          "WALLET.PASSAPAROLA_CASH.HOW_TO_RECHARGE" | translate
+        }}</span
+        ><ion-icon
+          name="arrow-up-circle"
+          class="main-container__card__icon-arrow"
+        ></ion-icon>
+      </ion-text>
+
+      <br />
+      <br />
+
+      <ion-grid class="main-container--m-p-0">
+        <ion-row class="main-container--m-b-20">
+          <ion-col size="1" class="main-container__card__col-left">
+            <div class="main-container__card__circle">1</div>
+          </ion-col>
+          <ion-col size="11" class="main-container--left-item">{{
+            "WALLET.PASSAPAROLA_CASH.SEARCH" | translate
+          }}</ion-col>
+        </ion-row>
+        <ion-row class="main-container--m-b-20">
+          <ion-col size="1" class="main-container__card__col-left">
+            <div class="main-container__card__circle">2</div>
+          </ion-col>
+          <ion-col size="11" class="main-container--left-item">{{
+            "WALLET.PASSAPAROLA_CASH.AMOUNT" | translate
+          }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1" class="main-container__card__col-left">
+            <div class="main-container__card__circle">3</div>
+          </ion-col>
+          <ion-col size="11" class="main-container--left-item">{{
+            "WALLET.PASSAPAROLA_CASH.DELIVER" | translate
+          }}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <br />
+
+      <app-map-wallet [position]="position"></app-map-wallet>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

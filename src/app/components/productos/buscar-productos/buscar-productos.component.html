@@ -1,0 +1,53 @@
+<section class="px-[16px] py-[48px] bg-white h-full">
+
+
+  <div class="w-full aspect-square overflow-y-auto border border-solid border-[#70707030] rounded-[1.5rem]">
+    <ion-searchbar
+      class="border border-[#70707030] bg-white rounded-[2rem] min-h-[40px] p-[5px]"
+      mode="ios" [(ngModel)]="query" (ionInput)="onSearchChange()" placeholder="Cerca qui...">
+    </ion-searchbar>
+
+    <div class="flex flex-row justify-between p-2">
+      <label class="text-[18px] font-bold text-[#000000]">I tuoi prodotti</label>
+      <label class="text-[18px] font-bold text-[#009BD5]" (click)="openCreateProduct()">+ crea prodotto</label>
+    </div>
+
+    <div class="p-2 mt-1">
+      <div
+        (click)="seleccionarProducto(producto)"
+        [ngClass]="compararProductosPorIndice(producto.id) ? 'border-[#FF9100] shadow-[0_0_15px_5px_#FF91003D]' : 'border-[#70707030]'"
+        class="grid grid-cols-3 gap-2 p-2 mt-2 border border-solid rounded-[.75rem]"  *ngFor="let producto of filtradosProductos">
+        <div class="col-span-1 p-[.1px] relative aspect-square border border-solid border-[#70707030] rounded-[.75rem]">
+          <img [src]="producto.pictureUlrFile | imageEvent" alt="Producto" class="w-full aspect-square rounded-[.75rem] object-cover"/>
+        </div>
+        <div class="col-span-2 flex flex-col justify-evenly">
+          <label class="text-[18px]">{{producto.name}}</label>
+          <label class="text-[18px] font-bold text-[#FF4B4B]">{{producto.price.toFixed(2).split('.')[0] }}<span class="text-[12px] text-[#FF4B4B]">,{{ producto.price.toFixed(2).split('.')[1] }}€</span></label>
+          <label>
+            <span class="text-[16px] text-[#35C93F] font-bold">{{producto.pr}}% <span class="text-black">PR</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="text-[16px] text-[#3B9FF6] font-bold">{{producto.cashBack}}% <span class="text-black">back</span></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="flex flex-row justify-between p-2">
+    <label class="text-[18px] font-bold text-[#000000]">Prodotti selezionati</label>
+  </div>
+
+
+  <div class="mt-4 grid grid-cols-3 gap-4">
+    <div
+      *ngFor="let producto of seleccionProductos;"
+      class="p-[.1px] relative aspect-square border border-solid border-[#FF9100] shadow-[0_0_15px_5px_#FF91003D] rounded-[.75rem]">
+      <img [src]="producto.pictureUlrFile | imageEvent" alt="Producto" class="w-full aspect-square rounded-[.75rem] object-cover"/>
+      <button (click)="eliminar(producto.id)" class="absolute top-[-10px] right-[-10px] bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center">✖</button>
+    </div>
+  </div>
+
+
+
+
+</section>

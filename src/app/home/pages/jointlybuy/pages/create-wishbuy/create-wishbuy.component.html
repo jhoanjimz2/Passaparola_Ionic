@@ -1,0 +1,113 @@
+<app-header
+[notification]="false"
+></app-header>
+<ion-content>
+
+
+  <form [formGroup]="form" (ngSubmit)="confirmWish()">
+    <section class="p-4 flex flex-col gap-4" *ngIf="!confirmWishbuy">
+      <div class="grid grid-cols-2">
+        <div class="col-span-1">
+          <span class="text-[#063549] text-[1.125rem] font-bold">Proponi wishbuy</span>
+        </div>
+        <div class="col-span-1 flex flex-row items-center justify-end gap-1">
+          <ion-icon (click)="welcome()" class="text-[#22A9E8]" name="alert-circle-outline"></ion-icon>
+          <span (click)="welcome()" class="text-[#22A9E8] italic text-[1rem]">come funziona</span>
+        </div>
+      </div>
+
+      <app-slider-platforms></app-slider-platforms>
+
+      <span class="text-[#063549] text-[0.688rem] font-semibold">Link prodotto</span>
+
+      <input
+        formControlName="productLink"
+        class="input-link"
+        [class.input-error]="form.get('productLink')?.invalid && form.get('productLink')?.touched"
+        type="text"
+        placeholder="link del prodotto che vuoi proporre"
+      />
+
+      <span class="text-[#063549] text-[0.688rem] font-semibold">
+        Inserisci eventuali link comparativi per evidenziare la convenienza di questo Willbuy. (facoltativo)
+      </span>
+
+      <input
+        formControlName="link1"
+        class="input-link"
+        type="text"
+        placeholder="link prodotto comparativo 1"
+      />
+      <input
+        formControlName="link2"
+        class="input-link"
+        type="text"
+        placeholder="link prodotto comparativo 2"
+      />
+    </section>
+
+
+    <section class="flex flex-col gap-4" *ngIf="!confirmWishbuy">
+      <div class="container-check">
+
+        <div class="flex flex-row items-center gap-2">
+          <label class="cursor-pointer flex items-start gap-2">
+            <input
+              formControlName="buyer"
+              type="checkbox"
+              class="custom-checkbox peer shrink-0">
+            <span class="text-black font-light text-[0.688rem]">
+              Voglio essere il Joyer di questo Willbuy e guadagnare il 3%
+            </span>
+          </label>
+          <ion-icon
+            (click)="onJoyerCheckChange()"
+            class="text-[1.5rem] text-[#EF8500]"
+            name="alert-circle-outline">
+          </ion-icon>
+        </div>
+
+        <span class="text-[#063549] text-[0.688rem] font-semibold">Quante unità vorresti acquistare?</span>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="relative col-span-1">
+            <input
+              formControlName="purchased"
+              class="input-link"
+              [class.input-error]="form.get('purchased')?.invalid && form.get('purchased')?.touched"
+              type="number"
+              placeholder="0"
+            />
+            <span class="unidades">pz</span>
+          </div>
+          <div class="relative col-span-1">
+            <input
+              formControlName="price"
+              class="input-link"
+              [class.input-error]="form.get('price')?.invalid && form.get('price')?.touched"
+              placeholder="prezzo del prodotto"
+              mask="separator.2"
+              thousandSeparator="."
+              decimalMarker=","
+              inputmode="numeric"
+              separatorLimit="99999999"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="button-form"
+        [disabled]="!isFormValid"
+        [class.button-disabled]="!isFormValid">
+        Invia wishbuy
+      </button>
+    </section>
+  </form>
+
+
+  <app-success-wishbuy
+    *ngIf="confirmWishbuy"
+    (newWishBuy)="newWishBuy()"
+  ></app-success-wishbuy>
+
+</ion-content>

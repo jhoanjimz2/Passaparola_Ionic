@@ -1,0 +1,140 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #ff7d0c 30%, #f5f5f5 30%);
+  overflow: auto;
+
+  &__header {
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+
+    &__text-1 {
+      font-size: 1.313rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    &__text-2 {
+      font-size: 1.313rem;
+      color: #ffffff;
+    }
+
+    &__text-3 {
+      font-size: 0.875rem;
+      color: #ffffff;
+    }
+  }
+
+  &__card {
+    border-radius: 1.625rem;
+    box-shadow: none;
+    min-width: 23.313rem;
+    background: #ffffff;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    max-width: 31.25rem;
+    padding-bottom: 0.938rem;
+
+    &__main-title {
+      font-size: 1.313rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    &__col-left {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__col-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__img {
+      width: 5.25rem;
+      height: 5.25rem;
+      border: 0.063rem solid #e6e6e6;
+      border-radius: 0.75rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__title {
+      font-weight: 600;
+      color: #000000;
+    }
+
+    &__text {
+      font-size: 0.813rem;
+      color: #000000;
+    }
+
+    ion-grid,
+    ion-row {
+      padding: 0;
+      margin: 0;
+    }
+
+    ion-row {
+      margin-bottom: 0.625rem;
+    }
+
+    &__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-button {
+        width: 20.875rem;
+        height: 3.875rem;
+        --background: #ff7d0c;
+        --background-activated: #ff7d0c;
+        --background-activated-opacity: #ff7d0c;
+        --background-focused: #ff7d0c;
+        --background-focused-opacity: #ff7d0c;
+        --background-hover: #ff7d0c;
+        --background-hover-opacity: #ff7d0c;
+        --border-radius: 1.938rem;
+        color: #ffffff;
+        --color: #ffffff;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__video {
+    box-shadow: none;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    background: transparent;
+    margin-top: 0;
+
+    &__text {
+      color: #000000;
+      font-weight: 600;
+    }
+
+    video {
+      border-radius: 1.188rem;
+      background: #000000;
+    }
+  }
+
+  &--center-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+}

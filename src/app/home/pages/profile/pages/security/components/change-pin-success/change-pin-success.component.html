@@ -1,0 +1,42 @@
+<div class="main-container">
+  <ion-card>
+    <div>
+      <ion-card-header>
+        <ion-text>
+          <ion-icon
+            class="main-container--f-z-100"
+            name="passaparola-double-check-success"
+          ></ion-icon>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <span class="main-container--f-w">
+            {{ "CHANGE_PIN.PIN_CHANGED" | translate }}
+          </span>
+          <br />
+          <br />
+          <span class="main-container--f-z-14">
+            {{ "CHANGE_PIN.YOU_PIN_CHANGED" | translate }}
+          </span>
+          <br />
+          <span class="main-container--f-z-14">
+            {{ "CHANGE_PIN.PIN_CHANGED_SUCCESS" | translate }}
+          </span>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button
+          (click)="backToProfile()"
+          type="buton"
+          expand="block"
+          class="btn-back"
+          color="success"
+        >
+          {{ "Torna al Profilo" | translate }}
+        </ion-button>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>

@@ -1,0 +1,95 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+
+
+  <section class="w-full h-full">
+
+    <swiper-container class="w-full h-full" pagination="true" pagination-clickable="true" css-mode="true">
+      <swiper-slide class="py-[4rem]" *ngFor="let ticket of event.digitalTickets! | slice:0 | sortByDate">
+
+        <div class="flex flex-col justify-around">
+
+          <div class="flex flex-row gap-1 justify-center items-center">
+            <ion-icon [src]="'assets/images/events/custom-icons/' + event.processStatus + '.svg'"></ion-icon>
+            <label
+              class="font-semibold"
+              [ngClass]="{
+                'text-[#EF8500]': event.processStatus == 'pending',
+                'text-[#41C837]': event.processStatus == 'active',
+                'text-[#9B9EA7]': event.processStatus == 'inactive',
+                'text-[#DB0000]': event.processStatus == 'rejected'
+              }"
+            >{{ event.processStatus }}</label>
+          </div>
+
+          <label class="font-bold text-[2rem] text-center">Dettagli biglietto</label>
+
+          <label class="font-bold text-[3rem] text-center" *ngIf="ticket.eventTicket">
+            {{ ticket.price === 0 ? 'FREE' : ('€ ' + (ticket.price | number:'1.2-2')!.replace('.', ',')) }}
+            <span class="text-[1.5rem]">ATM/€</span>
+          </label>
+
+          <div *ngIf="ticket.eventProduct">
+            <div *ngIf="!ticket.eventProduct.isFree && ticket.eventProduct.offerValue != 0" class="mb-auto ml-auto">
+              <p *ngIf="ticket.eventProduct.discount" class="text-[3rem] m-0 relative before:bg-pink-600 before:content-[''] before:absolute before:top-1/2 before:left-0 before:w-full before:h-[2px] before:rotate-[-15deg] before:-translate-y-1/2">
+                € {{ (ticket.eventProduct.offerValue).toString().split('.')[0] || 0 }}.<span class="text-[1.5rem]">{{(ticket.eventProduct.offerValue).toString().split('.')[1] || 0}}</span>
+              </p>
+              <p class="text-[3rem] m-0 font-bold">€ {{ (ticket.eventProduct.offerPrice).toString().split('.')[0] || 0 }}.<span class="text-[1.5rem]">{{ (ticket.eventProduct.offerPrice).toString().split('.')[1] || 0 }}</span></p>
+            </div>
+            <p *ngIf="ticket.eventProduct.isFree || ticket.eventProduct.offerValue == 0" class="text-center font-bold text-[3rem] text-pink-600">FREE</p>
+          </div>
+
+          <label class="font-[500] text-[1rem] text-center">Operazione effettuata il {{ ticket.purchaseDate | date:'dd/MM/yyyy' }}</label>
+
+
+
+          <ion-card class="rounded-[1rem] m-[1rem]">
+            <ion-card-header class="text-[1rem] font-bold text-center">
+              <label>Mostra questo QR code all'organizzatore dell'evento</label>
+            </ion-card-header>
+            <ion-card-content class="p-[1.5rem] pt-0 flex justify-center items-center">
+              <app-qr-ticket [data]="ticket.id"></app-qr-ticket>
+            </ion-card-content>
+          </ion-card>
+
+
+          <app-voucher-entrada-event
+            *ngIf="ticket.eventTicket"
+            [cantidad]="1"
+            [ticket]="ticket"
+            [border]="true">
+          </app-voucher-entrada-event>
+
+          <app-voucher-extra-event
+            (viewImage)="seatOpenViewImage(ticket.eventProduct.pictureUlrFile)"
+            *ngIf="ticket.eventProduct"
+            [ticketExtra]="ticket.eventProduct"
+            [buy]="false">
+          </app-voucher-extra-event>
+
+        </div>
+      </swiper-slide>
+
+
+
+    </swiper-container>
+
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>

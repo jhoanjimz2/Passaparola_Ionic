@@ -1,0 +1,50 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+  <section class="p-4">
+    <app-search-bar
+      [placeholder]="'Buscar profesionales...'"
+      (searchConfirm)="onSearchChange($event)"
+      (filterClick)="onFilterClick()"
+    ></app-search-bar>
+
+    <div class="search-results-header">
+      <h1 class="text-base font-bold mt-4 mb-4">
+        <ng-container [ngSwitch]="getSearchMode()">
+          <!-- Solo categoría -->
+          <ng-container *ngSwitchCase="'category'">
+            Area di interesse: <span class="category-highlight">{{getCategoryDisplayName()}}</span>
+          </ng-container>
+
+          <!-- Solo búsqueda -->
+          <ng-container *ngSwitchCase="'search'">
+            Risultati per: <span class="search-highlight">"{{currentSearchQuery}}"</span>
+          </ng-container>
+
+          <!-- Búsqueda y categoría combinadas -->
+          <ng-container *ngSwitchCase="'both'">
+            Risultati per: <span class="search-highlight">"{{currentSearchQuery}}"</span>
+            <span class="category-suffix"> in {{getCategoryDisplayName()}}</span>
+          </ng-container>
+
+          <!-- Sin filtros -->
+          <ng-container *ngSwitchDefault>
+            Tutti i professionisti
+          </ng-container>
+        </ng-container>
+      </h1>
+    </div>
+
+    <!-- Lista de profesionales -->
+    <div class="professionals-list">
+      <app-professional-card
+        *ngFor="let professional of professionals"
+        [professional]="professional"
+      ></app-professional-card>
+    </div>
+
+  </section>
+</ion-content>

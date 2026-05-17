@@ -1,0 +1,58 @@
+<div class="relative w-full border border-solid border-[#70707030] rounded-[1.1rem] bg-white p-[0.710625rem]">
+
+  <button (click)="taggaAction()" *ngIf="eventSelected && !viewTagPost" class="flex justify-center items-center absolute z-50 top-[-.5rem] right-0 w-[1.8125rem] h-[1.8125rem] rounded-full bg-white border border-solid border-[#E4EDF3] shadow-[0px_3px_6px_#0000001C] ">
+    <ion-icon class="text-black text-[1.2rem]" name="trash"></ion-icon>
+  </button>
+
+
+  <div class="flex gap-2 py-2 overflow-x-auto w-full h-auto no-scrollbar">
+    <div class="shrink-0 w-1/2" *ngFor="let image of event.pictureGallery">
+      <img
+        class="w-full h-[8.018125rem] rounded-[0.9375rem] object-cover"
+        [src]="image ? image : 'https://placehold.co/80x80?text=gallery'"
+      >
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 w-full">
+    <div class="col-span-1 flex flex-col leading-[1]">
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 items-center justify-start">
+          <span class="text-[0.9375rem] text-[#000000]">{{ event.name }}</span>
+        </div>
+      </div>
+
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 items-center justify-start">
+          <span class="text-[0.6875rem] font-semibold text-black">
+            {{ event.address }}
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 items-center justify-start">
+          <span class="text-[0.6875rem] font-semibold text-black">
+            {{ event.schedule ? (event.schedule | formatDateRange ) : 'Senza Data' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!tagga && !eventSelected && !viewTagPost && !showDetail" class="col-span-1 flex flex-row items-center justify-end gap-[0.8125rem]">
+      <!-- <button class="w-[2.1875rem] h-[2.1875rem] text-[1rem] rounded-full bg-white border border-solid border-[#E1E1E1] flex justify-center items-center">
+        <ion-icon name="passaparola-profile-stats-tags"/>
+      </button> -->
+      <button class="w-[9.4375rem] h-[2.1875rem] rounded-[1.125rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+        Modifica/elimina
+      </button>
+    </div>
+
+    <div *ngIf="tagga && !eventSelected && !viewTagPost" class="col-span-1 flex flex-row items-center justify-start gap-[0.8125rem] mt-1">
+      <button (click)="taggaAction()" class="w-[6.125rem] h-[1.75rem] rounded-[0.875rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+        Tagga
+      </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,254 @@
+<section class="px-[0.688rem] pb-[1.438rem] pt-[.438rem]">
+
+  <h1 class="font-bold text-[0.75rem] text-black">Il/La sottoscritto/a (intestatario contratto)</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="mt-2 text-center">
+
+    <!-- Nome e cognome -->
+    <div class="field">
+      <label class="label-field">Nome e cognome</label>
+      <input
+        name="firstAndLastName"
+        formControlName="firstAndLastName"
+        class="input-field"
+        [class.border-red-500]="hasError('firstAndLastName')"
+        placeholder="scrivi il nome completo qui"
+      />
+      <div *ngIf="hasError('firstAndLastName')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getErrorMessage('firstAndLastName') }}
+      </div>
+    </div>
+
+    <!-- Indirizzo e Numero civico -->
+    <div class="grid grid-cols-12 gap-2">
+      <div class="field col-span-8">
+        <label class="label-field">Indirizzo</label>
+        <input
+          name="address"
+          formControlName="address"
+          class="input-field"
+          [class.border-red-500]="hasError('address')"
+          placeholder="scrivi qui l'indirizzo"
+        />
+        <div *ngIf="hasError('address')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('address') }}
+        </div>
+      </div>
+      <div class="field col-span-4">
+        <label class="label-field">Numero civico</label>
+        <input
+          name="streetNumber"
+          formControlName="streetNumber"
+          class="input-field"
+          [class.border-red-500]="hasError('streetNumber')"
+          placeholder="000"
+        />
+        <div *ngIf="hasError('streetNumber')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('streetNumber') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Città, PR y CAP -->
+    <div class="grid grid-cols-12 gap-2">
+      <div class="field col-span-7">
+        <label class="label-field">Città</label>
+        <input
+          name="city"
+          formControlName="city"
+          class="input-field"
+          [class.border-red-500]="hasError('city')"
+          placeholder="Nome città"
+        />
+        <div *ngIf="hasError('city')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('city') }}
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label class="label-field">PR</label>
+        <input
+          name="province"
+          formControlName="province"
+          class="input-field"
+          [class.border-red-500]="hasError('province')"
+          placeholder="RM"
+          maxlength="2"
+        />
+        <div *ngIf="hasError('province')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('province') }}
+        </div>
+      </div>
+      <div class="field col-span-3">
+        <label class="label-field">CAP</label>
+        <input
+          name="cap"
+          formControlName="cap"
+          class="input-field"
+          [class.border-red-500]="hasError('cap')"
+          placeholder="00000"
+          maxlength="6"
+        />
+        <div *ngIf="hasError('cap')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('cap') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Data di nascita y Stato -->
+    <div class="grid grid-cols-12 gap-2">
+      <div class="field col-span-6">
+        <label class="label-field">Data di nascita</label>
+        <input
+          name="dateOfBirth"
+          formControlName="dateOfBirth"
+          class="input-field"
+          [class.border-red-500]="hasError('dateOfBirth')"
+          placeholder="formato gg/mm/aaaa"
+        />
+        <div *ngIf="hasError('dateOfBirth')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('dateOfBirth') }}
+        </div>
+      </div>
+      <div class="field col-span-6">
+        <label class="label-field">Stato</label>
+        <ion-select
+          mode="ios"
+          name="country"
+          formControlName="country"
+          class="input-field"
+          [class.border-red-500]="hasError('country')"
+          placeholder="scegli dalla lista"
+          toggleIcon="caret-down-outline"
+        >
+          <ion-select-option
+            *ngFor="let country of countries"
+            [value]="country.id"
+          >
+            {{ country.name }}
+          </ion-select-option>
+        </ion-select>
+        <div *ngIf="hasError('country')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('country') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Comune di nascita, PR y Sesso -->
+    <div class="grid grid-cols-12 gap-2">
+      <div class="field col-span-6">
+        <label class="label-field">Comune di nascita</label>
+        <input
+          name="cityOfBirth"
+          formControlName="cityOfBirth"
+          class="input-field"
+          [class.border-red-500]="hasError('cityOfBirth')"
+          placeholder="scrivi il comune"
+        />
+        <div *ngIf="hasError('cityOfBirth')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('cityOfBirth') }}
+        </div>
+      </div>
+      <div class="field col-span-2">
+        <label class="label-field">PR</label>
+        <input
+          name="province2"
+          formControlName="province2"
+          class="input-field"
+          [class.border-red-500]="hasError('province2')"
+          placeholder="RM"
+          maxlength="2"
+        />
+        <div *ngIf="hasError('province2')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('province2') }}
+        </div>
+      </div>
+      <div class="field col-span-4">
+        <label class="label-field">Sesso</label>
+        <ion-radio-group
+          class="flex items-center justify-center h-[2.75rem] gap-2"
+          [class.border-red-500]="hasError('gender')"
+          name="gender"
+          formControlName="gender"
+        >
+          <ion-radio value="m" labelPlacement="end">M</ion-radio>
+          <ion-radio value="f" labelPlacement="end">F</ion-radio>
+        </ion-radio-group>
+        <div *ngIf="hasError('gender')" class="text-red-500 text-xs mt-1 text-left">
+          {{ getErrorMessage('gender') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Codice fiscale -->
+    <div class="field">
+      <label class="label-field">Codice fiscale</label>
+      <input
+        name="taxId"
+        formControlName="taxId"
+        class="input-field"
+        [class.border-red-500]="hasError('taxId')"
+        placeholder="inserisci il tuo codice fiscale"
+        maxlength="16"
+      />
+      <div *ngIf="hasError('taxId')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getErrorMessage('taxId') }}
+      </div>
+    </div>
+
+    <!-- Numero telefonico -->
+    <div class="field">
+      <label class="label-field">Numero telefonico</label>
+      <div class="field-phone">
+        <ion-select
+          class="select-field-phone"
+          [class.border-red-500]="hasError('countryPhone')"
+          mode="ios"
+          name="countryPhone"
+          formControlName="countryPhone"
+        >
+          <ion-select-option
+            *ngFor="let country of countries"
+            [value]="country.phonePrefix"
+          >
+            {{ country.phonePrefix }} {{ country.code }}
+          </ion-select-option>
+        </ion-select>
+        <input
+          name="phoneNumber"
+          formControlName="phoneNumber"
+          class="input-field-phone"
+          [class.border-red-500]="hasError('phoneNumber')"
+          placeholder="000 0000 000"
+        />
+      </div>
+      <div *ngIf="hasError('countryPhone') || hasError('phoneNumber')" class="text-red-500 text-xs mt-1 text-left">
+        {{ hasError('countryPhone') ? getErrorMessage('countryPhone') : getErrorMessage('phoneNumber') }}
+      </div>
+    </div>
+
+    <!-- Indirizzo email -->
+    <div class="field">
+      <label class="label-field">Indirizzo email</label>
+      <input
+        name="email"
+        formControlName="email"
+        type="email"
+        class="input-field"
+        [class.border-red-500]="hasError('email')"
+        placeholder="scrivi qui il tuo indirizzo email"
+      />
+      <div *ngIf="hasError('email')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <!-- Botón Submit -->
+    <button
+      class="button-field"
+      type="submit"
+    >
+      Continua
+    </button>
+
+  </form>
+
+</section>

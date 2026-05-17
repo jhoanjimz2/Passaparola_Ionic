@@ -1,0 +1,97 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-card class="main-container">
+    <div class="main-container__form-pin">
+      <form [formGroup]="formPin" (ngSubmit)="changePin()">
+        <ion-label>{{ "SECURITY.PIN" | translate }}</ion-label>
+        <br />
+        <br />
+        <div class="main-container__form-pin__code">
+          <div class="main-container__form-pin__input">
+            <input
+              #code1
+              formControlName="code1"
+              name="code1"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(1)"
+              [type]="!showPassword ? 'password' : 'text'"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="main-container__form-pin__input">
+            <input
+              #code2
+              formControlName="code2"
+              name="code2"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(2)"
+              [type]="!showPassword ? 'password' : 'text'"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="main-container__form-pin__input">
+            <input
+              #code3
+              formControlName="code3"
+              name="code3"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(3)"
+              [type]="!showPassword ? 'password' : 'text'"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="main-container__form-pin__input">
+            <input
+              #code4
+              formControlName="code4"
+              name="code4"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(4)"
+              [type]="!showPassword ? 'password' : 'text'"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="main-container__form-pin__input">
+            <input
+              #code5
+              formControlName="code5"
+              name="code5"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(5)"
+              [type]="!showPassword ? 'password' : 'text'"
+              inputmode="numeric"
+            />
+          </div>
+
+          <div
+            class="main-container__form-pin__input main-container__form-pin__icon"
+          >
+            <ion-icon
+              (click)="showPassword = !showPassword"
+              [name]="showPassword ? 'eye-off' : 'eye-outline'"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="7"></ion-col>
+            <ion-col size="5" class="main-container--text-right">
+              <ion-button
+                type="submit"
+                color="success"
+                [disabled]="formPin.invalid"
+                >{{'SECURITY.CHANGE_PIN' | translate}}</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,114 @@
+<ion-content
+  [fullscreen]="true"
+  class="main-container"
+  [ngClass]="{'main-container--bg-light': loading}"
+>
+  <div class="main-container__content">
+    <ion-spinner *ngIf="loading"></ion-spinner>
+
+    <ion-card *ngIf="!loading" class="main-container__card">
+      <ion-card-header class="main-container__card__header">
+        <ion-text>
+          <div class="main-container__card__header__img">
+            <img src="assets/images/text-icon-white.png" alt="" width="176px" />
+          </div>
+          <span class="main-container__card__header__text"
+            >{{"SEAT_SUGGESTED.TEXT_1" | translate}}</span
+          >
+        </ion-text>
+
+        <div class="main-container__card__header__store">
+          <div class="main-container__display-100">
+            <div
+              class="main-container__card__header__img-store"
+              [style.background-image]="
+            'url(' + (seat.pictureUlrFile! | image) + ')'
+          "
+            ></div>
+          </div>
+
+          <div class="main-container__card__header__info">
+            <ion-text>
+              <span class="main-container__card__header__name"
+                >{{seat.name}}</span
+              >
+              <br />
+              <span class="main-container__card__header__category"
+                >{{category}} | €€</span
+              >
+              <br />
+              <span class="main-container__card__header__percentage-back"
+                >{{seat.cashBackPercentage}}%</span
+              ><span class="main-container__card__header__cashback"
+                >{{"SEAT_SUGGESTED.CASHBACK" | translate}}</span
+              >
+              <span class="main-container__card__header__percentage-reward"
+                >{{seat.pointsPercentage}}%</span
+              >
+              <span class="main-container__card__header__reward"
+                >{{"SEAT_SUGGESTED.REWARD" | translate}}</span
+              >
+            </ion-text>
+          </div>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" class="main-container__card__header__col-left">
+                <div
+                  class="main-container__card__header__call-btn"
+                  (click)="callPhoneNumber()"
+                >
+                  <ion-icon name="passaparola-call"></ion-icon>
+                  <span class="main-container__card__header__text-call-btn"
+                    >{{"SEAT_SUGGESTED.CALL" | translate}}</span
+                  >
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-icon
+                  name="arrow-redo-circle"
+                  class="main-container__card__header__icon-arrow"
+                ></ion-icon>
+                <span
+                  *ngIf="distance > 0"
+                  class="main-container__card__header__text-distance"
+                >
+                  {{ distance < 1 ? distance * 1000 : distance }} {{ distance <
+                  1 ? "m" : "km" }}
+                </span>
+
+                <span
+                  *ngIf="distance === 0"
+                  class="main-container__card__header__text-distance"
+                >
+                  ***
+                </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card-header>
+      <ion-card-content class="main-container__card__content">
+        <ion-text>
+          <span class="main-container__card__content__title">
+            {{user.profile ? user.profile.name : ''}} {{"SEAT_SUGGESTED.TEXT_2"
+            | translate}}
+          </span>
+          <br />
+          <span class="main-container__card__content__sub-title"
+            >{{seat.name}}</span
+          >
+          <br />
+          <span class="main-container--text-dark"
+            >{{"SEAT_SUGGESTED.TEXT_3" | translate}}</span
+          >
+        </ion-text>
+
+        <div class="main-container--w-100">
+          <ion-button (click)="register()">
+            {{"SEAT_SUGGESTED.BTN" | translate}}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

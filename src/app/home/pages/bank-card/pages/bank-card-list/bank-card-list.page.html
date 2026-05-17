@@ -1,0 +1,39 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<section class="h-full bg-[#F9F9F9] text-black p-[20px]">
+  <section class="flex flex-col mt-[30px]">
+    <article class="text-[16px] leading-[22px] font-semibold">
+      {{ "BANK_CARD.TITLE" | translate }}
+    </article>
+    <article class="text-[12px] leading-[22px] mt-[10px]">
+      {{ "BANK_CARD.SUB_TITLE" | translate }}
+    </article>
+  </section>
+
+  <swiper-container
+    class="mt-[30px] gap-[10px] h-[240px]"
+    [pagination]="true"
+    [loop]="false"
+    [slidesPerView]="1"
+    *ngIf="bankCards.length"
+  >
+    <swiper-slide *ngFor="let bankCard of bankCards">
+      <app-bank-card [bankCard]="bankCard" (delete)="onDelete($event)" />
+    </swiper-slide>
+  </swiper-container>
+
+  <section class="flex items-center mt-[30px] gap-[10px]">
+    <article
+      class="flex items-center justify-center h-[44px] w-[65px] border-[1px] rounded-[12px] border-[#00000080] text-[#00000080] hover:cursor-pointer"
+      routerLink="/pages/bank-card/create"
+    >
+      <ion-icon class="h-[20px] w-[20px]" name="add-outline"></ion-icon>
+    </article>
+    <span
+      class="text-[11px] leading-[15px] font-semibold text-[#00000080] hover:cursor-pointer"
+      routerLink="/pages/bank-card/create"
+    >
+      {{ "BANK_CARD.BUTTON_ADD" | translate }}
+    </span>
+  </section>
+</section>

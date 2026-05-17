@@ -1,0 +1,90 @@
+<div
+  class="relative cursor-pointer w-full rounded-[0.938rem] overflow-hidden"
+  [style.aspect-ratio]="width + '/' + height"
+  (click)="onVideoClick(customVideo)"
+  (mousemove)="showControlsTemporarily()"
+>
+  <div
+    *ngIf="!isLoaded"
+    class="w-full h-full animate-pulse bg-gray-300 rounded-[0.938rem]"
+  ></div>
+
+  <!-- Canvas para capturar el primer frame -->
+  <canvas
+    #posterCanvas
+    *ngIf="!isLoaded"
+    class="absolute inset-0 w-full h-full rounded-[0.938rem]"
+    [class.hidden]="isLoaded"
+  ></canvas>
+
+  <video
+    #customVideo
+    class="w-full h-full transition-opacity duration-500 rounded-[0.938rem]"
+    playsinline
+    preload="auto"
+    disablePictureInPicture
+    controlsList="nodownload nofullscreen noremoteplayback"
+    [muted]="true"
+    [src]="urlFile"
+    [class.opacity-0]="!isLoaded"
+    [class.opacity-100]="isLoaded"
+    (timeupdate)="updateProgress(customVideo)"
+    (loadedmetadata)="setDuration(customVideo)"
+    (ended)="onVideoEnded(customVideo)"
+  ></video>
+
+  <div
+    class="video-controls"
+    [class.video-controls--hidden]="!showControls"
+    (click)="onControlsInteraction($event)"
+  >
+    <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center gap-2">
+        <button
+          (click)="togglePlay(customVideo)"
+          class="flex items-center text-[.8rem] justify-center text-[#FE8500] w-[1.625rem] h-[1.625rem] rounded-full bg-white"
+        >
+          <ion-icon *ngIf="isPaused"  name="play"></ion-icon>
+          <ion-icon *ngIf="!isPaused" name="pause"></ion-icon>
+        </button>
+
+        <span class="text-[1.1875rem] text-white">{{ formatTime(currentTime) }}</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-[1.1875rem] text-white">{{ formatTime(duration) }}</span>
+
+        <!-- Control de volumen -->
+        <div class="volume-control">
+          <button
+            (click)="toggleMute(customVideo)"
+            class="flex items-center text-[.8rem] justify-center text-[#FE8500] w-[1.625rem] h-[1.625rem] rounded-full bg-white"
+          >
+            <ion-icon [name]="volumeIcon"></ion-icon>
+          </button>
+
+          <div class="volume-slider">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              [value]="volume"
+              (input)="changeVolume(customVideo, $event)"
+              class="volume-range"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      [max]="duration"
+      [value]="currentTime"
+      (input)="seekVideo(customVideo, $event)"
+      class="progress-range"
+    />
+  </div>
+</div>

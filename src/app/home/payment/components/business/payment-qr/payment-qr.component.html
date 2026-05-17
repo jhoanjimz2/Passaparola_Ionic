@@ -1,0 +1,97 @@
+<section class="flex flex-col justify-between h-full px-[35px] bg-gray-50">
+  <section class="flex flex-col h-full">
+    <section class="text-[24px] leading-[33px] font-bold text-center pt-[20px]">
+      {{ "PAYMENT.QR.SHOW_THIS_QR_CODE_TO_YOUR_CUSTOMER" | translate }}
+    </section>
+
+    <section
+      class="main-section flex flex-col items-center text-center w-full border-[1px] shadow-gray-300 shadow-md rounded-[20px] mt-[20px] pb-[50px] h-full px-[35px] bg-white"
+    >
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" class="col-left">
+            <ion-button
+              class="btn"
+              [ngClass]="{ 'btn-active': payOption === 'qr' }"
+              (click)="payOption = 'qr'; stopScanNfc()"
+            >
+              {{ "QR CODE" | translate }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" class="col-right">
+            <ion-button
+              class="btn"
+              [ngClass]="{ 'btn-active': payOption === 'nfc' }"
+              (click)="payOption = 'nfc'; scanNFC()"
+            >
+              {{ "NFC " | translate }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <section>
+        <section class="text-[23px] leading-[23px] mt-[20px]">
+          {{ "PAYMENT.QR.TOTALE" | translate }}
+        </section>
+        <section class="text-[60px] leading-[72px]">
+          {{ mainAmount }},{{ decimalAmount }}
+        </section>
+        <section class="text-[15px] leading-[24px] font-bold">€/ATM</section>
+      </section>
+      <section
+        class="relative p-[10px] border-gray-300 rounded-[20px] mt-[20px] border-[1px] shadow-gray-300 shadow-md"
+      >
+        <ngx-qrcode-styling
+          *ngIf="payOption === 'qr'"
+          [config]="config"
+        ></ngx-qrcode-styling>
+
+        <section *ngIf="payOption === 'nfc'" class="nfc-card">
+          <div class="center-item nfc-card__title">
+            <ion-icon name="wifi"></ion-icon>
+            <span>{{ "NFC" | translate }}</span>
+          </div>
+          <ion-text>
+            <span>{{ "PAYMENT.TEXT_INFO_NFC_1" | translate }}</span>
+            <br />
+            <span>{{ "PAYMENT.TEXT_INFO_NFC_2" | translate }}</span>
+            <br />
+          </ion-text>
+          <div class="center-item nfc-card__logo">
+            <div class="center-item nfc-card__logo__inner">
+              <img src="assets/images/logo-orange-br.png" alt="logo" />
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <!-- <section
+      class="flex flex-col justify-center items-center text-center w-full border-[1px] shadow-gray-300 shadow-md rounded-[20px] mt-[20px] pb-[50px] h-full px-[35px] bg-white"
+    >
+      <section>
+        <section class="text-[23px] leading-[23px] mt-[30px]">
+          {{ "PAYMENT.QR.TOTALE" | translate }}
+        </section>
+        <section class="text-[60px] leading-[72px]">
+          {{ mainAmount }},{{ decimalAmount }}
+        </section>
+        <section class="text-[15px] leading-[24px] font-bold">€/ATM</section>
+      </section>
+      <section
+        class="relative p-[10px] border-gray-300 rounded-[20px] mt-[20px] border-[1px] shadow-gray-300 shadow-md"
+      >
+        <ngx-qrcode-styling [config]="config"></ngx-qrcode-styling>
+      </section>
+    </section> -->
+  </section>
+  <section class="text-center h-[100px] mt-[20px]">
+    <span
+      class="text-[#9E9C9C] text-[16px] leading-[22px] font-bold"
+      (click)="onClose()"
+    >
+      {{ "PAYMENT.CLOSE" | translate }}
+    </span>
+  </section>
+</section>

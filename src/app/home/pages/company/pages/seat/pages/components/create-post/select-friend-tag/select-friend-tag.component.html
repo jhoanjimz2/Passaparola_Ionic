@@ -1,0 +1,33 @@
+<ion-content>
+
+  <div class="w-full h-full bg-[#FBFCFE] px-[.625rem] py-[1.1rem]">
+
+    <h1 class="text-center text-[0.9375rem] mb-4 text-[#1D0F01]">
+      {{ 'Tagga un amico' }}
+    </h1>
+
+
+    <div class="grid grid-cols-1 gap-2 pb-[6rem] h-auto w-full">
+      <div class="col-span-1" *ngFor="let user of usersMergedData">
+        <app-user-tag
+          [user]="user"
+          (selectUserTag)="selectUserTag($event)"
+        >
+        </app-user-tag>
+      </div>
+    </div>
+
+
+    <div class="w-full text-center bg-white px-[0.625rem] py-[1rem] fixed left-0 bottom-0 z-10">
+
+      <button (click)="close()" class="w-[12.9375rem] h-[3.875rem] rounded-[1.9375rem] bg-[#FE8500] text-white font-bold text-[1.5rem]">
+        Fatto
+      </button>
+
+    </div>
+
+
+  </div>
+
+</ion-content>
+

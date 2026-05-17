@@ -1,0 +1,162 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+  [valueEmit]="!confirm ? '' : 'false'"
+  (emitAnyValue)="getValueComfirm($event)"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-content>
+      <div *ngIf="!confirm; else confirmTransfern">
+        <form [formGroup]="formTransfern" (ngSubmit)="next()">
+          <ion-text>
+            <span *ngIf="transactionType === 'receive'">{{
+              "WALLET.MODAL_TRANSFER.YOUR_REQUESTING" | translate
+            }}</span>
+
+            <span *ngIf="transactionType === 'send'">{{
+              "WALLET.MODAL_TRANSFER.YOU_SENDIND" | translate
+            }}</span>
+            <br />
+            <span class="main-container__card__text-amount">{{
+              amount | formattNumber
+            }}</span>
+            <span class="main-container__card__text-atm">{{ " ATM/€" }}</span>
+            <br />
+            <span>{{ "WALLET.MODAL_TRANSFER.TO" | translate }}</span>
+          </ion-text>
+
+          <div class="center-item">
+            <div class="main-container__contact">
+              <div>
+                <div class="center-item">
+                  <div
+                    *ngIf="!contact.isBussines"
+                    class="main-container__contact__picture"
+                    [style.background-image]="
+                      contact.user?.profile?.profilePictureUrlFile!
+                        ? 'url(' +
+                          contact.user?.profile?.profilePictureUrlFile! +
+                          ')'
+                        : 'url(assets/images/no-image.jpg)'
+                    "
+                  ></div>
+                  <div
+                    *ngIf="contact.isBussines"
+                    class="main-container__contact__picture"
+                    [style.background-image]="
+                      contact.company?.profile?.profilePictureUrlFile!
+                        ? 'url(' +
+                          contact.company?.profile?.profilePictureUrlFile! +
+                          ')'
+                        : 'url(assets/images/no-image.jpg)'
+                    "
+                  ></div>
+                </div>
+                <div class="main-container__contact__text">
+                  {{ contact.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ion-label *ngIf="transactionType === 'receive'">{{
+            "WALLET.MODAL_TRANSFER.CAUSE_TEXT" | translate
+          }}</ion-label>
+          <ion-label *ngIf="transactionType === 'send'">{{
+            "Causale - indica la motivazione del tuo invio" | translate
+          }}</ion-label>
+          <div class="main-container__reason">
+            <textarea
+              formControlName="reason"
+              name="reason"
+              placeholder="{{ 'WALLET.MODAL_TRANSFER.WRITE_HERE' | translate }}"
+            ></textarea>
+          </div>
+
+          <ion-button
+            class="main-container__btn-next"
+            type="submit"
+            [disabled]="formTransfern.invalid"
+            >{{ "WALLET.MODAL_TRANSFER.NEXT" | translate }}</ion-button
+          >
+        </form>
+      </div>
+
+      <ng-template #confirmTransfern>
+        <div class="main-container__confirm-img">
+          <img src="assets/images/send_atm.png" alt="" />
+        </div>
+
+        <ion-text>
+          <span *ngIf="transactionType === 'send'">{{
+            "WALLET.MODAL_TRANSFER.YOU_SENDIND" | translate
+          }}</span>
+          <span *ngIf="transactionType === 'receive'">{{
+            "State ricevendo" | translate
+          }}</span>
+          <br />
+          <span class="main-container__card__text-amount">{{
+            amount | formattNumber
+          }}</span>
+          <span class="main-container__card__text-atm">{{ " ATM/€" }}</span>
+          <br />
+          <span>{{ "WALLET.MODAL_TRANSFER.TO" | translate }}</span>
+        </ion-text>
+
+        <div class="center-item">
+          <div class="main-container__contact_confirm">
+            <div>
+              <div class="center-item">
+                <div
+                  *ngIf="!contact.isBussines"
+                  class="main-container__contact__picture"
+                  [style.background-image]="
+                    contact.user?.profile?.profilePictureUrlFile!
+                      ? 'url(' +
+                        contact.user?.profile?.profilePictureUrlFile! +
+                        ')'
+                      : 'url(assets/images/no-image.jpg)'
+                  "
+                ></div>
+                <div
+                  *ngIf="contact.isBussines"
+                  class="main-container__contact__picture"
+                  [style.background-image]="
+                    contact.company?.profile?.profilePictureUrlFile!
+                      ? 'url(' +
+                        contact.company?.profile?.profilePictureUrlFile! +
+                        ')'
+                      : 'url(assets/images/no-image.jpg)'
+                  "
+                ></div>
+              </div>
+              <div class="main-container__contact_confirm__text">
+                {{ contact.name }}
+              </div>
+              <div class="main-container--m-t-30">
+                <span class="main-container__contact_confirm__reason-date">{{
+                  "WALLET.MODAL_TRANSFER.CAUSE" | translate
+                }}</span>
+                <span>{{ formTransfern.controls["reason"].value }}</span>
+              </div>
+              <div class="main-container--m-t-60">
+                <span class="main-container__contact_confirm__reason-date">{{
+                  "WALLET.MODAL_TRANSFER.DATE" | translate
+                }}</span>
+                <span>{{ date | date : "dd MMM, yyyy" }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-button
+          (click)="confirmTransfer()"
+          class="main-container__btn-next"
+          [disabled]="formTransfern.invalid"
+          >{{ "WALLET.MODAL_TRANSFER.CONFIRM" | translate }}</ion-button
+        >
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

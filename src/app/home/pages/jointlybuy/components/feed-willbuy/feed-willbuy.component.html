@@ -1,0 +1,17 @@
+
+<section class="pb-[6rem]">
+  <div class="feed-products__header">
+    <span class="feed-products__title">{{ title }}</span>
+  </div>
+  <ngx-masonry #masonryFeed [options]="masonryOptions" [ordered]="true">
+    <div ngxMasonryItem class="grid-sizer"></div>
+    <div
+      ngxMasonryItem
+      *ngFor="let willbuy of willbuys; let i = index"
+      class="masonry-item relative"
+      [ngClass]="{ 'mt-8': i === 1 }"
+    >
+      <app-willbuy-card [willbuy]="willbuy"></app-willbuy-card>
+    </div>
+  </ngx-masonry>
+</section>

@@ -1,0 +1,80 @@
+<ion-content [fullscreen]="true" class="main-container">
+  <div class="main-container__content">
+    <ion-card class="main-container__card">
+      <ion-card-content class="main-container--text-center">
+        <div class="center-item">
+          <img
+            src="assets/images/transfer-successfully.png"
+            alt=""
+            class="main-container__card__icon-successfully"
+          />
+        </div>
+        <br />
+        <ion-text>
+          <span class="main-container--f-w-b main-container--f-z-25">{{
+            "WALLET.MODAL_TRANSFER_SUCCESSFULLY.TRANSACTION_EXE" | translate
+          }}</span>
+          <br />
+          <br />
+          <span>{{
+            "WALLET.MODAL_TRANSFER_SUCCESSFULLY.YOU_SENT" | translate
+          }}</span>
+          <br />
+          <span class="main-container--f-w-b main-container--f-z-36">{{
+            amount | formattNumber
+          }}</span>
+          <span sclass="main-container--f-w-b main-container--f-z-18">{{
+            " ATM/€"
+          }}</span>
+        </ion-text>
+
+        <div class="center-item">
+          <div class="main-container__card__contact">
+            <div>
+              <div class="center-item">
+                <div
+                  class="main-container__card__contact__img"
+                  [style.background-image]="
+                    contact.user?.profile?.profilePictureUrlFile!
+                      ? 'url(' +
+                        contact.user?.profile?.profilePictureUrlFile! +
+                        ')'
+                      : 'url(assets/images/no-image.jpg)'
+                  "
+                ></div>
+              </div>
+
+              <div class="main-container__card__contact__text">
+                {{ contact.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-text class="main-container--f-z-13">
+          <span
+            >{{
+              "WALLET.MODAL_TRANSFER_SUCCESSFULLY.OPERATION_PERFORMED"
+                | translate
+            }}
+            {{ date | date }}
+          </span>
+          <br />
+          <span
+            >{{
+              "WALLET.MODAL_TRANSFER_SUCCESSFULLY.TRANSACTION_ID" | translate
+            }}
+            {{ idTransaction }}</span
+          >
+        </ion-text>
+
+        <ion-button
+          (click)="backToHome()"
+          class="main-container__card__contact__btn-back"
+          >{{
+            "WALLET.MODAL_TRANSFER_SUCCESSFULLY.BACK_TO_HOME" | translate
+          }}</ion-button
+        >
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

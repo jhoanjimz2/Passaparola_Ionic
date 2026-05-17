@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="bg-white p-6 pb-[120px]">
+    <!-- Título -->
+    <h2 class="text-lg font-bold mb-4">Categoria</h2>
+
+    <!-- Categorías -->
+    <!-- Categorías agrupadas por padre -->
+    <div *ngFor="let group of categoryGroups" class="bg-white border border-gray-300 rounded-xl p-4 mb-4">
+      <h3 class="text-md font-bold mb-2">{{ group.title }}</h3>
+
+      <div *ngFor="let category of group.items" class="flex items-center space-x-3 mb-2">
+        <div
+          class="w-6 h-6 relative flex justify-center items-center rounded-md border transition-all"
+          [class.bg-orange-500]="category.selected"
+          [class.border-gray-400]="!category.selected"
+          (click)="toggleCategory(category)"
+        >
+          <span *ngIf="category.selected" class="absolute inset-0 flex justify-center items-center text-white text-sm font-bold translate-x-[-2.5px]">✔</span>
+          <span *ngIf="category.selected" class="absolute inset-0 flex justify-center items-center text-white text-sm font-bold translate-x-[2.5px]">✔</span>
+        </div>
+
+        <label (click)="toggleCategory(category)" class="cursor-pointer font-medium">
+          {{ category.name }}
+        </label>
+      </div>
+    </div>
+
+
+    <!-- Opciones de pago (Selección única) -->
+    <div class="flex items-center space-x-4 my-4">
+      <div *ngFor="let option of paymentOptions" class="flex items-center space-x-3">
+        <div
+          class="w-6 h-6 relative flex justify-center items-center rounded-md border transition-all"
+          [class.bg-orange-500]="selectedPayment === option.id"
+          [class.border-gray-400]="selectedPayment !== option.id"
+          (click)="selectPayment(option.id)"
+        >
+          <span *ngIf="selectedPayment === option.id" class="absolute inset-0 flex justify-center items-center text-white text-sm font-bold translate-x-[-2.5px]">✔</span>
+          <span *ngIf="selectedPayment === option.id" class="absolute inset-0 flex justify-center items-center text-white text-sm font-bold translate-x-[2.5px]">✔</span>
+        </div>
+
+        <label (click)="selectPayment(option.id)" class="cursor-pointer font-medium">
+          {{ option.name }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-center items-center py-[22px] fixed bottom-[10px] w-full gap-[20px] left-0">
+    <div class="bg-white absolute h-full w-full"></div>
+    <button (click)="onCancel()" class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10">
+      {{ 'Annulla' }}
+    </button>
+    <button (click)="filtrar()" class="disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10">
+      {{ 'Salva' }}
+    </button>
+  </div>
+</ion-content>

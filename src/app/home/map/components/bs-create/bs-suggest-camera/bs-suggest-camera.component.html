@@ -1,0 +1,57 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onOpenCamera()"
+  autocomplete="off"
+  class="h-full"
+>
+  <section class="p-3 pb-10 h-full flex flex-col justify-between">
+    <section class="flex flex-col justify-between">
+      <section class="flex justify-end">
+        <button
+          class="bg-white hover:bg-gray-100 text-gray-500 font-bold rounded-full shadow-md w-12 h-12 flex items-center justify-center"
+          type="button"
+          (click)="onCloseModal()"
+        >
+          <ion-icon class="h-6 w-6" name="close"></ion-icon>
+        </button>
+      </section>
+      <section class="flex flex-col items-center justify-center text-center">
+        <ion-icon
+          class="h-16 w-16 text-[#00B1FF]"
+          name="passaparola-camera"
+        ></ion-icon>
+        <section class="text-[1.375rem] uppercase mt-5 leading-[1.875rem]">
+          <section class="">
+            {{ "BUSINESS_SUGGESTION.TITLE1" | translate }}
+          </section>
+          <section class="font-bold">
+            {{ "BUSINESS_SUGGESTION.TITLE2" | translate }}
+          </section>
+        </section>
+        <section class="mx-8 mt-5 text-[0.875rem] leading-[1.188rem]">
+          {{ "BUSINESS_SUGGESTION.PARAPH" | translate }}
+        </section>
+        <section
+          class="mt-9 flex items-center justify-center text-[0.75rem] leading-[1.063rem]"
+        >
+          <ion-checkbox
+            class="mr-2"
+            mode="md"
+            color="secondary"
+            formControlName="dontShowMore"
+            name="dontShowMore"
+          ></ion-checkbox>
+          {{ "BUSINESS_SUGGESTION.DONT_SHOW_MORE" | translate }}
+        </section>
+      </section>
+    </section>
+    <section class="flex flex-col justify-center">
+      <button
+        class="bg-[#00B1FF] hover:bg-[#00b3ffcb] text-white py-4 px-4 rounded-full"
+        type="submit"
+      >
+        {{ "BUSINESS_SUGGESTION.START_CAMERA" | translate }}
+      </button>
+    </section>
+  </section>
+</form>

@@ -1,0 +1,47 @@
+<div class="gap-4 flex flex-row w-full h-[7.8125rem] rounded-[0.8125rem] bg-white border border-solid border-[#E1E1E1] p-[0.5rem]">
+
+  <img
+    [src]="
+      product?.product?.pictureUrlFile
+      ? product.product.pictureUrlFile
+      : 'https://placehold.co/80x80?text=product'
+    "
+    class="w-[6.875rem] rounded-[0.8125rem] h-full object-cover"
+  />
+
+  <div
+    class="flex flex-col"
+    [ngClass]="{
+      'justify-between': !viewTagPost,
+      'justify-center gap-1': viewTagPost
+    }"
+  >
+
+    <h1 class="line-clamp-1 text-[0.75rem]">
+      {{ product?.product?.name }}
+    </h1>
+
+    <p class="flex flex-row gap-2 items-center justify-start">
+      <span class="text-[0.75rem]">
+        <span class="font-extrabold text-[1.125rem]">{{ product?.product?.price | formattNumber }}</span>&nbsp;€/ATM
+      </span>
+      <span class="italic flex items-end text-[0.75rem]">iva inclusa</span>
+    </p>
+
+    <p class="flex flex-row gap-2 items-center justify-start text-[0.75rem] text-[#0088FF]">
+      cashback <span class="font-extrabold text-[#0088FF]">{{ product?.product?.pr | formattNumber }}</span>
+    </p>
+
+    <div class="flex flex-row gap-[0.8125rem]" *ngIf="!viewTagPost && !showDetail">
+
+      <button class="w-[2.1875rem] h-[2.1875rem] text-[1rem] rounded-full bg-white border border-solid border-[#E1E1E1] flex justify-center items-center">
+        <ion-icon name="passaparola-profile-stats-tags"/>
+      </button>
+      <button class="w-[calc(100%-3.875rem)] h-[2.1875rem] rounded-[1.125rem] bg-[#FE8C0F] text-white font-bold text-[0.75rem]">
+        Modifica/elimina
+      </button>
+    </div>
+
+  </div>
+
+</div>

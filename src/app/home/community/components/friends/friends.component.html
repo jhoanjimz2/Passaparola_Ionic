@@ -1,0 +1,82 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card>
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <span class="main-container__title">
+              {{ "COMMUNITY.YOURS_DIRECT_FRIENDS" | translate }}
+            </span>
+          </ion-col>
+          <ion-col size="6" class="main-container--text-right"
+            ><ion-icon
+              class="main-container__icon-arrows"
+              name="passaparola-compare-arrows"
+            ></ion-icon>
+            <span class="main-container__title">
+              {{ "COMMUNITY.SORT_BY" | translate }}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let friend of friends">
+          <ion-col size="2" class="main-container__col-img">
+            <div
+              class="main-container__col-img__img"
+              [style.background-image]="
+                friend.img
+                  ? 'url(' + friend.img + ')'
+                  : 'url(assets/images/no-image.jpg)'
+              "
+            ></div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-text>
+              <span class="main-container__text-name">{{
+                !friend.name || friend.name === " "
+                  ? friend.user.country?.phonePrefix! + friend.user.phoneNumber
+                  : friend.name
+              }}</span>
+              <br />
+              <span class="main-container__text-members"
+                >{{ friend.summary.communityFriends }}
+                {{ "COMMUNITY.MEMBERS" | translate }}</span
+              >
+              <br />
+              <span class="main-container__text-pr"
+                >€ {{
+                  friend.summary.rewardPoints | formattNumber
+                }}
+                cashback</span
+              >
+            </ion-text>
+          </ion-col>
+          <ion-col size="3" class="main-container__col-info">
+            <ion-text>
+              <span class="main-container__text-level"
+                >{{ "COMMUNITY.LEVEL" | translate }}
+                {{ friend.summary.worldRewardPoints?.level }}</span
+              >
+              <br />
+              <span class="main-container__text-earnings">{{
+                "COMMUNITY.YOUR_EARNINGS" | translate
+              }}</span>
+              <br />
+              <span class="main-container__earnings"
+                >{{ friend.earnings | formattNumber }} {{ "€" }}</span
+              >
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

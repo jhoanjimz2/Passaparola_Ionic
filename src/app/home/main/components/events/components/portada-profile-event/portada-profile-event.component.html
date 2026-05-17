@@ -1,0 +1,56 @@
+<section class="h-[200px] bg-[#ddd] rounded-b-[19px] relative mb-[50px] bg-no-repeat bg-cover bg-center"
+  [style.background-image]="'url(' + (eventProfile.coverUrlFile | imageEvent ) + ')'"
+  >
+  <article
+    *ngIf="updating"
+    class="flex justify-center items-center absolute right-[10px] top-[10px] rounded-full bg-black h-[26px] w-[26px] text-[11px] leading-[17px] border-[1px] border-white"
+    (click)="takePicture(true)"
+  >
+    <ion-icon class="text-white" name="pencil-outline"></ion-icon>
+  </article>
+  <button *ngIf="view && eventProfile.isGreen" class="absolute right-[10px] top-[10px] w-20 h-7 bg-green-500 text-white font-bold border border-white rounded-full flex items-center justify-center shadow-md text-shadow-md">
+    green
+  </button>
+  <section class="flex flex-row justify-between items-center absolute bottom-[-50px] left-3 right-3">
+    <article
+      (click)="seatOpenViewImage(eventProfile.pictureUlrFile ?? '')"
+      class="flex flex-row justify-center items-center h-[100px] w-[100px] border-[3px] border-white bg-[#E2E2E2] rounded-full text-[11px] leading-[17px] shadow-md relative bg-no-repeat bg-cover bg-center"
+      [style.background-image]="'url(' + (eventProfile.pictureUlrFile| imageEvent ) + ')'">
+      <article
+        *ngIf="updating"
+        class="flex justify-center items-center absolute right-[0px] bottom-[0px] rounded-full bg-black h-[26px] w-[26px] border-[1px] border-white"
+        (click)="takePicture(false)"
+      >
+        <ion-icon class="text-white" name="pencil-outline"></ion-icon>
+      </article>
+    </article>
+    <section class="flex flex-row justify-center items-center gap-[5px]">
+      <article (click)="openUpdateData('ticket')" class="flex flex-col justify-center text-center items-center w-[75px] h-[64px] bg-[#E5FFEA] rounded-[7px] text-[9px] leading-[15px]">
+        <article class="text-[9px] leading-[15px]">Biglietti da</article>
+
+        <article class="leading-[15px]" *ngIf="view">
+          <span class="text-[#35C93F] text-[16px] font-bold">€</span>
+          <span class="text-[#35C93F] text-[22px] font-bold">{{ (eventProfile.tickets || [] | minPrice).toString().split('.')[0] || 0 }}</span>
+          <span class="text-[#35C93F] text-[14px] font-bold">,</span>
+          <span class="text-[#35C93F] text-[16px] font-bold">{{ (eventProfile.tickets || [] | minPrice).toString().split('.')[1] || '00' }}</span>
+        </article>
+        <article class="leading-[15px]" *ngIf="updating">
+          <span class="text-[#35C93F] text-[16px] font-bold">€</span>
+          <span class="text-[#35C93F] text-[22px] font-bold">{{ (eventProfile.tickets || [] | minPrice).toString().split('.')[0] || 0 }}</span>
+          <span class="text-[#35C93F] text-[14px] font-bold">,</span>
+          <span class="text-[#35C93F] text-[16px] font-bold">{{ (eventProfile.tickets || [] | minPrice).toString().split('.')[1] || '00' }}</span>
+        </article>
+      </article>
+      <article (click)="openUpdateData('ticket')" class="flex flex-col justify-center text-center items-center w-[75px] h-[64px] bg-[#FFF0F7] rounded-[7px] text-[9px] leading-[15px]">
+        <article class="text-[9px] leading-[15px]">Disponibilità</article>
+        <article class="text-[22px] leading-[15px] font-bold text-[#EC0973]" *ngIf="view">{{ (eventProfile.tickets || [] | sumQuantity) ?? 'Non disponibile'}}</article>
+        <article class="text-[22px] leading-[15px] font-bold text-[#EC0973]" *ngIf="updating">{{  (eventProfile.tickets || [] | sumQuantity) ?? 'Clicca per scegliere'}}</article>
+      </article>
+      <article (click)="openUpdateData('category')"  class="flex flex-col justify-center text-center items-center w-[75px] h-[64px] bg-[#F0F2FF] rounded-[7px] text-[9px] leading-[15px]">
+        <article class="text-[9px] leading-[15px]">Categoria</article>
+        <article class="text-[14px] leading-[15px] font-bold text-[#000] w-full" *ngIf="view" >{{ eventProfile.categories?.[0]?.description ?? 'Nessuna categoria' }}</article>
+        <article class="text-[14px] leading-[15px] font-bold text-[#000] w-full" *ngIf="updating" > {{ eventProfile.categories?.[0]?.description ?? 'Clicca per scegliere' }}</article>
+      </article>
+    </section>
+  </section>
+</section>

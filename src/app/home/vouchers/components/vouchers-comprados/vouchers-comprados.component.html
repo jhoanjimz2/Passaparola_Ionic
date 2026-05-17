@@ -1,0 +1,29 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+
+  <ion-refresher (ionRefresh)="handleRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <section class="my-[2rem]">
+    <div class="px-4">
+      <label class="text-[22px] text-black font-semibold">Voucher acquistati da voi</label>
+    </div>
+  </section>
+
+  <section class="px-2 flex flex-col gap-1">
+    <div *ngFor="let ticket of vouchersComprados">
+      <app-voucher-oferta
+        (qrVoucher)="verQr(ticket)"
+        [voucher]="ticket"
+        [toggle]="false">
+      </app-voucher-oferta>
+    </div>
+  </section>
+
+
+</ion-content>

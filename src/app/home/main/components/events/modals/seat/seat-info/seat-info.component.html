@@ -1,0 +1,71 @@
+<section class="pt-[48px] block min-h-0 max-h-full overflow-y-auto p-4 bg-gray-50">
+  <h2 class="text-lg font-semibold text-gray-800">Aggiungi un regolamento</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSave()" class="h-full relative mt-4">
+    <!-- Título -->
+    <div>
+      <label for="title" class="block text-sm font-medium text-gray-700">
+        Dai un nome al tuo regolamento
+      </label>
+      <input
+        id="title"
+        formControlName="title"
+        class="h-12 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3 focus:ring-orange-500 focus:border-orange-500"
+        placeholder="Inserisci il titolo"
+      />
+      <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched" class="text-red-500 text-xs mt-1">
+        Il titolo è obbligatorio
+      </div>
+    </div>
+
+    <!-- Lista de reglas -->
+    <div formArrayName="rules" class="mt-4 pb-[100px]">
+      <label class="block text-sm font-medium text-gray-700">Regole</label>
+      <div *ngFor="let rule of rulesArray.controls; let i = index" class="relative mt-2">
+        <input
+          [formControlName]="i"
+          class="h-12 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3 pr-10 focus:ring-orange-500 focus:border-orange-500"
+          placeholder="Scrivi qui"
+        />
+        <button
+          *ngIf="rulesArray.length > 1"
+          type="button"
+          (click)="removeRule(i)"
+          class="absolute right-3 top-3 text-red-500 hover:text-red-700"
+        >
+          ✕
+        </button>
+      </div>
+      <button type="button" (click)="addRule()" class="text-orange-600 font-semibold mt-3 hover:underline">
+        Aggiungi Regola
+      </button>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="flex justify-center items-center py-4 fixed left-0 bottom-0 w-full bg-white border-t gap-4">
+      <button
+        *ngIf="ruleData?.id"
+        type="button"
+        (click)="onDelete()"
+        class="w-32 py-2 rounded-full border-solid border-2 border-red-500 text-red-500 font-bold transition hover:bg-red-50"
+      >
+        Elimina
+      </button>
+      <button
+        *ngIf="!ruleData?.id"
+        type="button"
+        (click)="onCancel()"
+        class="w-32 py-2 rounded-full border-solid border-2 border-orange-500 text-orange-500 font-bold transition hover:bg-orange-50"
+      >
+        Annulla
+      </button>
+      <button
+        type="submit"
+        [disabled]="!form.valid"
+        class="w-32 py-2 rounded-full border-2 border-orange-500 bg-orange-500 text-white font-bold transition hover:bg-orange-600 disabled:opacity-50"
+      >
+        Salva
+      </button>
+    </div>
+  </form>
+</section>

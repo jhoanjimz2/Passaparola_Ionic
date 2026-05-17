@@ -1,0 +1,478 @@
+<app-header
+  [backIcon]="true"
+  [border]="false"
+  [modalDismiss]="false"
+></app-header>
+
+<ion-content [fullscreen]="true" [scrollY]="true">
+  <div class="page-wrapper">
+
+    <!-- ============================================ -->
+    <!-- LOADING STATE                                -->
+    <!-- ============================================ -->
+    <div class="loading-state" *ngIf="isLoadingStatus">
+      <div class="loading-state__spinner"></div>
+      <span class="loading-state__text">Verifica del tuo stato in corso...</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ALREADY VERIFIED VIEW (read-only)            -->
+    <!-- ============================================ -->
+    <section class="verified-status" *ngIf="!isLoadingStatus && isAlreadyVerified">
+      <div class="verified-status__header">
+        <div class="verified-status__icon">
+          <ion-icon name="shield-checkmark"></ion-icon>
+        </div>
+        <span class="verified-status__title">Identità Verificata</span>
+        <span class="verified-status__subtitle">
+          La tua identità è stata verificata con successo
+        </span>
+      </div>
+
+      <div class="verified-status__documents">
+
+        <div class="verified-doc">
+          <div class="verified-doc__badge verified-doc__badge--ok">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </div>
+          <span class="verified-doc__label">Fronte documento</span>
+          <div class="verified-doc__image-wrapper">
+            <img
+              *ngIf="verificationData?.frontDocumentUrl"
+              [src]="verificationData?.frontDocumentUrl"
+              class="verified-doc__image"
+              alt="Fronte documento"
+            />
+            <div *ngIf="!verificationData?.frontDocumentUrl" class="verified-doc__placeholder">
+              <ion-icon name="id-card-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="verified-doc">
+          <div class="verified-doc__badge verified-doc__badge--ok">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </div>
+          <span class="verified-doc__label">Retro documento</span>
+          <div class="verified-doc__image-wrapper">
+            <img
+              *ngIf="verificationData?.backDocumentUrl"
+              [src]="verificationData?.backDocumentUrl"
+              class="verified-doc__image"
+              alt="Retro documento"
+            />
+            <div *ngIf="!verificationData?.backDocumentUrl" class="verified-doc__placeholder">
+              <ion-icon name="id-card-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="verified-doc verified-doc--selfie">
+          <div class="verified-doc__badge verified-doc__badge--ok">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </div>
+          <span class="verified-doc__label">Selfie</span>
+          <div class="verified-doc__image-wrapper verified-doc__image-wrapper--round">
+            <img
+              *ngIf="verificationData?.selfieUrl"
+              [src]="verificationData?.selfieUrl"
+              class="verified-doc__image"
+              alt="Selfie"
+            />
+            <div *ngIf="!verificationData?.selfieUrl" class="verified-doc__placeholder">
+              <ion-icon name="person-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="verified-status__meta" *ngIf="verificationData?.submittedAt">
+        <ion-icon name="time-outline"></ion-icon>
+        <span>Verificato il {{ verificationData?.submittedAt | date:'dd/MM/yyyy' }}</span>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PENDING REVIEW VIEW                          -->
+    <!-- ============================================ -->
+    <section class="pending-status" *ngIf="!isLoadingStatus && isPendingReview">
+      <div class="pending-status__content">
+
+        <div class="pending-status__icon-wrapper">
+          <div class="pending-status__ring"></div>
+          <div class="pending-status__icon">
+            <ion-icon name="time-outline"></ion-icon>
+          </div>
+        </div>
+
+        <h2 class="pending-status__title">In revisione</h2>
+        <p class="pending-status__message">
+          I tuoi documenti sono stati inviati con successo.
+          Il nostro team sta esaminando la tua identità — di solito richiede
+          <strong>fino a 24 ore</strong>.
+        </p>
+
+        <div class="pending-status__docs">
+          <div class="pending-doc">
+            <ion-icon name="checkmark-circle" class="pending-doc__check"></ion-icon>
+            <span>Fronte documento caricato</span>
+          </div>
+          <div class="pending-doc">
+            <ion-icon name="checkmark-circle" class="pending-doc__check"></ion-icon>
+            <span>Retro documento caricato</span>
+          </div>
+          <div class="pending-doc">
+            <ion-icon name="checkmark-circle" class="pending-doc__check"></ion-icon>
+            <span>Selfie caricato</span>
+          </div>
+        </div>
+
+        <div class="pending-status__notice">
+          <ion-icon name="mail-outline"></ion-icon>
+          <span>Riceverai una notifica via email una volta completata la verifica.</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STEP INDICATOR                               -->
+    <!-- ============================================ -->
+    <div class="step-indicator" *ngIf="!isLoadingStatus && !isAlreadyVerified && !isPendingReview && !isSubmitError">
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 0"
+           [class.step-indicator__item--done]="step > 0">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 0" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 0">1</span>
+        </div>
+        <span class="step-indicator__label">Fronte</span>
+      </div>
+      <div class="step-indicator__line" [class.step-indicator__line--done]="step > 0"></div>
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 1"
+           [class.step-indicator__item--done]="step > 1">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 1" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 1">2</span>
+        </div>
+        <span class="step-indicator__label">Retro</span>
+      </div>
+      <div class="step-indicator__line" [class.step-indicator__line--done]="step > 1"></div>
+      <div class="step-indicator__item"
+           [class.step-indicator__item--active]="step === 2"
+           [class.step-indicator__item--done]="step > 2">
+        <div class="step-indicator__circle">
+          <ion-icon *ngIf="step > 2" name="checkmark"></ion-icon>
+          <span *ngIf="step <= 2">3</span>
+        </div>
+        <span class="step-indicator__label">Selfie</span>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STEP 0: FRONT DOCUMENT CAPTURE               -->
+    <!-- ============================================ -->
+    <section class="capture"
+      *ngIf="!isLoadingStatus && step === 0 && !isAlreadyVerified && !isPendingReview && !isSubmitError">
+
+      <div class="capture__header">
+        <div class="capture__icon">
+          <ion-icon name="id-card-outline"></ion-icon>
+        </div>
+        <span class="capture__title">Fronte documento</span>
+        <span class="capture__subtitle">
+          Posiziona il fronte della tua Carta d'Identità<br>all'interno della cornice
+        </span>
+      </div>
+
+      <div class="capture__content">
+
+        <div class="capture__preview-wrapper" *ngIf="frontDocumentPhoto">
+          <img [src]="frontDocumentPhoto" class="capture__preview-image" alt="Fronte documento" />
+          <div class="capture__preview-overlay">
+            <ion-icon name="checkmark-circle" class="capture__preview-check"></ion-icon>
+          </div>
+        </div>
+
+        <div class="capture__camera-container"
+             *ngIf="!frontDocumentPhoto"
+             [class.capture__camera-container--active]="isCameraActive">
+          <div class="capture__guide-frame">
+            <div class="capture__guide-corner capture__guide-corner--tl"></div>
+            <div class="capture__guide-corner capture__guide-corner--tr"></div>
+            <div class="capture__guide-corner capture__guide-corner--bl"></div>
+            <div class="capture__guide-corner capture__guide-corner--br"></div>
+            <span class="capture__guide-text" *ngIf="!isCameraActive">
+              <ion-icon name="id-card-outline"></ion-icon>
+              Avvia la fotocamera
+            </span>
+            <span class="capture__guide-text capture__guide-text--active" *ngIf="isCameraActive">
+              Posiziona il documento nella cornice
+            </span>
+          </div>
+          <video
+            #videoElement
+            class="capture__video"
+            [class.capture__video--active]="isCameraActive"
+            autoplay
+            playsinline>
+          </video>
+          <canvas #canvasElement style="display: none;"></canvas>
+        </div>
+
+        <div class="capture__upload-alt" *ngIf="!frontDocumentPhoto && !isCameraActive">
+          <span class="capture__upload-alt__text">oppure</span>
+          <label class="capture__upload-label">
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            Carica dalla galleria
+            <input type="file" accept="image/*" style="display: none" (change)="onFrontDocumentUpload($event)" />
+          </label>
+        </div>
+
+      </div>
+
+      <div class="capture__actions">
+        <button *ngIf="!isCameraActive && !frontDocumentPhoto"
+          class="capture__button capture__button--primary"
+          [disabled]="isCameraLoading"
+          (click)="startCamera()">
+          <div *ngIf="isCameraLoading" class="capture__spinner"></div>
+          <ion-icon *ngIf="!isCameraLoading" name="camera-outline"></ion-icon>
+          {{ isCameraLoading ? 'Avvio...' : 'Avvia fotocamera' }}
+        </button>
+        <button *ngIf="isCameraActive && !frontDocumentPhoto"
+          class="capture__button capture__button--primary"
+          (click)="captureDocument('front')">
+          <ion-icon name="aperture-outline"></ion-icon>
+          Scatta foto
+        </button>
+        <button *ngIf="frontDocumentPhoto"
+          class="capture__button capture__button--secondary"
+          (click)="retakeDocument('front')">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Riprendi
+        </button>
+        <button *ngIf="frontDocumentPhoto"
+          class="capture__button capture__button--primary"
+          (click)="goToNextStep()">
+          Continua
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STEP 1: BACK DOCUMENT CAPTURE                -->
+    <!-- ============================================ -->
+    <section class="capture"
+      *ngIf="!isLoadingStatus && step === 1 && !isAlreadyVerified && !isPendingReview && !isSubmitError">
+
+      <div class="capture__header">
+        <div class="capture__icon">
+          <ion-icon name="id-card-outline"></ion-icon>
+        </div>
+        <span class="capture__title">Retro documento</span>
+        <span class="capture__subtitle">
+          Gira la tua Carta d'Identità e posiziona<br>il retro all'interno della cornice
+        </span>
+      </div>
+
+      <div class="capture__content">
+
+        <div class="capture__preview-wrapper" *ngIf="backDocumentPhoto">
+          <img [src]="backDocumentPhoto" class="capture__preview-image" alt="Retro documento" />
+          <div class="capture__preview-overlay">
+            <ion-icon name="checkmark-circle" class="capture__preview-check"></ion-icon>
+          </div>
+        </div>
+
+        <div class="capture__camera-container"
+             *ngIf="!backDocumentPhoto"
+             [class.capture__camera-container--active]="isCameraActive">
+          <div class="capture__guide-frame">
+            <div class="capture__guide-corner capture__guide-corner--tl"></div>
+            <div class="capture__guide-corner capture__guide-corner--tr"></div>
+            <div class="capture__guide-corner capture__guide-corner--bl"></div>
+            <div class="capture__guide-corner capture__guide-corner--br"></div>
+            <span class="capture__guide-text" *ngIf="!isCameraActive">
+              <ion-icon name="id-card-outline"></ion-icon>
+              Avvia la fotocamera
+            </span>
+            <span class="capture__guide-text capture__guide-text--active" *ngIf="isCameraActive">
+              Posiziona il retro del documento
+            </span>
+          </div>
+          <video
+            #videoElement
+            class="capture__video"
+            [class.capture__video--active]="isCameraActive"
+            autoplay
+            playsinline>
+          </video>
+          <canvas #canvasElement style="display: none;"></canvas>
+        </div>
+
+        <div class="capture__upload-alt" *ngIf="!backDocumentPhoto && !isCameraActive">
+          <span class="capture__upload-alt__text">oppure</span>
+          <label class="capture__upload-label">
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            Carica dalla galleria
+            <input type="file" accept="image/*" style="display: none" (change)="onBackDocumentUpload($event)" />
+          </label>
+        </div>
+
+      </div>
+
+      <div class="capture__actions">
+        <button class="capture__button capture__button--ghost" (click)="goToPreviousStep()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Indietro
+        </button>
+        <button *ngIf="!isCameraActive && !backDocumentPhoto"
+          class="capture__button capture__button--primary"
+          [disabled]="isCameraLoading"
+          (click)="startCamera()">
+          <div *ngIf="isCameraLoading" class="capture__spinner"></div>
+          <ion-icon *ngIf="!isCameraLoading" name="camera-outline"></ion-icon>
+          {{ isCameraLoading ? 'Avvio...' : 'Avvia fotocamera' }}
+        </button>
+        <button *ngIf="isCameraActive && !backDocumentPhoto"
+          class="capture__button capture__button--primary"
+          (click)="captureDocument('back')">
+          <ion-icon name="aperture-outline"></ion-icon>
+          Scatta foto
+        </button>
+        <button *ngIf="backDocumentPhoto"
+          class="capture__button capture__button--secondary"
+          (click)="retakeDocument('back')">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Riprendi
+        </button>
+        <button *ngIf="backDocumentPhoto"
+          class="capture__button capture__button--primary"
+          (click)="goToNextStep()">
+          Continua
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STEP 2: SELFIE / FACE CAPTURE                -->
+    <!-- ============================================ -->
+    <section class="capture"
+      *ngIf="!isLoadingStatus && step === 2 && !isAlreadyVerified && !isPendingReview && !isSubmitError">
+
+      <div class="capture__header">
+        <div class="capture__icon">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </div>
+        <span class="capture__title">Foto del viso</span>
+        <span class="capture__subtitle">
+          Centra il tuo viso nell'ovale<br>e assicurati di avere una buona illuminazione
+        </span>
+      </div>
+
+      <div class="capture__content">
+
+        <div class="capture__preview-wrapper capture__preview-wrapper--round" *ngIf="selfiePhoto">
+          <img [src]="selfiePhoto" class="capture__preview-image" alt="Selfie" />
+          <div class="capture__preview-overlay">
+            <ion-icon name="checkmark-circle" class="capture__preview-check"></ion-icon>
+          </div>
+        </div>
+
+        <div class="capture__selfie-container"
+             *ngIf="!selfiePhoto"
+             [class.capture__selfie-container--active]="isCameraActive">
+
+          <span class="capture__instruction" *ngIf="!isCameraActive">
+            <ion-icon name="person-outline"></ion-icon>
+            Avvia fotocamera frontale
+          </span>
+
+          <video
+            #videoElement
+            class="capture__video"
+            [class.capture__video--active]="isCameraActive"
+            autoplay
+            playsinline>
+          </video>
+          <canvas #canvasElement style="display: none;"></canvas>
+
+          <div class="capture__face-overlay" *ngIf="isCameraActive"></div>
+          <div class="capture__face-oval"
+               [class.capture__face-oval--detected]="isFaceDetected">
+          </div>
+
+          <div class="capture__face-hint" *ngIf="isCameraActive">
+            <span [class.capture__face-hint--ready]="isFaceDetected">
+              {{ isFaceDetected ? '✓ Viso rilevato' : 'Centra il tuo viso nell\'ovale' }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="capture__actions">
+        <button class="capture__button capture__button--ghost" (click)="goToPreviousStep()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Indietro
+        </button>
+        <button *ngIf="!isCameraActive && !selfiePhoto"
+          class="capture__button capture__button--primary"
+          [disabled]="isCameraLoading"
+          (click)="startCamera()">
+          <div *ngIf="isCameraLoading" class="capture__spinner"></div>
+          <ion-icon *ngIf="!isCameraLoading" name="camera-outline"></ion-icon>
+          {{ isCameraLoading ? 'Avvio...' : 'Avvia fotocamera' }}
+        </button>
+        <button *ngIf="isCameraActive && !selfiePhoto"
+          class="capture__button capture__button--primary"
+          [class.capture__button--disabled]="!isFaceDetected"
+          [disabled]="!isFaceDetected"
+          (click)="captureSelfie()">
+          <ion-icon name="aperture-outline"></ion-icon>
+          Scatta foto
+        </button>
+        <button *ngIf="selfiePhoto"
+          class="capture__button capture__button--secondary"
+          (click)="retakeSelfie()">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Riprendi
+        </button>
+        <button *ngIf="selfiePhoto"
+          class="capture__button capture__button--primary"
+          [class.capture__button--loading]="isSubmitting"
+          [disabled]="isSubmitting"
+          (click)="submitVerification()">
+          <ion-icon *ngIf="!isSubmitting" name="cloud-upload-outline"></ion-icon>
+          <div *ngIf="isSubmitting" class="capture__spinner"></div>
+          {{ isSubmitting ? 'Invio in corso...' : 'Invia per revisione' }}
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- UPLOAD ERROR                                 -->
+    <!-- ============================================ -->
+    <section class="error-state" *ngIf="!isLoadingStatus && isSubmitError">
+      <div class="error-state__content">
+        <div class="error-state__icon">
+          <ion-icon name="cloud-offline-outline"></ion-icon>
+        </div>
+        <h1 class="error-state__title">Caricamento fallito</h1>
+        <p class="error-state__message">
+          Non è stato possibile caricare i tuoi documenti. Controlla la connessione e riprova.
+        </p>
+        <button class="error-state__button" (click)="retrySubmit()">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Riprova
+        </button>
+      </div>
+    </section>
+
+  </div>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-content>
+  <section class="w-full p-[1.4rem] py-[2rem] bg-white flex flex-col gap-4">
+
+    <h1 class="font-bold text-[1.375rem] text-[#000000]">Nomina categoria</h1>
+
+    <div class="w-full h-[12.125rem] rounded-[1.2rem] bg-[#EBEBEB] border border-solid border-[#DDE5E9] flex flex-col items-center justify-center gap-3">
+      <ion-icon class="text-[3rem] text-[#000000]" name="image-outline"></ion-icon>
+      <span class="font-bold text-[1rem] text-[#000000] leading-4 text-center">clicca per aggiungere <br> l'immagine</span>
+    </div>
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSave()"
+      autocomplete="off"
+    >
+      <input
+        class="w-full h-[3.5rem] px-4 rounded-[0.8rem] bg-white border-[#DDE5E9] border-solid border"
+        placeholder="Nome categoria"
+        formControlName="name"
+        name="name"
+      />
+    </form>
+
+    <button class="w-full h-[3rem] rounded-[1.375rem] bg-[#04A715] border border-solid border-[#E1E1E1] text-white">
+      Salva
+    </button>
+
+  </section>
+</ion-content>

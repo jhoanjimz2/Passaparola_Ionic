@@ -1,0 +1,95 @@
+<section>
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-title>{{ "MAP_PAGE.NEAREST_STORE" | translate }}</ion-title>
+
+      <ion-button fill="clear" (click)="goToAll()">
+        {{ "MAP_PAGE.SHOW_MORE" | translate }}
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+
+  <swiper-container #swiperContainer [init]="false">
+    <swiper-slide *ngFor="let item of nearestProducts; let i = index">
+      <ion-card>
+        <ion-card-header>
+          <div
+            (click)="goSeatDetail(item.id)"
+            class="img"
+            [style.background-image]="
+              'url(' + (item.pictureUlrFile | image) + ')'
+            "
+          ></div>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="ion-align-items-center">
+              <p (click)="goSeatDetail(item.id)" class="nearest-product-title">
+                {{ item.name }}
+              </p>
+              <ion-icon
+                name="checkbox"
+                color="success"
+                class="m-l-10"
+              ></ion-icon>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+            <ion-row class="ion-align-items-center">
+              <p class="nearest-product-black category">
+                {{ item.categories[0].companyCategoryTranslation.description }}
+              </p>
+              <span>| €€</span>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+            <ion-row>
+              <span class="truncate nearest-product-tag">
+                <ng-container *ngFor="let tag of item.tags">
+                  {{ tag }}
+                </ng-container>
+              </span>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+            <ion-row class="ion-align-items-center">
+              <ion-col size="3" class="p-0">
+                <p class="nearest-product-points-percentage">
+                  {{ item.pointsPercentage }}%
+                </p>
+                <p class="nearest-product-pr">cashback</p>
+              </ion-col>
+              <ion-col size="3" class="p-0">
+                <!-- <p class="nearest-product-cashback">
+                  {{ item.cashBackPercentage }}%
+                </p>
+                <p class="nearest-product-cashback-title">Back</p> -->
+              </ion-col>
+
+              <!-- <ion-icon
+                (click)="howToGet(item)"
+                name="arrow-redo-circle"
+                color="primary"
+                size="large"
+              ></ion-icon> -->
+              <button (click)="howToGet(item)" class="w-[1.375rem] h-[1.375rem] text-base flex justify-center items-center text-white bg-[#00B1FF] rounded-full">
+                <ion-icon name="passaparola-post-go-store"></ion-icon>
+              </button>
+              <p
+                (click)="howToGet(item)"
+                class="nearest-product-black distance"
+              >
+                {{ item.distance < 1 ? item.distance * 1000 : item.distance }}
+                {{ item.distance < 1 ? "m" : "km" }}
+              </p>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+</section>

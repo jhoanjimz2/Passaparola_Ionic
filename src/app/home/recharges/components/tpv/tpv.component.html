@@ -1,0 +1,61 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section class="bg-[#F9F9F9] pt-[10px] h-full">
+  <section
+    class="h-[182px] rounded-[18px] mx-[5px] bg-[#33B7E8] pl-[25px] pr-[25px]"
+  >
+    <section class="flex flex-row justify-between text-white">
+      <section class="text-[16px] leading-[22px]">Importo ricarica</section>
+      <section class="text-[16px] leading-[22px] font-semibold">
+        Max. 1,500 €/ATM
+      </section>
+    </section>
+    <section class="flex items-center justify-between mt-[30px]">
+      <section class="flex flex-col items-center text-white">
+        <article class="text-[16px] leading-[22px]">
+          {{ "PAYMENT.TOTALE" | translate }}
+        </article>
+        <article class="text-[89px] leading-[70px] font-light mt-[5px]">
+          €
+        </article>
+      </section>
+      <section class="flex flex-col pl-[10px] w-full">
+        <section class="flex justify-end pr-[10px] pt-[22px] h-[80px]">
+          <span
+            class="text-white"
+            [ngClass]="{
+              'text-[51px] leading-[51px]': !(mainAmount.length >= 7),
+              'text-[30px] leading-[30px]': mainAmount.length >= 7
+            }"
+          >
+            {{ mainAmount }},
+          </span>
+          <span
+            class="text-white font-extrabold"
+            [ngClass]="{
+              'text-[20px] leading-[27px] pt-[6px]': !(mainAmount.length >= 7),
+              'text-[15px] leading-[20px] pt-[3px]': mainAmount.length >= 7
+            }"
+          >
+            {{ decimalAmount }}
+          </span>
+        </section>
+      </section>
+    </section>
+  </section>
+
+  <app-keyboard-tpv
+    class="grid grid-cols-3 px-[40px] pt-[20px] gap-x-[50px] gap-y-[15px]"
+    (onChangeAmount)="onChangeAmount($event)"
+  />
+
+  <section
+    class="bg-black text-white text-[15px] leading-[22px] py-[15px] my-[25px] mx-[40px] rounded-[28px] text-center font-semibold"
+    (click)="goScanQr()"
+  >
+    {{ "RICARICA ORA" | translate }}
+  </section>
+</section>

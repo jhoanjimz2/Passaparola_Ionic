@@ -1,0 +1,50 @@
+<ion-card class="main-container">
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon name="passaparola-icon-passaparola-wallet"></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">{{
+          "WALLET.MODAL_ACTIONS.PASSAPAROLA_CARD" | translate
+        }}</ion-col>
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+      <ion-row (click)="modalQrScan()">
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon name="qr-code-outline"></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">{{
+          "WALLET.MODAL_ACTIONS.QR_SCAN" | translate
+        }}</ion-col>
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+      <ion-row (click)="modalContacts()">
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon name="people-outline"></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">{{
+          "WALLET.MODAL_ACTIONS.CHOOSE_FRIENDS" | translate
+        }}</ion-col>
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+      <ion-row (click)="modalWalletId()">
+        <ion-col size="2" class="main-container__left-icon"
+          ><ion-icon name="keypad-outline"></ion-icon
+        ></ion-col>
+        <ion-col class="main-container__text">{{
+          "WALLET.MODAL_ACTIONS.ENTER_WALLET_ID" | translate
+        }}</ion-col>
+        <ion-col size="1" class="main-container__right-icon"
+          ><ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

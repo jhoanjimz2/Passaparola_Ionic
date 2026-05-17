@@ -1,0 +1,32 @@
+<div class="post-preview-mini">
+  <!-- Imagen -->
+  <ng-container *ngIf="post?.typeFile === 'image'; else videoTemplate">
+    <div class="post-preview-mini__media post-preview-mini__media--image">
+      <img
+        class="post-preview-mini__image"
+        [src]="post.urlFile || 'https://placehold.co/600x400?text=Image'"
+        alt="Post preview"
+      />
+    </div>
+  </ng-container>
+
+  <!-- Video -->
+  <ng-template #videoTemplate>
+    <div class="post-preview-mini__media post-preview-mini__media--video">
+      <video
+        class="post-preview-mini__video"
+        [src]="post?.urlFile"
+        muted
+        playsinline
+        preload="metadata"
+        [attr.poster]="null"
+      ></video>
+
+      <!-- Icono de video -->
+      <ion-icon
+        name="passaparola-post-video"
+        class="post-preview-mini__video-icon">
+      </ion-icon>
+    </div>
+  </ng-template>
+</div>

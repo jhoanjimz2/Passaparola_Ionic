@@ -1,0 +1,215 @@
+<app-header
+  [notification]="false"
+  [backButton]="!isPublic"
+></app-header>
+
+<ion-content class="product-detail">
+  <section class="product-detail__hero">
+    <swiper-container #swiperGallery class="pagination-swiper-line">
+      <swiper-slide>
+        <img
+          class="product-detail__hero-image"
+          [src]="willbuy.product?.pictureUrlFile"
+          alt="Product image"
+        >
+      </swiper-slide>
+      <swiper-slide *ngFor="let image of willbuy.product?.pictureGallery">
+        <img
+          class="product-detail__hero-image"
+          [src]="image"
+          alt="Product image"
+        >
+      </swiper-slide>
+    </swiper-container>
+    <div class="product-detail__expiration-badge">
+      Scadenza {{ daysRemaining }}D {{ hoursRemaining }}H {{ minutesRemaining }}M
+    </div>
+  </section>
+
+  <section class="product-detail__content">
+    <h2 class="product-detail__price">
+      {{ +(getCurrentPhase?.total || 0) | formattNumber }}
+      <span class="product-detail__price-currency">
+        €/ATM
+      </span>
+    </h2>
+
+    <h3 class="product-detail__cashback">
+      {{
+        ((willbuy.product?.transferPercentages?.pointsPercentage ?? 0) / 100) * +(getCurrentPhase?.total || 0)
+          | formattNumber:'EUR':'symbol':'it':2
+      }} € cashback
+    </h3>
+
+    <h1 class="product-detail__title">
+      {{ willbuy.product?.name }}
+    </h1>
+
+    <p class="product-detail__description">
+      {{ willbuy.product?.description }}
+    </p>
+
+    <h4 class="product-detail__quantity-title">
+      Quantità
+    </h4>
+
+    <div class="product-detail__quantity-grid">
+      <div
+        *ngFor="let phase of getSortedPhases(); let i = index; let total = count"
+        class="quantity-card"
+        [class.quantity-card--inactive]="!isActivePhase(phase)"
+        [class.quantity-card--active]="isActivePhase(phase)">
+
+        <!-- Cuando está inactiva -->
+        <ng-container *ngIf="!isActivePhase(phase)">
+          <span class="quantity-card__range">{{ getPhaseRange(phase, i, total) }}</span>
+          <span class="quantity-card__price">{{ +(phase?.total || 0)  | formattNumber }}</span>
+          <span class="quantity-card__currency">€/ATM</span>
+        </ng-container>
+
+        <!-- Cuando está activa -->
+        <ng-container *ngIf="isActivePhase(phase)">
+          <span class="quantity-card__range">{{ getPhaseRange(phase, i, total) }}</span>
+          <span class="quantity-card__price">{{ +(phase?.total || 0)  | formattNumber }}</span>
+          <span class="quantity-card__currency">€/ATM</span>
+        </ng-container>
+      </div>
+    </div>
+
+    <ion-range class="product-detail__range" disabled="true" [value]="getSoldUnits()" [max]="getCurrentPhase?.minimumPurchaseUnits || 100"></ion-range>
+    <p class="product-detail__sold-text">
+      {{ getSoldUnits() }}/{{ getCurrentPhase?.minimumPurchaseUnits || 0 }} articoli venduti
+    </p>
+
+    <ng-container *ngIf="willbuy.link1">
+      <h2 class="product-detail__section-title">
+        Senza Jointlybuy
+      </h2>
+
+      <swiper-container #swiperLinks class="product-detail__swiper">
+        <swiper-slide class="product-detail__swiper-slide">
+          <div class="external-link-card" (click)="openExternalLink(willbuy.link1)">
+            <div class="external-link-card__content">
+              <span class="external-link-card__link">{{ willbuy.link1 | cleanUrl }}</span>
+              <span class="external-link-card__price">
+                {{ willbuy.link1Price ?? 0 | formattNumber }}
+                <span class="external-link-card__currency">€</span>
+              </span>
+            </div>
+            <ion-icon
+              class="external-link-card__icon"
+              name="arrow-forward-outline">
+            </ion-icon>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="product-detail__swiper-slide" *ngIf="willbuy.link2">
+          <div class="external-link-card" (click)="openExternalLink(willbuy.link2)">
+            <div class="external-link-card__content">
+              <span class="external-link-card__link">{{ willbuy.link2 | cleanUrl }}</span>
+              <span class="external-link-card__price">
+                {{ willbuy.link2Price ?? 0 | formattNumber }}
+                <span class="external-link-card__currency">€</span>
+              </span>
+            </div>
+            <ion-icon
+              class="external-link-card__icon"
+              name="arrow-forward-outline">
+            </ion-icon>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="product-detail__swiper-slide" *ngIf="willbuy.link3">
+          <div class="external-link-card" (click)="openExternalLink(willbuy.link3)">
+            <div class="external-link-card__content">
+              <span class="external-link-card__link">{{ willbuy.link3 | cleanUrl }}</span>
+              <span class="external-link-card__price">
+                {{ willbuy.link3Price ?? 0 | formattNumber }}
+                <span class="external-link-card__currency">€</span>
+              </span>
+            </div>
+            <ion-icon
+              class="external-link-card__icon"
+              name="arrow-forward-outline">
+            </ion-icon>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </ng-container>
+
+    <section class="product-info">
+      <div class="product-info__header">
+        <div class="info-column">
+          <span class="info-column__label">Categoria</span>
+          <span class="info-column__value">{{ willbuy.product?.category?.description }}</span>
+        </div>
+        <div class="info-column">
+          <span class="info-column__label">Data inizio</span>
+          <span class="info-column__value">{{ willbuy.buyIn | customDate }}</span>
+        </div>
+        <div class="info-column">
+          <span class="info-column__label">Scade il</span>
+          <span class="info-column__value">{{ willbuy.buyEnd | customDate }}</span>
+        </div>
+      </div>
+      <div class="product-info__section product-info__section--bordered">
+        <div class="flex flex-row justify-between items-center">
+          <span class="product-info__section-title">PESO E MISURE PRODOTTO (cm)</span>
+          <span class="measurement">Peso: <span class="measurement__value">
+            {{ willbuy.product?.productDimensions?.weight ?? 0 | formattNumber:'EUR':'symbol':'it':3 }} kg
+          </span></span>
+        </div>
+        <div class="product-info__measurements">
+          <span class="measurement">Larghezza: <span class="measurement__value">{{ willbuy.product?.productDimensions?.width }}</span></span>
+          <span class="measurement">Altezza: <span class="measurement__value">{{ willbuy.product?.productDimensions?.height }}</span></span>
+          <span class="measurement">Lunghezza: <span class="measurement__value">{{ willbuy.product?.productDimensions?.length }}</span></span>
+        </div>
+      </div>
+
+      <div class="product-info__section">
+        <div class="flex flex-row justify-between items-center">
+          <span class="product-info__section-title">PESO E MISURE IMBALLO (cm)</span>
+          <span class="measurement">Peso: <span class="measurement__value">{{ willbuy.product?.packageDimensions?.weight }} kg</span></span>
+        </div>
+        <div class="product-info__measurements">
+          <span class="measurement">Larghezza: <span class="measurement__value">{{ willbuy.product?.packageDimensions?.width }}</span></span>
+          <span class="measurement">Altezza: <span class="measurement__value">{{ willbuy.product?.packageDimensions?.height }}</span></span>
+          <span class="measurement">Lunghezza: <span class="measurement__value">{{ willbuy.product?.packageDimensions?.length }}</span></span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="variants-column">
+      <div class="variants-column__variant" *ngFor="let variant of willbuy.product?.variations">
+        <span class="variants-column__variant--name">{{ variant.name }}</span>
+        <span class="variants-column__variant--value">{{ variant.value }}</span>
+      </div>
+    </section>
+
+    <p class="product-detail__text" [innerHTML]="willbuy.product?.longDescription">
+    </p>
+
+    <div class="shipping-info">
+      <div class="shipping-info__icon-wrapper">
+        <ion-icon class="shipping-info__icon" name="bus-outline"></ion-icon>
+      </div>
+      <div class="shipping-info__content">
+        <span class="shipping-info__title">Spedizione gratuita</span>
+        <span class="shipping-info__subtitle">Consegna a domicilio</span>
+      </div>
+      <ion-icon class="shipping-info__checkmark" name="checkmark-done-outline"></ion-icon>
+    </div>
+  </section>
+</ion-content>
+
+<ion-footer class="product-detail__footer ion-no-border">
+  <ion-toolbar>
+    <div class="action-bar">
+      <button class="action-bar__share-button" (click)="shareWillbuy()">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </button>
+      <button class="action-bar__buy-button" (click)="openModalBuyWillbuy()">
+        Compra ora
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

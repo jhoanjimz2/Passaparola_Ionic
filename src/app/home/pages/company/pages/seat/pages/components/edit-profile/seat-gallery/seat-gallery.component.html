@@ -1,0 +1,59 @@
+<section class="px-[16px] my-[48px]">
+  <section
+    class="flex flex-row justify-between items-center text-[16px] leading-[17px] font-bold"
+  >
+    <article>{{ "SEAT.COMPONENT.GALLERY.TITLE" | translate }}</article>
+    <article class="text-[#41C837]" *ngIf="!showDetail">
+      {{ pictureGallery.urls.length }}/{{ maxPicture }}
+    </article>
+  </section>
+
+  <section class="text-[15px] leading-[17px] mt-[5px]">
+    {{ "SEAT.COMPONENT.GALLERY.SUBTITLE" | translate }}
+  </section>
+
+  <section
+    class="flex flex-wrap mt-[10px] border-[1px] border-[#DDE5E9] rounded-[14px] p-[10px] min-h-[168px] gap-[10px]"
+  >
+    <article
+      *ngFor="let picture of pictureGallery.urls; let indexGallery = index"
+      class="flex justify-center items-center h-[72px] w-[54px] bg-[#DDE5E9] border-[1px] border-[#DDE5E9] rounded-[9px] relative bg-no-repeat bg-cover bg-center"
+      [style.background-image]="'url(' + (picture.url | image) + ')'"
+    >
+      <article
+        *ngIf="!showDetail"
+        class="flex justify-center items-center h-[19px] w-[19px] border-[1px] border-[#EEEEEE] rounded-full bg-white absolute right-[-3px] top-[-4px] font-bold"
+        (click)="removePicture(indexGallery)"
+      >
+        <ion-icon class="h-[8px] w-[8px]" name="close-outline"></ion-icon>
+      </article>
+    </article>
+    <article
+      *ngIf="pictureGallery.urls.length < maxPicture && !showDetail"
+      class="flex justify-center items-center h-[72px] w-[54px] bg-[#DDE5E9] rounded-[9px]"
+      (click)="takePicture()"
+    >
+      <ion-icon class="text-white text-[26px]" name="add-outline"></ion-icon>
+    </article>
+  </section>
+
+  <section
+    class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0"
+    *ngIf="!showDetail"
+  >
+    <section class="bg-white opacity-45 absolute h-full w-full"></section>
+    <section
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+      (click)="onCancel()"
+    >
+      {{ "SEAT.CANCEL" | translate }}
+    </section>
+    <button
+      class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+      [disabled]="!this.pictureGallery.urls.length"
+      (click)="onSave()"
+    >
+      {{ "SEAT.SAVE" | translate }}
+    </button>
+  </section>
+</section>

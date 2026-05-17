@@ -1,0 +1,142 @@
+<section>
+  <ion-grid class="p-l-10 p-r-10">
+    <ion-row class="ion-justify-content-between">
+      <ion-label class="f-z-16">{{
+        "MAP_PAGE.RECOMMENDED" | translate
+      }}</ion-label>
+
+      <ion-label class="text-all" (click)="goToAll()">
+        {{ "MAP_PAGE.SHOW_MORE" | translate }}
+      </ion-label>
+    </ion-row>
+  </ion-grid>
+
+  <div class="horizontal-scroll-container">
+    <ng-container *ngFor="let item of items">
+      <ion-card>
+        <ion-header class="ion-no-border">
+          <div class="horizontal-scroll-image">
+            <img
+              src="{{ picture }}"
+              *ngFor="let picture of item.pictureGallery"
+              (click)="goSeatDetail(item.id)"
+            />
+          </div>
+        </ion-header>
+
+        <ion-card-content class="p-top-0">
+          <ion-grid class="p-0">
+            <ion-row class="ion-align-items-end">
+              <ion-col size="10" class="p-0">
+                <ion-grid class="p-0">
+                  <ion-row>
+                    <h2 (click)="goSeatDetail(item.id)">
+                      {{ item.name }}
+                    </h2>
+                  </ion-row>
+                </ion-grid>
+
+                <ion-grid class="p-0">
+                  <ion-row class="ion-align-items-center">
+                    <!-- <p>Ristorante | €€</p> -->
+                    <p class="category" *ngIf="item.categories">
+                      {{
+                        item.categories[0].companyCategoryTranslation
+                          .description
+                      }}
+                    </p>
+                    <p>| €€</p>
+                  </ion-row>
+                </ion-grid>
+
+                <ion-grid class="p-0">
+                  <ion-row class="flex ion-align-items-center">
+                    <div class="truncate">
+                      <span class="recommendation-tag">
+                        <ng-container *ngFor="let tag of item.tags">
+                          {{ tag }}
+                        </ng-container>
+                      </span>
+                      |
+                      <span class="recommendation-address">
+                        {{ item.address }}
+                      </span>
+                    </div>
+                  </ion-row>
+                </ion-grid>
+
+                <ion-grid class="p-0">
+                  <ion-row class="ion-wrap flex">
+                    <div>
+                      <ion-button
+                        (click)="callPhoneNumber(item)"
+                        target="_parent"
+                        size="small"
+                        class="option"
+                      >
+                        <ion-icon
+                          name="passaparola-call"
+                          slot="start"
+                        ></ion-icon>
+                        Chiama
+                      </ion-button>
+
+                      <ion-button
+                        (click)="suggestionSeat(item)"
+                        size="small"
+                        class="option"
+                      >
+                        <ion-icon
+                          slot="start"
+                          name="passaparola-suggest2"
+                        ></ion-icon>
+                        Suggeriscilo
+                      </ion-button>
+                    </div>
+                    <div
+                      size="4"
+                      class="flex ion-align-items-center spacing-arrow gap-1"
+                    >
+                      <!-- <ion-icon
+                        (click)="howToGet(item)"
+                        name="arrow-redo-circle"
+                        class="btn-redo-circle"
+                      ></ion-icon> -->
+
+                      <button (click)="howToGet(item)" class="w-[1.375rem] h-[1.375rem] text-base flex justify-center items-center text-white bg-[#00B1FF] rounded-full">
+                        <ion-icon name="passaparola-post-go-store"></ion-icon>
+                      </button>
+
+                      <span (click)="howToGet(item)" class="f-z-11"
+                        >{{
+                          item.distance < 1
+                            ? item.distance * 1000
+                            : item.distance
+                        }}
+                        {{ item.distance < 1 ? "m" : "km" }}</span
+                      >
+                    </div>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+
+              <ion-col size="2">
+                <div class="flex flex-direction-column">
+                  <span class="recommendation-points font-bold"
+                    >{{ item.pointsPercentage }}%</span
+                  >
+                  <span class="recommendation-rewards"> Cashback </span>
+
+                  <!-- <span class="recommendation-cashback">
+                    {{ item.cashBackPercentage }}%
+                  </span>
+                  <span class="recommendation-cashback-title">Cashback</span> -->
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
+</section>

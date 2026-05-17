@@ -1,0 +1,55 @@
+swiper-container {
+  width: 100%;
+  overflow: visible;
+}
+swiper-slide {
+  width: 10.563rem !important;
+  height: auto;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.willbuy-expiring {
+  width: 100%;
+  background-color: white;
+  padding: 1.375rem 0.75rem;
+  margin-top: .5rem;
+  margin-bottom: 2rem;
+
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  &__title {
+    font-weight: 700;
+    color: #000000;
+    font-size: 1.125rem;
+  }
+
+  &__link {
+    font-weight: 700;
+    color: #22A9E8;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__slider {
+    width: 100%;
+    overflow: visible;
+  }
+
+  &__slide {
+    width: 50% !important;
+    height: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}

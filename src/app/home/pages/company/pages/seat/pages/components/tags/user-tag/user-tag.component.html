@@ -1,0 +1,52 @@
+<div
+  class="w-full bg-transparent flex flex-row justify-between items-center relative"
+  [ngClass]="{ 'bg-white p-4 border border-solid border-[#E4EDF3] rounded-[1rem]': (friendSelected || friendTag) }"
+  (click)="goUserClick()"
+>
+
+  <button (click)="deselect()" *ngIf="friendSelected && !friendTag" class="flex justify-center items-center absolute z-50 top-[-.5rem] right-0 w-[1.8125rem] h-[1.8125rem] rounded-full bg-white border border-solid border-[#E4EDF3] shadow-[0px_3px_6px_#0000001C] ">
+    <ion-icon class="text-black text-[1.2rem]" name="trash"></ion-icon>
+  </button>
+
+  <div class="flex flex-row gap-[1.2rem] items-center justify-center">
+    <img
+      class="w-[1.97rem] h-[1.97rem] rounded-full object-cover"
+      [src]="
+        user?.userImg
+        ? (user.userImg || 'https://placehold.co/52x52?text=Profile')
+        : (user.profile?.profilePictureUrlFile || 'https://placehold.co/52x52?text=Profile')
+      "
+    >
+    <ion-text>
+      <span class="leading-[1] text-[0.875rem] block font-bold">
+        {{
+          user?.userName
+          ? user?.userName
+          :( user?.profile?.name + ' ' + user?.profile?.lastName )
+        }}
+      </span>
+      <!-- <span class="leading-[1] text-[1.1875rem] block">
+        livello {{ user?.userLevel }}
+      </span> -->
+    </ion-text>
+  </div>
+
+  <button
+    *ngIf="!friendSelected && !friendTag"
+    (click)="select()"
+    [ngClass]="user?.userSelected ? 'bg-[#41C837]' : 'bg-[#FE8500]'"
+    class="w-[4.740625rem] h-[1.375rem] text-[0.625rem] text-white rounded-full"
+  >
+    {{ user?.userSelected ? 'taggato' : 'tagga' }}
+  </button>
+
+  <button
+    *ngIf="friendTag && !statusFollow"
+    (click)="follow()"
+    class="text-[0.875rem] text-black bg-transparent flex items-center justify-center gap-1"
+  >
+    <ion-icon name="person-add"></ion-icon>
+    Segui
+  </button>
+
+</div>

@@ -1,0 +1,49 @@
+<section class="h-full overflow-y-auto pb-[25px]">
+  <section class="flex flex-col justify-center pt-[28px]">
+    <span
+      class="text-[#000000] text-center text-[24px] leading-[33px] font-bold"
+    >
+      {{ "PAYMENT.AMOUNT" | translate }}
+    </span>
+    <span
+      class="text-[#000000] text-center text-[24px] leading-[33px] font-bold"
+    >
+      {{ "PAYMENT.WITHOUT_REWARDS" | translate }}
+    </span>
+  </section>
+
+  <section class="flex flex-col">
+    <article class="flex justify-center pr-[10px] pt-[22px]">
+      <span
+        class="text-black"
+        [ngClass]="{
+          'text-[51px] leading-[51px]': !(mainAmount.length >= 7),
+          'text-[30px] leading-[30px]': mainAmount.length >= 7
+        }"
+      >
+        {{ mainAmount }},
+      </span>
+      <span
+        class="text-black text-[20px] leading-[27px] font-extrabold pt-[6px]"
+        [ngClass]="{
+          'text-[20px] leading-[27px] pt-[6px]': !(mainAmount.length >= 7),
+          'text-[15px] leading-[20px] pt-[3px]': mainAmount.length >= 7
+        }"
+      >
+        {{ decimalAmount }}
+      </span>
+    </article>
+  </section>
+
+  <app-keyboard-tpv
+    class="grid grid-cols-3 px-[40px] pt-[20px] gap-x-[50px] gap-y-[15px]"
+    (onChangeAmount)="onChangeAmount($event)"
+  />
+
+  <section
+    class="bg-black text-white text-[15px] leading-[22px] py-[15px] mt-[25px] mx-[40px] rounded-[28px] text-center font-semibold"
+    (click)="onSave()"
+  >
+    {{ "PAYMENT.SAVE" | translate }}
+  </section>
+</section>

@@ -1,0 +1,139 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <div class="main-container__search-panel">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon
+            name="search-outline"
+            class="main-container__search-panel__icon-search"
+          ></ion-icon>
+          <input
+            [(ngModel)]="search"
+            placeholder="{{ 'WALLET.FRIENDS.SEARCH' | translate }}"
+          />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          (click)="showUnregisteredContacts = false"
+          size="6"
+          class="main-container__search-panel__col-left"
+        >
+          <ion-icon
+            name="passaparola-icon"
+            class="main-container__search-panel__icon-passaparola"
+          ></ion-icon>
+          <ion-label
+            class="main-container--f-z-15"
+            [ngClass]="{ 'main-container--f-w-b': !showUnregisteredContacts }"
+          >
+            {{ "WALLET.FRIENDS.PASSAPAROLA_FRIENDS" | translate }}
+          </ion-label>
+        </ion-col>
+        <ion-col
+          (click)="showUnregisteredContacts = true"
+          size="6"
+          class="main-container__search-panel__col-left"
+        >
+          <ion-icon
+            name="call"
+            class="main-container--f-z-20 main-container--m-r-5"
+          ></ion-icon>
+          <ion-label
+            class="main-container--f-z-15"
+            [ngClass]="{ 'main-container--f-w-b': showUnregisteredContacts }"
+          >
+            {{ "WALLET.FRIENDS.CONTACTS" | translate }}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid
+    class="main-container__contacts"
+    *ngIf="contacts.length > 0 && !showUnregisteredContacts"
+  >
+    <ion-row
+      *ngFor="let contact of contacts | contactPipe : search; index as i"
+      (click)="modalKeyboard(contact)"
+      class="main-container__contacts__card"
+      [ngClass]="{ 'main-container--p-t-5': i > 0 }"
+    >
+      <ion-col class="main-container__contacts__picture">
+        <ion-icon name="passaparola-icon"></ion-icon>
+        <div
+          class="main-container__contacts__picture__inner"
+          [style.background-image]="
+            contact.user?.profile?.profilePictureUrlFile!
+              ? 'url(' + contact.user?.profile?.profilePictureUrlFile! + ')'
+              : 'url(assets/images/no-image.jpg)'
+          "
+        ></div>
+      </ion-col>
+      <ion-col class="main-container__contacts__text">
+        <ion-text>
+          <span>{{ contact.name }}</span>
+          <br />
+          <span class="main-container--text-gray main-container--f-z-11">{{
+            contact.phone
+          }}</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="1" class="main-container__contacts__col-right">
+        <ion-icon
+          class="main-container__contacts__icon-arrow"
+          name="chevron-forward"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid
+    class="main-container__contacts"
+    *ngIf="contacts.length > 0 && showUnregisteredContacts"
+  >
+    <ion-row
+      *ngFor="
+        let contact of unregisteredContacts | contactPipe : search;
+        index as i
+      "
+      class="main-container__contacts__card"
+      [ngClass]="{ 'main-container--p-t-5': i > 0 }"
+    >
+      <ion-col class="main-container__contacts__picture">
+        <div
+          class="main-container__contacts__picture__inner"
+          [style.background-image]="
+            contact.user?.profile?.profilePictureUrlFile!
+              ? 'url(' + contact.user?.profile?.profilePictureUrlFile! + ')'
+              : 'url(assets/images/no-image.jpg)'
+          "
+        ></div>
+      </ion-col>
+      <ion-col class="main-container__contacts__text">
+        <ion-text>
+          <span>{{ contact.name }}</span>
+          <br />
+          <span class="main-container--text-gray main-container--f-z-11">{{
+            contact.phone
+          }}</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="1" class="main-container__contacts__col-right">
+        <ion-icon
+          class="main-container__contacts__icon-arrow"
+          name="chevron-forward"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

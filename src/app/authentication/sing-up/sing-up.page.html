@@ -1,0 +1,19 @@
+<app-header-auth [backIcon]="true"></app-header-auth>
+<ion-content [fullscreen]="true">
+  <app-check-phone
+    *ngIf="!user.id"
+    [user]="user"
+    (userEmit)="getUser($event)"
+    [phone]="phone"
+    [phonePrefix]="phonePrefix"
+    [codeCountry]="codeCountry"
+  ></app-check-phone>
+
+  <app-create-pin
+    *ngIf="user.id && !user.pin && !user.pinActive"
+    [user]="user"
+    (userEmit)="getUser($event)"
+  ></app-create-pin>
+
+  <app-join-app *ngIf="user.pinActive"></app-join-app>
+</ion-content>

@@ -1,0 +1,109 @@
+<section class="px-[0.875rem] pt-[1.5rem]">
+  <div class="flex flex-row justify-between gap-[1.1875rem]">
+    <div class="!w-[4.75rem] !h-[4.75rem] rounded-[0.5625rem]">
+      <img
+        (click)="imgProfile()"
+        class="h-full aspect-square object-cover rounded-[0.5625rem]"
+        [src]="seat.userInfo?.profile?.profilePictureUrlFile ? seat.userInfo?.profile?.profilePictureUrlFile : 'https://placehold.co/76x76?text=profile'"
+      />
+    </div>
+    <div class="w-[calc(100%-5.9375rem)] flex flex-col items-start justify-between relative">
+      <div>
+        <h1 (click)="name()" class="font-bold text-black text-[1rem]">
+          {{ seat.userInfo?.profile?.name ? seat.userInfo?.profile?.name : ("SEAT.MODIFY.NAME_TO_BE_DISPLAYED" | translate) }}
+          {{ seat.userInfo?.profile?.lastName ? seat.userInfo?.profile?.lastName : '' }}
+        </h1>
+        <h2 (click)="username()" class="font-normal text-black text-[0.75rem]">
+          @{{ seat.userInfo?.profile?.username ? seat.userInfo?.profile?.username : 'username' }}
+        </h2>
+      </div>
+
+      <div class="w-full grid grid-cols-3">
+        <div class="col-span-1 leading-4">
+          <span class="font-bold text-black text-[1rem] block">{{seat.myPublications | numberFormat}}</span>
+          <span class="font-normal text-black text-[0.875rem] block">paspot</span>
+        </div>
+        <div class="col-span-1 leading-4" (click)="following()">
+          <span class="font-bold text-black text-[1rem] block">{{seat.following | numberFormat}}</span>
+          <span class="font-normal text-black text-[0.875rem] block">seguiti</span>
+        </div>
+        <div class="col-span-1 leading-4">
+          <span class="font-bold text-black text-[1rem] block">{{seat.totalViewsOnMyPosts | numberFormat}}</span>
+          <span class="font-normal text-black text-[0.875rem] block">views totali</span>
+        </div>
+      </div>
+
+      <button
+        *ngIf="!showDetail"
+        (click)="viewTagRequests()"
+        class="absolute right-2 top-2 flex items-center justify-center w-[1.875rem] h-[1.875rem] rounded-full bg-[#E1E1E1]"
+      >
+        <ion-icon name="passaparola-profile-tag-requests"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <div (click)="followers_()" class="flex justify-start items-center gap-1 mt-2" *ngIf="followers.length || mutual.length">
+    <!-- Mostrar avatares de mutual cuando hay seguidores en común -->
+    <div class="flex -space-x-[.7rem]" *ngIf="mutual && mutual.length > 0">
+      <ng-container *ngFor="let follower of mutual">
+        <img
+          [src]="follower?.entity?.profile?.profilePictureUrlFile || 'https://placehold.co/40x40?text=profile'"
+          class="w-[1.5625rem] h-[1.5625rem] rounded-full object-cover border border-solid border-white" />
+      </ng-container>
+    </div>
+
+    <!-- Mostrar avatares de followers cuando NO hay seguidores en común -->
+    <div class="flex -space-x-[.7rem]" *ngIf="(!mutual || mutual.length === 0) && followers && followers.length > 0">
+      <ng-container *ngFor="let follower of followers">
+        <img
+          [src]="follower?.entity?.profile?.profilePictureUrlFile || 'https://placehold.co/40x40?text=profile'"
+          class="w-[1.5625rem] h-[1.5625rem] rounded-full object-cover border border-solid border-white" />
+      </ng-container>
+    </div>
+
+    <!-- Texto cuando hay seguidores en común Y showDetail es true -->
+    <span class="text-[0.6875rem]" *ngIf="showDetail && mutual && mutual.length > 0">
+      Seguito da
+      <span class="font-bold text-[0.6875rem]">{{mutual[0]?.entity?.profile?.name}}</span>
+      <ng-container *ngIf="mutual.length > 1">
+        e
+        <span class="font-bold text-[0.6875rem]">altri {{mutual.length - 1}}</span>
+      </ng-container>
+    </span>
+
+    <!-- Texto cuando NO hay seguidores en común -->
+    <span class="text-[0.6875rem]" *ngIf="!mutual || mutual.length === 0">
+      Seguitori
+      <span class="font-bold text-[0.6875rem]">{{followers.length}}</span>
+    </span>
+  </div>
+
+  <div class="grid grid-cols-4 gap-2 mt-2" *ngIf="!sessionService.isCompanyLegal">
+    <div class="col-span-2">
+      <button
+        *ngIf="showDetail"
+        (click)="follow()"
+        [ngClass]="isPublic ? 'bg-[#EF8500]' : (statusFollow ? 'bg-[#8B8B8B]' : 'bg-[#EF8500]')"
+        class="text-[0.875rem] text-white border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]"
+      >
+        {{ isPublic ? 'Segui' : (statusFollow ? 'Segui già' : 'Segui') }}
+      </button>
+
+      <button *ngIf="!showDetail" class="bg-[#EF8500] text-[0.875rem] text-white border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]">
+        Guadagni real-time
+      </button>
+    </div>
+    <div class="col-span-1">
+      <button (click)="share()" class="bg-[#E1EAF1] text-[0.875rem] text-black border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]">
+        Condividi
+      </button>
+    </div>
+    <div class="col-span-1">
+      <button (click)="chat()" class="bg-[#E1EAF1] text-[0.875rem] text-black border border-solid border-[#E1E1E1] w-full h-[1.9375rem] rounded-[1rem]">
+        Chatta
+      </button>
+    </div>
+  </div>
+
+</section>

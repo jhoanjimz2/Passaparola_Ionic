@@ -1,0 +1,127 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container__card__header">
+      <ion-text>
+        <span class="main-container--f-w-b">{{
+          "WALLET.RECHARGE.TRANSFER_INFO.BANK_DETAILS" | translate
+        }}</span>
+        <br />
+        <span>{{ "WALLET.RECHARGE.TRANSFER_INFO.INFO_1" | translate }}</span>
+        <br />
+        <span>{{ "WALLET.RECHARGE.TRANSFER_INFO.INFO_2" | translate }}</span>
+        <br />
+        <br />
+        <span class="main-container--f-w-b">{{
+          "WALLET.RECHARGE.TRANSFER_INFO.AMOUNT" | translate
+        }}</span>
+        <br />
+        <span class="main-container--f-w-b main-container--f-z-36"
+          >€ {{ amount | formattNumber }}</span
+        >
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" class="main-container--left-item">
+            <span class="main-container--f-w-b">
+              {{ "WALLET.RECHARGE.TRANSFER_INFO.ADDRESSEE" | translate }}
+            </span>
+          </ion-col>
+          <ion-col size="8" class="main-container--right-item">
+            <ion-text>
+              {{ "Passaparola lda" }}
+              <ion-icon
+                (click)="onCopyDataToClipboard('Passaparola lda', false)"
+                class="main-container__card__copy-icon"
+                color="success"
+                name="copy-outline"
+              ></ion-icon>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" class="main-container--left-item">
+            <span class="main-container--f-w-b">
+              {{ "IBAN" | translate }}
+            </span>
+          </ion-col>
+          <ion-col size="8" class="main-container--right-item">
+            <ion-text>
+              {{ "PT50 0018 0036 2041 0820 2035" }}
+              <ion-icon
+                (click)="
+                  onCopyDataToClipboard('PT50 0018 0036 2041 0820 2035', true)
+                "
+                class="main-container__card__copy-icon"
+                color="success"
+                name="copy-outline"
+              ></ion-icon>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" class="main-container--left-item">
+            <span class="main-container--f-w-b">
+              {{ "BIC/SWIFT" | translate }}
+            </span>
+          </ion-col>
+          <ion-col size="8" class="main-container--right-item">
+            <ion-text>
+              {{ "TOTAPTPL" }}
+              <ion-icon
+                (click)="onCopyDataToClipboard('TOTAPTPL', false)"
+                class="main-container__card__copy-icon"
+                color="success"
+                name="copy-outline"
+              ></ion-icon>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" class="main-container--left-item">
+            <span class="main-container--f-w-b">
+              {{ "WALLET.RECHARGE.TRANSFER_INFO.CAUSE" | translate }}
+            </span>
+          </ion-col>
+          <ion-col size="8" class="main-container--right-item">
+            <ion-text>
+              {{ cause }}
+              <ion-icon
+                (click)="onCopyDataToClipboard(cause, false)"
+                class="main-container__card__copy-icon"
+                color="success"
+                name="copy-outline"
+              ></ion-icon>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <br />
+      <br />
+
+      <div class="main-container__card__text-bottom">
+        <ion-text>
+          <span>{{ "WALLET.RECHARGE.TRANSFER_INFO.INFO_3" | translate }}</span>
+          <br />
+          <span>{{ "WALLET.RECHARGE.TRANSFER_INFO.INFO_4" | translate }}</span>
+          <br />
+          <span>{{ "WALLET.RECHARGE.TRANSFER_INFO.INFO_5" | translate }}</span>
+        </ion-text>
+      </div>
+
+      <div class="main-container__card__btn-recharge">
+        <ion-button (click)="confirm()">{{
+          "WALLET.RECHARGE.TRANSFER_INFO.COMFIRM" | translate
+        }}</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

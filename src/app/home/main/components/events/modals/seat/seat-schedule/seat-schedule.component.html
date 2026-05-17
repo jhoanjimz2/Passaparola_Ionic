@@ -1,0 +1,73 @@
+<section class="px-[16px] mt-[48px] mb-[90px] overflow-y-auto">
+
+
+  <section class="text-[18px] leading-[17px] font-bold"> Orari evento </section>
+  <section class="text-[20px] leading-[17px] font-bold mt-[10px] mb-[2rem] text-[#EC0973]"> Date evento: {{ eventProfile.schedule || [] | formatDateRange }}</section>
+
+  <section class="grid grid-cols-12 items-center bg-white border-[#41C837] border-solid border-[0.1rem] rounded-[1rem] p-2">
+    <!-- Fecha -->
+    <section class="col-span-3 text-center" (click)="openModalSeatDate()">
+      <label class="font-semibold text-[1rem]">{{ dateSelect | date:"d MMM y" }}</label>
+    </section>
+
+    <!-- Hora de inicio -->
+    <section class="col-span-3 text-center">
+      <label class="font-bold text-[1rem]" id="hour-init">{{ hourInitSelect }}</label>
+      <ion-picker trigger="hour-init" mode="md" [columns]="pickerColumns" [buttons]="pickerHourStar"></ion-picker>
+    </section>
+
+    <!-- Separador -->
+    <section class="col-span-1 text-center font-bold text-[1.2rem]">-</section>
+
+    <!-- Hora de Final -->
+    <section class="col-span-3 text-center">
+      <label class="font-bold text-[1rem]" id="hour-end">{{ hourEndSelect }}</label>
+      <ion-picker trigger="hour-end" mode="md" [columns]="pickerColumns" [buttons]="pickerHourEnd"></ion-picker>
+    </section>
+
+    <!-- Botón (+) -->
+    <section class="col-span-2 flex justify-center">
+      <button [disabled]="dateExists()" (click)="onSaveDate()" class="bg-transparent text-[#41C837] flex items-center justify-center text-[.9rem] font-bold">crea</button>
+    </section>
+  </section>
+
+
+  <section class="mt-16">
+    <section class="grid grid-cols-12 my-2" *ngFor="let shedule of eventProfile.schedule || [] | dateFilter">
+      <section class="col-span-3 text-center m-auto">
+        <label class="font-bold text-[1rem]">{{shedule.date}}</label>
+      </section>
+      <section class="col-span-3 text-center m-auto">
+        <label class="font-bold text-[1rem]">{{shedule.hourStart}}</label>
+      </section>
+      <section class="col-span-1 text-center font-bold text-[1.2rem] m-auto">-</section>
+      <section class="col-span-3 text-center m-auto">
+        <label class="font-bold text-[1rem]">{{shedule.hourEnd}}</label>
+      </section>
+      <section class="col-span-2">
+        <section (click)="onTrash(shedule.id!)" class="h-10 rounded-[1.2rem] text-[1.2rem] flex items-center justify-center ml-auto border-[2px] border-[#EC0973] border-solid bg-[#EC0973] text-white">
+          <ion-icon src="assets/images/events/custom-icons/trash.svg"/>
+        </section>
+      </section>
+    </section>
+  </section>
+
+
+
+
+
+  <!-- Botones de acción -->
+  <section class="flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0">
+    <section class="bg-white opacity-45 absolute h-full w-full"></section>
+    <section class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10" (click)="onCancel()">
+      {{ 'Annulla' }}
+    </section>
+    <button
+      class="disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+      (click)="seatSchedule()"
+      [disabled]="!eventProfile.schedule?.length"
+    >
+      {{ 'Salva' }}
+    </button>
+  </section>
+</section>

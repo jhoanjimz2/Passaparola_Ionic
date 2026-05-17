@@ -1,0 +1,25 @@
+<div
+  class="payment-method-card"
+  [class.payment-method-card--selected]="selected"
+  (click)="onSelectPayment()">
+
+  <div class="payment-method-card__brand-box">
+    {{ card.brand[0] }}
+  </div>
+
+  <img
+    *ngIf="selected"
+    src="assets/images/payments/payment-selected.svg"
+    class="payment-method-card__check-icon">
+
+  <div class="payment-method-card__content">
+    <span class="payment-method-card__title">Carta</span>
+    <span class="payment-method-card__card-info">
+      {{ card.brand + ' ' + card.cardNumber }}
+      <span class="payment-method-card__expiration">{{ card.expiration }}</span>
+    </span>
+    <span class="payment-method-card__owner">
+      {{ card.owner }}
+    </span>
+  </div>
+</div>

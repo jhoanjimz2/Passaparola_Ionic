@@ -1,0 +1,120 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin-top: .5rem;
+}
+.label-field {
+  font-size: 0.688rem;
+  font-weight: 500;
+  text-align: left !important;
+}
+.input-field {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 0.438rem;
+  background: white;
+  border: 0.063rem solid #E1E1E1;
+  font-weight: 400;
+  font-size: 0.938rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  --placeholder-color: #9ca3af;
+  --placeholder-opacity: 1;
+}
+
+
+.field-phone {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.125rem;
+  margin-top: .5rem;
+  width: 100%;
+  height: 2.85rem;
+  border-radius: 0.438rem;
+  border: 0.063rem solid #E1E1E1;
+}
+
+
+.input-field-phone {
+  --placeholder-color: #9ca3af;
+  --placeholder-opacity: 1;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  font-weight: 400;
+  font-size: 0.938rem;
+  background: white;
+  grid-column: span 7 / span 7;
+  height: 2.75rem;
+  border-radius: 0.438rem;
+}
+.select-field-phone {
+  --placeholder-color: #9ca3af;
+  --placeholder-opacity: 1;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  font-weight: 400;
+  font-size: 0.938rem;
+  background: white;
+  grid-column: span 5 / span 5;
+  height: 2.75rem;
+  border-radius: 0.438rem;
+  border-right: 0.063rem solid #E1E1E1;
+}
+
+.button-field {
+  width: 12.293rem;
+  height: 2.625rem;
+  border-radius: 1.313rem;
+  font-size: 0.875rem;
+  color: #FDF6EE;
+  background: #116DE5;
+  margin-top: 2.5rem;
+}
+
+
+
+
+
+
+
+
+::ng-deep ion-select::part(icon) {
+  position: absolute;
+  right: 0rem;
+}
+
+
+
+
+
+ion-radio::part(container) {
+  width: 1rem;
+  height: 1rem;
+  border-radius: .5rem;
+  border: 1px solid #9C9C9C;
+}
+
+ion-radio::part(mark) {
+  background: none;
+  transition: none;
+  transform: none;
+  border-radius: 0;
+}
+
+ion-radio.radio-checked::part(container) {
+  background: #116DE5;
+  border-color: transparent;
+}
+
+ion-radio.radio-checked::part(mark) {
+  width: .2rem;
+  // height: 10px;
+
+  border-width: 0px 2px 2px 0px;
+  border-style: solid;
+  border-color: #fff;
+
+  transform: rotate(45deg);
+}

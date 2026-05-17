@@ -1,0 +1,52 @@
+<div class="main-background">
+  <div *ngIf="loading" class="spinner"></div>
+  <div *ngIf="!loading">
+    <div class="main-background__content">
+      <div class="main-background__content__icon">
+        <img src="assets/images/icon-black-tpr.png" alt="" />
+      </div>
+    </div>
+    <img src="assets/images/text-icon-white.png" alt="" width="250px" />
+
+    <div class="info-container">
+      <ion-card class="info-container__card">
+        <div class="info-container__animation">
+          <div class="spinner"></div>
+        </div>
+        <div class="cards-container">
+          <ion-card class="card card-1">
+            <ion-text>
+              <span class="swiper-container__text">{{
+                slideText[0] | translate
+              }}</span>
+            </ion-text>
+          </ion-card>
+
+          <ion-card class="card card-2">
+            <ion-text>
+              <span class="swiper-container__text">{{
+                slideText[1] | translate
+              }}</span>
+            </ion-text>
+          </ion-card>
+
+          <ion-card class="card card-3">
+            <ion-text>
+              <span class="swiper-container__text">{{
+                slideText[2] | translate
+              }}</span>
+            </ion-text>
+          </ion-card>
+
+          <ion-card class="card card-4">
+            <ion-text>
+              <span class="swiper-container__text">{{
+                slideText[3] | translate
+              }}</span>
+            </ion-text>
+          </ion-card>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+</div>

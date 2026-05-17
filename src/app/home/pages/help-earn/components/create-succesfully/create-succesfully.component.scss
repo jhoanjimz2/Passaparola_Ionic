@@ -1,0 +1,48 @@
+.main-container {
+  --background: #ffffff;
+  height: 100vh;
+
+  &__card {
+    box-shadow: none;
+  }
+
+  &__icon {
+    width: 100%;
+    text-align: center;
+    margin-top: 3.75rem;
+
+    ion-icon {
+      font-size: 6.563rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    color: #000000;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    ion-button {
+      width: 16.563rem;
+      height: 3.938rem;
+      text-transform: capitalize;
+      --border-radius: 2rem;
+      --box-shadow: none;
+    }
+  }
+
+  &--text-center {
+    text-align: center;
+  }
+}

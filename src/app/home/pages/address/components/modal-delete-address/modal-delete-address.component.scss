@@ -1,0 +1,127 @@
+// BEM Naming Convention
+.modal-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+  min-height: 60vh;
+
+  // Icon
+  &__icon {
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
+
+    // Error/Warning state
+    &--error {
+      color: #ef4444;
+    }
+
+    // Success state
+    &--success {
+      color: #10b981;
+    }
+  }
+
+  // Title
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  // Message
+  &__message {
+    font-size: 0.938rem;
+    font-weight: 400;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: -0.5rem;
+  }
+
+  // Address card
+  &__card {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  // Buttons
+  &__button {
+    width: 100%;
+    max-width: 20rem;
+    height: 3.438rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 2px solid #FF8000;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    // Primary button
+    &--primary {
+      background-color: #FF8000;
+      span {
+        color: #ffffff;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: #e67300;
+      }
+
+      &:disabled {
+        background-color: #FF8000;
+      }
+    }
+
+    // Secondary button
+    &--secondary {
+      background-color: transparent;
+      color: #FF8000;
+
+      &:hover:not(:disabled) {
+        background-color: rgba(255, 128, 0, 0.05);
+      }
+    }
+  }
+
+  // Spinner inside button
+  &__spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #ffffff;
+  }
+}
+
+// Animation for state transitions
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-delete {
+  animation: fadeIn 0.3s ease-out;
+}

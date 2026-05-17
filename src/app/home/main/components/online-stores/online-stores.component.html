@@ -1,0 +1,25 @@
+<div class="main-container">
+  <ion-grid class="main-container--p-l-10 main-container--p-r-10">
+    <ion-row class="ion-justify-content-between">
+      <ion-label class="main-container--f-z-16">{{
+        "I negozi online" | translate
+      }}</ion-label>
+
+      <ion-label (click)="goToStores()" class="main-container__text-all">
+        {{ "vedi tutti" | translate }}
+      </ion-label>
+    </ion-row>
+  </ion-grid>
+
+  <div>
+    <app-online-store-card
+      [showTitle]="false"
+      [stores]="seatsFiltered"
+      [keyword]="keyword"
+    ></app-online-store-card>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</div>

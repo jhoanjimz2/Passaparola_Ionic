@@ -1,0 +1,64 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content class="main">
+
+  <ion-refresher (ionRefresh)="handleRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+
+  <div class="grid grid-cols-2 relative w-full bg-no-repeat bg-cover bg-center bg-[url('/assets/images/events/portada.png')] h-[29.25rem] rounded-b-[2rem] mb-[4.5rem]">
+
+
+    <div class="col-span-2 h-full"></div>
+
+    <div class="col-span-2 grid grid-cols-2 gap-2 px-2">
+      <div class="col-span-1 flex items-center justify-center mb-4">
+        <div (click)="openMyEventsOrganizated()" class="w-full flex items-center flex-col border-2 border-[#FE8C0F] bg-white rounded-[15px] p-2">
+          <label class="text-[3rem] font-bold">{{countMyEvents}}</label>
+          <label class="text-[18px]">Eventi creati da me</label>
+          <label class="text-[18px]"><b>clicca per creare</b></label>
+        </div>
+      </div>
+      <div class="col-span-1 flex items-center justify-center mb-4">
+        <div (click)="openMyEvents()" class="w-full flex items-center flex-col border-2 border-[#EC0973] bg-white rounded-[15px] p-2">
+          <label class="text-[3rem] font-bold">{{countMyEventsTicket}}</label>
+          <label class="text-[18px]">Eventi participati</label>
+          <label class="text-[18px]"><b>da me</b></label>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <app-slide-categories-events [allCategories]="allCategories" class="main__position-slide"></app-slide-categories-events>
+  </div>
+
+
+  <ion-grid class="main__grid-container">
+    <ion-row>
+      <ion-col class="main__grid-container__col-container" size="9">
+        <label class="main__grid-container__col-container__label-title">Prossimi eventi</label>
+        <label class="main__grid-container__col-container__label-subtitle">Acquista i biglietti per gli eventi futuri</label>
+      </ion-col>
+      <ion-col class="main__grid-container__col-button" size="3">
+        <button class="main__grid-container__col-button__button-all" (click)="openAllEvents()">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-nearest-event-card
+    class="main__nearest-event"
+    *ngFor="let event of nearestEvent"
+    [event]="event">
+  </app-nearest-event-card>
+
+
+</ion-content>

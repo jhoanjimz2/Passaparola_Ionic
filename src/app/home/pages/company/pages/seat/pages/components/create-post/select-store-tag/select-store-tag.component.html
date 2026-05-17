@@ -1,0 +1,43 @@
+
+<ion-content>
+  <div class="h-[3.375rem] w-full flex justify-center items-center">
+    <h1 class="text-[#1D0F01] text-[0.9375rem]">Ti stiamo mostrando tutti i negozi sulla mappa</h1>
+  </div>
+  <div class="w-full h-[calc(100%-3.375rem)] relative">
+
+    <div class="w-full h-auto absolute top-4 left-0 z-10 flex flex-col">
+      <div class="w-[95%] mx-auto flex flex-row justify-between items-center">
+        <input
+          #searchBar
+          placeholder="Cerca qui..."
+          class="px-4 w-[calc(100%-4rem)] h-[2.6875rem] rounded-[1.75rem] bg-white shadow-md"
+        >
+        <button class="w-[2.6875rem] h-[2.6875rem] bg-white rounded-[0.875rem] flex justify-center items-center">
+          <ion-icon class="text-[1.4rem]" name="passaparola-bar-category"></ion-icon>
+        </button>
+      </div>
+
+      <div class="w-full flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide mt-4 px-2 no-scrollbar">
+        <ion-chip
+          *ngFor="let category of categories"
+          class="
+            shrink-0 whitespace-nowrap px-4 py-2
+            bg-white shadow-md lowercase
+          "
+          [ngClass]="{'bg-white': !category.selected, 'bg-[#FE8500] text-white': category.selected}"
+          (click)="onCategorySelected(category)"
+        >
+          {{category.companyCategoryTranslation.description}}
+        </ion-chip>
+      </div>
+    </div>
+
+
+    <app-google-map
+      [position]="position"
+      [suggestionMarkersLocation]="suggestionMarkersLocation"
+      [seatMarkersLocation]="seatMarkersLocation"
+      (clickOnMarker)="openSeatModal($event)"
+    ></app-google-map>
+  </div>
+</ion-content>

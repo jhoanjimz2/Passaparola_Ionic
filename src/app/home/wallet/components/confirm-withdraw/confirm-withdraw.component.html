@@ -1,0 +1,142 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container__card__header">
+      <div class="main-container__card__header__img">
+        <img src="assets/images/cash-withdraw.png" alt="cash" />
+      </div>
+      <br />
+      <ion-text>
+        <span class="main-container__card__header__text">{{
+          "WALLET.MODAL_CONFIRM_WITHDRAW.YOU_WITHDRAWING" | translate
+        }}</span>
+        <br />
+        <span class="main-container__card__header_atm">{{
+          amount | formattNumber
+        }}</span
+        ><span class="main-container__card__header__euro">{{ "€/ATM" }}</span>
+        <br />
+        <span class="main-container__card__header__text">{{
+          "WALLET.MODAL_CONFIRM_WITHDRAW.ON_THE_ACCOUNT" | translate
+        }}</span>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content class="main-container--text-center">
+      <form [formGroup]="formCode" (ngSubmit)="checkCode()">
+        <ion-card
+          class="main-container__payment-method-card main-container--border-success"
+        >
+          <ion-grid class="main-container--m-p-0">
+            <ion-row>
+              <ion-col size="2.5">
+                <div class="main-container__payment-method-card__icon-card">
+                  <ion-icon name="card-outline"></ion-icon>
+                </div>
+              </ion-col>
+              <ion-col
+                class="main-container--w-100"
+                size="9.5"
+                class="main-container__payment-method-card__col-text"
+              >
+                <ion-text>
+                  <span> {{ bankAccount.bankName }}</span>
+
+                  <br />
+
+                  <span class="main-container__payment-method-card__text-name"
+                    >{{ "WALLET.RECHARGE.ENDS_WITH" | translate }} ****{{
+                      getLastFourDigits(bankAccount.accountNumber)
+                    }}</span
+                  >
+                  <br />
+                  <span
+                    class="main-container__payment-method-card__text-favorite"
+                  >
+                    {{
+                      "WALLET.MODAL_CONFIRM_WITHDRAW.FAVORITE_ACCOUNT"
+                        | translate
+                    }}
+                  </span>
+                </ion-text>
+
+                <article
+                  class="flex items-center justify-center rounded-[6px] w-[26px] h-[26px] border-[1px] border-[#41C837] text-white main-container__payment-method-card__check"
+                  [ngClass]="{
+                    'bg-[#41C837]': bankAccount.isFavorite,
+                    'border-[#bbbbbb]': !bankAccount.isFavorite
+                  }"
+                >
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </article>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+
+        <br />
+        <br />
+
+        <ion-text>
+          <span class="main-container--f-z-15">{{
+            "WALLET.MODAL_CONFIRM_WITHDRAW.ENTER_CODE" | translate
+          }}</span>
+          <br />
+          <span>{{
+            "WALLET.MODAL_CONFIRM_WITHDRAW.SMS_CONFIRM" | translate
+          }}</span>
+        </ion-text>
+
+        <br />
+        <br />
+
+        <ion-grid>
+          <ion-row class="main-container__payment-method-card__row-input">
+            <ion-col class="main-container--border-b">
+              <ion-label
+                class="main-container__payment-method-card__text-code"
+                >{{
+                  "WALLET.MODAL_CONFIRM_WITHDRAW.VERIFICATION_CODE" | translate
+                }}</ion-label
+              >
+              <ion-input
+                color="success"
+                type="text"
+                formControlName="code"
+                maxLength="6"
+                class="main-container--f-z-20"
+                autocomplete="one-time-code"
+              ></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <br />
+              <ion-label
+                (click)="getCode()"
+                class="main-container__payment-method-card__text-get-code"
+                >{{
+                  "WALLET.MODAL_CONFIRM_WITHDRAW.CLICK_TO_GET_ANOTHER"
+                    | translate
+                }}</ion-label
+              >
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <br />
+
+        <div class="main-container__payment-method-card__btn-confirm">
+          <ion-button type="submit" [disabled]="formCode.invalid">{{
+            "WALLET.MODAL_CONFIRM_WITHDRAW.CONFIRM" | translate
+          }}</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

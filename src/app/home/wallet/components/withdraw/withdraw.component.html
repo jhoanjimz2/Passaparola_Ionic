@@ -1,0 +1,166 @@
+<app-header
+  #header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content [fullscreen]="true" class="main-container">
+  <ion-card class="main-container__card">
+    <ion-card-header class="main-container--text-center">
+      <ion-text>
+        <span class="main-container--f-w-b">{{
+          "WALLET.MODAL_WITHDRAW.BALANCE_AVAIBLE" | translate
+        }}</span>
+        <br />
+        <br />
+        <span class="main-container__card__text-atm">{{ "ATM/€ " }}</span>
+        <span class="main-container--f-z-36">{{
+          wallet.balance! | formattNumber : "EUR" : "symbol" : "it" : 2
+        }}</span>
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content class="main-container__card__content">
+      <form [formGroup]="formWithdraw" (ngSubmit)="withdraw()">
+        <ion-label>{{ "WALLET.MODAL_WITHDRAW.AMOUNT" | translate }}</ion-label>
+        <br />
+        <ion-label class="main-container__card__content__symbol-eur"
+          >€</ion-label
+        >
+        <input
+          (focus)="focus()"
+          (focusout)="losesFocus()"
+          class="main-container__card__content__input"
+          formControlName="amount"
+          name="amount"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          inputmode="numeric"
+          separatorLimit="99999999"
+        />
+      </form>
+
+      <div class="main-container__card__content__amounts">
+        <ion-button
+          *ngFor="let amount of amounts"
+          (click)="setAmount(amount)"
+          class="main-container__card__content__btn-amount"
+        >
+          {{ amount + " €" }}
+        </ion-button>
+      </div>
+      <br />
+      <br />
+      <ion-label>{{
+        "WALLET.MODAL_WITHDRAW.WITHDRAW_METHOD" | translate
+      }}</ion-label>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col
+            *ngFor="let option of options; index as i"
+            size="4"
+            [ngClass]="{
+              'main-container--left-item': i === 1,
+              'main-container--center-item': i === 2,
+              'main-container--right-item': i === 3,
+            }"
+            class="main-container--left-item"
+          >
+            <ion-button
+              (click)="optionActive = option.index"
+              class="main-container__card__content__btn-action"
+              [ngClass]="{
+                'main-container__card__content__btn-action--active':
+                  option.index === optionActive
+              }"
+            >
+              <ion-text
+                [ngClass]="{
+                  'main-container__card__content__text-action--active':
+                    option.index === optionActive
+                }"
+                class="main-container__card__content__text-action"
+              >
+                <ion-icon
+                  class="main-container__card__content__icon-action"
+                  [name]="option.icon"
+                ></ion-icon>
+                <br />
+                {{ option.title | translate }}
+              </ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+    <section *ngIf="optionActive === 1">
+      <ion-card
+        *ngFor="let account of bankAccounts; index as i"
+        class="main-container__payment-method-card"
+        [ngClass]="{
+          'main-container--border-success': indexAccount === i + 1
+        }"
+        (click)="bankAccount = account; indexAccount = i + 1"
+      >
+        <ion-grid class="main-container--m-p-0">
+          <ion-row>
+            <ion-col size="2.5">
+              <div class="main-container__payment-method-card__icon-card">
+                <ion-icon name="card-outline"></ion-icon>
+              </div>
+            </ion-col>
+            <ion-col
+              class="main-container--w-100"
+              size="9.5"
+              class="main-container__payment-method-card__col-text"
+            >
+              <ion-text>
+                <span> {{ account.bankName }}</span>
+
+                <br />
+
+                <span class="main-container__payment-method-card__text-name"
+                  >{{ "WALLET.RECHARGE.ENDS_WITH" | translate }} ****{{
+                    getLastFourDigits(account.accountNumber)
+                  }}</span
+                >
+                <br />
+                <span
+                  class="main-container__payment-method-card__text-favorite"
+                >
+                  {{ "WALLET.MODAL_WITHDRAW.FAVORITE_ACCOUNT" | translate }}
+                </span>
+              </ion-text>
+
+              <article
+                class="flex items-center justify-center rounded-[6px] w-[26px] h-[26px] border-[1px] border-[#41C837] text-white main-container__payment-method-card__check"
+                [ngClass]="{
+                  'bg-[#41C837] ': account.isFavorite,
+                  'border-[#bbbbbb] ': !account.isFavorite
+                }"
+              >
+                <ion-icon name="checkmark-outline"></ion-icon>
+              </article>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <br />
+
+      <div class="main-container__payment-method-card__btn-confirm">
+        <ion-button
+          (click)="modalConfirm()"
+          [disabled]="
+            formWithdraw.invalid ||
+            !bankAccount.id ||
+            formWithdraw.controls['amount'].value > wallet.balance!
+          "
+          >{{ "WALLET.MODAL_WITHDRAW.COMFIRM" | translate }}</ion-button
+        >
+      </div>
+    </section>
+  </ion-card>
+</ion-content>

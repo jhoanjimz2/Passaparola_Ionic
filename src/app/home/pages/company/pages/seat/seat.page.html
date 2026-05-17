@@ -1,0 +1,59 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="false"
+></app-header>
+<section class="h-full bg-white text-black px-[23px] py-[13px] overflow-y-auto">
+  <section class="text-[18px] leading-[24px] font-semibold" *ngIf="sessionService.isCompanyLegal">
+    {{ "SEAT.TITLE" | translate }}
+  </section>
+  <section class="text-[18px] leading-[24px] font-semibold" *ngIf="sessionService.isProfessionalAdministrative">
+    {{ "Profilo pubblico" }}
+  </section>
+  <section
+    *ngIf="sessionService.isCompanyLegal"
+    class="flex flex-row justify-between items-center border-[1px] border-[#9B9EA7] rounded-[19px] py-[28px] pl-[34px] pr-[16px] mt-[22px]"
+    (click)="onOpenModalSeatType()"
+  >
+    <section>
+      <section class="text-[15px] leading-[17px]">
+        {{ "SEAT.ADD_SEAT" | translate }}
+      </section>
+      <section class="text-[11px] leading-[17px]">
+        {{ "SEAT.CLICK_TO_SET" | translate }}
+      </section>
+    </section>
+    <section class="flex flex-row items-center">
+      <ion-icon
+        class="text-[28px] leading-[40px]"
+        name="add-outline"
+      ></ion-icon>
+    </section>
+  </section>
+  <section
+    *ngIf="sessionService.isProfessionalAdministrative && !seatList.length"
+    class="flex flex-row justify-between items-center border-[1px] border-[#9B9EA7] rounded-[19px] py-[28px] pl-[34px] pr-[16px] mt-[22px]"
+    (click)="onOpenModalSeatType()"
+  >
+    <section>
+      <section class="text-[15px] leading-[17px]">
+        {{ "Aggiungi Profilo pubblico" }}
+      </section>
+      <section class="text-[11px] leading-[17px]">
+        {{ "SEAT.CLICK_TO_SET" | translate }}
+      </section>
+    </section>
+    <section class="flex flex-row items-center">
+      <ion-icon
+        class="text-[28px] leading-[40px]"
+        name="add-outline"
+      ></ion-icon>
+    </section>
+  </section>
+
+  <app-seat-list
+    [seatList]="seatList"
+    [infiniteScrollEnabled]="infiniteScrollEnabled"
+    (onFindAll)="findAll(true, $event)"
+  />
+</section>

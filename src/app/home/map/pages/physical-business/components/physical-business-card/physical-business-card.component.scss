@@ -1,0 +1,116 @@
+.horizontal-scroll-image {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+  gap: 0.625rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.horizontal-scroll-image img {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 10.063rem;
+  height: 8.125rem;
+  border-radius: 0.938rem;
+}
+
+.image {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 10.063rem;
+  height: 8.125rem;
+  border-radius: 0.938rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+ion-button {
+  --border-radius: 0.75rem;
+  text-transform: capitalize;
+  font-size: 0.625rem;
+}
+
+.main-card {
+  background: #ffffff;
+  border-radius: 0.938rem;
+  border: 0.063rem solid #70707030;
+  box-shadow: none;
+  margin: 0;
+  padding-left: 0.625rem;
+  border-radius: 0;
+  margin-bottom: 0.625rem;
+  padding-top: 0.625rem;
+
+  &__name {
+    font-size: 0.938rem;
+    color: #000000;
+  }
+
+  &__description {
+    font-size: 0.688rem;
+    color: #000000;
+  }
+
+  &__tag {
+    font-size: 0.688rem;
+    color: #17a541;
+  }
+
+  &__icon-arrow {
+    color: #00b1ff;
+    font-size: 1.5rem;
+  }
+
+  &__pr-value {
+    font-size: 1rem;
+    color: #41c837;
+    font-weight: bold;
+  }
+
+  &__pr-cb-label {
+    color: #6c757d;
+    font-size: 0.625rem;
+  }
+
+  &__cb-value {
+    font-size: 1rem;
+    color: #00b1ff;
+    font-weight: bold;
+  }
+
+  &__category {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 10.625rem;
+  }
+
+  ion-header {
+    padding: 0.313rem;
+  }
+
+  ion-grid {
+    padding: 0;
+  }
+
+  &--p-0 {
+    padding: 0;
+  }
+
+  &--p-t-2 {
+    padding-top: 0.125rem;
+  }
+
+  &--p-l-3 {
+    padding-left: 0.188rem;
+  }
+
+  &--f-z-11 {
+    font-size: 0.688rem;
+  }
+}

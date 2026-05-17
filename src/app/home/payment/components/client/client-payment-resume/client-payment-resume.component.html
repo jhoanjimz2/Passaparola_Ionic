@@ -1,0 +1,57 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section
+  class="flex flex-col items-center justify-center h-full bg-[#F9F9F9] p-[18px]"
+>
+  <section class="">
+    <img class="h-[160px] w-[146px]" src="./assets/images/payment.png" alt="" />
+  </section>
+  <section class="text-[15px] leading-[17px] mt-[10px]">
+    {{ "PAYMENT.YOURE_PAYING" | translate }}
+  </section>
+  <section class="mt-[5px]">
+    <span class="text-[36px] leading-[49px] font-semibold">
+      {{ amount | formattNumber }}
+    </span>
+    <span class="text-[18px] leading-[24px] font-bold ml-[5px]">ATM/€</span>
+  </section>
+  <section class="text-[15px] leading-[17px] mt-[10px]">
+    {{ "PAYMENT.TO" | translate }}
+  </section>
+  <section
+    class="flex flex-col justify-center items-center w-full mt-[15px] p-[10px] border-[1px] rounded-[22px] border-[#FF8000] bg-white"
+  >
+    <section
+      class="flex flex-col justify-center items-center h-[60px] w-[60px] border-[5px] border-white bg-[#CFB878] rounded-[15px] text-[#313235] text-[36px] leading-[49px] shadow-sm shadow-gray-400"
+    >
+      <img
+        class="w-[60px] h-[60px] rounded-[10px] object-cover"
+        [src]="profilePictureUrlFile | image"
+      />
+    </section>
+    <section class="text-[20px] leading-[27px] mt-[10px] font-bold">
+      {{ companyName }}
+    </section>
+    <section class="text-[13px] leading-[18px]">
+      {{ companyAddress }}
+    </section>
+  </section>
+  <section class="text-[15px] leading-[17px] mt-[15px]">
+    {{ "PAYMENT.YOU_WILL_RECEIVE" | translate }}
+  </section>
+  <section class="text-[20px] leading-[27px] mt-[25px] font-semibold">
+    {{ points | formattNumber }} PR
+  </section>
+  <section class="text-[20px] leading-[27px] font-semibold">
+    {{ cashBack | formattNumber }} {{ "PAYMENT.CASHBACK" | translate }}
+  </section>
+  <section
+    class="bg-[#FF8000] text-white text-[15px] leading-[22px] py-[17px] px-[30px] mt-[32px] rounded-[34px] text-center w-full"
+    (click)="confirmTransfer()"
+  >
+    {{ "PAYMENT.PAY_NOW" | translate }}
+  </section>
+</section>

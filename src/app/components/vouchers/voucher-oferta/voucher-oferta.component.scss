@@ -1,0 +1,13 @@
+ion-toggle::part(handle) {
+  border: 1px solid white;
+  --handle-background: #C5C5C5;
+  --handle-background-checked: #35B726;
+}
+ion-toggle::part(track) {
+  border: 1px solid white;
+  --track-background: #C5C5C5;
+  --track-background-checked: #35B726;
+}
+ion-toggle {
+  margin-right: .1rem;
+}

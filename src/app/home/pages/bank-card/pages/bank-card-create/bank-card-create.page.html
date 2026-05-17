@@ -1,0 +1,129 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<section class="h-full bg-[#F9F9F9] text-black p-[20px]">
+  <section class="flex flex-col mt-[30px]">
+    <article class="text-[16px] leading-[22px] font-semibold">
+      {{ "BANK_CARD.TITLE" | translate }}
+    </article>
+    <article class="text-[12px] leading-[22px] mt-[10px]">
+      {{ "BANK_CARD.SUB_TITLE" | translate }}
+    </article>
+  </section>
+  <section class="flex items-center mt-[30px] gap-[10px]">
+    <form
+      *ngIf="form"
+      [formGroup]="form"
+      (ngSubmit)="onSave()"
+      autocomplete="off"
+      class="h-full w-full"
+    >
+      <section class="flex flex-col h-[80px] w-full">
+        <label
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_CARD.OWNER" | translate }}
+        </label>
+        <input
+          #owner
+          class="h-[42px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-0 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'BANK_CARD.OWNER_PLACEHOLDER' | translate"
+          formControlName="owner"
+          name="owner"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="displayMessage.owner"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.owner }}
+        </div>
+      </section>
+      <section class="flex flex-col h-[80px] w-full">
+        <label
+          class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+        >
+          {{ "BANK_CARD.EMAIL" | translate }}
+        </label>
+        <input
+          class="h-[42px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-0 focus:ring-gray-300"
+          type="text"
+          [placeholder]="'BANK_CARD.EMAIL_PLACEHOLDER' | translate"
+          formControlName="email"
+          name="email"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="displayMessage.email"
+          class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+        >
+          {{ displayMessage.email }}
+        </div>
+      </section>
+      <section class="flex flex-row gap-[20px]">
+        <section class="flex flex-col h-[80px] w-full">
+          <label
+            class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+          >
+            {{ "BANK_CARD.CARD_NUMBER" | translate }}
+          </label>
+          <div
+            class="h-[42px] pt-[12px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-0 focus:ring-gray-300"
+            id="cardNumber"
+          ></div>
+          <div
+            *ngIf="displayMessage.cardNumber"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.cardNumber }}
+          </div>
+        </section>
+      </section>
+      <section class="flex flex-row justify-between h-[80px] gap-[20px]">
+        <section class="flex flex-col h-[80px] w-full">
+          <label
+            class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+          >
+            {{ "BANK_CARD.EXPIRATION" | translate }}
+          </label>
+          <div
+            class="h-[42px] pt-[12px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-0 focus:ring-gray-300"
+            id="cardExpiry"
+          ></div>
+          <div
+            *ngIf="displayMessage.cardExpiry"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.cardExpiry }}
+          </div>
+        </section>
+        <section class="flex flex-col h-[80px] w-full">
+          <label
+            class="block mb-1 mt-2 text-[11px] leading-[17px] font-medium text-gray-900"
+          >
+            {{ "BANK_CARD.CVC" | translate }}
+          </label>
+          <div
+            class="h-[42px] pt-[12px] bg-white text-[15px] leading-[17px] border border-gray-300 text-gray-900 text-sm rounded-[7px] block w-full p-2.5 focus:outline-none focus:ring-0 focus:ring-gray-300"
+            id="cardCvc"
+          ></div>
+          <div
+            *ngIf="displayMessage.cardCvc"
+            class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+          >
+            {{ displayMessage.cardCvc }}
+          </div>
+        </section>
+      </section>
+
+      <section class="flex justify-center pt-[100px]">
+        <button
+          class="py-[15px] px-[100px] m-auto text-[16px] leading-[26px] font-bold border-[#41C837] bg-[#41C837] rounded-[32px] text-white"
+          type="submit"
+        >
+          {{ "BANK_CARD.SALVA" | translate }}
+        </button>
+      </section>
+    </form>
+  </section>
+</section>

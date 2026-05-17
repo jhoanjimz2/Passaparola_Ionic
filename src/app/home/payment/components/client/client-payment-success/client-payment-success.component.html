@@ -1,0 +1,67 @@
+<section
+  class="flex flex-col items-center justify-center h-full bg-[#FF8000] p-[18px]"
+>
+  <section
+    class="flex flex-col items-center justify-center h-full bg-white p-[18px] rounded-[22px] w-full"
+  >
+    <section class="">
+      <img
+        class="h-[90px] w-[90px]"
+        src="./assets/images/transfer-successfully2.png"
+        alt=""
+      />
+    </section>
+    <section class="text-[25px] leading-[34px] mt-[20px] font-bold">
+      {{ "PAYMENT.TRANSACTION_EXECUTED" | translate }}
+    </section>
+    <section class="text-[15px] leading-[17px] mt-[20px]">
+      {{ "PAYMENT.YOU_PAYED" | translate }}
+    </section>
+    <section class="mt-[0px]">
+      <span class="text-[36px] leading-[49px] font-semibold">
+        {{ amount | formattNumber }}
+      </span>
+      <span class="text-[18px] leading-[24px] font-bold ml-[5px]">ATM/€</span>
+    </section>
+    <section
+      class="flex flex-col justify-center items-center w-full mt-[20px] p-[15px] border-[1px] rounded-[22px] border-[#FF8000] bg-white"
+    >
+      <section
+        class="flex flex-col justify-center items-center h-[60px] w-[60px] border-[5px] border-white bg-[#CFB878] rounded-[15px] text-[#313235] text-[36px] leading-[49px] shadow-sm shadow-gray-400"
+      >
+        <img
+          class="w-[60px] h-[60px] rounded-[10px] object-cover"
+          [src]="profilePictureUrlFile | image"
+        />
+      </section>
+      <section class="text-[20px] leading-[27px] mt-[10px] font-bold">
+        {{ companyName }}
+      </section>
+      <section class="text-[13px] leading-[18px]">
+        {{ companyAddress }}
+      </section>
+    </section>
+    <section class="text-[15px] leading-[17px] mt-[15px]">
+      {{ "PAYMENT.YOU_RECEIVED" | translate }}
+    </section>
+    <section class="text-[20px] leading-[27px] mt-[10px] font-semibold">
+      {{ points | formattNumber }} PR
+    </section>
+    <section class="text-[20px] leading-[27px] font-semibold">
+      {{ cashBack | formattNumber }} {{ "PAYMENT.CASHBACK" | translate }}
+    </section>
+    <section class="text-[13px] leading-[18px] mt-[15px]">
+      {{ "PAYMENT.OPERATION_CARRIED_OUT_ON" | translate }}
+      {{ date | date : "'dd/MM/yyyy" }}
+    </section>
+    <section class="text-[13px] leading-[18px]">
+      {{ "PAYMENT.TRANSACTION_ID" | translate }} {{ idOperation }}
+    </section>
+    <section
+      class="bg-[#FF8000] text-white text-[15px] leading-[22px] py-[25px] px-[60px] mt-[25px] rounded-[40px] text-center"
+      (click)="onGoToHome()"
+    >
+      {{ "PAYMENT.BACK_TO_HOME" | translate }}
+    </section>
+  </section>
+</section>

@@ -1,0 +1,36 @@
+<section
+  class="flex flex-col justify-between w-[310px] h-[200px] m-[5px] rounded-[20px] bg-[#00B1FF] shadow-gray-500 shadow-sm p-[20px] text-white"
+>
+  <section class="flex justify-between h-[30px]">
+    <span class="text-white w-full">{{ bankCard.brand }}</span>
+    <article
+      class="flex items-center justify-center h-[24px] w-[24px] rounded-full bg-[#f87171]"
+      (click)="onDelete()"
+    >
+      <ion-icon name="close-outline"></ion-icon>
+    </article>
+  </section>
+  <section class="text-[18px] leading-[30px]">
+    {{ bankCard.cardNumber }}
+  </section>
+  <section class="flex flex-col">
+    <section class="w-full relative h-[20px]">
+      <section class="flex flex-row justify-between absolute top-[0px] w-full">
+        <span class="text-white text-[14px] leading-[30px] opacity-[68%]">
+          {{ "BANK_CARD.EXPIRATION_LABEL" | translate }}
+        </span>
+        <span class="text-white text-[14px] leading-[30px] opacity-[68%]">
+          {{ "BANK_CARD.OWNER_LABEL" | translate }}
+        </span>
+      </section>
+    </section>
+    <section class="flex flex-row justify-between">
+      <span class="text-white text-[18px] leading-[30px]">
+        {{ bankCard.expiration }}
+      </span>
+      <span class="text-white text-[18px] leading-[30px]">
+        {{ bankCard.owner }}
+      </span>
+    </section>
+  </section>
+</section>

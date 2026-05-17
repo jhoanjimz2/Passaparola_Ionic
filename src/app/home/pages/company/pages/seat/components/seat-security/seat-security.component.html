@@ -1,0 +1,105 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<section class="flex flex-col h-full px-[24px] pt-[22px]">
+  <section class="text-[16px] leading-[22px] font-bold">
+    {{ "SEAT.COMPONENT.SECURITY.TITLE" | translate }}
+  </section>
+  <form
+    focusInvalidInput
+    (ngSubmit)="onSavePhone()"
+    [formGroup]="formPhone"
+    novalidate
+    autocomplete="false"
+    class="flex flex-col mt-[12px]"
+  >
+    <section class="h-[95px]">
+      <section class="text-[11px] leading-[17px]">
+        {{ "SEAT.COMPONENT.SECURITY.PHONE_NUMBER" | translate }}
+      </section>
+      <section class="flex flex-row relative mt-[3px]">
+        <select
+          class="h-14 w-[80px] bg-white text-[0.688rem] border-l border-t border-b border-gray-300 text-gray-900 text-sm rounded-l-xl block p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300 appearance-none"
+          formControlName="countryCode"
+          name="countryCode"
+        >
+          <ng-container *ngFor="let country of countries">
+            <option [value]="country.code">
+              {{ country.phonePrefix }} {{ country.code }}
+            </option>
+          </ng-container>
+        </select>
+        <input
+          class="h-14 bg-white text-[0.938rem] leading-[1.063rem] border-r border-t border-b border-gray-300 text-gray-900 text-sm rounded-r-xl block w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-300"
+          type="text"
+          [placeholder]="
+            'SEAT.COMPONENT.SECURITY.PHONE_NUMBER_PLACEHOLDER' | translate
+          "
+          formControlName="phone"
+          name="phone"
+          autocomplete="off"
+        />
+        <section
+          class="absolute top-3 h-7 border-gray-300 border-r-[0.063rem] left-[4.5rem]"
+        ></section>
+      </section>
+      <section
+        *ngIf="displayMessage.countryCode || displayMessage.phone"
+        class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+      >
+        {{
+          displayMessage.countryCode
+            ? displayMessage.countryCode
+            : displayMessage.phone
+        }}
+      </section>
+    </section>
+
+    <section class="flex mt-[3px] justify-end">
+      <button
+        class="text-[14px] leading-[17px] bg-[#41C837] text-white py-[8px] px-[20px] w-[170px] rounded-full disabled:opacity-50"
+        type="submit"
+        [disabled]="!formPhone.valid"
+      >
+        {{ "SEAT.COMPONENT.SECURITY.CHANGE_NUMBER" | translate }}
+      </button>
+    </section>
+  </form>
+
+  <form
+    focusInvalidInput
+    (ngSubmit)="onSavePin()"
+    [formGroup]="formPin"
+    novalidate
+    autocomplete="false"
+    class="flex flex-col mt-[12px]"
+  >
+    <section class="h-[110px] mt-[20px]">
+      <section class="text-[11px] leading-[17px] mb-[10px]">
+        {{ "SEAT.COMPONENT.SECURITY.PIN" | translate }}
+      </section>
+      <app-pin-input
+        formControlName="pin"
+        [notViewIconEye]="false"
+      ></app-pin-input>
+      <section
+        *ngIf="displayMessage.pin"
+        class="text-red-400 text-[0.688rem] leading-[1.063rem]"
+      >
+        {{ displayMessage.pin }}
+      </section>
+    </section>
+
+    <section class="flex mt-[3px] justify-end">
+      <button
+        class="text-[14px] leading-[17px] bg-[#41C837] text-white py-[8px] px-[20px] w-[170px] rounded-full disabled:opacity-50"
+        type="submit"
+        [disabled]="!formPin.valid"
+      >
+        {{ "SEAT.COMPONENT.SECURITY.CHANGE_PIN" | translate }}
+      </button>
+    </section>
+  </form>
+</section>

@@ -1,0 +1,61 @@
+<ion-content>
+
+
+  <section class="grid grid-cols-2 relative w-full mb-18 bg-no-repeat bg-cover bg-center h-[19.875rem] rounded-b-[2rem] mb-[2rem]" style="background-image: url('/assets/images/events/vouchers_banner.png');">
+
+    <div class="col-span-2 flex items-center flex-col justify-center">
+      <label class="text-white text-[25px] font-semibold">Scopri</label>
+      <label class="text-white text-[35px] font-bold">I VOUCHER</label>
+    </div>
+
+
+    <div class="col-span-2 grid grid-cols-2"  *ngIf="user.rol != 'company'">
+      <div class="col-span-2 flex items-start justify-center">
+        <div (click)="openVouchersComprados()" class="flex items-center flex-col border-2 border-white bg-[#F01710] rounded-[15px] max-w-[80%] p-4">
+          <label class="text-white text-center text-[25px] font-bold">{{countVouchersComprados}}</label>
+          <label class="text-white text-center text-[18px] font-semibold">Voucher acquistati da me</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-2 grid grid-cols-2"  *ngIf="user.rol == 'company'">
+      <div class="col-span-1 flex items-start justify-center">
+        <div (click)="openVouchersCreados()" class="flex items-center flex-col border-2 border-white bg-[#F01710] rounded-[15px] max-w-[80%] p-2">
+          <label class="text-white text-center text-[25px] font-bold">{{countVouchersCreados}}</label>
+          <label class="text-white text-center text-[18px] font-semibold">Voucher creati dame</label>
+        </div>
+      </div>
+      <div class="col-span-1 flex items-start justify-center">
+        <div (click)="openVouchersComprados()" class="flex items-center flex-col border-2 border-white bg-[#FF9100] rounded-[15px] max-w-[80%] p-2">
+          <label class="text-white text-center text-[25px] font-bold">{{countVouchersComprados}}</label>
+          <label class="text-white text-center text-[18px] font-semibold">Voucher acquistati da me</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="absolute bottom-[-20px] left-0 w-full px-4">
+      <div class="relative flex items-center w-full max-w-md">
+        <ion-icon class="absolute left-4 w-6 h-6 text-gray-500" src="assets/images/events/custom-icons/search-outline.svg"/>
+        <input type="text" placeholder="cerca per titolo o nome azienda" class="w-full pl-12 pr-4 py-3 text-black text-lg bg-white rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300">
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="mb-[2rem]">
+    <div class="px-4">
+      <label class="text-[22px] text-black font-semibold">Voucher scelti per te</label>
+    </div>
+  </section>
+
+  <section class="px-2">
+    <app-voucher-oferta
+      [voucher]="voucher"
+      [toggle]="false"
+      *ngFor="let voucher of alVouchers">
+    </app-voucher-oferta>
+  </section>
+
+</ion-content>

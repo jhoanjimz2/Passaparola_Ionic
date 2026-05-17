@@ -1,0 +1,107 @@
+<ion-content>
+
+  <div class="w-full h-full relative bg-[#FBFCFE] px-[.625rem] pt-[1.1rem] pb-[8.5rem]">
+
+    <h1 class="text-center mb-4 text-[#1D0F01]">Scegli un evento da taggare o cerca per nome</h1>
+
+    <!-- Mostrar información de filtros activos -->
+    <div *ngIf="hasActiveFilters()" class="mb-4 px-2">
+      <div class="flex items-center justify-between bg-blue-50 px-3 py-2 rounded-lg">
+        <span class="text-sm text-blue-700">
+          Mostrando {{ filteredEvents.length }} di {{ allEvents.length }} eventi
+        </span>
+        <button
+          (click)="resetFilters()"
+          class="text-sm text-blue-600 font-medium hover:text-blue-800 transition-colors"
+        >
+          Pulisci filtri
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de eventos filtrados -->
+    <div class="grid grid-cols-1 gap-2 h-auto w-full pb-[8.5rem]">
+
+      <!-- Messaggio quando non ci sono risultati -->
+      <div *ngIf="filteredEvents.length === 0 && hasActiveFilters()" class="col-span-1 text-center py-8">
+        <div class="text-gray-500">
+          <p class="text-lg mb-2">Nessun evento trovato</p>
+          <p class="text-sm">Prova con altri termini di ricerca o seleziona una categoria diversa</p>
+        </div>
+      </div>
+
+      <!-- Eventi -->
+      <div class="col-span-1" *ngFor="let event of filteredEvents">
+        <app-event-tag
+          [tagga]="true"
+          [event]="event"
+          (selectEventTag)="selectEventTag($event)"
+        >
+        </app-event-tag>
+      </div>
+    </div>
+
+    <!-- Barra de búsqueda y categorías fija -->
+    <div class="w-full bg-white px-[0.625rem] py-[1rem] fixed left-0 bottom-0 z-10">
+
+      <!-- Barra de búsqueda -->
+      <div class="relative">
+        <input
+          [(ngModel)]="searchQuery"
+          [placeholder]="'Cerca l\'evento per nome'"
+          (input)="onSearchChange()"
+          class="px-4 pr-10 w-full h-[2.6875rem] text-[0.9375rem] bg-white rounded-[1.375rem] shadow-[0px_3px_6px_#0000001C]"
+        >
+        <!-- Bottone per pulire la ricerca -->
+        <button
+          *ngIf="searchQuery && searchQuery.length > 0"
+          (click)="searchQuery = ''; onSearchChange()"
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Categorías -->
+      <div class="w-full py-4 flex flex-row gap-4 overflow-x-auto no-scrollbar">
+
+        <!-- Opzione "Tutte" -->
+        <div
+          (click)="selectedCategory = null; filterEvents()"
+          class="px-2 flex-shrink-0 flex flex-col items-center justify-center cursor-pointer"
+        >
+          <span
+            class="text-[0.9375rem] font-bold transition-colors duration-200"
+            [ngClass]="{
+              '!text-[#FE8500]': selectedCategory === null,
+              'text-black': selectedCategory !== null
+            }"
+          >
+            Tutte
+          </span>
+          <span class="text-xs text-gray-500">{{ allEvents.length }}</span>
+        </div>
+
+        <!-- Categorías -->
+        <div
+          *ngFor="let category of categories"
+          (click)="onCategorySelected(category)"
+          class="px-2 flex-shrink-0 flex flex-col items-center justify-center cursor-pointer"
+        >
+          <span
+            class="text-[0.9375rem] font-bold transition-colors duration-200"
+            [ngClass]="{
+              '!text-[#FE8500]': category.id === selectedCategory?.id,
+              'text-black': category.id !== selectedCategory?.id
+            }"
+          >
+            {{ category?.description | titlecase }}
+          </span>
+          <!-- Mostrare conteggio di eventi per categoria -->
+          <span class="text-xs text-gray-500">{{ getEventCountForCategory(category.id) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,31 @@
+
+
+
+<section class="py-3">
+  <div class="grid grid-cols-2 p-4 pb-0">
+    <div class="col-span-1">
+      <span class="block text-[1rem] font-bold">Recensioni</span>
+    </div>
+    <div class="col-span-1 flex flex-row justify-end items-center gap-1">
+      <span class="text-[0.75rem] text-[#9B9EA7]">Vedi tutto</span>
+      <ion-icon class="text-[0.75rem] text-[#9B9EA7]" name="chevron-forward-outline"></ion-icon>
+    </div>
+  </div>
+
+  <app-rating></app-rating>
+
+
+  <swiper-container
+    [loop]="true"
+    [slidesPerView]="'auto'"
+    [spaceBetween]="10"
+    [slidesOffsetBefore]="16"
+  >
+    <swiper-slide
+      *ngFor="let product of [1,1,1,1,1,1,1,1]"
+      [style.width.rem]="16.8125"
+    >
+      <app-review></app-review>
+    </swiper-slide>
+  </swiper-container>
+</section>

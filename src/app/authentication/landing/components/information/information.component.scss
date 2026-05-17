@@ -1,0 +1,67 @@
+.information-container {
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-card {
+    margin: 0;
+    width: 100%;
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
+    text-align: center;
+    box-shadow: none;
+    background-color: transparent;
+
+    ion-card-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ion-text {
+      color: #ffffff;
+    }
+  }
+
+  &__text {
+    font-size: 1.25rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.875rem;
+    justify-content: center;
+    align-items: center;
+
+    ion-button {
+      text-transform: none;
+      --color: #ffffff;
+      --color-activated: #ffffff;
+      --background: rgba(255, 255, 255, 0.5);
+      --background-activated: rgba(255, 255, 255, 0.5);
+      font-size: 0.938rem;
+      font-weight: bold;
+      width: 12.313rem;
+      height: 3.438rem;
+      --border-radius: 3.125rem;
+    }
+  }
+
+  &--f-z-l {
+    font-size: 3.063rem;
+  }
+
+  &--f-z-s {
+    font-size: 1.5rem;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+}

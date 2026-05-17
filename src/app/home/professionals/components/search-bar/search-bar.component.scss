@@ -1,0 +1,120 @@
+.search-bar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  position: relative;
+
+  &__filter-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    border-radius: 0.5rem;
+    background-color: #F9B139;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e09e2d;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__filter-icon {
+    font-size: 1.5rem;
+    transform: rotate(180deg);
+    color: #000000;
+  }
+
+  &__input-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+  }
+
+  &__input {
+    padding: 0 3rem 0 1rem;
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(112, 112, 112, 0.19);
+    background-color: #ffffff;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &::placeholder {
+      color: rgba(112, 112, 112, 0.6);
+    }
+
+    &:focus {
+      border-color: #F9B139;
+      box-shadow: 0 0 0 3px rgba(249, 177, 57, 0.1);
+    }
+  }
+
+  &__search-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #000000;
+    pointer-events: none;
+  }
+
+  &__suggestions {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid rgba(112, 112, 112, 0.19);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 15rem;
+    overflow-y: auto;
+    z-index: 1000;
+    animation: slideDown 0.2s ease-out;
+  }
+
+  &__suggestion-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.875rem;
+    color: #333333;
+    border-bottom: 1px solid rgba(112, 112, 112, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: rgba(249, 177, 57, 0.1);
+    }
+
+    &:active {
+      background-color: rgba(249, 177, 57, 0.2);
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

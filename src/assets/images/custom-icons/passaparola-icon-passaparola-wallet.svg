@@ -1,0 +1,10 @@
+<svg id="Componente_570_6" data-name="Componente 570 – 6" xmlns="http://www.w3.org/2000/svg" width="56" height="39" viewBox="0 0 56 39">
+  <g id="Componente_246_1" data-name="Componente 246 – 1">
+    <g id="Rettangolo_2846" data-name="Rettangolo 2846" fill="#fff" stroke="#3cc3a2" stroke-width="2">
+      <rect width="56" height="39" rx="11" stroke="none"/>
+      <rect x="1" y="1" width="54" height="37" rx="10" fill="none"/>
+    </g>
+  </g>
+  <text id="p" transform="translate(21 26)" font-size="20" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="0" y="0">p</tspan></text>
+  <circle id="Ellisse_354" data-name="Ellisse 354" cx="3" cy="3" r="3" transform="translate(33 9)" fill="#3cc3a2"/>
+</svg>

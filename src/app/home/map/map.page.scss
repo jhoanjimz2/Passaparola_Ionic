@@ -1,0 +1,86 @@
+ion-content {
+  // --offset-bottom: auto !important;
+  // --overflow: hidden;
+  // overflow: auto;
+
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+
+  background: #f9f9f9;
+}
+
+.p-top-0 {
+  padding-top: 0px;
+}
+
+ion-avatar {
+  width: 64px;
+  height: 64px;
+  --border-radius: 16px;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.card-invite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+}
+
+.container-business {
+  display: flex;
+  overflow: auto;
+  width: 100vw;
+
+  &__item {
+    width: 6.25rem;
+    height: 8.188rem;
+    border-radius: 0.938rem;
+    padding: 0.313rem;
+
+    &__card {
+      height: 100%;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    &__img {
+      height: 5.25rem;
+      border-radius: 0.938rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__title {
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+      white-space: nowrap;
+      font-size: 0.625rem;
+      padding-top: 0.313rem;
+    }
+  }
+}
+
+.map-container {
+  width: 100%;
+  padding: 0;
+}

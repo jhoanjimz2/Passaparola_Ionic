@@ -1,0 +1,25 @@
+<app-payment-notification
+  class="h-full"
+  [nameImg]="'transfer-successfully.png'"
+  [type]="'success'"
+  [title]="'PAYMENT.TRANSACTION_EXECUTED' | translate"
+  (callClose)="onClose()"
+>
+  <section
+    class="text-[13px] leading-[18px] mt-[40px] mb-[30px] border-[1px] border-[#35B726] pt-[15px] pb-[30px] px-[25px] rounded-[28px] w-full"
+  >
+    <section class="text-[60px] leading-[72px]">
+      {{ amount | formattNumber }}
+    </section>
+    <section class="text-[15px] leading-[24px] font-bold">€/ATM</section>
+    <section class="text-[13px] leading-[18px]">
+      {{ "PAYMENT.TRANSACTION_ID" | translate }}<br />{{ idOperation }}
+    </section>
+  </section>
+  <section
+    class="bg-[#41C837] text-white text-[15px] leading-[22px] py-[20px] px-[40px] mt-[20px] rounded-[34px] text-center"
+    (click)="onClose()"
+  >
+    {{ "PAYMENT.BACK_TO_HOME" | translate }}
+  </section>
+</app-payment-notification>

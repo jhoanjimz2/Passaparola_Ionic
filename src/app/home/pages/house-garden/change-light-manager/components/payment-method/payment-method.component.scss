@@ -1,0 +1,37 @@
+.payment-method {
+  --min-height: 6.5rem;
+  --padding-top: .5rem;
+  --padding-bottom: .5rem;
+  --padding-end: .5rem;
+  --padding-start: .5rem;
+  --border-radius: 0.625rem;
+  --border-style: solid;
+  --border-width: 0.063rem;
+  --border-color: #E1E1E1;
+  --inner-padding-start: 0rem;
+  --inner-padding-end: 0rem;
+  --inner-padding-top: 0rem;
+  --inner-padding-bottom: 0rem;
+  transition: --border-color 0.3s ease;
+  &.selected {
+    --border-color: #EF8500;
+  }
+}
+ion-radio {
+  --color: #EF8500;
+  --color-checked: #EF8500;
+}
+.icon-method {
+  width: 3.625rem;
+  height: 3.625rem;
+  border-radius: 0.625rem;
+  border: 0.063rem solid #E1E1E1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+::ng-deep:host(.radio-label-placement-end) .radio-wrapper {
+  justify-content: flex-end !important;
+}

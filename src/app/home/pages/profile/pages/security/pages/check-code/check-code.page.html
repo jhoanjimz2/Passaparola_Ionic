@@ -1,0 +1,189 @@
+<app-header [backIcon]="true" [border]="true"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="main-container">
+    <ion-card-header>
+      <ion-text>
+        <span class="main-container--f-z-18 main-container--f-w-b"
+          >{{"SECURITY.CHANGE_PIN" | translate}}</span
+        >
+        <br />
+        <br />
+        <span class="main-container--f-z-14"
+          >{{"SECURITY.CONFIRM_PHONE" | translate}}</span
+        >
+        <br />
+        <span class="main-container--f-z-14"
+          >{{"SECURITY.AUTHORIZE_CHANGE" | translate}}</span
+        >
+      </ion-text>
+    </ion-card-header>
+
+    <form [formGroup]="formContact" (ngSubmit)="getCode()">
+      <ion-grid>
+        <ion-label> {{"SECURITY.PHONE_NUMBER" | translate}} </ion-label>
+        <ion-row class="main-container__phone">
+          <ion-col size="3" class="main-container--p-tb-0">
+            <ion-select
+              mode="md"
+              aria-label="country"
+              color="primary"
+              placeholder="{{ 'CONTACT.COUNTRY' | translate }}"
+              formControlName="idCountry"
+              name="idCountry"
+            >
+              <ion-select-option
+                *ngFor="let country of countries"
+                [value]="country.id"
+              >
+                {{ country.phonePrefix }} {{ country.code }}
+              </ion-select-option>
+            </ion-select></ion-col
+          >
+          <ion-col size="9" class="main-container--p-tb-0">
+            <ion-input
+              labelPlacement="stacked"
+              [clearInput]="true"
+              mode="md"
+              color="danger"
+              type="tel"
+              placeholder="{{'CONTACT.ENTER_PHONE' | translate}}"
+              formControlName="phone"
+              name="phone"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="!smsCodeId" class="main-container__btn center-item">
+        <ion-button expand="block" type="submit" color="success"
+          >{{'SECURITY.SEND_CODE' | translate}}</ion-button
+        >
+      </div>
+    </form>
+
+    <div *ngIf="smsCodeId" class="main-container__form-check-code">
+      <form [formGroup]="formCode" (ngSubmit)="checkCode()">
+        <ion-label>{{ "SECURITY.VERIFICATION_CODE" | translate }}</ion-label>
+        <div class="main-container__form-check-code__code">
+          <div class="main-container__form-check-code__input">
+            <input
+              #code1
+              formControlName="code1"
+              name="code1"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(1)"
+              type="tel"
+              autocomplete="one-time-code"
+              (input)="onOtpInput($event)"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code2
+              formControlName="code2"
+              name="code2"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(2)"
+              type="tel"
+              autocomplete="one-time-code"
+              (input)="onOtpInput($event)"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code3
+              formControlName="code3"
+              name="code3"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(3)"
+              type="tel"
+              autocomplete="one-time-code"
+              (input)="onOtpInput($event)"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code4
+              formControlName="code4"
+              name="code4"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(4)"
+              type="tel"
+              autocomplete="one-time-code"
+              (input)="onOtpInput($event)"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code5
+              formControlName="code5"
+              name="code5"
+              mask="0"
+              autocomplete="off"
+              (keyup)="inputCode(5)"
+              type="tel"
+              autocomplete="one-time-code"
+              (input)="onOtpInput($event)"
+            />
+          </div>
+          <div class="main-container__form-check-code__input">
+            <input
+              #code6
+              formControlName="code6"
+              name="code6"
+              mask="0"
+              autocomplete="off"
+              type="tel"
+              autocomplete="one-time-code"
+              (input)="onOtpInput($event)"
+            />
+          </div>
+        </div>
+
+        <div class="main-container__form-check-code__progress">
+          <circle-progress
+            [percent]="percent"
+            [radius]="30"
+            text
+            [outerStrokeWidth]="5"
+            [innerStrokeWidth]="0"
+            [outerStrokeColor]="'#FF3D00'"
+            [innerStrokeColor]="'#FF3D00'"
+            [animation]="true"
+            [animationDuration]="1"
+          ></circle-progress>
+          <div class="main-container__form-check-code__time">
+            {{ minutes }}:{{ seconds }}
+          </div>
+        </div>
+        <div class="main-container__form-check-code--text-center">
+          <ion-text>
+            <span>{{ "SECURITY.NOT_RECEIVED_CODE" | translate }}</span>
+            <br />
+            <span
+              (click)="getCode()"
+              class="main-container__form-check-code__text-resend"
+              >{{ "SECURITY.CLICK_HERE" | translate }}</span
+            >
+          </ion-text>
+        </div>
+        <div class="main-container__form-check-code__btn center-item">
+          <ion-button
+            type="submit"
+            *ngIf="smsCodeId && timer > 0"
+            [disabled]="formCode.invalid"
+            expand="block"
+            color="success"
+          >
+            {{ "SECURITY.CHECK_CODE" | translate }}
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </ion-card>
+</ion-content>

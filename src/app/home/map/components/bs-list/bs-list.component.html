@@ -1,0 +1,90 @@
+<section
+  class="border border-[#41C837] rounded-[0.938rem] grid grid-cols-2 p-[0.625rem] bg-white"
+>
+  <section class="text-center">
+    <div class="text-[1.125rem] leading-[1.5rem]">
+      {{ "BUSINESS_SUGGESTION.LIST.TEXT1" | translate }}
+    </div>
+    <div class="text-[1.125rem] leading-[1.5rem] font-bold">
+      {{ "BUSINESS_SUGGESTION.LIST.TEXT2" | translate }}
+    </div>
+    <div class="text-[0.875rem] leading-[1.125rem] pt-1">
+      {{ "BUSINESS_SUGGESTION.LIST.TEXT3" | translate }}
+    </div>
+    <div class="text-[0.875rem] leading-[1.125rem] pt-1">
+      {{ "BUSINESS_SUGGESTION.LIST.TEXT4" | translate }}
+    </div>
+    <div class="text-[0.875rem] leading-[1.125rem] pt-1">
+      {{ "BUSINESS_SUGGESTION.LIST.TEXT5" | translate }}
+    </div>
+  </section>
+  <section class="flex flex-col justify-between">
+    <section
+      class="flex flex-row items-center justify-center relative h-[4.375rem]"
+    >
+      <div
+        class="h-[2.938rem] w-[2.938rem] flex justify-center items-center border-white border-[0.25rem] rounded-[0.813rem] bg-[#FDF6EE] shadow-md rotate-[9deg]"
+      >
+        <ion-icon
+          class="h-[1.625rem] w-[1.625rem] text-[#797FF2]"
+          name="passaparola-store"
+        />
+      </div>
+      <div
+        class="h-[2.938rem] w-[2.938rem] flex justify-center items-center border-white border-[0.25rem] rounded-[0.813rem] bg-[#FDF6EE] shadow-md rotate-[338deg]"
+      >
+        <ion-icon
+          class="h-[1.625rem] w-[1.625rem] text-[#00B1FF]"
+          name="passaparola-store"
+        />
+      </div>
+      <div
+        class="h-[2.938rem] w-[2.938rem] flex justify-center items-center border-white border-[0.25rem] rounded-[0.813rem] bg-[#FDF6EE] shadow-md rotate-[5deg]"
+      >
+        <ion-icon
+          class="h-[1.625rem] w-[1.625rem] text-[#FF8000]"
+          name="passaparola-store"
+        />
+      </div>
+    </section>
+    <button
+      class="bg-[#41C837] text-[0.875rem] rounded-[0.938rem] px-[0.938rem] py-2 text-white font-bold"
+      (click)="onGoToNewBS()"
+    >
+      + {{ "BUSINESS_SUGGESTION.LIST.NEW_SHOP" | translate }}
+    </button>
+  </section>
+</section>
+
+<section class="flex flex-row justify-center gap-3 pt-[1.25rem]">
+  <div
+    class="border border-[#41C837] rounded-[0.688rem] text-[0.75rem] leading-[0.875rem] py-[0.313rem] px-9 text-center"
+    [ngClass]="{ 'bg-[#41C837] text-white': status === eStatus.all }"
+    (click)="status = eStatus.all; onFindAll()"
+  >
+    {{ "BUSINESS_SUGGESTION.LIST.ALL" | translate }}
+  </div>
+  <div
+    class="border border-[#41C837] rounded-[0.688rem] text-[0.75rem] leading-[0.875rem] py-[0.313rem] px-9 text-center"
+    [ngClass]="{ 'bg-[#41C837] text-white': status === eStatus.active }"
+    (click)="status = eStatus.active; onFindAll()"
+  >
+    {{ "BUSINESS_SUGGESTION.LIST.ACTIVE" | translate }}
+  </div>
+  <div
+    class="border border-[#41C837] rounded-[0.688rem] text-[0.75rem] leading-[0.875rem] py-[0.313rem] px-9 text-center"
+    [ngClass]="{
+      'bg-[#41C837] text-white': status === eStatus.inactive
+    }"
+    (click)="status = eStatus.inactive; onFindAll()"
+  >
+    {{ "BUSINESS_SUGGESTION.LIST.PENDING" | translate }}
+  </div>
+</section>
+
+<section class="gap-3 pt-[0.313rem] pb-[0.625rem]">
+  <app-business-suggestion-card
+    *ngFor="let businessSuggestion of businessSuggestions"
+    [businessSuggestion]="businessSuggestion"
+  />
+</section>

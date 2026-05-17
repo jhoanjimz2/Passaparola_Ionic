@@ -1,0 +1,151 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+
+  &__header {
+    width: 100%;
+    height: 16rem;
+    background: #ff7d0c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    ion-label {
+      color: #ffffff;
+    }
+
+    span {
+      color: #ffffff;
+    }
+  }
+
+  &__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      margin-top: -1.563rem;
+      width: 25rem;
+    }
+  }
+
+  &__play-store-btn {
+    width: 22.375rem;
+    height: 3.875rem;
+    text-transform: none;
+    font-size: 1rem;
+    --background: #ff7d0c;
+    --box-shadow: none;
+    --border-radius: 1.938rem;
+    --background-activated: #ff7d0c;
+    --background-activated-opacity: 1;
+    --background-focused: #ff7d0c;
+    --background-focused-opacity: 1;
+    --background-hover: #ff7d0c;
+    --background-hover-opacity: 1;
+
+    ion-icon {
+      margin-right: 0.313rem;
+    }
+
+    span {
+      font-weight: 600;
+      color: #ffffff;
+    }
+  }
+
+  &__line {
+    width: 6.875rem;
+    border-bottom: 0.063rem solid #707070;
+  }
+
+  &__text-mid {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+  }
+
+  &__btn-pwa {
+    width: 10.875rem;
+    height: 3.875rem;
+    text-transform: none;
+    font-size: 1rem;
+    --border-radius: 1.938rem;
+    --background: #000000;
+    --box-shadow: none;
+    --background-activated: #000000;
+    --background-activated-opacity: 1;
+    --background-focused: #000000;
+    --background-focused-opacity: 1;
+    --background-hover: #000000;
+    --background-hover-opacity: 1;
+
+    span {
+      font-weight: 600;
+      color: #ffffff;
+    }
+  }
+
+  &__text-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #000000;
+    font-style: italic;
+    font-weight: 600;
+    padding-left: 1.25ren;
+    padding-right: 1.25rem;
+    padding-bottom: 3.125rem;
+  }
+
+  &--center-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--right-item {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+  &--left-item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  &--f-z-22 {
+    font-size: 1.375rem;
+  }
+
+  &--f-z-10 {
+    font-size: 0.625rem;
+  }
+
+  &--f-z-28 {
+    font-size: 1.75rem;
+  }
+
+  &--f-z-16 {
+    font-size: 1rem;
+  }
+
+  &--f-w-semi {
+    font-weight: 600;
+  }
+
+  &--f-w-b {
+    font-weight: bold;
+  }
+}

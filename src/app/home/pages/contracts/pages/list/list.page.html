@@ -1,0 +1,145 @@
+<app-header
+  [backIcon]="true"
+  [border]="false"
+  [modalDismiss]="false"
+></app-header>
+
+<ion-content>
+
+  <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Trascina per aggiornare"
+      refreshingSpinner="crescent"
+      refreshingText="Aggiornamento...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <section class="contracts-page">
+
+    <!-- Header -->
+    <div class="contracts-header">
+      <div class="contracts-header__left">
+        <h1 class="contracts-header__title">Contratti</h1>
+        <span *ngIf="!isLoading" class="contracts-header__pill">
+          {{ contracts.length }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Loading skeleton -->
+    <div *ngIf="isLoading && contracts.length === 0" class="contracts-skeleton">
+      <div *ngFor="let i of [1,2,3]" class="contract-skeleton">
+        <div class="contract-skeleton__avatar"></div>
+        <div class="contract-skeleton__lines">
+          <div class="contract-skeleton__line contract-skeleton__line--wide"></div>
+          <div class="contract-skeleton__line contract-skeleton__line--narrow"></div>
+        </div>
+        <div class="contract-skeleton__badge"></div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="hasError" class="contracts-feedback">
+      <div class="contracts-feedback__icon">⚠️</div>
+      <p class="contracts-feedback__text">Errore nel caricamento</p>
+      <button class="contracts-feedback__retry" (click)="loadContracts()">
+        Riprova
+      </button>
+    </div>
+
+    <!-- Lista vacía -->
+    <div *ngIf="!isLoading && !hasError && contracts.length === 0" class="contracts-feedback">
+      <div class="contracts-feedback__icon">📄</div>
+      <p class="contracts-feedback__text">Nessun contratto trovato</p>
+    </div>
+
+    <!-- Lista -->
+    <div *ngIf="contracts.length > 0" class="contracts-list">
+      <div
+        *ngFor="let contract of contracts; trackBy: trackById; let i = index"
+        class="contract-card"
+        [style.animation-delay]="i * 60 + 'ms'"
+        [routerLink]="['/pages/contracts/view-contract', contract.id]"
+      >
+        <!-- Top row -->
+        <div class="contract-card__header">
+          <div class="contract-card__avatar-wrap">
+            <img
+              class="contract-card__avatar"
+              [src]="contract.user.profile.profilePictureUrlFile"
+              [alt]="contract.user.profile.name"
+              onError="this.src='assets/icon/default-avatar.png'"
+            />
+            <span
+              class="contract-card__avatar-dot"
+              [ngClass]="'contract-card__avatar-dot--' + contract.status"
+            ></span>
+          </div>
+
+          <div class="contract-card__user">
+            <span class="contract-card__user-name">
+              {{ contract.user.profile.name }} {{ contract.user.profile.lastName }}
+            </span>
+            <span class="contract-card__user-email">{{ contract.user.email }}</span>
+          </div>
+
+          <span
+            class="contract-card__status"
+            [ngClass]="'contract-card__status--' + contract.status"
+          >
+            {{ statusLabel(contract.status) }}
+          </span>
+        </div>
+
+        <!-- Divider -->
+        <div class="contract-card__divider"></div>
+
+        <!-- Bottom row -->
+        <div class="contract-card__footer">
+
+          <!-- Stepper -->
+          <div class="contract-card__stepper">
+            <ng-container *ngFor="let step of flowSteps; let last = last">
+              <div class="contract-card__step-wrap">
+                <div
+                  class="contract-card__step-dot"
+                  [ngClass]="{
+                    'contract-card__step-dot--done':     isStepDone(contract.status, step.key),
+                    'contract-card__step-dot--current':  isStepCurrent(contract.status, step.key),
+                    'contract-card__step-dot--rejected': contract.status === 'rejected' && step.key === 'pending'
+                  }"
+                >
+                  <span *ngIf="isStepDone(contract.status, step.key) && contract.status !== 'rejected'" class="contract-card__step-check">✓</span>
+                  <span *ngIf="contract.status === 'rejected' && step.key === 'pending'" class="contract-card__step-check">✕</span>
+                </div>
+                <span class="contract-card__step-label">{{ step.label }}</span>
+              </div>
+              <div
+                *ngIf="!last"
+                class="contract-card__step-line"
+                [ngClass]="{ 'contract-card__step-line--done': isStepDone(contract.status, step.key) && contract.status !== 'rejected' }"
+              ></div>
+            </ng-container>
+          </div>
+
+          <!-- Date -->
+          <div class="contract-card__date">
+            <span class="contract-card__date-label">{{ contract.createdAt | date:'dd MMM yyyy' }}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Infinite scroll -->
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        loadingText="Caricamento...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </section>
+</ion-content>

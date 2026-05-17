@@ -1,0 +1,138 @@
+<app-header
+  [border]="true"
+  [backIcon]="true"
+  [modalDismiss]="true"
+></app-header>
+<ion-content>
+
+  <section class="mt-[2rem] px-[16px] pb-[120px]">
+    <div class="mb-[1rem]">
+      <label class="text-[20px] text-black font-bold">Crea una offerta con voucher</label>
+    </div>
+
+    <form [formGroup]="form" class="h-full relative" (ngSubmit)="createVoucher()">
+
+      <div class="grid grid-cols-12">
+        <div class="col-span-3">
+          <img [src]="imgUrl" *ngIf="imgUrl" class="w-[5rem] h-[5rem] flex items-center justify-center border border-gray-300 rounded-xl object-cover" (click)="openPhotoOptions()">
+          <div class="w-[5rem] h-[5rem] flex items-center justify-center border border-gray-300 rounded-xl" *ngIf="!imgUrl" (click)="openPhotoOptions()">
+            <img src="assets/images/events/custom-icons/upload.svg" alt="Upload Icon" class="w-8 h-8">
+          </div>
+        </div>
+        <div class="col-span-9 flex items-center" (click)="openPhotoOptions()">
+          <span class="text-gray-700 text-lg font-semibold italic leading-[1.063rem]">
+            Clicca qui per caricare una foto per il tuo servizio
+          </span>
+        </div>
+      </div>
+
+
+
+      <div class="grid grid-cols-12 gap-2 mt-[0.8rem]">
+        <div class="col-span-12">
+          <ion-input
+            mode="md" label-placement="floating" label="Nome offerta"
+            placeholder="nome offerta" fill="outline"
+            id="name" name="name" formControlName="name">
+          </ion-input>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 mt-[0.8rem]">
+        <div class="col-span-12">
+          <ion-textarea
+            mode="md" label-placement="floating" label="Descrizione" rows="6"
+            placeholder="descrizione: scrivi cosa include" fill="outline"
+            id="description" name="description" formControlName="description"/>
+        </div>
+      </div>
+
+      <div class="my-4">
+        <app-seleccionar-productos></app-seleccionar-productos>
+      </div>
+
+      <div class="text-[18px] text-center text-[#FF9100] leading-[17px] font-[600] mt-[1rem]">
+        {{ 'IMPORTANTE' }}
+      </div>
+
+      <div class="text-[16px] text-center leading-[17px] font-[600] mt-[0.4rem]">
+        {{ 'Indica quanti "voucher offerta" vuoi creare, il prezzo, lo sconto e la scadenza' }}
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 mt-[1rem]">
+        <div class="border rounded-xl p-1 grid items-center justify-center bg-white" onclick="this.querySelector('input').focus()">
+          <label class="text-black block text-[14px] text-center italic" onclick="event.stopPropagation(); this.nextElementSibling.focus();">Quantità<br>voucher offerta</label>
+          <input
+              formControlName="quantityOffer" name="quantityOffer"
+              class="w-full font-bold p-2 text-center"
+              appDecimalValidator [allowDecimals]="false" [min]="1"/>
+        </div>
+
+        <div class="border relative rounded-xl p-1 grid items-center justify-center bg-[#E3E3E9]">
+          <label class="text-black block text-[14px] text-center italic">Valore voucher<br>offerta</label>
+          <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">€</label>
+          <input
+              formControlName="offerValue" name="offerValue"
+              class="w-full font-bold p-2 text-center bg-transparent"
+              appDecimalValidator [decimalSeparator]="','" [min]="0" [max]="9999999.99" [maxIntegerDigits]="7" [allowDecimals]="true" />
+          <ion-icon class="absolute  text-[18px] text-[black] right-1 bottom-[1rem]" src="assets/images/events/custom-icons/lock-closed.svg"/>
+        </div>
+
+        <div class="bg-white border relative rounded-xl p-1 grid items-center justify-center" onclick="this.querySelector('input').focus()">
+          <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">%</label>
+          <label class="text-black block text-[14px] text-center italic" onclick="event.stopPropagation(); this.nextElementSibling.focus();">Sconto<br>applicato</label>
+          <input
+              formControlName="discount" name="discount"
+              class="w-full font-bold p-2 text-center bg-transparent"
+              appDecimalValidator [decimalSeparator]="','" [min]="0" [max]="99.99" [maxIntegerDigits]="2" [allowDecimals]="true" />
+        </div>
+
+        <div class="border relative rounded-xl p-1 grid items-center justify-center bg-[#E3E3E9]">
+          <label class="text-black block text-[14px] text-center italic">Prezzo voucher<br>offerta</label>
+          <label class="absolute font-bold text-[18px] text-[black] left-1 bottom-[0.7rem]">€</label>
+          <input
+              formControlName="offerPrice" name="offerPrice"
+              class="w-full font-bold p-2 text-center bg-transparent"
+              appDecimalValidator [decimalSeparator]="','" [min]="0" [max]="9999999.99" [maxIntegerDigits]="7" [allowDecimals]="true" />
+          <ion-icon class="absolute  text-[18px] text-[black] right-1 bottom-[1rem]" src="assets/images/events/custom-icons/lock-closed.svg"/>
+        </div>
+
+
+        <div class="col-span-2">
+          <ion-input type="date"
+            mode="md" label-placement="floating" label="Data di scadenza" rows="6"
+            [placeholder]="'gg/mm/aaaa'" fill="outline" [min]="minDate"
+            id="dateTo" name="dateTo" formControlName="dateTo"/>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+      <div class="z-10 flex flex-row justify-center items-center py-[22px] fixed bottom-[0px] w-full gap-[20px] left-0">
+        <div class="bg-white absolute h-full w-full"></div>
+        <div class="flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid text-[#FF8000] font-bold z-10"
+          (click)="onCancel()"
+        >
+          {{ 'Annulla' }}
+        </div>
+        <button
+          [disabled]="!form.valid || !imgUrl"
+          class=" disabled:opacity-50 flex justify-center items-center w-[150px] py-[10px] rounded-full border-[2px] border-[#FF8000] border-solid bg-[#FF8000] text-white font-bold z-10"
+          type="submit"
+        >
+          {{ 'Crea' }}
+        </button>
+      </div>
+    </form>
+  </section>
+
+
+
+</ion-content>

@@ -1,0 +1,26 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="15.262"
+  height="15.261"
+  viewBox="0 0 15.262 15.261"
+>
+  <g
+    id="Raggruppa_2379"
+    data-name="Raggruppa 2379"
+    transform="translate(-2419.369 -9599.075)"
+  >
+    <path
+      id="Path"
+      d="M1.76,3.452H3.5V5.135L6.062,2.572,3.49,0V1.686H3.316c-.791,0-1.581.012-2.371,0A.927.927,0,0,0,0,2.622c.016,1.095,0,2.19.005,3.285,0,.048,0,.1.007.14H1.76Z"
+      transform="translate(2424.38 9603.27)"
+    />
+    <path
+      id="Path-2"
+      data-name="Path"
+      d="M0,6.921,6.921,0l6.927,6.927-6.921,6.92Z"
+      transform="translate(2420.076 9599.782)"
+      fill="none"
+      stroke-width="1"
+    />
+  </g>
+</svg>

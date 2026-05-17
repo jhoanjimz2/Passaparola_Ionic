@@ -1,0 +1,74 @@
+<app-header
+  [notification]="true"
+></app-header>
+<ion-content>
+  <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tira per aggiornare"
+      refreshingSpinner="circles"
+      refreshingText="Aggiornamento...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <section class="header-section">
+    <span class="header-section__title header-section__title--primary">Compra in gruppo,</span>
+    <span class="header-section__title header-section__title--bold">paga fino a 80% meno</span>
+    <span class="header-section__description">Scopri gli acquisti condivisi di<br>JointlyBuy per risparmiare</span>
+    <button class="header-section__button" routerLink="/pages/jointlybuy/view-willbuys">
+      <ion-icon name="arrow-forward-outline" class="header-section__icon"></ion-icon>
+      Vai ai prodotti
+    </button>
+  </section>
+
+  <app-slide-category
+    class="block mt-[-5.5rem] z-50"
+  ></app-slide-category>
+
+  <app-willbuy-deadline
+    class="block"
+  ></app-willbuy-deadline>
+
+  <section class="wishbuy-section">
+    <span class="wishbuy-section__title wishbuy-section__title--primary">Vuoi proporre</span>
+    <span class="wishbuy-section__title wishbuy-section__title--bold">un acquisto congiunto?</span>
+    <span class="wishbuy-section__description">Diventa un joyer e crea la tua community di acquisto, guadagnerai il 3% dell'intero ordine</span>
+    <button class="wishbuy-section__button" routerLink="/pages/jointlybuy/create-wishbuy">Proponi wishbuy</button>
+  </section>
+
+  <app-willbuy-popular
+    class="block"
+  ></app-willbuy-popular>
+
+  <section class="w-full p-2">
+    <img src="assets/images/jointlybuy/invita-jointlybuy.png" class="w-full h-auto">
+  </section>
+
+  <app-feed-willbuy
+    [title]="'Tutti i willbuy'"
+    [willbuys]="willbuys"
+  ></app-feed-willbuy>
+
+  <!-- Infinite scroll -->
+  <ion-infinite-scroll
+    threshold="100px"
+    (ionInfinite)="loadMoreData($event)"
+    [disabled]="!hasMoreData">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Caricamento altri willbuy...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab
+    horizontal="end"
+    vertical="bottom"
+    slot="fixed"
+  >
+    <ion-fab-button routerLink="/pages/jointlybuy/create-wishbuy">
+      <span>+</span>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

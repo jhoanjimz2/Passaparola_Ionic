@@ -1,0 +1,122 @@
+<div class="upload-media">
+  <span class="upload-media__title">Carica il tuo contenuto</span>
+
+  <!-- Si no hay archivo -->
+  <div
+    *ngIf="!fileSrc"
+    (click)="selectFile()"
+    class="upload-media__dropzone"
+  >
+    <span class="upload-media__dropzone-icon">+</span>
+    <span class="upload-media__dropzone-text">Clicca qui per caricare</span>
+  </div>
+
+  <!-- Imagen -->
+  <div *ngIf="fileSrc && typeFile==='image'" class="upload-media__preview">
+    <img [src]="fileSrc" class="upload-media__image" />
+
+    <!-- Botones -->
+    <div class="upload-media__actions">
+      <button type="button" (click)="removeFile(); $event.stopPropagation()" class="upload-media__button upload-media__button--delete">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div
+    *ngIf="fileSrc && typeFile==='video'"
+    class="upload-media__video-container"
+    (click)="onVideoClick(videoElement)"
+    (mousemove)="showControlsTemporarily()"
+  >
+    <!-- Skeleton mientras carga -->
+    <div
+      *ngIf="!isVideoLoaded"
+      class="upload-media__skeleton"
+    ></div>
+
+    <video
+      #videoElement
+      class="upload-media__video"
+      [class.upload-media__video--loaded]="isVideoLoaded"
+      [class.upload-media__video--hidden]="!isVideoLoaded"
+      playsinline
+      preload="metadata"
+      disablePictureInPicture
+      controlsList="nodownload nofullscreen noremoteplayback"
+      [src]="fileSrc + '#t=0.1'"
+      (timeupdate)="updateProgress(videoElement)"
+      (loadedmetadata)="setDuration(videoElement)"
+      (loadeddata)="onVideoLoadedData()"
+      (ended)="onVideoEnded(videoElement)"
+    ></video>
+
+    <!-- Botón eliminar arriba -->
+    <div class="upload-media__actions">
+      <button type="button" (click)="removeFile(); $event.stopPropagation()" class="upload-media__button upload-media__button--delete">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </div>
+
+    <!-- Controles personalizados -->
+    <div
+      class="upload-media__controls"
+      [class.upload-media__controls--hidden]="!showControls"
+      (click)="onControlsInteraction($event)"
+    >
+      <div class="upload-media__controls-top">
+        <div class="upload-media__controls-left">
+          <button
+            type="button"
+            (click)="togglePlay(videoElement); $event.stopPropagation()"
+            class="upload-media__control-button"
+          >
+            <ion-icon *ngIf="isPaused" name="play"></ion-icon>
+            <ion-icon *ngIf="!isPaused" name="pause"></ion-icon>
+          </button>
+
+          <span class="upload-media__time">{{ formatTime(currentTime) }}</span>
+        </div>
+
+        <div class="upload-media__controls-right">
+          <span class="upload-media__time">{{ formatTime(duration) }}</span>
+
+          <!-- Control de volumen -->
+          <div class="upload-media__volume-control">
+            <button
+              type="button"
+              (click)="toggleMute(videoElement); $event.stopPropagation()"
+              class="upload-media__control-button"
+            >
+              <ion-icon [name]="volumeIcon"></ion-icon>
+            </button>
+
+            <div class="upload-media__volume-slider">
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                [value]="volume"
+                (input)="changeVolume(videoElement, $event)"
+                (click)="$event.stopPropagation()"
+                class="upload-media__volume-range"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="range"
+        min="0"
+        [max]="duration"
+        [value]="currentTime"
+        (input)="seekVideo(videoElement, $event)"
+        (click)="$event.stopPropagation()"
+        class="upload-media__progress-range"
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,154 @@
+.search-content {
+  box-shadow: none;
+  padding-bottom: 0.625rem;
+
+  ion-icon {
+    font-size: 1.875rem;
+    position: absolute;
+    z-index: 999;
+    margin-left: 0.313rem;
+    margin-top: 0.313rem;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 3.125rem;
+    border: solid 0.063rem;
+    height: 2.5rem;
+    padding-left: 2.5rem;
+  }
+}
+
+.title-info {
+  text-align: center;
+  box-shadow: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: transparent;
+
+  ion-icon {
+    float: right;
+    color: #000000;
+    font-size: 1.875rem;
+  }
+}
+
+.icon-rorante {
+  transform: rotate(180deg);
+  transition-duration: 0.3s;
+}
+
+.icon-expand {
+  transform: rotate(0deg);
+  transition-duration: 0.3s;
+}
+
+.card-info {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  padding: 0.625rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+
+  &__item {
+    width: 20.563rem;
+    height: 17.313rem;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0 0.125rem 0.313rem #e0edf3;
+    border-radius: 0.938rem;
+    margin-right: 0.625rem;
+    text-align: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &__title {
+      font-size: 1.125rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    &__text-1 {
+      color: #000000;
+    }
+
+    &__text-2 {
+      font-size: 0.75rem;
+      color: #000000;
+    }
+
+    ion-button {
+      margin-top: 1.25rem;
+      max-width: 18.688rem;
+      height: 3.313rem;
+      --border-radius: 1.688rem;
+      font-weight: bold;
+      color: #ffffff;
+      text-transform: capitalize;
+      --box-shadow: none;
+      --background: #000000;
+      ----background-activated: #000000;
+      --background-activated: #000000;
+      --background-focused: #000000;
+      --background-hover: #000000;
+    }
+  }
+}
+
+.card-info::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.card- input:focus {
+  outline: none;
+}
+
+// Search Header Styles
+.search-header {
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+// Masonry Grid
+ngx-masonry {
+  width: 100%;
+}
+
+.grid-sizer,
+.masonry-item {
+  width: 50%;
+}
+
+.masonry-item {
+  padding: 0.1rem 0.25rem;
+}
+
+// Animaciones suaves
+.animate__fadeIn {
+  animation-duration: 0.3s;
+}
+
+// Mejoras de UX
+ion-spinner {
+  --color: #000000;
+}
+
+// Empty state icon styling
+ion-icon {
+  &[name="search-outline"],
+  &[name="search-circle-outline"] {
+    color: #d1d5db;
+  }
+}
+
+// Espaciado inferior para evitar que el contenido quede oculto
+ion-content {
+  --padding-bottom: 20px;
+}
+
+// Mejoras para el infinite scroll
+ion-infinite-scroll {
+  margin-bottom: 1rem;
+}

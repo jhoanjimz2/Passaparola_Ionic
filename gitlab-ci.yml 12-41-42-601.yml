@@ -1,0 +1,38 @@
+stages:
+  - build
+  - deploy
+
+before_script:
+  - docker container prune -f || true # Limpiar contenedores no utilizados
+  - docker volume prune -f || true # Limpiar volúmenes no utilizados
+
+cache:
+  paths:
+    - node_modules/
+
+build_prod:
+  stage: build
+  image: node:18.18.0-alpine3.18
+  script:
+    - sudo npm install -g yarn
+    - yarn install
+    - yarn build --configuration ${CONFIGURATION}
+    - docker build -t app/privatepwa .
+  tags:
+    - prod
+  only:
+    - prod
+
+deploy_prod:
+  stage: deploy
+  image: docker:dind
+  variables:
+    CONFIGURATION: production
+  script:
+    - docker stop registro_privatepwa || true # Detener el contenedor existente (ignorar errores si no existe)
+    - docker rm registro_privatepwa || true # Eliminar el contenedor existente (ignorar errores si no existe)
+    - docker run -d -p 3103:3103 --env CONFIGURATION=prod --rm --name registro_privatepwa app/privatepwa
+  tags:
+    - prod
+  only:
+    - prod

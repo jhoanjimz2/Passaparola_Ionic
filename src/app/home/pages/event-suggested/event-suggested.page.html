@@ -1,0 +1,81 @@
+<ion-content
+  [fullscreen]="true"
+  [ngClass]="{'bg-light': loading}"
+  >
+
+
+  <div *ngIf="loading" class="w-full h-full flex justify-center items-center">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <section *ngIf="!loading" class="px-[16px] flex flex-col h-full justify-evenly items-center">
+
+    <div class="w-full">
+      <ion-card class="rounded-[1.063rem] border-[0.063rem] border-[#70707030] shadow-none m-4">
+        <ion-card-header class="p-[0.313rem]">
+          <swiper-container #swiper class="w-full h-auto">
+            <swiper-slide *ngFor="let image of (event.pictureGallery?.length ? this.event.pictureGallery : ['', ''] );">
+              <img
+                [src]="image | imageEvent"
+                class="bg-no-repeat bg-cover bg-center object-cover rounded-[0.938rem] h-[8rem] w-full"
+                alt="Event Image"
+              >
+            </swiper-slide>
+          </swiper-container>
+        </ion-card-header>
+
+        <ion-card-content class="relative p-[0.313rem]">
+          <ion-grid class="py-0">
+            <ion-row class="justify-between">
+              <label class="text-[0.938rem] text-black whitespace-nowrap overflow-hidden text-ellipsis max-w-full">{{ event.name ? event.name : 'Senza Nome' }}</label>
+              <button *ngIf="event.isGreen" class="w-20 h-7 bg-green-500 text-white font-bold border border-white rounded-full flex items-center justify-center shadow-md text-shadow-md">
+                green
+              </button>
+            </ion-row>
+          </ion-grid>
+          <ion-grid class="py-0">
+            <ion-row class="flex items-center">
+              <ng-container *ngIf="event?.webAddress; else noWebAddress">
+                <ion-icon src="assets/images/events/custom-icons/webaddress.svg" class="text-blue-600" />&nbsp;
+                <a [href]="event.webAddress" target="_blank" class="text-blue-600 underline">
+                  {{ event.webAddress }}
+                </a>
+              </ng-container>
+              <ng-template #noWebAddress>
+                <ion-icon src="assets/images/events/custom-icons/location.svg" *ngIf="event?.address"/>
+                {{ event.address || 'Non Indirizzato' }} {{ distance }}
+              </ng-template>
+            </ion-row>
+          </ion-grid>
+          <ion-grid class="py-0">
+            <ion-row>
+              <label class="text-[0.75rem] text-[#17A541] max-w-[10rem]">{{'Ingresso a pagamento'}}</label>
+            </ion-row>
+            <ion-row>
+              <label class="text-[0.75rem] text-black">{{ event.schedule ? (event.schedule | formatDateRange ) : 'Senza Data' }}</label>
+            </ion-row>
+          </ion-grid>
+          <div class="grid grid-cols-2 gap-[0.5rem]">
+            <div class="p-2 col-span-2 grid grid-cols-2 gap-[0.5rem] items-end">
+              <button (click)="howToGet(event)" class="bg-[#EC0973] text-white w-[90%] h-[1.8rem] rounded-[2rem] text-[0.7rem] font-semibold m-auto">{{ 'Location'}}</button>
+              <button (click)="callPhoneNumber(event)" class="bg-[#EC0973] text-white w-[90%] h-[1.8rem] rounded-[2rem] text-[0.7rem] font-semibold m-auto">{{ 'Chiama'}}</button>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="flex flex-col items-center justify-center gap-4">
+      <div class="flex flex-col items-center justify-center gap-2">
+        <p class="text-center text-[30px] text-black font-semibold">{{user.profile ? user.profile.name : ''}} ti consiglia</p>
+        <p class="text-center text-[25px] text-black font-bold">{{event.name}}</p>
+        <p class="text-center text-[18px] text-black font-[500]">Utilizzate PassaParola per partecipare agli eventi giornalieri e ricevere immediatamente cashback e punti premio che potrete convertire in denaro reale alla fine del mese.</p>
+      </div>
+      <button (click)="register()" class="mt-[1.875rem] h-[3.438rem] w-full rounded-[1.875rem] bg-[#ec0973] text-white text-[0.938rem] capitalize shadow-none">Unisciti a PassaParola</button>
+    </div>
+
+
+  </section>
+
+
+</ion-content>
