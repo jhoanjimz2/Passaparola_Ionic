@@ -83,3 +83,6 @@ passaparola_ionic.code-workspace
 google-services.json
 GoogleService-Info.plist
 src/environments/environment.ts
+google-services.json
+GoogleService-Info.plist
+src/environments/environment.ts
