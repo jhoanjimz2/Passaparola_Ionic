@@ -80,3 +80,6 @@ Thumbs.db
 passaparola_ionic.code-workspace
 
 # android/*
+google-services.json
+GoogleService-Info.plist
+src/environments/environment.ts
